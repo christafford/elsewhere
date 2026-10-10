@@ -1,5 +1,103 @@
 # P22-T02 — Minimal outdoor startup
 
+## Revalidation after the owner's empty-startup change (2026-10-10)
+
+Base `86db629` already contains P22-T02 (`95363f5`), followed by the owner's
+"no starting terminal" change. That change commented out DesktopRuntime
+initialization entirely. A fresh headless outdoor check reproduced
+`Invalid access to property or key 'bindings' on a base object of type 'Nil'`
+at `outdoor_startup.gd:28`; the process required its 20-second timeout.
+See `.tools/p22-t02-recheck/before.log`. Geometry remained intact, but application
+services were unavailable, so historical completion did not establish the
+current acceptance.
+
+The repair preserves empty startup and initializes the existing services.
+DesktopRuntime exports `auto_start_terminal` (true for existing callers), which
+is false on the outdoor scene and passed to the terminal/session owner before
+its ready callback. The compositor starts and pumps even without an initial
+client; the initial-terminal watchdog runs only after a requested autostart.
+`--terminal` and `--terminal-demo` request that client explicitly.
+`--no-terminal` retains its existing geometry-test meaning: no compositor.
+The launcher records an automatic terminal only when its owned startup process
+exists, preventing the first manually launched browser from being mislabeled.
+Native code, movement, scene geometry, identity and application input policy
+are unchanged. The retained study still starts its original terminal.
+
+The default outdoor regression now waits 10.5 seconds with zero windows,
+checks live/processing services and an empty status label, opens the launcher
+with Tab in graphical mode, and launches a real Weston terminal before running
+all prior navigation/panel/input assertions. Cleanup also checks launched
+children. Five existing terminal-based interaction fixtures explicitly request
+a startup terminal; their interaction assertions remain intact. Chrome starts
+from the unmodified empty default and checks its first-window label/history.
+
+Fresh evidence for this revalidation is kept in `.tools/p22-t02-recheck/`.
+Commands use the same private GPU Weston wrapper documented below:
+
+```sh
+GODOT_BINARY="$PWD/.tools/rename/godot-check.sh" tools/check-godot-outdoor.sh
+GODOT_BINARY="$PWD/.tools/rename/godot-check.sh" tools/check-godot-study.sh
+GODOT_BINARY="$PWD/.tools/rename/godot-check.sh" tools/check-chrome-application.sh
+node --test .opencode/tests/auto-continue.test.js
+```
+
+Import/default startup and headless/graphical outdoor checks pass, including the
+empty wait, manual terminal launch and all four boundaries. Headless launcher
+runs with `--terminal`, `--terminal-demo` and `--no-terminal` each exit zero
+without Godot errors (`--max-fps 60 --quit-after 90`, isolated launcher state).
+All 21 existing Godot regressions pass in this session, including terminal
+input/pointer/resize, launcher/Vim/independent instances/close/relaunch, panel
+manipulation, transitions, gravity and retained study/room checks. Detailed
+logs from `/tmp/elsewhere-study-check.Zlg5Fw` are copied into
+`.tools/p22-t02-recheck/regression-details/`. The fresh pointer selection image
+was also inspected: upright text and a clearly visible selected range.
+All eight Python catalog/launcher tests and 62 parser/plugin tests pass.
+The retained study still matches `7d74847:world/scenes/main.tscn` byte-for-byte.
+No native source changed and no fresh native Meson/binding suite result is
+claimed.
+
+The isolated Chrome trial passes (`CHROME_APPLICATION_OK failures=0`), covering
+first-app launch/labeling from empty startup, trusted typing/click, scrolling,
+resize, return, independent second window and client close. See
+`.tools/p22-t02-recheck/chrome-isolated.log`.
+An earlier direct invocation of `res://tests/chrome_application.gd` through the
+same wrapper, while the study suite was running in a separate private Weston,
+lost the first `E` in `Elsewhere browser 42!` (the same symptom recorded during
+the original implementation). The DOM reported ready/focused, so the earlier
+load/focus check does not eliminate this intermittent failure. The unchanged
+isolated rerun passed; concurrency is a possible factor, not an established
+cause or a fix. No input assertions were weakened, no text was retried, and no
+new readiness workaround was added. The failing log and captures are preserved
+as `chrome-concurrent.log` / `chrome-concurrent-captures/` under the recheck
+log directory. This remains a limitation of the observed browser verification.
+
+Agent-inspected fresh 1280×800 GPU renders:
+
+- [Empty arrival](../evidence/p22-t02/recheck/empty-arrival.png): plain outdoor
+  ground/sky/boundaries, working Applications button, no unsolicited panel or
+  terminal status message.
+- [Requested terminal](../evidence/p22-t02/recheck/application.png): upright,
+  readable shell input and `OUTDOOR_OK` output from the real client.
+- [Ground and boundary](../evidence/p22-t02/recheck/ground-and-boundary.png):
+  live panel remains in the outdoor world after application return.
+- [Chrome input](../evidence/p22-t02/recheck/browser-input.png): complete note
+  and Save result in the successful isolated trial.
+- [Chrome world return](../evidence/p22-t02/recheck/browser-in-room.png): the
+  same browser returns to its outdoor panel (1000×700).
+
+Local links, ten unique numeric P22 IDs, actual plugin parsing of the task list
+and `git diff --check` pass. P22-T02 remains checked; all subsequent P22 tasks
+remain unchecked. Historical suffixed P1 task IDs are left intact.
+
+Observer: Codex agent, same Godot/Mesa/AMD/private-Weston platform recorded
+below. Expected private-Weston cursor/decoration/icon/activation warnings are
+present; no Godot errors or leaked-instance warnings in passing checks.
+No human comfort, village-art or comprehensive P22-T06 integration claim is
+made. P22-T03 remains unstarted. The original implementation evidence follows
+as history; its automatically opened terminal is superseded by empty startup.
+
+## Original implementation evidence
+
 Owner-requested single task, 2026-10-10, base `7d74847` (P22-T01 plus the
 owner's jump commit). Authority: Decision 08. P22-T03 is not started.
 

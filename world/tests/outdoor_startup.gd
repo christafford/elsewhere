@@ -15,6 +15,11 @@ func run() -> void:
 	app = study.application_mode
 	objects = study.application_objects
 	var player = study.get_node("Player")
+	check(terminal != null and app != null and objects != null and study.app_launcher != null, "Outdoor desktop services were not initialized")
+	if failures:
+		await study.desktop_runtime.shutdown()
+		quit(1)
+		return
 	check(study.name == "Outdoor", "Default startup is not outdoors")
 	for script in ["study", "hallway", "elsewhere_rooms", "grand_foyer"]:
 		check(not ResourceLoader.has_cached("res://scripts/" + script + ".gd"), "Default startup loads legacy geometry: " + script)
@@ -24,13 +29,35 @@ func run() -> void:
 	check(env.background_mode == Environment.BG_SKY and env.sky != null, "Outdoor sky missing")
 	check(env.tonemap_mode == Environment.TONE_MAPPER_FILMIC and env.tonemap_exposure == 1.0 and env.tonemap_white == 1.0, "Client screen color contract changed")
 	check(env.ambient_light_source == Environment.AMBIENT_SOURCE_COLOR and study.get_node("Sun").shadow_enabled, "Outdoor lighting missing")
-	var deadline := Time.get_ticks_msec() + 12000
-	while objects.bindings.is_empty() and Time.get_ticks_msec() < deadline: await process_frame
-	check(terminal.session != null and terminal.updates > 0 and not objects.bindings.is_empty(), "Outdoor startup did not map its real terminal")
+	# Stay idle beyond the initial-client watchdog: an empty desktop is healthy.
+	await create_timer(10.5).timeout
+	check(terminal.session != null and terminal.session.is_running() and terminal.is_processing(), "Idle outdoor compositor is unavailable")
+	check(not terminal.child_running() and terminal.launched_children.is_empty() and objects.bindings.is_empty() and terminal.handle == 0, "Default startup launches an unsolicited application")
+	check(terminal.status.text.is_empty(), "Empty startup shows a terminal/error message")
 	if failures:
 		await study.desktop_runtime.shutdown()
 		quit(1)
 		return
+	var launcher = study.app_launcher
+	if DisplayServer.get_name() != "headless":
+		root.grab_focus()
+		await capture("empty-arrival.png")
+		await tap(KEY_TAB)
+	else:
+		launcher.open()
+	check(launcher.opened and not launcher.entries.is_empty(), "Empty startup launcher is unavailable")
+	launcher.launch(launcher.TERMINAL_ID)
+	var deadline := Time.get_ticks_msec() + 12000
+	while (not launcher.pending.is_empty() or objects.bindings.is_empty()) and Time.get_ticks_msec() < deadline: await process_frame
+	check(terminal.session != null and terminal.updates > 0 and not objects.bindings.is_empty(), "Outdoor launcher did not map its real terminal")
+	if failures:
+		await study.desktop_runtime.shutdown()
+		quit(1)
+		return
+	if DisplayServer.get_name() != "headless":
+		await return_to_room()
+	else:
+		app.exit_application()
 	var window: int = terminal.handle
 	var object: Node3D = objects.bindings[window]
 	var identity: String = object.entity_id
@@ -111,6 +138,6 @@ func run() -> void:
 		await frames(10)
 		await capture("ground-and-boundary.png")
 	await study.desktop_runtime.shutdown()
-	check(not terminal.session.is_running() and not terminal.child_running(), "Outdoor shutdown left the session/client running")
+	check(not terminal.session.is_running() and not terminal.child_running() and terminal.launched_children.is_empty(), "Outdoor shutdown left the session/client running")
 	print("OUTDOOR_STARTUP_OK mode=", DisplayServer.get_name(), " boundaries=4 failures=", failures)
 	quit(1 if failures else 0)

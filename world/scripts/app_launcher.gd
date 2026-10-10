@@ -352,7 +352,7 @@ func _process(_delta: float) -> void:
 			OS.kill(catalog_pid)
 			catalog_pid = -1
 			notice.text = "Application discovery timed out"
-	if not initial_recorded and terminal.handle != 0 and terminal.screen.visible and not entry(TERMINAL_ID).is_empty():
+	if not initial_recorded and terminal.child_pid > 0 and terminal.handle != 0 and terminal.screen.visible and not entry(TERMINAL_ID).is_empty():
 		initial_recorded = true
 		live_windows[terminal.handle] = TERMINAL_ID
 		remember(TERMINAL_ID)

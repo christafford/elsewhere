@@ -51,17 +51,19 @@ func run() -> void:
 	objects = study.application_objects
 	var launcher = study.app_launcher
 	var deadline := Time.get_ticks_msec() + 15000
-	while (launcher.entries.is_empty() or terminal.updates < 1) and Time.get_ticks_msec() < deadline: await process_frame
+	while launcher.entries.is_empty() and Time.get_ticks_msec() < deadline: await process_frame
 	root.grab_focus()
 	await settle()
 	check(not launcher.entry("google-chrome.desktop").is_empty(), "Installed Google Chrome desktop entry required")
 	if failures:
 		await finish()
 		return
+	check(terminal.session != null and terminal.session.is_running() and terminal.handle == 0 and not terminal.child_running(), "Empty startup lacks a runtime or launched an unsolicited terminal")
 	var first := await browser_launch(launcher, "google-chrome.desktop")
 	if failures:
 		await finish()
 		return
+	check(launcher.live_windows.get(first) == "google-chrome.desktop" and launcher.recent[0] == "google-chrome.desktop", "First launched browser was mislabeled as a terminal")
 	var port := (await wait_file("port.txt")).strip_edges()
 	await chord(KEY_CTRL, KEY_L)
 	await type_text("http://127.0.0.1:" + port + "/")

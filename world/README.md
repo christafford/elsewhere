@@ -2,9 +2,10 @@
 
 The default scene is the **P22-T02 minimal outdoor startup**: flat walkable
 24m ground, visible solid boundaries, a safe spawn, sky and sunlight. It reuses
-the player controller and desktop runtime. The existing real Weston terminal
-opens as a live world panel. This is a startup foundation, not the authored
-village, polished art or the P22-T06 outdoor application-integration gate.
+the player controller and desktop runtime. Startup opens no application; use
+Tab / Applications to launch a real terminal or another installed application.
+This is a startup foundation, not the authored village, polished art or the
+P22-T06 outdoor application-integration gate.
 
 From the repository root, using the existing pinned tools:
 
@@ -16,9 +17,11 @@ tools/run-godot.sh --audio-driver Dummy
 No study assets are needed by the default scene. The launcher builds and stages
 `addons/elsewhere_runtime/` using the repository's godot-cpp checkout and C++
 build dependencies. Godot uses Compatibility/OpenGL. `/usr/bin/weston-terminal`
-starts `/bin/sh` on the private compositor socket, with isolated configuration,
-prompt and repository-local shell history. A missing terminal is an explicit
-error, with no simulated fallback. Fresh-machine bootstrap remains unfinished.
+runs on the private compositor socket when requested. `-- --terminal` starts
+the initial `/bin/sh` with isolated configuration, prompt and repository-local
+shell history; `-- --terminal-demo` starts the changing-output demo. A missing
+requested terminal is an explicit error, with no simulated fallback.
+Fresh-machine bootstrap remains unfinished.
 
 `tools/run-godot.sh --editor` opens the editor. `build/elsewhere --room-camera`
 remains a separate legacy renderer. For changing real terminal output:
@@ -28,8 +31,9 @@ tools/run-godot.sh --audio-driver Dummy -- --terminal-demo
 ```
 
 Closing the Godot window stops its server and owned applications. Host desktop
-settings stay unchanged. `-- --no-terminal` disables the initial terminal for
-isolated scene checks; the application-status label reports this in the world.
+settings stay unchanged. `-- --no-terminal` disables the compositor/terminal
+adapter for isolated geometry checks (including when `--terminal` is also
+supplied); the application-status label reports this in the world.
 
 | Control | Action |
 | --- | --- |

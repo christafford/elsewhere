@@ -8,7 +8,29 @@ historical and should remain available as engineering evidence, not as the
 current build queue. **P22-T01 and P22-T02 are complete; no further task is authorized.**
 P22-T03 is the next planned task and requires a separate explicit owner request.
 
-## P22-T02 verified (2026-10-10)
+## P22-T02 revalidation (2026-10-10, from `86db629`)
+
+The owner disabled startup terminal launch after the original implementation.
+That also disabled DesktopRuntime initialization; a fresh outdoor check failed
+on null application services. Runtime initialization is restored with a separate
+`auto_start_terminal` setting, false outdoors. Startup stays empty, with the
+compositor and Applications launcher ready. `--terminal` / `--terminal-demo`
+explicitly request a client; `--no-terminal` retains the geometry-only path.
+The first manually launched browser keeps its correct launcher identity.
+
+Fresh automated checks pass: Godot import/default startup, headless and graphical
+outdoor trials (including idle beyond the watchdog, manual terminal launch,
+movement/jump/collision, panel drag/rotation/cancel, typing/return and shutdown),
+explicit startup flag runs, all 21 existing Godot regressions, eight Python
+catalog/launcher tests, 62 parser/plugin tests, and the isolated real Chrome
+trial. A concurrent Chrome attempt lost the first typed character; the unchanged
+isolated recheck passed. That intermittent failure remains documented, not
+claimed fixed. Actual new GPU renders were inspected by the agent: empty arrival, readable requested terminal output,
+and the live panel after world return. See [handoff 40](handoffs/40-outdoor-startup.md)
+for commands, original failure and fresh evidence. Human comfort, village art,
+and the comprehensive P22-T06 integration gate remain unaccepted.
+
+## Original P22-T02 verification (2026-10-10)
 
 From `7d74847`, the default is a minimal outdoor startup: flat ground, visible
 solid boundaries, safe spawn, sky and sunlight. It reuses DesktopRuntime and
@@ -115,7 +137,9 @@ tools/validate-godot-project.sh
 tools/run-godot.sh --audio-driver Dummy
 ```
 
-The default is the minimal outdoor startup. No study assets are needed for it.
+The default is the minimal outdoor startup with no application open. Tab opens
+Applications; `-- --terminal` explicitly starts a terminal. No study assets are
+needed for it.
 See [current controls and checks](../world/README.md). The following retained
 study instructions and detailed Project 21 evidence describe the old world.
 

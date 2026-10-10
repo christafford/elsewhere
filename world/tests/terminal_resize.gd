@@ -51,6 +51,8 @@ func run() -> void:
 		var path := output_dir.path_join("size%d" % i)
 		if FileAccess.file_exists(path): check(DirAccess.remove_absolute(path) == OK, "Remove old size marker")
 	study = load("res://scenes/main.tscn").instantiate()
+	# This interaction fixture requires a terminal before exercising its assertions.
+	study.get_node("DesktopRuntime").auto_start_terminal = true
 	root.add_child(study)
 	current_scene = study
 	terminal = study.terminal_screen

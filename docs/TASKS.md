@@ -44,7 +44,12 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   safe spawn, with the former study retained explicitly. Headless/graphical
   outdoor trials, all 21 existing Godot trials, real Chrome, 8 Python tests
   and 62 parser/plugin tests pass; actual GPU renders inspected. See
-  [handoff 40](handoffs/40-outdoor-startup.md). P22-T03 is not started.
+  [handoff 40](handoffs/40-outdoor-startup.md). Revalidated from `86db629`:
+  preserve empty startup while restoring runtime/launcher initialization; both
+  outdoor modes, all 21 Godot trials, eight Python tests, 62 parser tests and an
+  isolated Chrome trial pass. A concurrent Chrome first-character failure is
+  retained as intermittent evidence; no claim that it is fixed. Fresh GPU
+  captures inspected. P22-T03 is not started.
 
 - [ ] **P22-T03 Author compact village landscape and circulation.**
   **Depends:** P22-T02. Establish a navigable 70–100 m *approximate* first map,

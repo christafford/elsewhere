@@ -1,6 +1,8 @@
 ## World-neutral composition and lifetime of the existing desktop services.
 extends Node
 
+@export var auto_start_terminal := true
+
 var terminal_screen: Node
 var application_mode: CanvasLayer
 var app_launcher: CanvasLayer
@@ -17,6 +19,7 @@ func initialize(player: CharacterBody3D, screen: MeshInstance3D, status: Label3D
 	terminal_screen.name = "TerminalScreen"
 	terminal_screen.screen = screen
 	terminal_screen.status = status
+	terminal_screen.auto_start_terminal = auto_start_terminal
 	add_child(terminal_screen)
 	application_mode = preload("res://scripts/application_mode.gd").new()
 	application_mode.terminal = terminal_screen

@@ -40,6 +40,8 @@ func run() -> void:
 	output_dir = ProjectSettings.globalize_path("res://../.tools/launcher-test-captures").simplify_path()
 	DirAccess.make_dir_recursive_absolute(output_dir)
 	study = load("res://scenes/main.tscn").instantiate()
+	# This interaction fixture requires a terminal before exercising its assertions.
+	study.get_node("DesktopRuntime").auto_start_terminal = true
 	root.add_child(study)
 	current_scene = study
 	terminal = study.terminal_screen

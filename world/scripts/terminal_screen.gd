@@ -1,6 +1,7 @@
 ## Owns the compositor session, monitor presentation and launched client processes.
 extends Node
 
+var auto_start_terminal := true
 var session
 var child_pid := -1
 var launched_children: Array[int] = []
@@ -30,6 +31,9 @@ func _ready() -> void:
 		runtime_dir = "/tmp"
 	if not session.start(runtime_dir):
 		fail(session.last_error())
+		return
+	if not auto_start_terminal and not "--terminal" in OS.get_cmdline_user_args() and not "--terminal-demo" in OS.get_cmdline_user_args():
+		status.text = ""
 		return
 	var config_dir := ProjectSettings.globalize_path("res://../.tools/terminal-config").simplify_path()
 	if DirAccess.make_dir_recursive_absolute(config_dir) != OK:
@@ -137,7 +141,7 @@ func _process(_delta: float) -> void:
 	if child_pid > 0 and not child_running():
 		if handle == 0:
 			clear_content("Terminal closed")
-	if updates == 0 and Time.get_ticks_msec() - started_ms > 10000:
+	if started_ms > 0 and updates == 0 and Time.get_ticks_msec() - started_ms > 10000:
 		fail("Terminal produced no window content; check the launch log")
 
 func child_running() -> bool:

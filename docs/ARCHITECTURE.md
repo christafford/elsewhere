@@ -15,6 +15,11 @@ preview mesh is hidden by its parent: it retains the terminal's existing texture
 and local visibility contract, while independent live panels provide the visible
 world presentation. The startup/error status label remains visible when needed.
 No study or hallway geometry is loaded by the default scene.
+The outdoor DesktopRuntime sets `auto_start_terminal = false`: its compositor
+and desktop services start normally, while initial client launch is optional.
+The retained study keeps autostart enabled. `--terminal` / `--terminal-demo`
+explicitly request a startup client; `--no-terminal` retains the geometry-only
+path without a compositor.
 
 The prior main scene is retained unchanged as `study.tscn`; `study.gd` still
 supplies its physical monitor and hallway bounds when explicitly loaded.

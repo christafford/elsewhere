@@ -2,8 +2,11 @@
 
 Current startup: P22-T02 loads a minimal outdoor scene using the extracted
 desktop runtime. The selected-preview mesh remains a hidden texture adapter;
-live application panels provide the visible world presentation. The study is
-retained in `scenes/study.tscn` for explicit launch and geometry regressions.
+live application panels provide the visible world presentation. Startup is empty
+but the compositor and launcher are ready; Tab opens Applications.
+`-- --terminal` or `-- --terminal-demo` explicitly starts an initial client.
+The study is retained in `scenes/study.tscn` for explicit launch and geometry
+regressions.
 See [the outdoor startup handoff](handoffs/40-outdoor-startup.md).
 
 The following records the integration developed under Decision 06 / Project 21.

@@ -3,7 +3,27 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
-## 2026-10-10 agent-run minimal outdoor startup (P22-T02)
+## 2026-10-10 agent-run empty-startup revalidation (P22-T02)
+
+From `86db629`, revalidated the existing outdoor scene after separating the
+owner's no-startup-terminal preference from desktop service initialization.
+Headless and GPU outdoor trials pass, including an idle wait beyond the
+initial-terminal watchdog, Tab/launcher startup of a real terminal, all prior
+navigation/collision/panel/input checks and owned-client cleanup. All 21 existing
+Godot regressions pass, including retained study behavior and terminal
+input/pointer/resize, launcher/relaunch, independent instances and transitions.
+The isolated real Chrome trial passes from empty startup, including correct
+first-window labeling. A concurrent attempt lost its first typed character;
+that intermittent failure remains uncorrected, and is retained in the handoff.
+Fresh agent-inspected captures show [empty arrival](evidence/p22-t02/recheck/empty-arrival.png),
+[real terminal input/output](evidence/p22-t02/recheck/application.png), and
+[world return](evidence/p22-t02/recheck/ground-and-boundary.png).
+Same Godot/Mesa/AMD/private-Weston platform as below; injected input, 1280×800.
+See [handoff 40](handoffs/40-outdoor-startup.md) for failure/repair evidence and
+verification results. This is bounded startup acceptance, not human observation
+or the P22-T06 application integration gate.
+
+## Original 2026-10-10 agent-run minimal outdoor startup (P22-T02)
 
 From `7d74847` plus P22-T02, the default starts on flat outdoor ground with
 visible collision boundaries, sky and sunlight. The new headless/graphical

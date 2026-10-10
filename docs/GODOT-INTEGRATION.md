@@ -1,13 +1,15 @@
 # Godot and the existing Wayland compositor
 
-Current startup: P22-T02 loads a minimal outdoor scene using the extracted
-desktop runtime. The selected-preview mesh remains a hidden texture adapter;
+Current startup: P22-T03 loads the authored square, terrain and approach paths
+using the desktop runtime extracted in P22-T01. The selected-preview mesh remains
+a hidden texture adapter;
 live application panels provide the visible world presentation. Startup is empty
 but the compositor and launcher are ready; Tab opens Applications.
 `-- --terminal` or `-- --terminal-demo` explicitly starts an initial client.
 The study is retained in `scenes/study.tscn` for explicit launch and geometry
 regressions.
-See [the outdoor startup handoff](handoffs/40-outdoor-startup.md).
+See [the landscape handoff](handoffs/41-village-landscape.md) and
+[the outdoor startup handoff](handoffs/40-outdoor-startup.md).
 
 The following records the integration developed under Decision 06 / Project 21.
 The Godot study now renders real furniture and supports movement (P21-T36).

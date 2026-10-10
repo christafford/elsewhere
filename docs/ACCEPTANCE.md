@@ -3,6 +3,37 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-10 agent-run village landscape and circulation (P22-T03)
+
+From `eca98ab`, the default outdoor scene has an approximately 84m authored
+boundary, gently varied terrain, a level paved square and four approach paths.
+Headless and graphical trials each pass 24,178 ground queries and approximately
+337.8m of actual controller walking, uphill/downhill on every approach and
+across the square apron. Maximum sampled slope is 14.39°; floor gap is under
+6mm. No missing ground or unexpected navigation obstacle was found in the
+sampled interior. Walking/jumping into all ten bank sections and a corner
+remains contained, and Home returns safely to the level spawn.
+
+The outdoor real-terminal trial passes launch, drag/rotation/cancel, typing,
+return and shutdown. The same terminal lands on the raised western terrain,
+accepts further shell input and retains its identity. Seven existing affected
+Godot trials preserve native colors, keyboard/pointer/scroll, actual resize,
+launcher/Vim/relaunch, independent instances, manipulation and transitions.
+The unchanged real Chrome trial passes typing/click/scroll, resize/reflow, world
+return, second-window identity and client close in the landscape scene.
+
+Agent-inspected actual renders: [arrival](evidence/p22-t03/arrival.png),
+[south](evidence/p22-t03/south-approach.png),
+[west](evidence/p22-t03/west-rise.png),
+[north](evidence/p22-t03/north-saddle.png),
+[east](evidence/p22-t03/east-shelf.png),
+[terrain-supported panel](evidence/p22-t03/slope-panel.png), and
+[terminal](evidence/p22-t03/application.png). Godot 4.7.2 Compatibility/OpenGL,
+Mesa 26.2.4, AMD Custom GPU 0405, private Weston 15.0.1, 1280×800. Injected input
+and agent observation do not establish human comfort or finished village art.
+The bank/materials are provisional; P22-T04 is unstarted. See
+[handoff 41](handoffs/41-village-landscape.md) for commands and limitations.
+
 ## 2026-10-10 agent-run empty-startup revalidation (P22-T02)
 
 From `86db629`, revalidated the existing outdoor scene after separating the

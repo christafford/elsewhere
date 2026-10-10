@@ -5,8 +5,34 @@ world beginning at a village square. Project 22 and
 [Decision 08](decisions/08-elsewhere-village-world.md) supersede the Project 21
 study environment and expansion schedule. All Project 21 progress below is
 historical and should remain available as engineering evidence, not as the
-current build queue. **P22-T01 and P22-T02 are complete; no further task is authorized.**
-P22-T03 is the next planned task and requires a separate explicit owner request.
+current build queue. **P22-T01 through P22-T03 are complete; no further task is authorized.**
+P22-T04 is the next planned task and requires a separate explicit owner request.
+
+## P22-T03 verified (2026-10-10, from `eca98ab`)
+
+The default is now an approximately 84m authored site: a level 24 × 20m paved
+square, four 4m-wide approaches, gently varied ground, and a continuous visible
+ten-section boundary bank. Fixed heights and paths define the geography.
+The scene reuses the existing controller and DesktopRuntime. Application
+placement follows the expanded boundary and terrain; startup remains empty.
+No native/runtime/input policy changed. The historical study remains intact.
+
+Verified by automated checks: Godot import/default startup; headless and
+rendered terrain checks (24,178 ground samples, 337.8m walked per mode, maximum
+sampled grade 14.39°, floor gap below 6mm); all ten boundary sections and corner
+containment; real terminal launch/drag/rotation/cancel/input/return, including
+landing on the western slope. Seven affected existing Godot regressions,
+the isolated real Chrome trial, eight Python tests and 62 parser/plugin tests
+pass. No fresh native Meson or full historical 21-trial suite result is claimed
+for this scene-only change.
+
+Agent-observed actual GPU renders show arrival and all four approaches,
+continuous ground/path joins, the enclosing bank, readable native terminal
+output and a live panel on the raised terrain. See
+[handoff 41](handoffs/41-village-landscape.md) for commands, captures, initial
+failures, fixes and exact limits. Not verified by a person: movement comfort.
+Materials and the simple bank remain provisional. Buildings, foliage, art
+acceptance and comprehensive application integration retain their later tasks.
 
 ## P22-T02 revalidation (2026-10-10, from `86db629`)
 
@@ -50,7 +76,8 @@ Agent-observed actual renders show the outdoor arrival, walkable ground and
 boundaries, native terminal output, selected text and real Chrome content/world
 return. Not verified by a person: physical-input feel or comfort. This is the
 minimal startup acceptance only; village art and P22-T06's comprehensive outdoor
-application integration remain unimplemented/unaccepted. P22-T03 is unstarted.
+application integration remained unimplemented/unaccepted. P22-T03 was unstarted
+at that checkpoint.
 
 ## P22-T01 verified (2026-10-09)
 
@@ -137,8 +164,8 @@ tools/validate-godot-project.sh
 tools/run-godot.sh --audio-driver Dummy
 ```
 
-The default is the minimal outdoor startup with no application open. Tab opens
-Applications; `-- --terminal` explicitly starts a terminal. No study assets are
+The default is the authored landscape and square with no application open.
+Tab opens Applications; `-- --terminal` explicitly starts a terminal. No study assets are
 needed for it.
 See [current controls and checks](../world/README.md). The following retained
 study instructions and detailed Project 21 evidence describe the old world.

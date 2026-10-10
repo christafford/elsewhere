@@ -1,11 +1,17 @@
 # Godot world frontend
 
-The default scene is the **P22-T02 minimal outdoor startup**: flat walkable
-24m ground, visible solid boundaries, a safe spawn, sky and sunlight. It reuses
-the player controller and desktop runtime. Startup opens no application; use
-Tab / Applications to launch a real terminal or another installed application.
-This is a startup foundation, not the authored village, polished art or the
-P22-T06 outdoor application-integration gate.
+The default scene is the **P22-T03 village landscape and circulation**: an
+approximately 84m site with gently varied ground, a 24 × 20m paved square,
+four 4m-wide approaches, and a visible continuous raised bank at the boundary.
+The south approach bends into the square; the western rise, northern saddle
+and lower eastern shelf give each route a distinct direction and elevation.
+The ground, routes and boundary are fixed authored geometry, with no random
+map generation. Buildings, foliage and final materials belong to later tasks.
+
+The existing player controller and desktop runtime are reused. Startup opens
+no application; use Tab / Applications to launch a terminal or another installed
+application. Home returns to the level square. This is landscape/circulation
+acceptance, not polished village art or the P22-T06 application-integration gate.
 
 From the repository root, using the existing pinned tools:
 
@@ -76,7 +82,9 @@ Asset preparation verifies manifest SHA-256 values and stages complete glTF
 packages; it does not fetch missing assets. Do not discard those sources/cache.
 
 ```sh
-# Headless and graphical default startup, movement/jump/collision, live terminal.
+# Ground coverage/grades, full route walks, and eye-level approach captures.
+tools/check-godot-landscape.sh
+# Headless and graphical default startup, boundary collision, live terminal.
 tools/check-godot-outdoor.sh
 # Retained study geometry plus general desktop checks on the current default.
 tools/check-godot-study.sh
@@ -84,11 +92,12 @@ tools/check-godot-study.sh
 tools/check-chrome-application.sh
 ```
 
-The outdoor check writes actual GPU captures to `.tools/outdoor-startup-test/`.
+Landscape captures are written to `.tools/village-landscape-test/`; the outdoor
+startup check writes `.tools/outdoor-startup-test/`.
 Open them for visual review. Headless checks cannot supply visual acceptance;
 injected input and screenshots do not establish human comfort or comprehensive
 application compatibility. See [status](../docs/STATUS.md) and the
-[P22-T02 handoff](../docs/handoffs/40-outdoor-startup.md) for exact evidence.
+[P22-T03 handoff](../docs/handoffs/41-village-landscape.md) for exact evidence.
 
 The old experimental bridge remains under `addons/elsewhere_godot/`, excluded
 from discovery by `.gdignore`. The standard binding's protocol/owned-frame

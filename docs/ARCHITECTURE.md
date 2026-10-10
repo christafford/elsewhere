@@ -8,8 +8,9 @@ transition. It owns window-close shutdown; its terminal child still owns the
 native session, pump and launched application processes. No compositor or input
 policy rewrite is involved.
 
-P22-T02 makes `main.tscn` a minimal outdoor ground/sky scene using the same
-DesktopRuntime and controller. `outdoor.gd` supplies its ready player, selected
+P22-T02 replaced the study with an outdoor scene; P22-T03 adds its authored
+landscape and circulation. `main.tscn` uses the same DesktopRuntime and controller.
+`outdoor.gd` supplies its ready player, selected
 preview/status nodes and a world-space placement-bounds callable. The selected
 preview mesh is hidden by its parent: it retains the terminal's existing texture
 and local visibility contract, while independent live panels provide the visible
@@ -35,8 +36,17 @@ the outdoor scene's authored values for startup and Home. The owner's jump
 behavior remains unchanged. The supplied presentation/player must remain alive for the
 desktop lifetime. The terminal retains its existing fixed monitor aperture and
 Filmic-compensated shader contract. A future location must provide compatible
-presentation and bounds deliberately. The current outdoor boundary is a small
-startup fixture; landscape, circulation and village architecture are later tasks.
+presentation and bounds deliberately.
+
+`village_landscape.gd` owns only the site: a fixed height lattice, graded square,
+four authored path centerlines, and a convex ten-section boundary bank. The
+rendered ground mesh supplies the collision triangles. The paving shader marks
+routes on that same surface, so no overlay collision or curb changes movement.
+The location's placement callable insets the convex boundary by the whole panel
+footprint and raises placement above sampled terrain; existing collision queries
+still reject overlaps. The desktop services know nothing about the lattice,
+paths or bank. No scene streaming, terrain engine, new dependency, or application
+identity change is introduced.
 
 ---
 

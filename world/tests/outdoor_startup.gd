@@ -1,5 +1,7 @@
-## Bounded P22-T02 startup/navigation check; not the village integration gate.
+## Outdoor startup/desktop regression; geometry follows the authored P22-T03 site.
 extends "res://tests/application_objects.gd"
+
+const Landscape = preload("res://scripts/village_landscape.gd")
 
 func frames(count: int) -> void:
 	for i in range(count): await physics_frame
@@ -83,25 +85,31 @@ func run() -> void:
 		await physics_frame
 		peak = maxf(peak, player.position.y)
 	check(peak > 0.8 and player.is_on_floor() and absf(player.position.y) < 0.03, "Jump or landing regressed")
-	for edge in [[Vector3(0, 0.05, -11), 0.0], [Vector3(0, 0.05, 11), PI], [Vector3(11, 0.05, 0), -PI / 2], [Vector3(-11, 0.05, 0), PI / 2]]:
+	for i in range(Landscape.BOUNDARY.size()):
+		var midpoint: Vector2 = (Landscape.BOUNDARY[i] + Landscape.BOUNDARY[(i+1)%Landscape.BOUNDARY.size()]) * 0.5
+		var inward := Landscape.inward_normal(i)
+		var start := midpoint + inward * 1.0
 		player.release_pointer()
-		player.position = edge[0]
-		player.rotation.y = edge[1]
+		player.position = Vector3(start.x, Landscape.height_at(start)+0.05, start.y)
+		player.rotation.y = atan2(inward.x, inward.y)
 		await frames(10)
 		await key(KEY_W, true)
 		await tap(KEY_SPACE)
 		await frames(90)
 		await key(KEY_W, false)
-		var distance: float = maxf(absf(player.position.x), absf(player.position.z))
-		check(distance > 11.5 and distance < 11.65 and player.is_on_floor(), "Walking/jumping escapes or fails to reach boundary: " + str(player.position))
-	# Corner containment and a reset while movement is held.
-	player.position = Vector3(11, 0.05, -11)
-	player.rotation.y = 0
+		var clearance := (Vector2(player.position.x,player.position.z)-midpoint).dot(inward)
+		check(clearance > 0.19 and clearance < 0.35 and player.is_on_floor(), "Walking/jumping escapes or fails to reach bank %s: %s" % [i,player.position])
+	# Walk diagonally into a real polygon corner, then reset with movement held.
+	var corner: Vector2 = Landscape.BOUNDARY[0]
+	var bisector := (Landscape.inward_normal(0)+Landscape.inward_normal(Landscape.BOUNDARY.size()-1)).normalized()
+	var corner_start := corner + bisector * 1.5
+	player.position = Vector3(corner_start.x, Landscape.height_at(corner_start)+0.05, corner_start.y)
+	player.rotation.y = atan2(bisector.x,bisector.y) + PI/4
 	await frames(10)
 	await key(KEY_W, true)
 	await key(KEY_D, true)
 	await frames(60)
-	check(player.position.x < 11.65 and player.position.z > -11.65, "Diagonal walk crosses the corner")
+	check(Landscape.contains(Vector2(player.position.x,player.position.z),0.19), "Diagonal walk crosses the bank corner")
 	# Observe reset synchronously before physics settles the 5cm spawn clearance.
 	var home := InputEventKey.new()
 	home.physical_keycode = KEY_HOME
@@ -137,7 +145,28 @@ func run() -> void:
 		player.rotation.y = 0.65
 		await frames(10)
 		await capture("ground-and-boundary.png")
+		# Fixture-position a real panel above the western slope, beyond the old
+		# startup bounds. Its existing gravity must use the actual terrain mesh.
+		var slope := Vector2(-25,-7)
+		player.position = Vector3(-25,Landscape.height_at(Vector2(-25,-3.6))+0.05,-3.6)
+		player.rotation.y = 0
+		object.position = Vector3(slope.x,Landscape.height_at(slope)+3.0,slope.y)
+		object.rotation = Vector3.ZERO
+		object.gravity_active = true
+		await frames(100)
+		check(object.support != null and object.support.get_ref() != null and str(object.support.get_ref().get_parent().name)=="Ground", "Live panel did not land on the raised terrain")
+		var bottom: float = object.position.y-object.bounds.y/2
+		check(bottom >= Landscape.height_at(slope)-0.01 and bottom < Landscape.height_at(slope)+0.3, "Slope panel fell through or floats above ground")
+		player.camera.look_at(object.position)
+		await capture("slope-panel.png")
+		await activate(window)
+		var slope_marker := output_dir.path_join("slope.txt")
+		if FileAccess.file_exists(slope_marker): DirAccess.remove_absolute(slope_marker)
+		await type_text("printf 'SLOPE_OK\\n' | tee '" + slope_marker + "'\n")
+		check(await wait_file("slope.txt") == "SLOPE_OK\n", "Raised-terrain terminal lost typing")
+		await return_to_room()
+		check(objects.bindings[window] == object and object.entity_id == identity, "Terrain placement lost the live instance")
 	await study.desktop_runtime.shutdown()
 	check(not terminal.session.is_running() and not terminal.child_running() and terminal.launched_children.is_empty(), "Outdoor shutdown left the session/client running")
-	print("OUTDOOR_STARTUP_OK mode=", DisplayServer.get_name(), " boundaries=4 failures=", failures)
+	print("OUTDOOR_STARTUP_OK mode=", DisplayServer.get_name(), " boundaries=", Landscape.BOUNDARY.size(), " failures=", failures)
 	quit(1 if failures else 0)

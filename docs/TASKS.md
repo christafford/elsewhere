@@ -49,14 +49,20 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   outdoor modes, all 21 Godot trials, eight Python tests, 62 parser tests and an
   isolated Chrome trial pass. A concurrent Chrome first-character failure is
   retained as intermittent evidence; no claim that it is fixed. Fresh GPU
-  captures inspected. P22-T03 is not started.
+  captures inspected. P22-T03 was unstarted at that checkpoint.
 
-- [ ] **P22-T03 Author compact village landscape and circulation.**
+- [x] **P22-T03 Author compact village landscape and circulation.**
   **Depends:** P22-T02. Establish a navigable 70–100 m *approximate* first map,
   gently varied terrain, paved square, walkable approach paths and intentional
   outer boundary. Keep memorable, stable geography, not procedural sprawl.
   **Acceptance:** capture arrival and approach views; walk paths and check
   collision, grades, spawn, missing ground and navigation obstacles.
+  Completed 2026-10-10 from `eca98ab`: authored 84m site, graded square, four
+  approaches and visible solid bank. Headless/GPU trials pass 24,178 ground
+  queries and 337.8m walking per mode; all ten boundary sections pass. Seven
+  affected Godot regressions, real Chrome, eight Python and 62 parser tests
+  pass; actual arrival/approach/application renders inspected. See
+  [handoff 41](handoffs/41-village-landscape.md). P22-T04 is not started.
 
 - [ ] **P22-T04 Create landmark, architectural exteriors and pavilion.**
   **Depends:** P22-T03. Place a recognizable central landmark, 3–4 distinctive

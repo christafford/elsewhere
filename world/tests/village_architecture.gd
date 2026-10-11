@@ -19,7 +19,7 @@ func run() -> void:
 	walker = study.get_node("Player")
 	await frames(20)
 	var architecture := study.get_node("Architecture")
-	check(architecture.get_child_count()==6,"Expected three exteriors, landmark, pavilion and timber link")
+	check(architecture.get_child_count()==5,"Expected three exteriors, landmark and pavilion")
 	check(terminal.session != null and terminal.session.is_running() and objects.bindings.is_empty(),"Architecture changes empty desktop startup")
 	for label in ["Lodge","Guildhall","Workshop","Fountain","Pavilion"]:
 		var node := architecture.get_node(label)

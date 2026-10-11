@@ -68,6 +68,16 @@ terrain-test exclusion group; normal walking and placement still see their
 collisions. The paving change is visual on the same ground mesh. No new
 runtime service, identity, input or persistence boundary is introduced.
 
+Reference 2 (owner comparison request, 2026-10-11) removes the active timber
+link and adds a `MountainBackdrop` sibling. Its script applies one original
+height/slope material to the distant imported mesh; it has no collision or
+runtime ownership. The sky shader supplies fixed cloud cover. Surface shaders
+add weathering and decorative water ripples; exposure and client shaders stay
+unchanged. Boundary UV/material changes preserve its exact mesh/collision.
+All scene selection remains the existing `main.tscn` path; Git snapshots and
+separate captures preserve comparison without a new runtime theme system.
+See [handoff 44](handoffs/44-village-reference-2.md).
+
 ---
 
 # Architecture: current prototype and target boundaries

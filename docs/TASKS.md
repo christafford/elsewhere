@@ -82,6 +82,12 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   windows, planted fountain/window boxes, fixed trees and a timber arch link.
   See [handoff 43](handoffs/43-village-reference-alignment.md). This bounded
   revision does not complete the broader P22-T05 art gate.
+  The owner then requested a reversible second reference candidate: weathered
+  stone/timber, ivy, a turret, tiered fountain and distant ridge. Candidate 1
+  is preserved at `340ca97` / `art-reference-1`; candidate 2 is the active scene.
+  See [handoff 44](handoffs/44-village-reference-2.md) and the
+  [matching render comparison](art-direction/compare.html). No owner choice or
+  later task acceptance is implied.
 
 - [ ] **P22-T05 Curate materials, foliage and village lighting.**
   **Depends:** P22-T04. Reuse documented Poly Haven asset tooling and compatible

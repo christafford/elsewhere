@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elsewhere — compare village directions</title>
+<style>
+:root { color-scheme:dark; font:16px/1.5 system-ui,sans-serif; background:#151b20; color:#e7eceb; }
+body { max-width:1280px; margin:auto; padding:24px; }
+h1 { margin:0; font-size:1.8rem; } p { max-width:85ch; color:#bbc9c9; }
+a { color:#a9d9e9; } .controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin:20px 0; }
+button,select { font:inherit; padding:8px 12px; background:#29363d; color:inherit; border:1px solid #62727b; border-radius:5px; }
+button { cursor:pointer; } button:focus-visible,select:focus-visible,input:focus-visible { outline:3px solid #e3bb76; }
+.frame { position:relative; aspect-ratio:8/5; background:#080e11; overflow:hidden; }
+.frame img { display:block; width:100%; height:100%; object-fit:contain; }
+#second { position:absolute; inset:0; clip-path:inset(0 50% 0 0); }
+#line { position:absolute; top:0; bottom:0; left:50%; width:2px; background:#f3c47d; pointer-events:none; }
+.label { position:absolute; bottom:12px; padding:6px 10px; background:#101820e8; border-radius:4px; }
+.range { display:flex; align-items:center; gap:12px; margin-top:12px; } input { flex:1; accent-color:#e3bb76; }
+.refs { display:grid; grid-template-columns:1fr 1fr; gap:20px; } figure { margin:0; } .refs img { width:100%; } figcaption { margin:8px 0; }
+small { color:#bbc9c9; } code { color:#e3bb76; }
+@media(max-width:650px) { body { padding:12px; } .refs { grid-template-columns:1fr; } }
+</style>
+<h1>Two directions for Elsewhere</h1>
+<p>Compare actual Godot renders from matching player viewpoints. Version 1 is the bright planted courtyard; version 2 is the weathered mountain village. This is a review of the current implementations, not a claim that either matches its reference's finished quality.</p>
+<div class="controls">
+<label for="view">View</label><select id="view">
+<option value="arrival">Arrival</option><option value="east-square">East square</option>
+<option value="north-return">Northern return</option><option value="south-approach">Southern approach</option>
+<option value="lodge">Lodge</option><option value="guildhall">Hall</option><option value="workshop">Workshop</option>
+<option value="pavilion">Pavilion</option><option value="pavilion-covered">Under the pavilion</option>
+</select>
+<button id="a">Version 1 only</button><button id="split">Split comparison</button><button id="b">Version 2 only</button>
+</div>
+<div class="frame">
+<img id="firstImage" src="../evidence/village-reference/arrival.png" alt="Version 1 — arrival"><span class="label" style="right:12px">1 · Planted courtyard</span>
+<div id="second"><img id="secondImage" src="../evidence/village-reference-2/arrival.png" alt="Version 2 — arrival"><span class="label" style="left:12px">2 · Weathered mountain village</span></div><div id="line"></div>
+</div>
+<div class="range"><label for="reveal">Reveal version 2</label><input id="reveal" type="range" min="0" max="100" value="50"><output id="value" for="reveal">50%</output></div>
+<p><a id="firstLink" href="../evidence/village-reference/arrival.png">Open version 1 render</a> · <a id="secondLink" href="../evidence/village-reference-2/arrival.png">Open version 2 render</a> · <a href="../handoffs/44-village-reference-2.md">Verification and switching instructions</a></p>
+<details><summary>Owner-provided art references</summary><div class="refs">
+<figure><img src="village-square-example.jpg" alt="First reference: colorful planted timber courtyard"><figcaption>Reference 1 — warm, colorful courtyard.</figcaption></figure>
+<figure><img src="village-square-example-2.jpg" alt="Second reference: weathered timber village with stone fountain and mountains"><figcaption>Reference 2 — weathered stone, ivy and mountains.</figcaption></figure>
+</div><small>Owner-provided references. These are not Elsewhere renders; source artists/licenses were not supplied. Neither image is used as a runtime texture.</small></details>
+<script>
+const $=id=>document.getElementById(id);
+function reveal(value) {
+  $('reveal').value=value; $('second').style.clipPath=`inset(0 ${100-value}% 0 0)`;
+  $('line').style.left=`${value}%`; $('line').hidden=value==0||value==100; $('value').value=`${value}%`;
+}
+$('reveal').addEventListener('input',e=>reveal(e.target.value));
+$('a').onclick=()=>reveal(0); $('split').onclick=()=>reveal(50); $('b').onclick=()=>reveal(100);
+$('view').onchange=()=>{
+  const view=$('view').value;
+  for(const [prefix,directory,label] of [['first','village-reference','Version 1'],['second','village-reference-2','Version 2']]) {
+    const url=`../evidence/${directory}/${view}.png`;
+    $(prefix+'Image').src=url; $(prefix+'Image').alt=`${label} — ${$('view').selectedOptions[0].text}`;
+    $(prefix+'Link').href=url;
+  }
+};
+</script>
+</html>

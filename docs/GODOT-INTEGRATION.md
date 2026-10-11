@@ -12,6 +12,9 @@ regressions.
 The owner's 2026-10-11 [courtyard revision](handoffs/43-village-reference-alignment.md)
 refines the architecture, paving and planting through scene-local geometry and
 materials; desktop ownership and input contracts are unchanged.
+The active [reference 2 candidate](handoffs/44-village-reference-2.md) now uses
+weathered architecture and a distant ridge/cloud backdrop. Its runtime/inputs
+are the same; reference 1 is preserved for comparison at `art-reference-1`.
 See [the architecture handoff](handoffs/42-village-architecture.md),
 [the landscape handoff](handoffs/41-village-landscape.md) and
 [the outdoor startup handoff](handoffs/40-outdoor-startup.md).

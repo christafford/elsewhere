@@ -1,22 +1,22 @@
 # Godot world frontend
 
-The default scene is the **village square**, revised against the owner's
-2026-10-11 courtyard reference: an approximately 84m site with gently varied
-ground, a 28 × 24m visual paving field over the graded square,
-four 4m-wide approaches, and a visible continuous raised bank at the boundary.
-The south approach bends into the square; the western rise, northern saddle
-and lower eastern shelf give each route a distinct direction and elevation.
-The ground, routes and boundary are fixed authored geometry, with no random
-map generation. A compass fountain marks the square, surrounded by a timber
-lodge, timber-framed guildhall and stone workshop. Curved slate roofs, leaded
-windows, flower boxes, a planted fountain and a timber arch link bring the
-buildings together. Eight fixed trees frame the approaches. Building doors
-remain closed; interiors are out of scope. An open timber pavilion southwest of the square
-has a walkable north ramp and covered floor. Surface detail is authored in
-original shaders; the wider art review and pavilion work surfaces remain open.
+The default scene is **village reference 2**, the owner's weathered mountain
+village alternative. Gray plaster/stone, aged timber, ivy, a pointed hall turret,
+a tiered stone fountain, dark cobbles and a cloud/mountain backdrop replace
+the first reference's bright planted courtyard. Building footprints, the
+approximately 84m playable terrain, four approach routes, spawn and pavilion
+access remain unchanged. Mountains are decorative beyond the existing boundary;
+buildings remain sealed exteriors. There are no new functional destinations.
 
-The seven original GLB models and their import settings are included. Optional
-rebuild: `python3 world/tools/build_village_models.py` (standard library only).
+Compare nine matching actual render viewpoints in
+[the comparison page](../docs/art-direction/compare.html). Reference 1 is
+preserved at `340ca97` / local tag `art-reference-1`; see
+[safe switching and verification](../docs/handoffs/44-village-reference-2.md).
+The active candidate is not a final owner choice or completion of P22-T05.
+
+The seven active original GLB models and import settings are included.
+The former bridge remains tracked but inactive. Optional deterministic rebuild:
+`python3 world/tools/build_village_models.py` (standard library only).
 See [model provenance and dimensions](art/village/README.md).
 
 The existing player controller and desktop runtime are reused. Startup opens

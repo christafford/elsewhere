@@ -1,43 +1,47 @@
 shader_type spatial;
-// Original meter-scale surface detail; no pixels from the owner's reference.
-uniform vec4 base_color : source_color = vec4(0.5,0.45,0.35,1.0);
-uniform int surface_kind = 0; // plaster, timber, masonry, slate, foliage, metal/water, modeled tiles
-uniform float surface_roughness = 0.9;
+// Original weathered surfaces for reference 2, in projected meter UVs.
+uniform vec4 base_color : source_color = vec4(.4,.4,.35,1);
+uniform int surface_kind = 0; // plaster, wood, stone, slate, leaf, metal, tiles, water
+uniform float surface_roughness = .9;
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float noise(vec2 p) {
     vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
     return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1)),f.x),f.y);
 }
 float detail(vec2 p) {
-    if (surface_kind==1) {
-        float grain=noise(p*vec2(36.0,1.1));
-        return .55*grain+.3*noise(p*vec2(110.0,4.0))+.15*noise(p*3.0);
+    if(surface_kind==1) {
+        vec2 planks=vec2(p.x/.23,p.y/2.4);
+        float seam=smoothstep(.015,.08,min(fract(planks.x),1.0-fract(planks.x)));
+        return seam*(.32+.27*noise(p*vec2(75,2))+.2*noise(p*vec2(180,6))+.21*hash(floor(planks)));
     }
-    if (surface_kind==2) {
-        vec2 c=p/vec2(.52,.29); c.x+=mod(floor(c.y),2.0)*.5;
+    if(surface_kind==2 || surface_kind==3) {
+        vec2 c=p/(surface_kind==2 ? vec2(.48,.25) : vec2(.27,.2));
+        c.x+=mod(floor(c.y),2.0)*.5;
+        c+=vec2(noise(p*8.0),noise(p*7.0+3.0))*.07;
         vec2 edge=min(fract(c),1.0-fract(c));
-        float mortar=smoothstep(.012,.055,min(edge.x,edge.y));
-        return mortar*(.6+.25*hash(floor(c))+.15*noise(p*18.0));
+        float joint=smoothstep(.015,.09,min(edge.x,edge.y));
+        return joint*(.35+.3*hash(floor(c))+.35*noise(p*36.0));
     }
-    if (surface_kind==3) {
-        vec2 c=p/vec2(.32,.24); c.x+=mod(floor(c.y),2.0)*.5;
-        vec2 edge=min(fract(c),1.0-fract(c));
-        float joint=smoothstep(.008,.035,min(edge.x,edge.y));
-        return joint*(.5+.3*hash(floor(c))+.2*noise(p*30.0));
-    }
-    return .6*noise(p*4.0)+.3*noise(p*28.0)+.1*noise(p*97.0);
+    return .45*noise(p*3.0)+.3*noise(p*19.0)+.25*noise(p*85.0);
 }
 void fragment() {
     float h=detail(UV);
-    float contrast=surface_kind==1 ? .43 : (surface_kind==2 || surface_kind==3 ? .35 : .19);
+    float contrast=surface_kind==1 ? .55 : .4;
     ALBEDO=base_color.rgb*(1.0-contrast+contrast*h);
-    if (surface_kind==4) { ALBEDO=base_color.rgb; BACKLIGHT=base_color.rgb*.15; }
+    // Broad damp stains sit below the fine pores/grain.
+    if(surface_kind<4) ALBEDO*=.72+.28*noise(UV*vec2(.65,1.2));
     ROUGHNESS=surface_roughness;
-    if (surface_kind<4 || surface_kind==6) {
+    if(surface_kind==4) { ALBEDO=base_color.rgb; BACKLIGHT=base_color.rgb*.1; }
+    if(surface_kind<4 || surface_kind==6) {
         float e=.004;
-        float dx=detail(UV+vec2(e,0))-h;
-        float dy=detail(UV+vec2(0,e))-h;
-        float strength=surface_kind==2 ? .9 : .4;
-        NORMAL_MAP=normalize(vec3(-dx*strength,-dy*strength,1.0))*.5+.5;
+        vec2 d=vec2(detail(UV+vec2(e,0)),detail(UV+vec2(0,e)))-h;
+        NORMAL_MAP=normalize(vec3(-d*.85,1))*.5+.5;
+    }
+    if(surface_kind==7) {
+        float wave=sin(UV.x*31.0+TIME*2.5)*cos(UV.y*24.0-TIME*1.7);
+        ALBEDO=base_color.rgb*(.85+.15*wave);
+        NORMAL_MAP=normalize(vec3(.12*cos(UV.x*31.0+TIME*2.5),.12*sin(UV.y*24.0-TIME*1.7),1))*.5+.5;
+        ROUGHNESS=.24;
+        SPECULAR=.65;
     }
 }

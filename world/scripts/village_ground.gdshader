@@ -1,34 +1,31 @@
 shader_type spatial;
-// Pale irregular paving and a radial fountain surround on the existing ground.
+// Worn, irregular cobble courses on the unchanged walking surface.
 uniform float path_half_width = 2.0;
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float noise(vec2 p) {
     vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);
     return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1)),f.x),f.y);
 }
+float cobble(vec2 p) {
+    vec2 c=p/vec2(.32,.25);
+    c.x+=mod(floor(c.y),2.0)*.5;
+    c+=vec2(noise(p*5.7),noise(p*6.4+4.0))*.24;
+    vec2 f=abs(fract(c)-.5);
+    float edge=pow(pow(f.x*2.0,5.0)+pow(f.y*2.0,5.0),.2);
+    float aa=max(fwidth(c.x),fwidth(c.y));
+    float cap=1.0-smoothstep(.74-aa,1.0+aa,edge);
+    return cap*(.52+.26*hash(floor(c))+.22*noise(p*36.0));
+}
 void fragment() {
     vec2 border=abs(UV-vec2(0,-1))-vec2(14,12);
     float square=1.0-smoothstep(-.06,.06,max(border.x,border.y));
     float paving=max(square,1.0-smoothstep(path_half_width-.08,path_half_width+.08,COLOR.r*8.0));
-    vec2 course=UV/vec2(.47,.32);
-    vec2 fountain=UV-vec2(-5,-4);
-    float radius=length(fountain);
-    if(radius<4.8) {
-        float ring=floor(radius/.34);
-        float stones=max(8.0,floor(6.283185*(ring+.5)*.34/.46));
-        course=vec2((atan(fountain.y,fountain.x)/6.283185+.5)*stones,radius/.34);
-    }
-    course.x+=mod(floor(course.y),2.0)*.5;
-    vec2 cell=floor(course);
-    vec2 edge=min(fract(course),1.0-fract(course));
-    float aa=max(fwidth(course.x),fwidth(course.y));
-    float joint=smoothstep(.02-aa,.05+aa,min(edge.x,edge.y));
-    float stone_variation=hash(cell);
-    float grain=noise(UV*19.0)*.045+noise(UV*2.0)*.055;
-    vec3 stone=mix(vec3(.31,.29,.25),vec3(.44,.41,.35),stone_variation)+grain;
-    stone*=mix(.69,1.0,joint);
-    vec3 grass=mix(vec3(.095,.16,.048),vec3(.18,.25,.075),noise(UV*1.8));
-    grass*=.88+.12*noise(UV*30.0);
+    float h=cobble(UV);
+    vec3 stone=mix(vec3(.12,.135,.13),vec3(.29,.295,.275),h);
+    stone*=.72+.28*noise(UV*.9);
+    vec3 grass=mix(vec3(.07,.10,.044),vec3(.135,.175,.075),noise(UV*2.0));
     ALBEDO=mix(grass,stone,paving);
-    ROUGHNESS=.93;
+    ROUGHNESS=.94;
+    vec2 d=vec2(cobble(UV+vec2(.008,0)),cobble(UV+vec2(0,.008)))-h;
+    NORMAL_MAP=normalize(vec3(-d*1.4*paving,1.0))*.5+.5;
 }

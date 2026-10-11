@@ -122,19 +122,22 @@ func quad(s: SurfaceTool, a: Vector3, b: Vector3, c: Vector3, d: Vector3, normal
 	if (b-a).cross(c-a).dot(normal) > 0: points = [a,c,b,a,d,c]
 	for point in points:
 		s.set_normal(normal)
+		s.set_uv(Vector2(point.x if absf(normal.z)>absf(normal.x) else point.z,point.y))
 		s.add_vertex(point)
 
 func build_boundary() -> void:
 	var face := SurfaceTool.new()
 	face.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var rock := StandardMaterial3D.new()
-	rock.albedo_color = Color("787969")
-	rock.roughness = 0.95
+	var rock := ShaderMaterial.new()
+	rock.shader = preload("res://scripts/village_surface.gdshader")
+	rock.set_shader_parameter("base_color",Color("7a8078"))
+	rock.set_shader_parameter("surface_kind",2)
+	rock.set_shader_parameter("surface_roughness",0.95)
 	face.set_material(rock)
 	var top := SurfaceTool.new()
 	top.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var turf := StandardMaterial3D.new()
-	turf.albedo_color = Color("65734b")
+	turf.albedo_color = Color("596447")
 	turf.roughness = 1.0
 	top.set_material(turf)
 	for i in range(BOUNDARY.size()):

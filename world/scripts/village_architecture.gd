@@ -29,13 +29,6 @@ func _ready() -> void:
 		elif label in ["Lodge","Guildhall","Workshop"]:
 			entrance_steps(model,3.75 if label=="Lodge" else 3.25,-1.8 if label=="Workshop" else 0.0)
 
-	# Exterior architectural link; existing building doors remain sealed.
-	var link := preload("res://art/village/courtyard_link.glb").instantiate()
-	link.name = "TimberLink"
-	add_child(link)
-	link.position = Vector3(-0.7,4.2,-16.5)
-	Materials.apply(link)
-	add_collision(link)
 
 func add_collision(node: Node) -> void:
 	if node is MeshInstance3D:

@@ -15,10 +15,28 @@ multiple views. Leave application content unlit/readable. No additional
 functional locations, building interiors, creatures, NPCs, weather systems, or
 day/night simulation in this milestone.
 
-## Owner's courtyard reference (2026-10-11)
+## Current comparison candidate: reference 2 (2026-10-11)
+
+The owner requested [reference 2](art-direction/village-square-example-2.jpg)
+as an alternative to the preceding courtyard, with the ability to compare and
+switch back. Use heavy weathered timber, gray plaster/stone, dark pointed slate
+roofs, trailing ivy, rough cobbles, a broad tiered stone fountain and a cool
+mountain backdrop. The mood is older, quieter and more grounded than reference
+1's colorful flower boxes and curved blue roofs. Keep daylight and readable
+application content; darkness must not substitute for material detail.
+
+The active scene is candidate 2, not a final owner selection. Match the existing
+walking routes, footprints and comparison cameras. Reference 1 remains at
+commit `340ca97` / local tag `art-reference-1`, with its original captures intact.
+Use the [interactive render comparison](art-direction/compare.html) and
+[handoff 44](handoffs/44-village-reference-2.md). Reverting to the first direction
+must preserve intervening desktop work; do not reset the repository's history.
+Neither candidate closes the P22-T05 owner art-review gate.
+
+## Previous comparison candidate: reference 1 (2026-10-11)
 
 Use [the owner-provided village-square image](art-direction/village-square-example.jpg)
-as the current visual reference. Its appeal is an intimate, inhabited courtyard:
+as the first visual reference. Its appeal is an intimate, inhabited courtyard:
 tall pale plaster buildings with warm exposed timber, steep blue slate roofs
 with curved eaves and dormers, leaded windows, flower boxes, pale stone paving,
 a low planted fountain, leafy trees and a timber arch linking nearby buildings.

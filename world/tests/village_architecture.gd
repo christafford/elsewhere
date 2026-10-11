@@ -19,7 +19,7 @@ func run() -> void:
 	walker = study.get_node("Player")
 	await frames(20)
 	var architecture := study.get_node("Architecture")
-	check(architecture.get_child_count()==5,"Expected three exteriors, landmark and pavilion")
+	check(architecture.get_child_count()==6,"Expected three exteriors, landmark, pavilion and timber link")
 	check(terminal.session != null and terminal.session.is_running() and objects.bindings.is_empty(),"Architecture changes empty desktop startup")
 	for label in ["Lodge","Guildhall","Workshop","Fountain","Pavilion"]:
 		var node := architecture.get_node(label)
@@ -29,9 +29,9 @@ func run() -> void:
 		await architecture_view("arrival",Vector2(0,5),Vector3(-4,2,-10))
 		await architecture_view("east-square",Vector2(13,10),Vector3(-5,2,-9))
 		await architecture_view("north-return",Vector2(4,-12),Vector3(-9,2,8))
-		await architecture_view("lodge",Vector2(-15,-3),Vector3(-17,4,-18))
-		await architecture_view("guildhall",Vector2(11,-6),Vector3(12,5,-18))
-		await architecture_view("workshop",Vector2(13,-8),Vector3(24,3,-10))
+		await architecture_view("lodge",Vector2(-10,-2),Vector3(-12,4,-16))
+		await architecture_view("guildhall",Vector2(8,-5),Vector3(9.5,5,-17))
+		await architecture_view("workshop",Vector2(9,-7),Vector3(18,3,-9))
 		await architecture_view("pavilion",Vector2(-4,19),Vector3(-18,3,18))
 		await architecture_view("south-approach",Vector2(-6,28),Vector3(-3,2,-6))
 	if "--capture-only" in OS.get_cmdline_user_args():
@@ -56,7 +56,7 @@ func run() -> void:
 	await key(KEY_W,true)
 	await frames(80)
 	await key(KEY_W,false)
-	check(walker.position.z>-1.9 and walker.position.z<-1.4,"Fountain basin fails to contain player: " + str(walker.position))
+	check(walker.position.z>-0.75 and walker.position.z<-0.4,"Fountain basin fails to contain player: " + str(walker.position))
 	# Ordinary controller walking up/down the ramp and through the covered space.
 	await place_at(Vector2(-18,8.5))
 	await mouse(Vector2(640,400),true,false,MOUSE_BUTTON_RIGHT)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Original P22-T04 architectural meshes; deterministic GLB, meters, Y up.
+"""Original village meshes; deterministic GLB, meters, Y up.
 
 Uses only Python's standard library. Rebuild from the repository root with
 python3 world/tools/build_village_models.py. No downloaded source or textures.
@@ -7,18 +7,25 @@ The small runtime GLBs are tracked; the construction source is authoritative.
 """
 import json
 import math
+import random
 from pathlib import Path
 import struct
 
 OUT = Path(__file__).resolve().parents[1] / 'art' / 'village'
-# Deliberately plain base finishes; material/lighting curation is P22-T05.
+# Courtyard palette refined against the owner's 2026-10-11 visual reference.
 PALETTE = {
-    'lime': ('cbbd9f', .9), 'ochre': ('b28a59', .9),
+    'lime': ('b7afa1', .9), 'ochre': ('bcb09b', .9),
     'stone': ('91958b', .95), 'cut_stone': ('b4b3a1', .85),
-    'timber': ('49392c', .85), 'wood': ('755438', .85),
-    'slate': ('3e5057', .85), 'tile': ('805447', .85),
+    'timber': ('624132', .85), 'wood': ('826044', .85),
+    'slate': ('4d6079', .85), 'tile': ('805447', .85),
     'glass': ('293e43', .25), 'teal': ('355959', .8),
     'metal': ('78613e', .45), 'water': ('426b70', .2),
+    'leaf': ('3b782b', .85), 'leaf_light': ('6c9c35', .85),
+    'leaf_dark': ('275529', .9), 'pink': ('d53486', .7),
+    'yellow': ('ecc044', .7), 'blue': ('398ed1', .7),
+    'petal_white': ('ddd9c1', .75), 'soil': ('302c20', 1),
+    'terracotta': ('974d35', .85), 'canvas': ('c99232', .95),
+    **{f'roof{i}': (c,.9) for i,c in enumerate(['536880','60748a','455c76','6a7d90','4b637b'])},
 }
 
 
@@ -33,6 +40,7 @@ class Model:
     def __init__(self, name):
         self.name = name
         self.parts = {}
+        self.rng = random.Random(41011)
 
     def tri(self, mat, a, b, c):
         n = cross(sub(b, a), sub(c, a))
@@ -86,36 +94,105 @@ class Model:
 
     def roof(self, width, depth, eave, ridge, mat='slate', hip=0):
         x,z=width/2,depth/2
-        # Roof sheets have actual thickness, underside and fascia; no planes.
-        faces=[[(0,ridge,-z+hip),(-x,eave,-z),(-x,eave,z),(0,ridge,z-hip)],
-               [(0,ridge,z-hip),(x,eave,z),(x,eave,-z),(0,ridge,-z+hip)]]
-        if hip:
-            faces += [[(-x,eave,z),(x,eave,z),(0,ridge,z-hip)],
-                      [(x,eave,-z),(-x,eave,-z),(0,ridge,-z+hip)]]
-        for face in faces:
-            bottom=[add(p,(0,-.18,0)) for p in face]
-            for i in range(1,len(face)-1):
-                self.tri(mat,face[0],face[i],face[i+1])
-                self.tri('wood',bottom[0],bottom[i+1],bottom[i])
-            for i in range(len(face)):
-                j=(i+1)%len(face)
-                self.quad('timber',face[i],bottom[i],bottom[j],face[j])
-        self.beam(mat,(0,ridge+.06,-z+hip),(0,ridge+.06,z-hip),.22)
-        # Raised battens define roof courses and make slopes read at eye level.
+        def point(t, zz, side):
+            return (side*x*t, ridge+(eave-ridge)*t**.86+.16*t**8, zz)
+        rows=max(3,math.ceil(x/.34))
         for side in [-1,1]:
-            for i in range(1,9):
-                t=i/9
-                xx=side*x*t
-                yy=ridge+(eave-ridge)*t+.018
-                end=z-hip*(1-t)
-                self.beam(mat,(xx,yy,-end),(xx,yy,end),.035)
+            for row in range(rows):
+                t0,t1=row/rows,(row+1)/rows
+                z0,z1=z-hip*(1-t0),z-hip*(1-t1)
+                a,b,c,d=point(t0,-z0,side),point(t1,-z1,side),point(t1,z1,side),point(t0,z0,side)
+                face=[a,b,c,d] if side<0 else [d,c,b,a]
+                self.quad(mat,*face)
+                self.quad('wood',*[add(v,(0,-.14,0)) for v in reversed(face)])
+                # Individual thick overlapping slate courses, with staggered joints.
+                tiles=math.ceil(2*max(z0,z1)/.42)
+                for j in range(tiles):
+                    lo=max(-z1,-z1+(j+(row%2)*.5)*.42)
+                    hi=min(z1,lo+.405)
+                    if hi-lo<.08: continue
+                    lo0=max(-z0,lo); hi0=min(z0,hi)
+                    if hi0-lo0<.05: continue
+                    aa=add(point(t0,lo0,side),(0,.025,0))
+                    bb=add(point(t1,lo,side),(0,.045,0))
+                    cc=add(point(t1,hi,side),(0,.045,0))
+                    dd=add(point(t0,hi0,side),(0,.025,0))
+                    face=[aa,bb,cc,dd] if side<0 else [dd,cc,bb,aa]
+                    color='roof'+str((row*7+j*13)%5)
+                    self.quad(color,*face)
+                    self.quad(color,bb,add(bb,(0,-.055,0)),add(cc,(0,-.055,0)),cc) if side<0 else self.quad(color,cc,add(cc,(0,-.055,0)),add(bb,(0,-.055,0)),bb)
+        # Hipped ends and boxed eaves close the roof shell.
+        if hip:
+            for side in [-1,1]:
+                a,b,c=(-x,eave+.16,side*z),(x,eave+.16,side*z),(0,ridge,side*(z-hip))
+                self.tri(mat,*( [a,b,c] if side>0 else [b,a,c]))
+                self.tri('wood',*[add(v,(0,-.14,0)) for v in ([b,a,c] if side>0 else [a,b,c])])
+        for side in [-1,1]:
+            self.beam('timber',(side*x,eave+.1,-z),(side*x,eave+.1,z),.18)
+            if not hip:
+                for end in [-1,1]:
+                    for i in range(rows):
+                        self.beam('timber',point(i/rows,end*z,side),point((i+1)/rows,end*z,side),.16)
+        self.beam(mat,(0,ridge+.05,-z+hip),(0,ridge+.05,z-hip),.18)
+
+    def leaf(self, center, length, yaw, tilt, mat='leaf'):
+        direction=(math.sin(yaw)*math.cos(tilt),math.sin(tilt),math.cos(yaw)*math.cos(tilt))
+        across=(math.cos(yaw)*length*.22,0,-math.sin(yaw)*length*.22)
+        base=center; mid=add(center,mul(direction,length*.48)); tip=add(center,mul(direction,length))
+        ridge=add(mid,(0,length*.09,0))
+        left=add(mid,across); right=sub(mid,across)
+        for a,b,c in [(base,left,ridge),(left,tip,ridge),(tip,right,ridge),(right,base,ridge)]:
+            self.tri(mat,a,b,c); self.tri(mat,c,b,a)
+
+    def flowers(self, center, spread, count=16):
+        for i in range(count):
+            a=self.rng.random()*math.tau; r=spread*math.sqrt(self.rng.random())
+            foot=add(center,(math.cos(a)*r,0,math.sin(a)*r))
+            top=add(foot,(0,.16+self.rng.random()*.16,0))
+            self.beam('leaf_dark',foot,top,.012)
+            for j in range(6): self.leaf(add(foot,(0,.04,0)),.36+self.rng.random()*.16,a+j*1.047,.18,'leaf_light' if j%2 else 'leaf')
+            color='petal_white' if i%9==0 else ['pink','yellow','blue'][int(abs(center[0]*1.2+center[2]*.7))%3]
+            for j in range(5):
+                t=j*math.tau/5
+                tip=add(top,(math.cos(t)*.16,.015,math.sin(t)*.16))
+                l=add(top,(math.cos(t-.48)*.095,.035,math.sin(t-.48)*.075))
+                r=add(top,(math.cos(t+.48)*.095,.035,math.sin(t+.48)*.075))
+                self.quad(color,top,l,tip,r); self.quad(color,r,tip,l,top)
+            self.lathe('yellow',[(0,0),(.034,0),(.02,.025),(0,.035)],top,6)
+
+    def planter(self,x,y,z,w):
+        self.box('terracotta',(x,y,z),(w,.27,.4))
+        self.box('soil',(x,y+.14,z),(w-.08,.02,.32))
+        for side in [-1,1]: self.box('wood',(x,y+.1,z+side*.2),(w+.06,.065,.06))
+        for i in range(max(1,int(w/.32))): self.flowers((x-w*.34+i*.32,y+.16,z),.18,7)
+
+    def dormer(self, origin, yaw):
+        d=Model('dormer')
+        d.polygon('lime',[(-.65,0),(.65,0),(.65,1),(0,1.8),(-.65,1)],.8,-.65)
+        d.roof(1.65,1.85,1.05,1.9)
+        d.window(0,.56,.81,.73,.82)
+        self.merge(d,origin,yaw)
 
     def window(self, x,y,z,w=1.05,h=1.5,shutters=False):
         self.box('timber',(x,y,z+.04),(w+.26,h+.25,.18))
         self.box('glass',(x,y,z+.145),(w,h,.06))
         for xx in [-w/2,0,w/2]: self.box('wood',(x+xx,y,z+.2),(.065,h+.1,.09))
         for yy in [-h/2,0,h/2]: self.box('wood',(x,y+yy,z+.2),(w+.12,.065,.09))
+        # Fine leaded lattice inside the pane, clipped to the frame.
+        for sign in [-1,1]:
+            for offset in [-.66,-.33,0,.33,.66]:
+                points=[]
+                for u in [-.5,.5]:
+                    v=sign*u+offset
+                    if -.5<=v<=.5: points.append((u,v))
+                for v in [-.5,.5]:
+                    u=(v-offset)/sign
+                    if -.5<=u<=.5 and (u,v) not in points: points.append((u,v))
+                if len(points)==2:
+                    a,b=points
+                    self.beam('timber',(x+a[0]*w,y+a[1]*h,z+.2),(x+b[0]*w,y+b[1]*h,z+.2),.018)
         self.box('cut_stone',(x,y-h/2-.15,z+.22),(w+.48,.14,.38))
+        if y>3.5: self.planter(x,y-h/2-.33,z+.38,w+.22)
         if shutters:
             for side in [-1,1]:
                 sx=x+side*(w*.75+.23)
@@ -187,19 +264,22 @@ class Model:
 
 def lodge():
     m=Model('alpine_lodge')
-    m.box('slate',(0,-.7,0),(10,1.8,7.5))
-    m.polygon('lime',[(-5,0),(5,0),(5,5.1),(0,7.3),(-5,5.1)],3.75,-3.75)
-    m.roof(11.5,9.1,5.1,7.7)
+    m.box('stone',(0,-.7,0),(10,1.8,7.5))
+    m.polygon('lime',[(-5,0),(5,0),(5,5.1),(0,9.1),(-5,5.1)],3.75,-3.75)
+    m.roof(11.5,9.1,5.1,9.3)
+    for side in [-1,1]: m.dormer((side*3.3,6.4,-.7),side*math.pi/2)
     for x in [-4.9,-2.5,0,2.5,4.9]:
         m.box('timber',(x,2.6,3.85),(.19,5.2,.18))
     for y in [.22,2.8,5.0]: m.box('timber',(0,y,3.85),(10.1,.19,.18))
     for side in [-1,1]:
-        m.beam('timber',(0,7.2,3.87),(side*4.8,5.1,3.87),.19)
+        m.beam('timber',(0,8.8,3.87),(side*4.8,5.1,3.87),.19)
         m.beam('timber',(side*2.5,2.9,3.87),(side*4.8,4.9,3.87),.16)
     m.door(0,3.8)
     for x in [-3.3,3.3]: m.window(x,1.55,3.82,1.1,1.45,True)
     for x in [-3.3,0,3.3]: m.window(x,3.98,3.82,1.05,1.45,True)
-    m.window(0,6.05,3.82,.8,.9)
+    for side in [-1,1]: m.beam('timber',(side*1.0,5.1,3.89),(side*2.8,6.8,3.89),.15)
+    m.window(0,6.7,3.82,1.0,1.35)
+    m.box('timber',(0,6.8,3.88),(.18,4.0,.2))
     # Cantilevered timber balcony, brackets and individual balusters.
     m.box('wood',(0,2.86,4.4),(8.3,.2,1.5))
     for x in [-3.7,0,3.7]: m.beam('timber',(x,1.85,3.8),(x,2.76,4.9),.17)
@@ -218,19 +298,24 @@ def lodge():
 
 def guildhall():
     m=Model('guildhall')
-    m.box('slate',(0,-.75,0),(7.8,1.8,6.5))
-    m.polygon('ochre',[(-3.9,0),(3.9,0),(3.9,6.3),(0,9.1),(-3.9,6.3)],3.25,-3.25)
-    m.roof(8.2,7.3,6.25,9.35,'tile')
-    # Stepped stone front gable and projecting cornices.
+    m.box('stone',(0,-.75,0),(7.8,1.8,6.5))
+    m.polygon('ochre',[(-3.9,0),(3.9,0),(3.9,6.3),(0,9.7),(-3.9,6.3)],3.25,-3.25)
+    m.roof(9.3,8.0,6.25,9.95)
+    for x in [-3.8,-1.5,1.5,3.8]: m.box('timber',(x,3.1,3.38),(.2,6.2,.2))
+    for y in [.3,3.3,6.1]: m.box('timber',(0,y,3.38),(8,.2,.2))
     for side in [-1,1]:
-        for i in range(5):
-            x=side*(3.6-i*.72); y=6.5+i*.55
-            m.box('cut_stone',(x,y,3.4),(.76,.7,.42))
-            m.box('cut_stone',(x,y+.37,3.4),(.91,.12,.52))
-        for y in [.4,1.05,1.7,2.35,3.0,3.65,4.3,4.95,5.6]:
-            m.box('cut_stone',(side*3.84,y,3.33),(.38,.26,.23))
-    for y in [.22,3.3,6.1]: m.box('cut_stone',(0,y,3.4),(8.0,.17,.4))
+        m.beam('timber',(0,9.5,3.4),(side*3.8,6.3,3.4),.22)
+        m.beam('timber',(side*1.5,3.4,3.4),(side*3.8,5.9,3.4),.15)
+    m.dormer((2.6,7.05,-.8),math.pi/2)
     m.door(0,3.3,1.75,True)
+    for i in range(8):
+        t,u=i/8,(i+1)/8
+        y0,y1=2.95-.3*t-.08*math.sin(t*math.pi),2.95-.3*u-.08*math.sin(u*math.pi)
+        m.quad('canvas',(-1.35,y0,3.5+t*1.1),(-1.35,y1,3.5+u*1.1),(1.35,y1,3.5+u*1.1),(1.35,y0,3.5+t*1.1))
+        m.quad('canvas',(1.35,y0-.02,3.5+t*1.1),(1.35,y1-.02,3.5+u*1.1),(-1.35,y1-.02,3.5+u*1.1),(-1.35,y0-.02,3.5+t*1.1))
+    m.box('canvas',(0,2.56,4.61),(2.7,.18,.025))
+    for side in [-1,1]: m.beam('timber',(side*1.3,2.1,3.4),(side*1.3,2.65,4.6),.075)
+
     for x in [-2.4,2.4]:
         m.window(x,1.7,3.3,.95,1.5)
         m.window(x,4.65,3.3,1.25,1.85,True)
@@ -255,7 +340,8 @@ def guildhall():
 def workshop():
     m=Model('stone_workshop')
     m.box('stone',(0,1.45,0),(8,5.3,6.5))
-    m.roof(9.5,8.0,4.1,5.75,'slate',2.0)
+    m.roof(9.5,8.0,4.1,7.05,'slate',1.3)
+    m.dormer((2.7,4.9,-.8),math.pi/2)
     for y in [.15,3.9]: m.box('cut_stone',(0,y,3.34),(8.1,.2,.26))
     m.door(-1.8,3.3,1.8,True)
     m.window(1.55,2.0,3.3,2.4,1.5)
@@ -277,17 +363,23 @@ def workshop():
 
 def fountain():
     m=Model('square_fountain')
+    m.lathe('stone',[(0,-.1),(3.15,-.1),(3.15,.24),(2.95,.34),(2.75,.34),(2.75,.18),(0,.18)],sides=24)
+    m.lathe('soil',[(2.75,.23),(1.9,.23)],sides=48)
+    for j in range(30):
+        a=j*math.tau/30
+        m.flowers((math.cos(a)*2.3,.25,math.sin(a)*2.3),.31,9)
+
     m.lathe('cut_stone',[(0,-.1),(2.05,-.1),(2.05,.13),(1.9,.23),(1.9,.35),(1.7,.4),(1.7,.78),(1.85,.82),(1.85,.99),(1.57,.99),(1.5,.83),(1.5,.39),(0,.39)],sides=12)
     m.lathe('water',[(1.49,.56),(0,.56)],sides=48)
-    m.lathe('stone',[(0,.35),(.65,.35),(.65,.65),(.47,.75),(.38,1.0),(.34,2.75),(.55,2.87),(.55,3.05),(.3,3.16)],sides=8)
+    m.lathe('stone',[(0,.35),(.65,.35),(.65,.65),(.47,.75),(.38,1.0),(.24,2.25),(.38,2.37),(.38,2.55),(.22,2.66)],sides=8)
     # Four bronze spouts project over the basin.
     for a in [0,math.pi/2,math.pi,math.pi*1.5]:
         m.beam('metal',(math.cos(a)*.3,1.6,math.sin(a)*.3),(math.cos(a)*.8,1.48,math.sin(a)*.8),.12)
-    m.lathe('metal',[(.0,3.12),(.25,3.2),(.39,3.4),(.42,3.65),(.3,3.9),(0,4.02)],sides=24)
+    m.lathe('metal',[(0,2.6),(.15,2.7),(.23,2.9),(.25,3.05),(.18,3.22),(0,3.3)],sides=24)
     # Compass crown: distinct from the building clocks and roofs.
     for a in [0,math.pi/2]:
-        m.beam('metal',(-math.cos(a)*.7,3.65,-math.sin(a)*.7),(math.cos(a)*.7,3.65,math.sin(a)*.7),.07)
-    m.lathe('metal',[(.1,3.9),(.1,4.18),(0,4.5)],sides=16)
+        m.beam('metal',(-math.cos(a)*.5,3.05,-math.sin(a)*.7),(math.cos(a)*.5,3.05,math.sin(a)*.5),.05)
+    m.lathe('metal',[(.07,3.2),(.07,3.4),(0,3.65)],sides=16)
     m.write()
 
 
@@ -314,6 +406,35 @@ def pavilion():
     m.write()
 
 
+
+def courtyard_tree():
+    m=Model('courtyard_tree')
+    m.lathe('timber',[(.34,-.2),(.31,.25),(.21,2.1),(.14,4.8),(.05,6.8)],sides=12)
+    for j in range(12):
+        a=j*2.39996
+        base=(0,2.5+j*.2,0)
+        end=(math.cos(a)*(1.3+j*.07),4.6+j*.19,math.sin(a)*(1.3+j*.07))
+        m.beam('timber',base,end,.11)
+        for k in range(230):
+            az=m.rng.random()*math.tau; yy=m.rng.uniform(-1,1); rr=math.sqrt(1-yy*yy)
+            p=add(end,(math.cos(az)*rr*1.5,yy*1.1,math.sin(az)*rr*1.5))
+            m.leaf(p,.48+m.rng.random()*.32,m.rng.random()*math.tau,m.rng.uniform(-.5,.6),['leaf','leaf_light','leaf_dark'][k%3])
+    m.write()
+
+
+def courtyard_link():
+    m=Model('courtyard_link')
+    for z in [-.85,.85]:
+        m.beam('timber',(-6.6,-.13,z),(6.6,-.13,z),.25)
+        m.beam('wood',(-6.6,1.08,z),(6.6,1.08,z),.14)
+        for j in range(29): m.box('wood',(-6.5+j*13/28,.5,z),(.09,1.0,.09))
+        for j in range(32):
+            a,b=-6.6+j*13.2/32,-6.6+(j+1)*13.2/32
+            m.beam('timber',(a,-.4-1.35*(a/6.6)**2,z),(b,-.4-1.35*(b/6.6)**2,z),.25)
+        for x in [-5,-3,0,3,5]: m.beam('timber',(x,-.4-1.35*(x/6.6)**2,z),(x,-.16,z),.12)
+    for j in range(44): m.box('wood',(-6.45+j*.3,0,0),(.29,.12,1.85))
+    m.write()
+
 if __name__ == '__main__':
     OUT.mkdir(parents=True,exist_ok=True)
-    for build in [lodge,guildhall,workshop,fountain,pavilion]: build()
+    for build in [lodge,guildhall,workshop,fountain,pavilion,courtyard_tree,courtyard_link]: build()

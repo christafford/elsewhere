@@ -1,18 +1,21 @@
 # Godot world frontend
 
-The default scene is the **P22-T04 village architecture**: an
-approximately 84m site with gently varied ground, a 24 × 20m paved square,
+The default scene is the **village square**, revised against the owner's
+2026-10-11 courtyard reference: an approximately 84m site with gently varied
+ground, a 28 × 24m visual paving field over the graded square,
 four 4m-wide approaches, and a visible continuous raised bank at the boundary.
 The south approach bends into the square; the western rise, northern saddle
 and lower eastern shelf give each route a distinct direction and elevation.
 The ground, routes and boundary are fixed authored geometry, with no random
 map generation. A compass fountain marks the square, surrounded by a timber
-lodge, stepped-gable guildhall and stone workshop. Their doors are closed;
-interiors are out of scope. An open timber pavilion southwest of the square
-has a walkable north ramp and covered floor. Foliage, final materials and the
-pavilion's work surfaces belong to later tasks.
+lodge, timber-framed guildhall and stone workshop. Curved slate roofs, leaded
+windows, flower boxes, a planted fountain and a timber arch link bring the
+buildings together. Eight fixed trees frame the approaches. Building doors
+remain closed; interiors are out of scope. An open timber pavilion southwest of the square
+has a walkable north ramp and covered floor. Surface detail is authored in
+original shaders; the wider art review and pavilion work surfaces remain open.
 
-The five original GLB models and their import settings are included. Optional
+The seven original GLB models and their import settings are included. Optional
 rebuild: `python3 world/tools/build_village_models.py` (standard library only).
 See [model provenance and dimensions](art/village/README.md).
 

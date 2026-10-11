@@ -3,6 +3,43 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-11 agent-run owner reference alignment
+
+From `e32c9dc`, the owner-supplied courtyard image now guides the existing
+square: closer timber/plaster exteriors, curved blue slate roofs/dormers,
+lattice windows, flower boxes, canvas awning, planted fountain, fixed trees,
+pale paving and an arched timber link. Nine actual final Godot eye-level renders
+were inspected by the Codex agent. Compare
+[previous arrival](evidence/p22-t04/arrival.png) and
+[current arrival](evidence/village-reference/arrival.png); see also
+[workshop detail](evidence/village-reference/workshop.png) and
+[the covered pavilion](evidence/village-reference/pavilion-covered.png).
+
+Headless and GPU architecture checks pass: exterior/fountain collision,
+pavilion ramp/covered floor, safe Home spawn and empty working desktop startup.
+The unchanged full landscape trial passes in both modes: 24,178 ground samples,
+337.8m walked per mode (including the northern route below the link), maximum
+sampled grade 14.39°, floor gap below 6mm. No route assertion was weakened.
+The fountain contact range follows its deliberately larger planted surround;
+close-up captures follow the buildings' new positions.
+
+The unchanged outdoor trial, seven dedicated graphical interaction tests and
+real Chrome trial also pass. These cover launch, keyboard/repeat, pointer input,
+client resize, panel drag/rotation/cancel, independent live instances, mode
+transitions, browser typing/click/scroll/reflow and close. Inspected
+[terminal output](evidence/village-reference/application.png),
+[terrain-supported panel](evidence/village-reference/slope-panel.png),
+[browser input](evidence/village-reference/browser-input.png) and
+[browser world return](evidence/village-reference/browser-in-room.png).
+Eight Python and 62 Node tests pass. No native or input code was changed.
+
+The wider lawn/bank, regular paving and simple trees remain visible limits.
+This revision is not human art approval, a comfort/performance measurement,
+or completion of P22-T05 or later gates. The source JPEG is reference only,
+not an implementation screenshot. Full commands, real-client regression
+results and remaining limits are in
+[handoff 43](handoffs/43-village-reference-alignment.md).
+
 ## 2026-10-10 agent-run village architecture (P22-T04)
 
 From `e81c88c`, the default square contains an original modeled compass

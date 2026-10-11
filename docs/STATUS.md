@@ -1,12 +1,41 @@
-# Current direction — Elsewhere (2026-10-10)
+# Current direction — Elsewhere (2026-10-11)
 
 The owner has renamed the product **Elsewhere** and approved a fresh physical
 world beginning at a village square. Project 22 and
 [Decision 08](decisions/08-elsewhere-village-world.md) supersede the Project 21
 study environment and expansion schedule. All Project 21 progress below is
 historical and should remain available as engineering evidence, not as the
-current build queue. **P22-T01 through P22-T04 are complete; no further task is authorized.**
-P22-T05 is the next planned task and requires a separate explicit owner request.
+current build queue. **P22-T01 through P22-T04 are complete.** The owner then
+requested a bounded revision against the supplied courtyard image; that request
+does not authorize a task sequence. P22-T05 remains the next planned task and
+its broader art-review gate stays unchecked.
+
+## Owner reference alignment verified (2026-10-11, from `e32c9dc`)
+
+The current [art brief](ART-DIRECTION.md) uses the owner's
+[courtyard reference](art-direction/village-square-example.jpg). The existing
+buildings now frame the square more closely, with curved blue slate roofs,
+dormers, warm timber and pale plaster, lattice windows, flower boxes and an
+awning. A lower planted fountain, fixed trees, timber arch link and pale
+patterned paving bring the scene toward that direction. Original reproducible
+models/shaders preserve the existing terrain, player and desktop ownership.
+
+Verified by automated checks: Godot import/default startup; headless/GPU
+architecture, landscape and outdoor trials; seven existing graphical interaction
+regressions; real Chrome; eight Python and 62 Node tests. Model regeneration
+is byte-identical; documentation links, task parsing and diff checks pass.
+
+Agent-observed: nine final actual Godot renders were inspected after correcting
+sparse foliage, blue foundations and an undetailed hip roof. Compare
+[before](evidence/p22-t04/arrival.png) / [after](evidence/village-reference/arrival.png).
+The outer lawn/bank, simple tree silhouettes and regular paving remain
+provisional; the reference's finished density/quality is not claimed.
+See [handoff 43](handoffs/43-village-reference-alignment.md) for scope, evidence,
+commands and verification results. Not observed by a person: art approval or
+movement comfort. No performance benchmark or later task acceptance is claimed.
+
+Next task: no continuation authorized. Stop after this owner-requested revision;
+P22-T05 requires a separate request and owner review remains outstanding.
 
 ## P22-T04 verified (2026-10-10, from `e81c88c`)
 
@@ -31,8 +60,8 @@ preserve readable real application content. See
 [handoff 42](handoffs/42-village-architecture.md) for defects/fixes, commands,
 images and limits. Not observed by a person: movement comfort or art approval.
 Plain base materials and bright sunlit stone remain provisional. Material,
-foliage and lighting curation (P22-T05) is unstarted; work surfaces/anchors
-remain P22-T07. No later acceptance gate is claimed.
+foliage and lighting curation (P22-T05) was unstarted at this checkpoint;
+work surfaces/anchors remain P22-T07. No later acceptance gate is claimed.
 
 ## P22-T03 verified (2026-10-10, from `eca98ab`)
 

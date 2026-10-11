@@ -53,3 +53,12 @@ standard-library authoring source and tracked Godot import settings. See
 [village model provenance](village/README.md) for dimensions, topology, checksums,
 material/coordinate conventions and scope. No external assets or dependencies
 were added; the retained study and its asset cache are unchanged.
+
+The owner's 2026-10-11 courtyard revision adds original trees, flowers, curved
+slate roofs, lattice windows and a timber link to the village set. All seven
+models are reproducible from the included Python standard-library source;
+`village_surface.gdshader` and the revised ground shader generate original
+surface detail without downloaded textures. The owner-provided JPEG is a
+visual reference only, with no pixels embedded in the runtime. See
+[village provenance](village/README.md) and
+[reference notes](../../docs/art-direction/README.md).

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/outdoor.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="2"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/village_landscape.gd" id="4"]
 
 [ext_resource type="Script" path="res://scripts/village_architecture.gd" id="5"]
+
+[ext_resource type="Script" path="res://scripts/village_garden.gd" id="6"]
 
 [sub_resource type="CapsuleShape3D" id="player_shape"]
 radius = 0.22
@@ -43,13 +45,16 @@ script = ExtResource("4")
 [node name="Architecture" type="Node3D" parent="."]
 script = ExtResource("5")
 
+[node name="Garden" type="Node3D" parent="."]
+script = ExtResource("6")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("environment")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 rotation_degrees = Vector3(-40, -35, 0)
 light_color = Color(1, 0.93, 0.82, 1)
-light_energy = 1.0
+light_energy = 0.85
 shadow_enabled = true
 
 [node name="Player" type="CharacterBody3D" parent="."]

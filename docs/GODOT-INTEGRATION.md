@@ -9,6 +9,9 @@ but the compositor and launcher are ready; Tab opens Applications.
 `-- --terminal` or `-- --terminal-demo` explicitly starts an initial client.
 The study is retained in `scenes/study.tscn` for explicit launch and geometry
 regressions.
+The owner's 2026-10-11 [courtyard revision](handoffs/43-village-reference-alignment.md)
+refines the architecture, paving and planting through scene-local geometry and
+materials; desktop ownership and input contracts are unchanged.
 See [the architecture handoff](handoffs/42-village-architecture.md),
 [the landscape handoff](handoffs/41-village-landscape.md) and
 [the outdoor startup handoff](handoffs/40-outdoor-startup.md).

@@ -10,3 +10,16 @@ loaded by Godot, used as a texture or presented as an Elsewhere screenshot.
 The revised models and procedural surface shaders are original repository
 work. [The art brief](../ART-DIRECTION.md) records the visual interpretation;
 [handoff 43](../handoffs/43-village-reference-alignment.md) records actual renders.
+
+
+`village-square-example-2.jpg` was then supplied by the owner on 2026-10-11 for
+a reversible alternative. Its artist/source/license were likewise not supplied.
+It remains unchanged and is not loaded as a Godot texture. Reference 2's models,
+weathered surfaces, cloud shader and mountain backdrop are original repository
+work; no downloaded image/model is embedded in the runtime.
+
+Open [compare.html](compare.html) in a browser for a slider and nine matched
+render viewpoints. It works directly from disk without a server or dependency.
+Both references can be expanded below the render comparison. Reference 1's
+implementation is preserved at `340ca97` / local tag `art-reference-1`;
+[handoff 44](../handoffs/44-village-reference-2.md) explains switching safely.

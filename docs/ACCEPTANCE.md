@@ -3,6 +3,38 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-11 agent-run reference 2 comparison
+
+From `340ca97`, the active candidate follows the owner's second reference:
+weathered timber/stone, ivy, pointed turret, broad tiered fountain, darker cobbles
+and distant mountain/cloud backdrop. Nine actual Godot eye-level captures were
+inspected after correcting faceted bright mountains, ringed slate, gridded ivy
+and hard snow patches. Use the [matched-view comparison](art-direction/compare.html)
+to compare these with reference 1's preserved renders. Both source JPEGs are
+separately labeled; neither is presented as an Elsewhere render or runtime asset.
+
+The headless/GPU architecture trial passes unchanged collision/access checks;
+only the expected model count drops with removal of the bridge. Both full
+landscape trials pass: 24,178 samples, 337.8m walked per mode, maximum grade
+14.39° and floor gap below 6mm. The page's nine paired images, links, selector,
+buttons and slider were exercised in real headless Chrome, and its render
+inspected. Eight Python tests and 62 Node tests pass.
+
+The unchanged outdoor trial, seven dedicated graphical interaction tests and
+real Chrome trial also pass: launch, typing/repeat, pointer input, resize,
+independent instances, manipulation, transitions, browser scroll/reflow and close.
+Fresh [terminal](evidence/village-reference-2/application.png),
+[terrain panel](evidence/village-reference-2/slope-panel.png),
+[browser input](evidence/village-reference-2/browser-input.png) and
+[browser world return](evidence/village-reference-2/browser-in-room.png) renders
+were inspected. Runtime/controller/native code is unchanged.
+
+Reference 1 remains at `340ca97` / `art-reference-1`; reference 2 has its own
+commit/tag and separate evidence. Full commands, application regression results,
+remaining visual limits and safe switching are in
+[handoff 44](handoffs/44-village-reference-2.md). No owner selection/art approval,
+comfort measurement, performance benchmark or later task acceptance is claimed.
+
 ## 2026-10-11 agent-run owner reference alignment
 
 From `e32c9dc`, the owner-supplied courtyard image now guides the existing

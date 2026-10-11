@@ -62,3 +62,12 @@ surface detail without downloaded textures. The owner-provided JPEG is a
 visual reference only, with no pixels embedded in the runtime. See
 [village provenance](village/README.md) and
 [reference notes](../../docs/art-direction/README.md).
+
+
+The second owner reference on 2026-10-11 establishes a reversible comparison
+candidate: weathered timber/stone, original ivy geometry, a pointed turret,
+tiered fountain with decorative water, and an original distant ridge/cloud sky.
+`village_mountain.gdshader` blends rock/snow by height/slope; no photographic
+pixels or new downloaded sources are used. Reference 1's source/art remains at
+`340ca97` / local tag `art-reference-1`, and its evidence is unchanged. See
+[comparison/provenance](../../docs/handoffs/44-village-reference-2.md).

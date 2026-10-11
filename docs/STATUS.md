@@ -6,13 +6,39 @@ world beginning at a village square. Project 22 and
 study environment and expansion schedule. All Project 21 progress below is
 historical and should remain available as engineering evidence, not as the
 current build queue. **P22-T01 through P22-T04 are complete.** The owner then
-requested a bounded revision against the supplied courtyard image; that request
-does not authorize a task sequence. P22-T05 remains the next planned task and
+requested two bounded reference alternatives for comparison; those requests
+do not authorize a task sequence. P22-T05 remains the next planned task and
 its broader art-review gate stays unchecked.
 
-## Owner reference alignment verified (2026-10-11, from `e32c9dc`)
+## Reference 2 comparison candidate verified (2026-10-11, from `340ca97`)
 
-The current [art brief](ART-DIRECTION.md) uses the owner's
+The owner supplied a second reference and requested a reversible alternative.
+The default now uses weathered timber/stone, ivy, pointed slate turret, tiered
+stone fountain, cobbles and a mountain/cloud backdrop. The first direction is
+preserved at `340ca97` / local tag `art-reference-1`; its source renders remain
+unchanged. [Compare nine matching views](art-direction/compare.html), or read
+[switching instructions and evidence](handoffs/44-village-reference-2.md).
+
+Verified by automated checks: Godot import/default startup; headless/GPU
+architecture, landscape and outdoor tests; seven existing interaction trials;
+real Chrome; eight Python and 62 Node tests; comparison-page browser checks.
+Model rebuild hashes, documentation links, task parsing and diff checks pass.
+The reference-1 source image, evidence and handoff remain byte-identical.
+Version 2 is preserved at local tag `art-reference-2` after its separate commit.
+
+Agent-observed: nine actual final Godot renders inspected after correcting
+bright faceted mountains, a ringed spire, gridded ivy and hard snow patches.
+The page's browser checks pass for all paired images, viewpoint selection,
+slider and version buttons. No final owner choice or art approval is recorded.
+Simple broad terrain, sparse frontage, procedural material repetition and
+stylized water/mountains remain limitations against the reference's detail.
+
+Next task: stop after this bounded comparison revision. No numbered task or
+later gate is advanced; P22-T05 remains unchecked and requires a separate request.
+
+## Reference 1 checkpoint: owner reference alignment verified (2026-10-11, from `e32c9dc`)
+
+At this checkpoint, the [art brief](ART-DIRECTION.md) used the owner's
 [courtyard reference](art-direction/village-square-example.jpg). The existing
 buildings now frame the square more closely, with curved blue slate roofs,
 dormers, warm timber and pale plaster, lattice windows, flower boxes and an

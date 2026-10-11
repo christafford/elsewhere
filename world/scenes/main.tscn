@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/outdoor.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="2"]
@@ -10,15 +10,17 @@
 
 [ext_resource type="Script" path="res://scripts/village_garden.gd" id="6"]
 
+[ext_resource type="PackedScene" path="res://art/village/mountain_backdrop.glb" id="7"]
+[ext_resource type="Shader" path="res://scripts/village_sky.gdshader" id="8"]
+
+[ext_resource type="Script" path="res://scripts/village_backdrop.gd" id="9"]
+
 [sub_resource type="CapsuleShape3D" id="player_shape"]
 radius = 0.22
 height = 1.65
 
-[sub_resource type="ProceduralSkyMaterial" id="sky_material"]
-sky_top_color = Color(0.25, 0.45, 0.68, 1)
-sky_horizon_color = Color(0.72, 0.81, 0.87, 1)
-ground_bottom_color = Color(0.22, 0.28, 0.25, 1)
-ground_horizon_color = Color(0.72, 0.81, 0.87, 1)
+[sub_resource type="ShaderMaterial" id="sky_material"]
+shader = ExtResource("8")
 
 [sub_resource type="Sky" id="sky"]
 sky_material = SubResource("sky_material")
@@ -28,7 +30,7 @@ background_mode = 2
 sky = SubResource("sky")
 ambient_light_source = 2
 ambient_light_color = Color(0.78, 0.83, 0.91, 1)
-ambient_light_energy = 0.4
+ambient_light_energy = 0.32
 tonemap_mode = 2
 tonemap_exposure = 1.0
 tonemap_white = 1.0
@@ -48,13 +50,16 @@ script = ExtResource("5")
 [node name="Garden" type="Node3D" parent="."]
 script = ExtResource("6")
 
+[node name="MountainBackdrop" parent="." instance=ExtResource("7")]
+script = ExtResource("9")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("environment")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 rotation_degrees = Vector3(-40, -35, 0)
-light_color = Color(1, 0.93, 0.82, 1)
-light_energy = 0.85
+light_color = Color(1, 0.98, 0.91, 1)
+light_energy = 0.95
 shadow_enabled = true
 
 [node name="Player" type="CharacterBody3D" parent="."]

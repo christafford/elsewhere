@@ -5,8 +5,34 @@ world beginning at a village square. Project 22 and
 [Decision 08](decisions/08-elsewhere-village-world.md) supersede the Project 21
 study environment and expansion schedule. All Project 21 progress below is
 historical and should remain available as engineering evidence, not as the
-current build queue. **P22-T01 through P22-T03 are complete; no further task is authorized.**
-P22-T04 is the next planned task and requires a separate explicit owner request.
+current build queue. **P22-T01 through P22-T04 are complete; no further task is authorized.**
+P22-T05 is the next planned task and requires a separate explicit owner request.
+
+## P22-T04 verified (2026-10-10, from `e81c88c`)
+
+A compass fountain marks the square, with a timber lodge, stepped-gable
+guildhall with a decorative clock, low stone workshop and open timber pavilion. Five
+original GLB models include roofs, joinery, windows on all elevations, door
+surrounds and architectural profiles. Foundations/steps fit the terrain;
+a north ramp gives ordinary walking access to the pavilion's covered floor.
+The three buildings are sealed exteriors. Models, import settings, reproducible
+source and provenance are tracked. No new dependency or desktop service change.
+
+Verified by automated checks: Godot import/default startup; headless/GPU
+architecture collision and pavilion access; complete landscape route/ground
+checks; unchanged outdoor startup/live-terminal checks; seven existing Godot
+interaction trials; real Chrome; eight Python and 62 parser/plugin tests.
+Model rebuild hashes, documentation links, task parsing and diff checks pass.
+
+Agent-observed: nine actual eye-level architectural captures show distinct
+silhouettes, a recognizable landmark, open routes and a covered pavilion.
+Reviewed default-startup, terminal, terrain-supported panel and browser captures
+preserve readable real application content. See
+[handoff 42](handoffs/42-village-architecture.md) for defects/fixes, commands,
+images and limits. Not observed by a person: movement comfort or art approval.
+Plain base materials and bright sunlit stone remain provisional. Material,
+foliage and lighting curation (P22-T05) is unstarted; work surfaces/anchors
+remain P22-T07. No later acceptance gate is claimed.
 
 ## P22-T03 verified (2026-10-10, from `eca98ab`)
 

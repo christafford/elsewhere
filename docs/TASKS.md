@@ -62,14 +62,22 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   queries and 337.8m walking per mode; all ten boundary sections pass. Seven
   affected Godot regressions, real Chrome, eight Python and 62 parser tests
   pass; actual arrival/approach/application renders inspected. See
-  [handoff 41](handoffs/41-village-landscape.md). P22-T04 is not started.
+  [handoff 41](handoffs/41-village-landscape.md). P22-T04 was unstarted at that
+  checkpoint.
 
-- [ ] **P22-T04 Create landmark, architectural exteriors and pavilion.**
+- [x] **P22-T04 Create landmark, architectural exteriors and pavilion.**
   **Depends:** P22-T03. Place a recognizable central landmark, 3–4 distinctive
   building exteriors and an outdoor covered work pavilion. Use proper models,
   coherent scale and strong silhouettes; interiors are out of scope.
   **Acceptance:** human-eye-level renders from at least three viewpoints show
   recognizable structures, inviting routes and no prominent prototype boxes.
+  Completed 2026-10-10 from `e81c88c`: five original reproducible GLB models
+  provide a compass fountain, three distinct sealed exteriors and an open
+  timber pavilion with walkable ramp. Nine eye-level architectural renders
+  inspected after geometry fixes. Headless/GPU architecture, landscape and
+  outdoor trials, seven existing Godot regressions, real Chrome, eight Python
+  and 62 parser tests pass. See [handoff 42](handoffs/42-village-architecture.md).
+  P22-T05 is not started.
 
 - [ ] **P22-T05 Curate materials, foliage and village lighting.**
   **Depends:** P22-T04. Reuse documented Poly Haven asset tooling and compatible

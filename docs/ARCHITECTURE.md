@@ -48,6 +48,15 @@ still reject overlaps. The desktop services know nothing about the lattice,
 paths or bank. No scene streaming, terrain engine, new dependency, or application
 identity change is introduced.
 
+P22-T04 adds a sibling `Architecture` node. `village_architecture.gd` places five
+original imported GLB models at fixed sites, grounds their foundations using the
+landscape height function, and creates static mesh collision on the existing
+world collision layer. Terrain-fitted entrance steps and the pavilion ramp are
+local geometry. The three buildings are sealed exteriors; the pavilion is open.
+No controller, desktop service, application identity, placement policy or native
+compositor change is required. Models and reproducible authoring source are
+recorded in [the asset provenance](../world/art/village/README.md).
+
 ---
 
 # Architecture: current prototype and target boundaries

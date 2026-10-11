@@ -77,7 +77,11 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   inspected after geometry fixes. Headless/GPU architecture, landscape and
   outdoor trials, seven existing Godot regressions, real Chrome, eight Python
   and 62 parser tests pass. See [handoff 42](handoffs/42-village-architecture.md).
-  P22-T05 is not started.
+  The owner separately requested reference alignment on 2026-10-11: the
+  existing square now uses curved blue roofs, pale plaster/warm timber, lattice
+  windows, planted fountain/window boxes, fixed trees and a timber arch link.
+  See [handoff 43](handoffs/43-village-reference-alignment.md). This bounded
+  revision does not complete the broader P22-T05 art gate.
 
 - [ ] **P22-T05 Curate materials, foliage and village lighting.**
   **Depends:** P22-T04. Reuse documented Poly Haven asset tooling and compatible
@@ -87,6 +91,9 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   fix observed issues, and demonstrate cohesive atmosphere, scale and legibility.
   If captures cannot be visually reviewed, keep this task blocked. **Owner art
   review checkpoint:** do not advance to P22-T06 until owner authorizes it.
+  Partial visual baseline: the 2026-10-11 owner-requested courtyard revision
+  supplies original surface detail and planting. The full curation/review gate
+  remains unchecked; no later task is authorized by that revision.
 
 - [ ] **P22-T06 Verify live application integration outdoors.**
   **Depends:** P22-T05 and owner approval. Bring the existing real app launcher,

@@ -15,6 +15,24 @@ multiple views. Leave application content unlit/readable. No additional
 functional locations, building interiors, creatures, NPCs, weather systems, or
 day/night simulation in this milestone.
 
+## Owner's courtyard reference (2026-10-11)
+
+Use [the owner-provided village-square image](art-direction/village-square-example.jpg)
+as the current visual reference. Its appeal is an intimate, inhabited courtyard:
+tall pale plaster buildings with warm exposed timber, steep blue slate roofs
+with curved eaves and dormers, leaded windows, flower boxes, pale stone paving,
+a low planted fountain, leafy trees and a timber arch linking nearby buildings.
+Small canvas awnings and terracotta planters provide warm accents. Compose the
+square at eye height, with buildings framing the landmark and routes between
+them; avoid isolated buildings scattered across a lawn.
+
+Interpret that vocabulary in the existing explorable square. Preserve open
+walking routes and usable application space. The reference is direction, not
+a claim that its detail, enclosure or lighting has already been achieved.
+See [source notes](art-direction/README.md) and the
+[rendered revision](handoffs/43-village-reference-alignment.md). The wider
+P22-T05 art review remains open; do not infer authorization for later tasks.
+
 The former study brief below is historical for Project 21 only.
 
 ---

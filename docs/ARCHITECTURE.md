@@ -57,6 +57,17 @@ No controller, desktop service, application identity, placement policy or native
 compositor change is required. Models and reproducible authoring source are
 recorded in [the asset provenance](../world/art/village/README.md).
 
+The owner's 2026-10-11 courtyard revision retains those five structures and adds a
+sixth architectural model: a decorative timber link above the north approach.
+`village_materials.gd` applies shared finish rules to imported mesh surfaces;
+`village_surface.gdshader` supplies original meter-scale grain and joints.
+A sibling `Garden` node, owned by `village_garden.gd`, places eight fixed trees
+on the existing terrain. Only tree trunks have cylinder collision; leaves and
+branches are decorative. Architecture and trunk bodies share the existing
+terrain-test exclusion group; normal walking and placement still see their
+collisions. The paving change is visual on the same ground mesh. No new
+runtime service, identity, input or persistence boundary is introduced.
+
 ---
 
 # Architecture: current prototype and target boundaries

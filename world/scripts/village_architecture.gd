@@ -2,11 +2,12 @@
 extends Node3D
 
 const Landscape = preload("res://scripts/village_landscape.gd")
+const Materials = preload("res://scripts/village_materials.gd")
 const SITES := {
-	"Lodge": {"model": "alpine_lodge", "xz": Vector2(-17,-18), "yaw": 0.0, "half": Vector2(5,3.75)},
-	"Guildhall": {"model": "guildhall", "xz": Vector2(12,-18), "yaw": 0.0, "half": Vector2(3.9,3.25)},
-	"Workshop": {"model": "stone_workshop", "xz": Vector2(24,-10), "yaw": -PI/2, "half": Vector2(3.25,5.7)},
-	"Fountain": {"model": "square_fountain", "xz": Vector2(-5,-4), "yaw": 0.0, "half": Vector2(2.05,2.05)},
+	"Lodge": {"model": "alpine_lodge", "xz": Vector2(-12,-16), "yaw": 0.0, "half": Vector2(5,3.75)},
+	"Guildhall": {"model": "guildhall", "xz": Vector2(9.5,-17), "yaw": 0.0, "half": Vector2(3.9,3.25)},
+	"Workshop": {"model": "stone_workshop", "xz": Vector2(18,-9), "yaw": -PI/2, "half": Vector2(3.25,5.7)},
+	"Fountain": {"model": "square_fountain", "xz": Vector2(-5,-4), "yaw": 0.0, "half": Vector2(3.15,3.15)},
 	"Pavilion": {"model": "work_pavilion", "xz": Vector2(-18,18), "yaw": 0.0, "half": Vector2(4.5,3.5)},
 }
 
@@ -22,10 +23,19 @@ func _ready() -> void:
 		add_child(model)
 		model.position = Vector3(site.xz.x,floor_y+0.02,site.xz.y)
 		model.rotation.y = site.yaw
+		Materials.apply(model)
 		add_collision(model)
 		if label == "Pavilion": pavilion_access(model)
 		elif label in ["Lodge","Guildhall","Workshop"]:
 			entrance_steps(model,3.75 if label=="Lodge" else 3.25,-1.8 if label=="Workshop" else 0.0)
+
+	# Exterior architectural link; existing building doors remain sealed.
+	var link := preload("res://art/village/courtyard_link.glb").instantiate()
+	link.name = "TimberLink"
+	add_child(link)
+	link.position = Vector3(-0.7,4.2,-16.5)
+	Materials.apply(link)
+	add_collision(link)
 
 func add_collision(node: Node) -> void:
 	if node is MeshInstance3D:

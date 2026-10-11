@@ -15,8 +15,11 @@ work. [The art brief](../ART-DIRECTION.md) records the visual interpretation;
 `village-square-example-2.jpg` was then supplied by the owner on 2026-10-11 for
 a reversible alternative. Its artist/source/license were likewise not supplied.
 It remains unchanged and is not loaded as a Godot texture. Reference 2's models,
-weathered surfaces, cloud shader and mountain backdrop are original repository
-work; no downloaded image/model is embedded in the runtime.
+initial weathered surfaces, cloud shader and mountain backdrop were original
+repository work. The owner subsequently selected version 2 and requested
+P22-T05, which adds separately licensed Poly Haven material maps; see
+[their provenance](../../world/art/village/textures/README.md). Neither owner
+reference image is used as a runtime asset.
 
 Open [compare.html](compare.html) in a browser for a slider and nine matched
 render viewpoints. It works directly from disk without a server or dependency.

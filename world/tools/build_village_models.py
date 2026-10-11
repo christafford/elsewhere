@@ -70,8 +70,16 @@ class Model:
         side = mul(side, width/2)
         up = mul(unit(cross(axis, side)), (depth or width)/2)
         p = [add(t, add(mul(side,s),mul(up,u))) for t in [a,b] for s,u in [(-1,-1),(1,-1),(1,1),(-1,1)]]
+        start = len(self.parts.get(mat, []))
         for face in [(0,3,2,1),(4,5,6,7),(0,4,7,3),(1,2,6,5),(3,7,6,2),(0,1,5,4)]:
             self.quad(mat, *(p[i] for i in face))
+        if mat in ('wood', 'timber'):
+            # Grain follows each brace/post rather than world-vertical stripes.
+            for i in range(start, len(self.parts[mat])):
+                v = self.parts[mat][i]
+                transverse = unit(side) if abs(sum(v[3+j]*unit(up)[j] for j in range(3))) > .5 else unit(up)
+                uv = (sum(v[j]*transverse[j] for j in range(3)), sum(v[j]*axis[j] for j in range(3)))
+                self.parts[mat][i] = (*v[:6], *uv)
 
     def lathe(self, mat, profile, center=(0,0,0), sides=32):
         # Profile follows bottom outer -> top -> inside -> bottom; radius/Y.
@@ -434,10 +442,10 @@ def courtyard_tree():
         base=(0,2.5+j*.2,0)
         end=(math.cos(a)*(1.3+j*.07),4.6+j*.19,math.sin(a)*(1.3+j*.07))
         m.beam('timber',base,end,.11)
-        for k in range(230):
+        for k in range(300):
             az=m.rng.random()*math.tau; yy=m.rng.uniform(-1,1); rr=math.sqrt(1-yy*yy)
             p=add(end,(math.cos(az)*rr*1.5,yy*1.1,math.sin(az)*rr*1.5))
-            m.leaf(p,.48+m.rng.random()*.32,m.rng.random()*math.tau,m.rng.uniform(-.5,.6),['leaf','leaf_light','leaf_dark'][k%3])
+            m.leaf(p,.40+m.rng.random()*.26,m.rng.random()*math.tau,m.rng.uniform(-1.1,1.1),['leaf','leaf_light','leaf_dark'][k%3])
     m.write()
 
 

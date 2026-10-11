@@ -12,6 +12,7 @@ fi
     echo "Missing executable Godot binary or project.godot" >&2; exit 1;
 }
 if [[ "$(realpath "$PROJECT_DIR")" == "$(realpath "$SCRIPT_DIR/../world")" ]]; then
+    python3 "$SCRIPT_DIR/../world/tools/verify_village_materials.py"
     "$SCRIPT_DIR/build-godot-runtime.sh"
 fi
 LOG_DIR=$(mktemp -d "${TMPDIR:-/tmp}/elsewhere-godot-check.XXXXXX")

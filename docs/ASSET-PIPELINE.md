@@ -1,5 +1,14 @@
 # Reproducible Poly Haven asset pipeline
 
+P22-T05 adds a small verified village subset to the shared JSON manifest:
+three Poly Haven texture sets, nine byte-identical 1K JPEG maps tracked with
+Godot import settings. `python3 world/tools/verify_village_materials.py` checks
+size/SHA-256 offline and fails on missing/corrupt files; project validation runs
+it before import. Acquisition reused `fetch_assets.atomic_download` with an
+identifying Elsewhere User-Agent and provider size/MD5 checks. See
+[selection, channels and recovery](../world/art/village/textures/README.md).
+This does not close the historical study acquisition gates below.
+
 Complete the downloader, manifest and conversion tools during Project 21.
 The 2026-10-02 audit found 30 missing external references. The six model packages
 now exist locally and render in Godot. `world/tools/prepare_study_assets.py`

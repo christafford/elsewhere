@@ -449,6 +449,159 @@
       },
       "art_director_notes": "Rug texture alternative - soft carpet for floor",
       "dependencies": []
+    },
+    {
+      "id": "cobblestone_floor_08",
+      "type": "texture",
+      "usage": "P22-T05 village",
+      "source": {
+        "url": "https://polyhaven.com/a/cobblestone_floor_08",
+        "author": "Rob Tuytel",
+        "license": "CC0-1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "metadata_date": "2026-10-11",
+        "metadata_url": "https://api.polyhaven.com/info/cobblestone_floor_08",
+        "files_url": "https://api.polyhaven.com/files/cobblestone_floor_08"
+      },
+      "dimensions": {
+        "width_m": 2.0,
+        "height_m": 2.0
+      },
+      "resolution": "1K",
+      "maps": {
+        "Diffuse": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_08/cobblestone_floor_08_diff_1k.jpg",
+          "bytes": 585727,
+          "sha256": "ec131f7a99a1e7f9df25d4725609c55a6dad1df487630685e9a66ecbf41ec33a",
+          "provider_md5": "bb640125356d18e3ad8515b9d5bfccef",
+          "cache": "world/assets/cache/village/cobblestone_floor_08_diff_1k.jpg",
+          "runtime": "world/art/village/textures/cobblestone_floor_08_diff_1k.jpg",
+          "color_space": "sRGB",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_08/cobblestone_floor_08_nor_gl_1k.jpg",
+          "bytes": 1002410,
+          "sha256": "26bfff70b266a4e86983814c7e56a9b48daf93cd34dcdc16a5db13e4fabcfbb6",
+          "provider_md5": "7a90780c7c49a1307e928d4d32c4773c",
+          "cache": "world/assets/cache/village/cobblestone_floor_08_nor_gl_1k.jpg",
+          "runtime": "world/art/village/textures/cobblestone_floor_08_nor_gl_1k.jpg",
+          "color_space": "linear",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        },
+        "Rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cobblestone_floor_08/cobblestone_floor_08_rough_1k.jpg",
+          "bytes": 408718,
+          "sha256": "f92bcaf897cd98bc3cf11e6409b3e42145e7d0f659eaaad8807dfb0c5d16afc6",
+          "provider_md5": "1471921512da4a43e94ec08c32c273f7",
+          "cache": "world/assets/cache/village/cobblestone_floor_08_rough_1k.jpg",
+          "runtime": "world/art/village/textures/cobblestone_floor_08_rough_1k.jpg",
+          "color_space": "linear",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        }
+      }
+    },
+    {
+      "id": "grey_plaster",
+      "type": "texture",
+      "usage": "P22-T05 village",
+      "source": {
+        "url": "https://polyhaven.com/a/grey_plaster",
+        "author": "Rob Tuytel",
+        "license": "CC0-1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "metadata_date": "2026-10-11",
+        "metadata_url": "https://api.polyhaven.com/info/grey_plaster",
+        "files_url": "https://api.polyhaven.com/files/grey_plaster"
+      },
+      "dimensions": {
+        "width_m": 1.0,
+        "height_m": 1.0
+      },
+      "resolution": "1K",
+      "maps": {
+        "Diffuse": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grey_plaster/grey_plaster_diff_1k.jpg",
+          "bytes": 704079,
+          "sha256": "dcf34c5f3801cc43189f0edae3c430b602c827956e9d6ce4b89a85e53e952da9",
+          "provider_md5": "42d2ffe5338fcc0065e28076cbe15eba",
+          "cache": "world/assets/cache/village/grey_plaster_diff_1k.jpg",
+          "runtime": "world/art/village/textures/grey_plaster_diff_1k.jpg",
+          "color_space": "sRGB",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grey_plaster/grey_plaster_nor_gl_1k.jpg",
+          "bytes": 355288,
+          "sha256": "85fe18209cb354b582003892898ee0cd6fe6b853644e01983718fc011140c0c2",
+          "provider_md5": "add2064b193d083c892aead5eaf461d2",
+          "cache": "world/assets/cache/village/grey_plaster_nor_gl_1k.jpg",
+          "runtime": "world/art/village/textures/grey_plaster_nor_gl_1k.jpg",
+          "color_space": "linear",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        },
+        "Rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grey_plaster/grey_plaster_rough_1k.jpg",
+          "bytes": 635335,
+          "sha256": "67566b1b5ee25502596916303c246b08d47725b8a697283cfdc1494e6f659aa2",
+          "provider_md5": "b97159bbbb4817965892ec7ab6efe46f",
+          "cache": "world/assets/cache/village/grey_plaster_rough_1k.jpg",
+          "runtime": "world/art/village/textures/grey_plaster_rough_1k.jpg",
+          "color_space": "linear",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        }
+      }
+    },
+    {
+      "id": "rough_wood",
+      "type": "texture",
+      "usage": "P22-T05 village",
+      "source": {
+        "url": "https://polyhaven.com/a/rough_wood",
+        "author": "Rob Tuytel",
+        "license": "CC0-1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "metadata_date": "2026-10-11",
+        "metadata_url": "https://api.polyhaven.com/info/rough_wood",
+        "files_url": "https://api.polyhaven.com/files/rough_wood"
+      },
+      "dimensions": {
+        "width_m": 0.5,
+        "height_m": 0.5
+      },
+      "resolution": "1K",
+      "maps": {
+        "Diffuse": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_wood/rough_wood_diff_1k.jpg",
+          "bytes": 567074,
+          "sha256": "abc46d8e3163d911220f4ec3a4043b68d2b0c6d750513f80871211acfefb2a98",
+          "provider_md5": "92d4b3dd46bab95248f5a7680b7882e7",
+          "cache": "world/assets/cache/village/rough_wood_diff_1k.jpg",
+          "runtime": "world/art/village/textures/rough_wood_diff_1k.jpg",
+          "color_space": "sRGB",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        },
+        "nor_gl": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_wood/rough_wood_nor_gl_1k.jpg",
+          "bytes": 790334,
+          "sha256": "3d1c6f098b66d93e52071b41834dd14a424d8cd2f7c4130c62dc062acfa65011",
+          "provider_md5": "1c9829c9023f74c74eaeba28e56e5144",
+          "cache": "world/assets/cache/village/rough_wood_nor_gl_1k.jpg",
+          "runtime": "world/art/village/textures/rough_wood_nor_gl_1k.jpg",
+          "color_space": "linear",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        },
+        "Rough": {
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_wood/rough_wood_rough_1k.jpg",
+          "bytes": 195056,
+          "sha256": "4e9ea9962a7e8b69057937e6723c4b0134b949c1ee5cdb5f3687a54113027b09",
+          "provider_md5": "ef62954e4ea0e9cd78757ce79e6eeb58",
+          "cache": "world/assets/cache/village/rough_wood_rough_1k.jpg",
+          "runtime": "world/art/village/textures/rough_wood_rough_1k.jpg",
+          "color_space": "linear",
+          "conversion": "none; byte-identical 1024x1024 JPEG"
+        }
+      }
     }
   ],
   "runtime_requirements": {

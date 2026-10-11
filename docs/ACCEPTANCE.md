@@ -3,6 +3,39 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-11 P22-T05 materials, foliage and lighting
+
+The owner selected version 2 and requested this single task. The Codex agent
+inspected twelve final real Godot captures: the nine preserved architectural
+viewpoints plus close views of facade finishes, fountain/paving and foliage.
+Comparisons show curated cobbles/plaster/timber, grain alignment, carved stone,
+fuller canopies and readable shaded timber. First-pass glare/aliasing and a
+shadow-bias experiment were corrected through actual rendered review. See
+[the before/after evidence](evidence/p22-t05/README.md) and
+[handoff 45](handoffs/45-village-materials.md).
+
+Headless/GPU architecture, landscape and outdoor checks pass. Landscape evidence
+is 24,178 samples and 337.8m walked per mode, maximum grade 14.39° and floor gap
+below 6mm. Existing collision/access and application assertions are unchanged.
+Seven graphical interaction trials pass, including client color, terminal
+input/repeat/pointer/resize, launcher, independent objects and transitions.
+Real Chrome passes trusted typing, click/save, both scroll directions,
+resize/reflow, world return, separate window identity and close. Terminal output
+and browser text were inspected in actual captures; application shading and
+exposure remain unchanged. Final graphical architecture/outdoor/color/Chrome
+trials were repeated after the last shadow/ground correction.
+
+Eleven Python and 62 Node tests pass. Nine tracked material maps pass offline
+size/SHA-256 verification; missing/corrupt/incomplete manifest tests reject the
+bad inputs. Original model rebuilds match their recorded hashes; non-tree model
+positions/normals/counts remain identical to `82dd2a2`. No native source or
+runtime/controller change, new dependency, host service change or new destination.
+
+Owner selection of version 2 is recorded; final owner approval of this refined
+art, movement comfort and performance are not claimed. These are preservation
+regressions for P22-T05, not completion of P22-T06 or a later task. Stop at the
+owner art-review checkpoint.
+
 ## 2026-10-11 agent-run reference 2 comparison
 
 From `340ca97`, the active candidate follows the owner's second reference:

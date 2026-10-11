@@ -30,7 +30,7 @@ background_mode = 2
 sky = SubResource("sky")
 ambient_light_source = 2
 ambient_light_color = Color(0.78, 0.83, 0.91, 1)
-ambient_light_energy = 0.32
+ambient_light_energy = 0.42
 tonemap_mode = 2
 tonemap_exposure = 1.0
 tonemap_white = 1.0
@@ -59,8 +59,12 @@ environment = SubResource("environment")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 rotation_degrees = Vector3(-40, -35, 0)
 light_color = Color(1, 0.98, 0.91, 1)
-light_energy = 0.95
+light_energy = 0.9
 shadow_enabled = true
+shadow_bias = 0.1
+shadow_normal_bias = 2.0
+directional_shadow_max_distance = 90.0
+directional_shadow_blend_splits = true
 
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("2")

@@ -34,6 +34,10 @@ func run() -> void:
 		await architecture_view("workshop",Vector2(9,-7),Vector3(18,3,-9))
 		await architecture_view("pavilion",Vector2(-4,19),Vector3(-18,3,18))
 		await architecture_view("south-approach",Vector2(-6,28),Vector3(-3,2,-6))
+		# P22-T05 close views expose texture scale, contact and leaf shading.
+		await architecture_view("plaster-timber",Vector2(-8,-9),Vector3(-10.4,2.5,-12.2))
+		await architecture_view("paving-fountain",Vector2(-5,1.5),Vector3(-5,1,-4))
+		await architecture_view("foliage",Vector2(-19,-11),Vector3(-22,5,-16))
 	if "--capture-only" in OS.get_cmdline_user_args():
 		check(DisplayServer.get_name() != "headless","Capture-only requires a graphical renderer")
 		await study.desktop_runtime.shutdown()

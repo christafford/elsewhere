@@ -1,14 +1,40 @@
 # Current direction — Elsewhere (2026-10-11)
 
-The owner has renamed the product **Elsewhere** and approved a fresh physical
-world beginning at a village square. Project 22 and
-[Decision 08](decisions/08-elsewhere-village-world.md) supersede the Project 21
-study environment and expansion schedule. All Project 21 progress below is
-historical and should remain available as engineering evidence, not as the
-current build queue. **P22-T01 through P22-T04 are complete.** The owner then
-requested two bounded reference alternatives for comparison; those requests
-do not authorize a task sequence. P22-T05 remains the next planned task and
-its broader art-review gate stays unchecked.
+The owner selected **version 2**, the weathered mountain village, and authorized
+P22-T05 only. Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md)
+govern current world work; Project 21 below is historical.
+**P22-T01 through P22-T05 are complete. P22-T06 is not started or authorized.**
+
+## P22-T05 verified (2026-10-11, from `82dd2a2`)
+
+The selected version 2 now uses three curated Poly Haven material sets for
+cobbles, plaster and timber, with tracked maps/import settings, source/license
+metadata and offline integrity verification. Grain follows beams; carved stone
+finishes unify the fountain and access surfaces. Fuller, varied leaf clusters
+and adjusted daylight/fill preserve the weathered palette. Desktop ownership,
+input, client shading, exposure and world collision geometry are preserved.
+
+Verified by automated checks: Godot import/default startup; headless/GPU
+architecture, landscape and outdoor trials; seven graphical interaction trials;
+real Chrome; 11 Python tests (including material integrity failures) and 62 Node
+tests. Final graphical architecture/outdoor/color/Chrome checks were refreshed
+after correcting shadow striping. Model hashes, non-tree vertex preservation,
+provenance, task parsing, documentation links and diff checks pass.
+
+Agent-observed: twelve final actual Godot world captures plus terminal/browser
+captures inspected. Multiple before/after views record fixes for repetitive
+paving, noisy plaster, flat leaf layers, glare, distant aliasing and shadow
+striping. [Render comparison/evidence](evidence/p22-t05/README.md) and
+[handoff 45](handoffs/45-village-materials.md) record scope, commands and limits.
+Both earlier reference checkpoints and their comparison remain unchanged.
+
+Owner-observed: the owner's explicit version 2 selection in the 2026-10-11
+request. Not observed by a person: approval of these P22-T05 refinements or
+movement comfort. No performance benchmark; simple lawn/boundary, large stylized
+leaves, repetitive large paved areas and decorative water remain limitations.
+
+Next task: **stop for owner art review and explicit authorization before
+P22-T06**. No continuation or later task is authorized by this result.
 
 ## Reference 2 comparison candidate verified (2026-10-11, from `340ca97`)
 

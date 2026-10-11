@@ -1,8 +1,13 @@
 shader_type spatial;
 // Original weathered surfaces for reference 2, in projected meter UVs.
 uniform vec4 base_color : source_color = vec4(.4,.4,.35,1);
-uniform int surface_kind = 0; // plaster, wood, stone, slate, leaf, metal, tiles, water
+uniform int surface_kind = 0; // plaster, wood, stone, slate, leaf, metal, tiles, water, carved stone
 uniform float surface_roughness = .9;
+uniform bool use_photo = false;
+uniform float photo_scale = 1.0;
+uniform sampler2D diff_texture : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D nor_gl_texture : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D rough_texture : filter_linear_mipmap_anisotropic, repeat_enable;
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float noise(vec2 p) {
     vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
@@ -31,11 +36,29 @@ void fragment() {
     // Broad damp stains sit below the fine pores/grain.
     if(surface_kind<4) ALBEDO*=.72+.28*noise(UV*vec2(.65,1.2));
     ROUGHNESS=surface_roughness;
-    if(surface_kind==4) { ALBEDO=base_color.rgb; BACKLIGHT=base_color.rgb*.1; }
-    if(surface_kind<4 || surface_kind==6) {
+    if(surface_kind==4) {
+        ALBEDO=base_color.rgb*(.86+.14*noise(UV*18.0));
+        BACKLIGHT=base_color.rgb*.35;
+        ROUGHNESS=.9;
+    }
+    // Carved fountain bowls/caps are solid stone, without wall-sized mortar lines.
+    if(surface_kind==8) {
+        ALBEDO=base_color.rgb*(.78+.16*noise(UV*3.0)+.06*noise(UV*65.0));
+    }
+    if(surface_kind<4 || surface_kind==6 || surface_kind==8) {
         float e=.004;
         vec2 d=vec2(detail(UV+vec2(e,0)),detail(UV+vec2(0,e)))-h;
         NORMAL_MAP=normalize(vec3(-d*.85,1))*.5+.5;
+    }
+    if(use_photo) {
+        vec2 uv=UV*photo_scale;
+        vec3 photo=texture(diff_texture,uv).rgb;
+        // Preserve the selected gray/warm finish while keeping the scan's wear.
+        float luminance=dot(photo,vec3(.2126,.7152,.0722));
+        ALBEDO=base_color.rgb*clamp(luminance*(surface_kind==1 ? 1.9 : 1.45),.3,.95);
+        NORMAL_MAP=texture(nor_gl_texture,uv).rgb;
+        NORMAL_MAP_DEPTH=surface_kind==1 ? .55 : .35;
+        ROUGHNESS=clamp(texture(rough_texture,uv).r,.65,1.0);
     }
     if(surface_kind==7) {
         float wave=sin(UV.x*31.0+TIME*2.5)*cos(UV.y*24.0-TIME*1.7);

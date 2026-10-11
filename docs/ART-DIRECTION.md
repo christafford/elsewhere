@@ -15,7 +15,7 @@ multiple views. Leave application content unlit/readable. No additional
 functional locations, building interiors, creatures, NPCs, weather systems, or
 day/night simulation in this milestone.
 
-## Current comparison candidate: reference 2 (2026-10-11)
+## Selected direction: reference 2 (owner, 2026-10-11)
 
 The owner requested [reference 2](art-direction/village-square-example-2.jpg)
 as an alternative to the preceding courtyard, with the ability to compare and
@@ -25,13 +25,16 @@ mountain backdrop. The mood is older, quieter and more grounded than reference
 1's colorful flower boxes and curved blue roofs. Keep daylight and readable
 application content; darkness must not substitute for material detail.
 
-The active scene is candidate 2, not a final owner selection. Match the existing
-walking routes, footprints and comparison cameras. Reference 1 remains at
+The owner selected version 2 on 2026-10-11 and authorized P22-T05. Preserve
+the existing walking routes, footprints and comparison cameras. Reference 1
+remains at
 commit `340ca97` / local tag `art-reference-1`, with its original captures intact.
 Use the [interactive render comparison](art-direction/compare.html) and
 [handoff 44](handoffs/44-village-reference-2.md). Reverting to the first direction
 must preserve intervening desktop work; do not reset the repository's history.
-Neither candidate closes the P22-T05 owner art-review gate.
+The selection establishes direction; review of the refined P22-T05 renders and
+explicit authorization are still required before P22-T06. See
+[the materials and lighting handoff](handoffs/45-village-materials.md).
 
 ## Previous comparison candidate: reference 1 (2026-10-11)
 
@@ -49,7 +52,8 @@ walking routes and usable application space. The reference is direction, not
 a claim that its detail, enclosure or lighting has already been achieved.
 See [source notes](art-direction/README.md) and the
 [rendered revision](handoffs/43-village-reference-alignment.md). The wider
-P22-T05 art review remains open; do not infer authorization for later tasks.
+P22-T05 art review remained open at that checkpoint. The current selected
+direction and review boundary are recorded above.
 
 The former study brief below is historical for Project 21 only.
 

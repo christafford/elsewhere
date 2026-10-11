@@ -78,6 +78,14 @@ All scene selection remains the existing `main.tscn` path; Git snapshots and
 separate captures preserve comparison without a new runtime theme system.
 See [handoff 44](handoffs/44-village-reference-2.md).
 
+P22-T05 keeps that scene boundary. The shared finish mapper binds three curated
+Poly Haven texture sets; the ground shader samples the paving set on its existing
+meter UVs. Beam UVs follow the grain; access surfaces reuse the carved-stone
+shader without changing collision geometry. Leaf geometry/shading, world fill
+and directional shadow settings are local art changes. Application shaders,
+Filmic exposure and desktop/runtime ownership remain unchanged. See
+[handoff 45](handoffs/45-village-materials.md).
+
 ---
 
 # Architecture: current prototype and target boundaries

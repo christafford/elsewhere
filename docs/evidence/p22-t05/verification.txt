@@ -1,0 +1,102 @@
+P22-T05, 2026-10-11, Codex agent; base 82dd2a2
+Godot 4.7.2 Compatibility / Mesa 26.2.4 / AMD Custom GPU 0405
+See handoff 45 for exact commands, stage ordering, warnings and limitations.
+
+
+architecture-final.log
+Godot import and runtime checks passed (not visual acceptance).
+VILLAGE_ARCHITECTURE_OK mode=headless exteriors=3 landmark=1 pavilion=1 failures=0
+VILLAGE_ARCHITECTURE_OK mode=Wayland exteriors=3 landmark=1 pavilion=1 failures=0
+Architecture checks passed; inspect .tools/village-architecture-test/*.png.
+
+regressions.log
+RUN landscape
+Godot import and runtime checks passed (not visual acceptance).
+VILLAGE_LANDSCAPE_OK mode=headless samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.00555356609788 failures=0
+VILLAGE_LANDSCAPE_OK mode=Wayland samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.0055534423753 failures=0
+Landscape checks passed; inspect .tools/village-landscape-test/*.png.
+RUN outdoor
+Godot import and runtime checks passed (not visual acceptance).
+OUTDOOR_STARTUP_OK mode=headless boundaries=10 failures=0
+OUTDOOR_STARTUP_OK mode=Wayland boundaries=10 failures=0
+Outdoor startup checks passed; inspect .tools/outdoor-startup-test/*.png.
+RUN screen_color
+SCREEN_COLOR_OK failures=0
+RUN terminal_input
+TERMINAL_INPUT_OK repeat_characters=9 pixels=11163 failures=0
+RUN terminal_pointer
+TERMINAL_POINTER_OK selection_pixels=7496 scroll_pixels=1875 failures=0
+RUN terminal_resize
+TERMINAL_RESIZE_OK cells=[(77, 22), (95, 25), (68, 18), (103, 26)] pixels=8573 failures=0
+RUN app_launcher
+APP_LAUNCHER_OK entries=16 failures=0
+RUN application_objects
+APPLICATION_OBJECTS_OK clients=2 failures=0
+RUN application_transition
+APPLICATION_TRANSITION_OK failures=0
+RUN real Chrome
+Godot import and runtime checks passed (not visual acceptance).
+CHROME_APPLICATION_OK failures=0
+Real Chrome checks passed; captures: /home/deck/distrobox-homes/mansion-dev/code/elsewhere/.tools/chrome-application-test
+
+final-visual.log
+VILLAGE_ARCHITECTURE_OK mode=Wayland exteriors=3 landmark=1 pavilion=1 failures=0
+OUTDOOR_STARTUP_OK mode=Wayland boundaries=10 failures=0
+SCREEN_COLOR_OK failures=0
+Godot import and runtime checks passed (not visual acceptance).
+CHROME_APPLICATION_OK failures=0
+Real Chrome checks passed; captures: /home/deck/distrobox-homes/mansion-dev/code/elsewhere/.tools/chrome-application-test
+
+material-tests.log
+Ran 3 tests in 0.039s
+OK
+
+python-catalog.log
+Ran 7 tests in 1.595s
+OK
+
+python-launcher.log
+Ran 1 test in 0.189s
+OK
+
+node.log
+ℹ tests 62
+ℹ pass 62
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+
+geometry-preserved.txt
+alpine_lodge positions/normals and counts byte-identical; texture UV changes only
+guildhall positions/normals and counts byte-identical; texture UV changes only
+stone_workshop positions/normals and counts byte-identical; texture UV changes only
+square_fountain positions/normals and counts byte-identical; texture UV changes only
+work_pavilion positions/normals and counts byte-identical; texture UV changes only
+mountain_backdrop positions/normals and counts byte-identical; texture UV changes only
+
+
+preservation.txt
+Historical study asset entries unchanged
+Native/runtime/controller/application shader and both historical reference/evidence sets unchanged
+Reference tags: 340ca97ff39e3d8c81b499ad7acc19fbc13a52b4
+82dd2a23f73b031fef8bf00f39e7651d8ee9cd2c
+
+
+model-hashes.txt
+1b6f4b8643ebc93aca323fcc6e3a171e1d2389a6b22bd6eff60334eb35f23622  world/art/village/alpine_lodge.glb
+46adeb2831a41c593d3186605952bf613af931a9e312858580c45b05d87d6da4  world/art/village/courtyard_link.glb
+14f47f8cb58d313e4fef8543f05f2faf0bab719056f9b76969301991c42f6bd3  world/art/village/courtyard_tree.glb
+43e33533e3079515605e84bab44d55e88c7201a63e696b3990778fd8f5a001d9  world/art/village/guildhall.glb
+665ed2e3b1cd2ed0da2751d64258f84b488f7d86538a9fa0a943a4ad4804d5a7  world/art/village/mountain_backdrop.glb
+854434b2ec13f56f178bba011fe92221f9cb08e1f67a0663fd74440a19bd7204  world/art/village/square_fountain.glb
+60fd0e3bc9c8f4d88b4eba87c1b8012a53507f545f4502e0d93f8f451458d038  world/art/village/stone_workshop.glb
+3e99118fd451303bd0d92c7e9843c208a7f1de4bd6037035462a6ab23bd44a53  world/art/village/work_pavilion.glb
+
+
+Final documentation checks
+Relative documentation links verified: 252
+P22 task grammar: T01–T05 checked; T06–T10 unchecked; unique IDs
+Existing parser open eligible IDs (human tasks excluded): P22-T06, P22-T07, P22-T08, P22-T09
+Read-only parser invocation; no continuation plugin was started.
+Node tests repeated after task/status edits: 62 passed, 0 failed.
+Offline material verification: 9 maps; size/SHA-256 match.

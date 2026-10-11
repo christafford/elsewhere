@@ -161,8 +161,7 @@ def fetch_asset_files(asset_id: str) -> Optional[dict]:
     req.add_header("Accept", "application/json")
     req.add_header(
         "User-Agent",
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Elsewhere-Asset-Tools/1.0",
     )
 
     try:
@@ -446,8 +445,7 @@ def atomic_download(url: str, dest: Path, dry_run: bool = False,
             req = Request(url)
             req.add_header(
                 "User-Agent",
-                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-                "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "Elsewhere-Asset-Tools/1.0",
             )
 
             with urlopen(req, timeout=API_TIMEOUT) as resp:

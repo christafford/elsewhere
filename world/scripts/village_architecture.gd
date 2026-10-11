@@ -41,9 +41,7 @@ func add_collision(node: Node) -> void:
 func pavilion_access(model: Node3D) -> void:
 	# A continuous north ramp provides ordinary walking access. No workspace
 	# furniture or attachment system is introduced (those belong to P22-T07).
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color("969888")
-	mat.roughness = 0.95
+	var mat := stone_finish()
 	var skirt := MeshInstance3D.new()
 	skirt.name = "Foundation"
 	var mesh := BoxMesh.new()
@@ -63,7 +61,9 @@ func pavilion_access(model: Node3D) -> void:
 	var c := Vector3(1.6,0,-3.45)
 	var d := Vector3(-1.6,0,-3.45)
 	# Clockwise top surface and closed sides, buried 20cm below the terrain.
-	for p in [a,b,c,a,c,d, a,d,d-Vector3.UP*1.8,a,d-Vector3.UP*1.8,a-Vector3.UP*0.2, b,c-Vector3.UP*1.8,c,b,b-Vector3.UP*0.2,c-Vector3.UP*1.8]: ramp.add_vertex(p)
+	for p in [a,b,c,a,c,d, a,d,d-Vector3.UP*1.8,a,d-Vector3.UP*1.8,a-Vector3.UP*0.2, b,c-Vector3.UP*1.8,c,b,b-Vector3.UP*0.2,c-Vector3.UP*1.8]:
+		ramp.set_uv(Vector2(p.x,p.z))
+		ramp.add_vertex(p)
 	ramp.generate_normals()
 	var ramp_node := MeshInstance3D.new()
 	ramp_node.name = "EntranceRamp"
@@ -75,9 +75,7 @@ func entrance_steps(model: Node3D, front: float, door_x: float) -> void:
 	var foot := model.to_global(Vector3(door_x,0,front+2.3))
 	var rise := model.position.y-Landscape.height_at(Vector2(foot.x,foot.z))
 	var count := maxi(1,ceili(rise/0.16))
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color("6c756f")
-	mat.roughness = 0.95
+	var mat := stone_finish()
 	for i in range(count):
 		var step := MeshInstance3D.new()
 		step.name = "EntranceStep%s" % i
@@ -89,3 +87,12 @@ func entrance_steps(model: Node3D, front: float, door_x: float) -> void:
 		model.add_child(step)
 		step.position = Vector3(door_x,top-mesh.size.y/2,front+0.45+i*0.3)
 		add_collision(step)
+
+# Match access surfaces to the carved stone; geometry/collision stay unchanged.
+func stone_finish() -> ShaderMaterial:
+	var mat := ShaderMaterial.new()
+	mat.shader = Materials.SURFACE
+	mat.set_shader_parameter("base_color",Color("85877b"))
+	mat.set_shader_parameter("surface_kind",8)
+	mat.set_shader_parameter("surface_roughness",0.95)
+	return mat

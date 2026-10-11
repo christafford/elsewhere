@@ -1,7 +1,8 @@
 # Godot world frontend
 
 The default scene is **village reference 2**, the owner's weathered mountain
-village alternative. Gray plaster/stone, aged timber, ivy, a pointed hall turret,
+village direction, selected on 2026-10-11. Gray plaster/stone, aged timber, ivy,
+a pointed hall turret,
 a tiered stone fountain, dark cobbles and a cloud/mountain backdrop replace
 the first reference's bright planted courtyard. Building footprints, the
 approximately 84m playable terrain, four approach routes, spawn and pavilion
@@ -12,18 +13,23 @@ Compare nine matching actual render viewpoints in
 [the comparison page](../docs/art-direction/compare.html). Reference 1 is
 preserved at `340ca97` / local tag `art-reference-1`; see
 [safe switching and verification](../docs/handoffs/44-village-reference-2.md).
-The active candidate is not a final owner choice or completion of P22-T05.
+P22-T05 refines this selection with curated materials, foliage and daylight;
+see [the render review](../docs/handoffs/45-village-materials.md). The comparison
+page preserves the two earlier checkpoints.
 
 The seven active original GLB models and import settings are included.
 The former bridge remains tracked but inactive. Optional deterministic rebuild:
 `python3 world/tools/build_village_models.py` (standard library only).
-See [model provenance and dimensions](art/village/README.md).
+See [model provenance and dimensions](art/village/README.md) and
+[tracked Poly Haven material maps](art/village/textures/README.md).
+`python3 world/tools/verify_village_materials.py` verifies them offline;
+project validation runs the same check. No material download is needed to launch.
 
 The existing player controller and desktop runtime are reused. Startup opens
 no application; use Tab / Applications to launch a terminal or another installed
-application. Home returns to the level square. This is landscape/circulation
-and architecture acceptance, not polished village art or the P22-T06
-application-integration gate.
+application. Home returns to the level square. P22-T05 material/render
+acceptance is agent-observed; owner art review and
+explicit authorization remain required before the P22-T06 integration gate.
 
 From the repository root, using the existing pinned tools:
 

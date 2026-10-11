@@ -109,6 +109,9 @@ func build_ground() -> void:
 	var mat := ShaderMaterial.new()
 	mat.shader = preload("res://scripts/village_ground.gdshader")
 	mat.set_shader_parameter("path_half_width", PATH_HALF_WIDTH)
+	mat.set_shader_parameter("cobble_diff",preload("res://art/village/textures/cobblestone_floor_08_diff_1k.jpg"))
+	mat.set_shader_parameter("cobble_normal",preload("res://art/village/textures/cobblestone_floor_08_nor_gl_1k.jpg"))
+	mat.set_shader_parameter("cobble_rough",preload("res://art/village/textures/cobblestone_floor_08_rough_1k.jpg"))
 	mesh.surface_set_material(0, mat)
 	var ground := MeshInstance3D.new()
 	ground.name = "Ground"

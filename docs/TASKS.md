@@ -89,7 +89,7 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   [matching render comparison](art-direction/compare.html). No owner choice or
   later task acceptance is implied.
 
-- [ ] **P22-T05 Curate materials, foliage and village lighting.**
+- [x] **P22-T05 Curate materials, foliage and village lighting.**
   **Depends:** P22-T04. Reuse documented Poly Haven asset tooling and compatible
   licensed sources; record asset provenance. Tune paving, wood, plaster, foliage,
   daylight, contact shadows and exposure against actual captures.
@@ -97,9 +97,14 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   fix observed issues, and demonstrate cohesive atmosphere, scale and legibility.
   If captures cannot be visually reviewed, keep this task blocked. **Owner art
   review checkpoint:** do not advance to P22-T06 until owner authorizes it.
-  Partial visual baseline: the 2026-10-11 owner-requested courtyard revision
-  supplies original surface detail and planting. The full curation/review gate
-  remains unchecked; no later task is authorized by that revision.
+  Verified 2026-10-11 after the owner selected version 2: three curated Poly
+  Haven material sets with provenance/hash checks, timber grain alignment,
+  carved stone finishes, fuller foliage and tuned daylight/shadows. Twelve
+  actual final Godot views inspected against earlier captures; observed glare,
+  aliasing and shadow striping corrected. Relevant scene/application regressions
+  pass. See [handoff 45](handoffs/45-village-materials.md) and
+  [render evidence](evidence/p22-t05/README.md). Owner review of this refinement
+  remains outstanding; P22-T06 and every later task remain unstarted.
 
 - [ ] **P22-T06 Verify live application integration outdoors.**
   **Depends:** P22-T05 and owner approval. Bring the existing real app launcher,

@@ -3,6 +3,37 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-10 agent-run village architecture (P22-T04)
+
+From `e81c88c`, the default square contains an original modeled compass
+fountain, three differentiated exteriors and an open covered timber pavilion.
+Nine actual human-eye-height Godot views were inspected by the Codex agent,
+including [arrival](evidence/p22-t04/arrival.png),
+[southern approach](evidence/p22-t04/south-approach.png),
+[northern return](evidence/p22-t04/north-return.png) and
+[under the pavilion](evidence/p22-t04/pavilion-covered.png).
+Pitched/stepped/hipped roofs, balcony joinery, windows and door surrounds give
+the buildings recognizable silhouettes. Initial bare plinth/side elevations
+and lean-to alignment were corrected and rendered again. The source models,
+import settings, provenance and deterministic rebuild hashes are tracked.
+
+Headless and graphical architecture trials pass actual facade/fountain
+collision, pavilion ramp traversal, floor support/roof cover and Home return.
+Both landscape modes retain 24,178 ground samples and 337.8m of route walking;
+all outdoor boundary and real-terminal assertions pass unchanged. Seven
+existing Godot regressions and the real Chrome trial pass focus/typing,
+pointer/scroll, resize, launcher/relaunch, manipulation, identity, transitions,
+world return and close. Agent-inspected [terminal](evidence/p22-t04/application.png)
+and [browser](evidence/p22-t04/browser-input.png) images preserve readable
+native application content.
+
+Godot 4.7.2 Compatibility/OpenGL, Mesa 26.2.4, AMD Custom GPU 0405, private
+Weston 15.0.1, 1280 × 800 (browser world-return capture 1000 × 700).
+No human art/comfort approval or final performance acceptance is claimed.
+The three building interiors are out of scope; the pavilion has no work
+furniture/anchors. Materials, foliage and lighting remain P22-T05. See
+[handoff 42](handoffs/42-village-architecture.md) for complete evidence and limits.
+
 ## 2026-10-10 agent-run village landscape and circulation (P22-T03)
 
 From `eca98ab`, the default outdoor scene has an approximately 84m authored

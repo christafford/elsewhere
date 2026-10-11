@@ -47,3 +47,9 @@ balustrades, compass inlay, rose window, chandelier and banners are original
 procedural geometry in `world/scripts/grand_foyer.gd`; its ashlar/marble variation
 is the original `foyer_stone.gdshader`. Walnut and potted plants reuse the existing
 recorded assets. No new external asset or image-generation source was used.
+
+P22-T04 introduces five original village GLB meshes, with reproducible Python
+standard-library authoring source and tracked Godot import settings. See
+[village model provenance](village/README.md) for dimensions, topology, checksums,
+material/coordinate conventions and scope. No external assets or dependencies
+were added; the retained study and its asset cache are unchanged.

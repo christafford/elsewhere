@@ -1,17 +1,26 @@
 # Godot world frontend
 
-The default scene is the **P22-T03 village landscape and circulation**: an
+The default scene is the **P22-T04 village architecture**: an
 approximately 84m site with gently varied ground, a 24 × 20m paved square,
 four 4m-wide approaches, and a visible continuous raised bank at the boundary.
 The south approach bends into the square; the western rise, northern saddle
 and lower eastern shelf give each route a distinct direction and elevation.
 The ground, routes and boundary are fixed authored geometry, with no random
-map generation. Buildings, foliage and final materials belong to later tasks.
+map generation. A compass fountain marks the square, surrounded by a timber
+lodge, stepped-gable guildhall and stone workshop. Their doors are closed;
+interiors are out of scope. An open timber pavilion southwest of the square
+has a walkable north ramp and covered floor. Foliage, final materials and the
+pavilion's work surfaces belong to later tasks.
+
+The five original GLB models and their import settings are included. Optional
+rebuild: `python3 world/tools/build_village_models.py` (standard library only).
+See [model provenance and dimensions](art/village/README.md).
 
 The existing player controller and desktop runtime are reused. Startup opens
 no application; use Tab / Applications to launch a terminal or another installed
 application. Home returns to the level square. This is landscape/circulation
-acceptance, not polished village art or the P22-T06 application-integration gate.
+and architecture acceptance, not polished village art or the P22-T06
+application-integration gate.
 
 From the repository root, using the existing pinned tools:
 
@@ -82,6 +91,8 @@ Asset preparation verifies manifest SHA-256 values and stages complete glTF
 packages; it does not fetch missing assets. Do not discard those sources/cache.
 
 ```sh
+# Exterior collision, pavilion access, and eye-level architectural captures.
+tools/check-godot-architecture.sh
 # Ground coverage/grades, full route walks, and eye-level approach captures.
 tools/check-godot-landscape.sh
 # Headless and graphical default startup, boundary collision, live terminal.
@@ -92,12 +103,13 @@ tools/check-godot-study.sh
 tools/check-chrome-application.sh
 ```
 
+Architecture captures are written to `.tools/village-architecture-test/`.
 Landscape captures are written to `.tools/village-landscape-test/`; the outdoor
 startup check writes `.tools/outdoor-startup-test/`.
 Open them for visual review. Headless checks cannot supply visual acceptance;
 injected input and screenshots do not establish human comfort or comprehensive
 application compatibility. See [status](../docs/STATUS.md) and the
-[P22-T03 handoff](../docs/handoffs/41-village-landscape.md) for exact evidence.
+[P22-T04 handoff](../docs/handoffs/42-village-architecture.md) for exact evidence.
 
 The old experimental bridge remains under `addons/elsewhere_godot/`, excluded
 from discovery by `.gdignore`. The standard binding's protocol/owned-frame

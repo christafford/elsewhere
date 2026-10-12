@@ -214,6 +214,19 @@ host_input_test = executable('test_host_input',
     dependencies: [wayland_server, wayland_client, wayland_egl, egl, glesv2, xkbcommon])
 test('host-input', host_input_test, suite: 'p4', timeout: 5)
 
+keyboard_client = executable('keyboard-client',
+    'tests/keyboard-client.c', xdg_shell_client_h, xdg_shell_code,
+    c_args: ['-Wall', '-Wextra'], dependencies: [wayland_client, xkbcommon])
+commit_focus_test = executable('test_commit_focus',
+    'tests/test_commit_focus.cpp', 'src/compositor.cpp', 'src/input.cpp',
+    'src/display.cpp', 'src/room.cpp', 'src/launch.cpp',
+    xdg_shell_server_h, xdg_shell_client_h, xdg_shell_code,
+    relative_ptr_client_h, relative_ptr_code,
+    link_with: compositor_protocol_lib, cpp_args: cpp_args,
+    include_directories: include_directories('src'),
+    dependencies: [wayland_server, wayland_client, wayland_egl, egl, glesv2, xkbcommon])
+test('commit-focus', commit_focus_test, args: [keyboard_client.full_path()], timeout: 30)
+
 # Core library test
 compositor_core_test = executable('test_compositor_core',
     'tests/test_compositor_core.c',

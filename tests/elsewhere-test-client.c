@@ -669,6 +669,9 @@ int main(int argc, char** argv) {
     }
 
     int toplevel_mode = 0;
+    struct xdg_toplevel* retained_top = NULL;
+    struct xdg_surface* retained_xdg = NULL;
+    struct wl_surface* retained_surface = NULL;
     /* Check if --toplevel was requested or implied by --buffer */
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--toplevel") == 0) {
@@ -743,11 +746,12 @@ int main(int argc, char** argv) {
                 if (dispatch_with_timeout(&c, rel_deadline) < 0) goto error;
             }
 
-            /* Cleanup xdg resources — do NOT destroy buffer/surface yet;
-             * the buffer release handler may still want to print "release". */
-            xdg_toplevel_destroy(c.toplevel);
-            xdg_surface_destroy(c.xdg_surface);
-            /* Let the compositor destroy the buffer after release. */
+            /* Keep the window mapped while the input/presentation trial runs.
+             * Destroying its role here used to leave a roleless pixel surface
+             * that only received focus through the compositor's commit bug. */
+            retained_top = c.toplevel;
+            retained_xdg = c.xdg_surface;
+            retained_surface = c.surface;
         } else {
             xdg_toplevel_destroy(c.toplevel);
             xdg_surface_destroy(c.xdg_surface);
@@ -799,6 +803,11 @@ int main(int argc, char** argv) {
 
     printf("done\n");
     fflush(stdout);
+    if (retained_top) {
+        xdg_toplevel_destroy(retained_top);
+        xdg_surface_destroy(retained_xdg);
+        wl_surface_destroy(retained_surface);
+    }
     if (c.seat) wl_seat_destroy(c.seat);
     if (c.shm) wl_shm_destroy(c.shm);
     if (c.compositor) wl_compositor_destroy(c.compositor);

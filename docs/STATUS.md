@@ -1,5 +1,27 @@
 # Current direction — Elsewhere (2026-10-12)
 
+## Code review item 3 verified (2026-10-12, from `a3ae3df`)
+
+Removed commit-driven keyboard focus from the retained native/headless
+compositor. Native application entry now selects a mapped toplevel explicitly;
+keys and focus-exit cleanup use the shared focused-seat API instead of
+broadcasting. Surface destruction now runs its cleanup immediately and returns
+to world regardless of focus-listener ordering. Godot production focus already
+followed explicit activation and is unchanged.
+
+New two-client native regression verifies background mapping/redraws, roleless
+commits, routed keys, host loss/restore, world return and selected destruction.
+The active runtime's keyboard regression also checks background redraws.
+The older input fixture now retains its toplevel throughout the trial; existing
+input/fullscreen assertions remain. See
+[handoff 49](handoffs/49-keyboard-commit-focus-review.md) for the complete path,
+initial failures and fixes.
+
+Fresh automated verification: native build, 35/35 Meson tests, full Godot binding
+suite and plugin/parser checks pass. No new graphical, real-app or human
+acceptance claimed. Next task: stop after review item 3; await the next
+owner-requested finding. P22-T07 remains unstarted and unauthorized.
+
 ## Code review item 2 audited (2026-10-12, from `c197d43`)
 
 The named shared-memory snapshot function was removed with review item 1. A

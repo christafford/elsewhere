@@ -140,28 +140,6 @@ static void send_pointer_axis_done(uint32_t time_msec) {
     // wl_pointer v4 doesn't have axis_done; it's a v6+ extension.
 }
 
-/* Send modifier state to all keyboard clients. */
-static void send_keymap_modifiers(uint32_t serial) {
-    if (!g_seat || !g_seat->xkbstate) return;
-
-    xkb_mod_mask_t depressed =
-        xkb_state_serialize_mods(g_seat->xkbstate, XKB_STATE_MODS_DEPRESSED);
-    xkb_mod_mask_t latched =
-        xkb_state_serialize_mods(g_seat->xkbstate, XKB_STATE_MODS_LATCHED);
-    xkb_mod_mask_t locked =
-        xkb_state_serialize_mods(g_seat->xkbstate, XKB_STATE_MODS_LOCKED);
-    xkb_layout_index_t group =
-        xkb_state_serialize_layout(g_seat->xkbstate, XKB_STATE_LAYOUT_EFFECTIVE);
-
-    SeatKeyboardClient *kc, *kc_next;
-    wl_list_for_each_safe(kc, kc_next, &g_seat->keyboard_clients, seat_link) {
-        if (kc->resource) {
-            wl_keyboard_send_modifiers(kc->resource, serial,
-                                       depressed, latched, locked, group);
-        }
-    }
-}
-
 /* P3-T02: Cleanly exit Application mode — send key releases, empty modifiers,
  * keyboard leave, and pointer leave.  Does NOT change the input mode itself
  * (P3-T03 saves the mode for restore on focus regain; P3-T02 world-key
@@ -171,35 +149,11 @@ static void exit_application_mode(void) {
 
     uint32_t serial = ++g_seat->serial;
 
-    /* Send key release for every pressed key. */
-    for (uint32_t key : g_seat->pressed_keys) {
-        SeatKeyboardClient *kc, *kc_next;
-        wl_list_for_each_safe(kc, kc_next, &g_seat->keyboard_clients, seat_link) {
-            if (kc->resource)
-                wl_keyboard_send_key(kc->resource, serial, 0, key,
-                    WL_KEYBOARD_KEY_STATE_RELEASED);
-        }
-    }
-    g_seat->pressed_keys.clear();
-
-    /* Send empty modifiers. */
-    send_keymap_modifiers(serial);
-
-    /* Send keyboard leave.
-     * Only send to clients whose resource belongs to the same client
-     * as the focused surface — libwayland rejects cross-client pointers. */
-    if (g_seat->focused_surface_resource) {
-        SeatKeyboardClient *kc, *kc_next;
-        struct wl_client *old_client = wl_resource_get_client(
-            g_seat->focused_surface_resource);
-        wl_list_for_each_safe(kc, kc_next, &g_seat->keyboard_clients, seat_link) {
-            if (kc->resource &&
-                wl_resource_get_client(kc->resource) == old_client)
-                wl_keyboard_send_leave(kc->resource, serial,
-                    g_seat->focused_surface_resource);
-        }
-        g_seat->focused_surface_resource = nullptr;
-    }
+    // Keep the selected window for host-focus restoration, but clear the seat
+    // through the shared API so releases/modifiers go only to its owning client.
+    auto* selected = g_compositor ? g_compositor->focused_surface_resource : nullptr;
+    seat_set_keyboard_focus(g_seat, nullptr, g_compositor);
+    if (g_compositor) g_compositor->focused_surface_resource = selected;
 
     /* Send pointer leave.
      * Only send to clients whose resource belongs to the same client
@@ -419,6 +373,26 @@ void input_wayland_apply_movement(ElsewhereDisplay* display, double delta_ms) {
 
 /* Forward declaration — xdg_shell_cycle_focus is defined in xdg-shell.cpp. */
 
+// Legacy single-panel selection: preserve an explicitly selected live toplevel,
+// or select the first mapped toplevel when the user enters application mode.
+// Width/height survive the legacy renderer releasing the committed buffer.
+static bool focus_application(ElsewhereSeat* seat, ElsewhereCompositor* comp) {
+    ElsewhereSurface* first = nullptr;
+    ElsewhereSurface* surface;
+    wl_list_for_each(surface, &comp->surface_list, link) {
+        if (!xdg_surface_has_toplevel(surface->xdg_surface) ||
+            surface->width <= 0 || surface->height <= 0) continue;
+        if (!first) first = surface;
+        if (surface->resource == comp->focused_surface_resource) {
+            seat_set_keyboard_focus(seat, surface->resource, comp);
+            return true;
+        }
+    }
+    if (!first) return false;
+    seat_set_keyboard_focus(seat, first->resource, comp);
+    return true;
+}
+
 /* Execute the next command from the script. Returns 0 if more commands
    remain, 1 if quit, -1 on EOF. */
 int input_script_step(struct InputScript* s,
@@ -446,6 +420,8 @@ int input_script_step(struct InputScript* s,
         return 0;
     } else if (strncmp(line, "mode ", 5) == 0) {
         if (strcmp(line + 5, "world") == 0) {
+            stored_mode_when_focus_lost = InputMode::World;
+            exit_application_mode();
             input_mode_set(InputMode::World);
             /* P3-T04: restore flat mode and toplevel size when returning to world. */
             if (display) {
@@ -459,6 +435,7 @@ int input_script_step(struct InputScript* s,
                 }
             }
         } else if (strcmp(line + 5, "app") == 0) {
+            if (!focus_application(seat, comp)) return 0;
             input_mode_set(InputMode::Application);
             /* P3-T04: switch to flat/fullscreen rendering.
              * Save the current flat_mode so it can be restored, then set it
@@ -487,31 +464,15 @@ int input_script_step(struct InputScript* s,
         int keycode = strtol(code_str, nullptr, 10);
         uint32_t state = (strcmp(action, "press") == 0) ?
             WL_KEYBOARD_KEY_STATE_PRESSED : WL_KEYBOARD_KEY_STATE_RELEASED;
-        uint32_t serial = ++seat->serial;
 
         /* P3-T01: In World mode, key events are consumed (drive camera only).
          * In Application mode, events go to the focused surface. */
         if (g_input_mode == InputMode::Application) {
-            if (seat->xkbstate)
-                xkb_state_update_key(seat->xkbstate, keycode + 8,
-                    state == WL_KEYBOARD_KEY_STATE_PRESSED ? XKB_KEY_DOWN : XKB_KEY_UP);
-            SeatKeyboardClient *kc, *kc_next;
-            wl_list_for_each_safe(kc, kc_next, &seat->keyboard_clients, seat_link)
-                if (kc->resource)
-                    wl_keyboard_send_key(kc->resource, serial, 0, keycode, state);
-            send_keymap_modifiers(serial);
-
-            /* P3-T02: track pressed keys for clean exit. */
-            if (state == WL_KEYBOARD_KEY_STATE_PRESSED) {
-                seat->pressed_keys.push_back(keycode);
-            } else {
-                auto it = std::find(seat->pressed_keys.begin(), seat->pressed_keys.end(), keycode);
-                if (it != seat->pressed_keys.end())
-                    seat->pressed_keys.erase(it);
-            }
+            seat_keyboard_key(seat, keycode, state == WL_KEYBOARD_KEY_STATE_PRESSED);
 
             /* P3-T02: world-key shortcut — exit Application mode and switch to World. */
             if (state == WL_KEYBOARD_KEY_STATE_PRESSED && keycode == g_world_key) {
+                stored_mode_when_focus_lost = InputMode::World;
                 exit_application_mode();
                 input_mode_set(InputMode::World);
                 return 0;
@@ -529,7 +490,8 @@ int input_script_step(struct InputScript* s,
          * enters Application mode. */
         if (g_input_mode == InputMode::World &&
             display && display->panel_targeted) {
-            if (state == WL_KEYBOARD_KEY_STATE_PRESSED && keycode == 28) {
+            if (state == WL_KEYBOARD_KEY_STATE_PRESSED && keycode == 28 &&
+                focus_application(seat, comp)) {
                 input_mode_set(InputMode::Application);
                 return 0;
             }
@@ -621,10 +583,6 @@ int input_script_step(struct InputScript* s,
         if (g_seat && stored_mode_when_focus_lost == InputMode::Application
             && g_compositor && g_compositor->focused_surface_resource) {
             input_mode_set(InputMode::Application);
-            seat_set_keyboard_focus(seat, g_compositor->focused_surface_resource,
-                                    g_compositor);
-        } else if (g_seat && g_compositor && g_compositor->focused_surface_resource) {
-            /* Default: restore keyboard focus regardless of mode. */
             seat_set_keyboard_focus(seat, g_compositor->focused_surface_resource,
                                     g_compositor);
         }

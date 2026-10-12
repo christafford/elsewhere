@@ -67,6 +67,13 @@ int main(int argc, char** argv) {
     check(runtime.focus_keyboard(windows_a[0]), "focus first client");
     wait_event(runtime, a + ".events", "1 enter 0\n1 mods 0 0 0 0\n");
     check(read(b + ".events").empty(), "focus leaked to other client");
+    const auto a_before_redraw = read(a + ".events");
+    for (const auto& base : {b, a}) {
+        mark(base + ".redraw-0"); wait_file(runtime, base + ".redraw-0-ok");
+        check(runtime.keyboard_focus_handle() == windows_a[0], "commits stole selected focus");
+        check(read(a + ".events") == a_before_redraw && read(b + ".events").empty(),
+              "redraw generated keyboard enter/leave/modifiers");
+    }
     check(!runtime.keyboard_key(0, true) && !runtime.keyboard_key(768, true), "invalid evdev codes rejected");
     check(runtime.keyboard_key(42, true) && runtime.keyboard_key(30, true) &&
           runtime.keyboard_key(30, true) && runtime.keyboard_key(30, false) && runtime.keyboard_key(42, false), "Shift+A sequence");
@@ -109,7 +116,7 @@ int main(int argc, char** argv) {
     check(runtime.stop() && runtime.start(directory), "restart");
     check(!runtime.focus_keyboard(windows_a[0]) && runtime.keyboard_focus_handle() == 0, "stale focus after restart");
     check(runtime.stop(), "final stop");
-    for (const auto& base : {a, b}) for (const char* suffix : {"events", "ready", "late", "late-ok", "detach", "detach-ok", "destroy", "destroy-ok", "finish", "ok"})
+    for (const auto& base : {a, b}) for (const char* suffix : {"events", "ready", "redraw-0", "redraw-0-ok", "late", "late-ok", "detach", "detach-ok", "destroy", "destroy-ok", "finish", "ok"})
         unlink((base + "." + suffix).c_str());
     check(rmdir(directory) == 0, "test cleanup");
     std::puts("RUNTIME_KEYBOARD_OK: two clients, focus/key/modifier routing, late bind, detach and destruction");

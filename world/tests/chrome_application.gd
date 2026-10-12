@@ -72,7 +72,8 @@ func run() -> void:
 	await capture("address-bar.png")
 	await tap(KEY_ENTER)
 	await wait_page("value", "")
-	# A resize report can precede onload and autofocus, especially in a light scene.
+	# Document focus can lag element autofocus after browser navigation.
+	# The fixture reports ready only once both agree; do not retry lost input.
 	await wait_page("ready", true)
 	await type_text("Elsewhere browser 42!")
 	await wait_page("value", "Elsewhere browser 42!")

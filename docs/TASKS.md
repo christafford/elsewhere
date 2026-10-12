@@ -103,16 +103,27 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   actual final Godot views inspected against earlier captures; observed glare,
   aliasing and shadow striping corrected. Relevant scene/application regressions
   pass. See [handoff 45](handoffs/45-village-materials.md) and
-  [render evidence](evidence/p22-t05/README.md). Owner review of this refinement
-  remains outstanding; P22-T06 and every later task remain unstarted.
+  [render evidence](evidence/p22-t05/README.md). At that checkpoint, owner review
+  and P22-T06 authorization remained outstanding. The owner's explicit
+  2026-10-12 P22-T06 request subsequently authorized proceeding with version 2;
+  it does not provide personal comfort observations or final Project 22 approval.
 
-- [ ] **P22-T06 Verify live application integration outdoors.**
+- [x] **P22-T06 Verify live application integration outdoors.**
   **Depends:** P22-T05 and owner approval. Bring the existing real app launcher,
   multiple live panels and application/world modes into the square without new
   compositor or window lifecycle architecture.
   **Acceptance:** test real client launch, focus, input, return, panel drag and
   rotation and revisiting still-running instances; record named apps, outputs,
   screenshots and limitations, not simulated evidence.
+  Verified 2026-10-12: real Terminal/Vim search launch, independent panels,
+  committed drag/rotation, 12.291m outward walk and return, unchanged shell
+  state/unsaved editor buffer, live background updates, focus and client-owned
+  close. Existing headless/outdoor and interaction regressions pass. Chrome's
+  historical first-character failure exposed a fixture readiness gap; requiring
+  document focus preserves its exact assertions and passes two subsequent
+  trials. No production runtime or world change. Actual renders/outputs and
+  limitations: [handoff 46](handoffs/46-village-applications.md),
+  [evidence](evidence/p22-t06/README.md). P22-T07 remains unstarted.
 
 - [ ] **P22-T07 Create functional pavilion workspace.**
   **Depends:** P22-T06. Place usable surfaces and anchors supporting existing

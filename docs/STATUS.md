@@ -1,9 +1,40 @@
-# Current direction — Elsewhere (2026-10-11)
+# Current direction — Elsewhere (2026-10-12)
 
-The owner selected **version 2**, the weathered mountain village, and authorized
-P22-T05 only. Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md)
-govern current world work; Project 21 below is historical.
-**P22-T01 through P22-T05 are complete. P22-T06 is not started or authorized.**
+The owner selected **version 2**, the weathered mountain village, and explicitly
+requested P22-T06, authorizing progress past the P22-T05 art checkpoint.
+Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md) govern
+current world work; Project 21 below is historical.
+**P22-T01 through P22-T06 are complete. P22-T07 is unstarted and unauthorized.**
+
+## P22-T06 verified (2026-10-12, from `a13b671`)
+
+A new continuous outdoor trial launches real Weston Terminal and Vim through
+Applications search, moves/rotates a panel, walks 12.291m down the south approach
+and back, and reactivates both original instances. The shell retains its PID
+and variable; Vim retains its unsaved buffer; background terminal pixels and
+24 frame revisions advance. Placement, rotation, identities, focus, client-owned
+close and shutdown checks pass. No production runtime, world art or native
+architecture change was needed.
+
+Verified by automated checks: Godot import/default startup and bridge build;
+headless/GPU outdoor checks; the new outdoor multi-client trial; seven existing
+graphical interaction regressions; eight Python and 62 Node tests. Chrome's
+first two trials reproduced a historical missing-first-character failure.
+Tracing found element autofocus could report ready without document focus.
+The fixture now waits for both, retaining exact first-try typing and all other
+assertions. Two subsequent Chrome trials pass. This fixes an observed test
+readiness gap; comprehensive browser compatibility is not claimed.
+
+Agent-observed: eight final Terminal/Vim/world renders and three final Chrome
+renders inspected; the failed browser render is retained separately. Named
+apps, actual outputs, commands, failure diagnosis and limits are in
+[the evidence](evidence/p22-t06/README.md) and
+[handoff 46](handoffs/46-village-applications.md). The selected art and both
+comparison checkpoints are preserved. Human comfort, latency, final owner art
+review and Project 22 acceptance remain unobserved; no restart persistence.
+
+Next task: **stop after P22-T06**. P22-T07 requires its own explicit request;
+no pavilion workspace, later task or unattended continuation was begun.
 
 ## P22-T05 verified (2026-10-11, from `82dd2a2`)
 
@@ -33,8 +64,9 @@ request. Not observed by a person: approval of these P22-T05 refinements or
 movement comfort. No performance benchmark; simple lawn/boundary, large stylized
 leaves, repetitive large paved areas and decorative water remain limitations.
 
-Next task: **stop for owner art review and explicit authorization before
-P22-T06**. No continuation or later task is authorized by this result.
+Checkpoint at that date: stop for owner art review and explicit authorization
+before P22-T06. The subsequent 2026-10-12 request is recorded above; this earlier
+result itself did not authorize continuation.
 
 ## Reference 2 comparison candidate verified (2026-10-11, from `340ca97`)
 

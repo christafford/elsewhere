@@ -3,6 +3,39 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-12 P22-T06 outdoor live-application integration
+
+The owner explicitly authorized P22-T06 with the selected version 2 village.
+The Codex agent ran a new continuous real-client trial through the existing
+Applications search: Weston Terminal 15.0.1 and Vim 9.2 (patches 1–1046),
+independent panels, pointer drag/depth/rotation, ground settling, a 12.291m walk
+down the south approach and back using S/W, and double-click reactivation.
+The same shell PID/session variable and unsaved Vim buffer survive; live terminal
+pixels and 24 frame revisions advance while away. Entity objects/IDs, window
+bindings and placement/rotation stay intact. Each application closes itself;
+the other remains until its own close. Shutdown reaps owned launch children.
+
+Godot import/default startup/bridge build, headless/GPU outdoor tests, seven
+existing graphical interaction regressions, eight Python and 62 Node tests pass.
+The existing retained-study object test is separate from this new outdoor
+scenario. Google Chrome 154.0.8037.57 initially lost its first typed character
+twice. Temporary tracing exposed a false-ready state: element autofocus without
+document focus. The local test page now requires both and reports actual focus
+on an animation frame. No retry, discarded key, fixed delay, weakened assertion
+or production input change. Two subsequent complete Chrome trials pass trusted
+typing/click, both scroll directions, real resize/reflow, world return,
+independent second window identity and client-owned close.
+
+The agent inspected eight final Terminal/Vim/world renders and three final
+Chrome renders; the failed browser render and logs remain labeled separately.
+Readable native application views and smaller world previews are distinguished.
+See [actual captures, outputs and diagnosis](evidence/p22-t06/README.md) and
+[handoff 46](handoffs/46-village-applications.md). These are real applications
+with injected input; the browser HTML is test content. No human comfort,
+latency/performance benchmark, general application compatibility or restart
+persistence claim. The village art/runtime architecture are unchanged.
+P22-T06 only is complete; no P22-T07 or later work was begun.
+
 ## 2026-10-11 P22-T05 materials, foliage and lighting
 
 The owner selected version 2 and requested this single task. The Codex agent

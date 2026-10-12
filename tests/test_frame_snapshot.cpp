@@ -72,6 +72,7 @@ int main(int argc, char** argv) {
                     previous_handle = frame->handle;
                     if (!retained) retained = frame;
                 }
+                check(handles.front() == previous_handle, "surface identity survives commits, unmap/remap and transforms");
                 check(retained->pixels == argb && retained->revision == 1, "retained snapshot remains immutable");
                 mark(marker + "." + stage + ".go");
             }

@@ -46,6 +46,23 @@ and [STATUS.md](STATUS.md).
 
 ## Build and ownership
 
+Review item 1 (2026-10-12) retired the unused `elsewhere_bridge.h/cpp` C bridge.
+Its enumeration reassigned 32-bit serials, but neither Meson nor the current
+Godot binding built that implementation, and it had no callers. The supported
+`ElsewhereCompositorSession` uses positive 64-bit surface handles assigned once
+at creation; enumeration does not mutate them. Destroyed handles are invalid
+and never reused within the server process, including session restarts.
+They identify surfaces, not application instances or persistent artifacts.
+The world's random `entity_id` remains a separate session-local identity;
+recreated windows and restart restoration are not automatically associated.
+
+`tools/build-elsewhere-extension.sh` now delegates to `build-godot-runtime.sh`
+with no arguments; the old build-directory argument is explicitly rejected.
+The historical standalone `src/godot` CMake configuration reports retirement
+and directs callers to the supported build. Meson's separate experimental
+adapter and ignored addon remain unchanged apart from removing an unused header
+include. See [review evidence](handoffs/47-surface-identity-review.md).
+
 Pin a stable Godot release and compatible godot-cpp revision. Start with the
 least complicated renderer that passes the visual target on the Steam Deck;
 compare Compatibility and Mobile using actual scenes, driver support and

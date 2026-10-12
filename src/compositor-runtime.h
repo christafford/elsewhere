@@ -29,6 +29,8 @@ public:
     int client_count() const;
     int surface_count() const;
     int toplevel_count() const;
+    // Opaque surface-lifetime IDs, assigned at creation; enumeration is read-only.
+    // Never reuse after destruction/restart in this process. Not app/artifact IDs.
     std::vector<int64_t> surface_handles() const;
     std::vector<int64_t> toplevel_handles() const;
     OwnedFrame snapshot(int64_t handle) const;

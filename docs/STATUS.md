@@ -1,5 +1,27 @@
 # Current direction — Elsewhere (2026-10-12)
 
+## Code review item 1 verified (2026-10-12, from `c40748d`)
+
+The reported unstable enumeration belongs to an unused C bridge, excluded from
+both active build paths and with no callers. That implementation is retired;
+its shell helper now builds the supported runtime. The active
+`ElsewhereCompositorSession` already assigns each surface a 64-bit lifetime
+handle. New native/Godot regressions verify repeated enumeration, same-client
+multiwindow destruction/recreation, stale lookup rejection, session restarts
+and handle stability across buffer changes/unmap/remap. Application/world
+identity remains separate; no persistence or recreated-window association added.
+
+Automated: native build and 34/34 Meson tests, full Godot binding suite,
+default world import/startup, build-helper/retirement diagnostics and
+plugin/parser checks pass. Initial sandbox socket/settings failures were
+resolved by approved test execution outside the sandbox. No new visual or human
+acceptance claimed. See [handoff 47](handoffs/47-surface-identity-review.md).
+
+Next task: stop after review item 1; await the next owner-requested finding.
+P22-T07 remains unstarted and unauthorized.
+
+## World direction
+
 The owner selected **version 2**, the weathered mountain village, and explicitly
 requested P22-T06, authorizing progress past the P22-T05 art checkpoint.
 Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md) govern

@@ -294,9 +294,23 @@ int main(int argc, char **argv) {
         for (int i = 1; i < 16; i += 2) destroy_window(&windows[i], 0);
         require(wl_display_roundtrip(display) >= 0, "partial destruction");
         marker(argv[2], "partial"); barrier(argv[2], "resume");
+        // Recreate windows in the same client, allowing Wayland object-ID reuse.
+        for (int i = 1; i < 16; i += 2) {
+            memset(&windows[i], 0, sizeof windows[i]);
+            create_window(&g, &windows[i], 1);
+            wl_surface_commit(windows[i].surface);
+        }
+        require(wl_display_roundtrip(display) >= 0, "replacement configure");
+        for (int i = 1; i < 16; i += 2) {
+            require(windows[i].configures == 1, "replacement handshake");
+            wl_surface_attach(windows[i].surface, buffer, 0, 0);
+            wl_surface_commit(windows[i].surface);
+        }
+        require(wl_display_roundtrip(display) >= 0, "replacement commit");
+        marker(argv[2], "recreated"); barrier(argv[2], "finish");
     } else require(!strcmp(mode, "disconnect"), "known trial mode");
     if (invalid.surface) destroy_window(&invalid, 1);
-    for (int i = 0; i < 16; ++i) if (local || i % 2 == 0) destroy_window(&windows[i], local);
+    for (int i = 0; i < 16; ++i) destroy_window(&windows[i], local);
     if (local) wl_proxy_destroy((struct wl_proxy*)buffer);
     else {
         wl_buffer_destroy(buffer);

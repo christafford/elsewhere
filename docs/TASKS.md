@@ -13,6 +13,15 @@ pass. See [handoff 47](handoffs/47-surface-identity-review.md). This is a bounde
 review repair outside the village roadmap; no later finding or P22 task is
 authorized by it.
 
+Owner-requested review item 2, audited 2026-10-12 from `c197d43`: the named shm
+snapshot function was already removed; its remaining experimental duplicate is
+outside the active desktop path. Production snapshots already use packed RGBA8
+and bounded validation. Existing native frame and full Godot binding regressions
+pass, including padded rows and format/size rejection; parser checks pass.
+No implementation change or legacy-adapter fix is claimed. See
+[handoff 48](handoffs/48-shm-snapshot-review.md). Stop after this bounded review;
+no later finding or P22 task is authorized.
+
 ## Project 22: Elsewhere village square (current authorized plan, 2026-10-09)
 
 Owner-approved replacement of the **physical** study, preserving the working

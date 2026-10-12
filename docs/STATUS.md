@@ -1,5 +1,25 @@
 # Current direction — Elsewhere (2026-10-12)
 
+## Code review item 2 audited (2026-10-12, from `c197d43`)
+
+The named shared-memory snapshot function was removed with review item 1. A
+duplicate stride/allocation defect remains in the experimental adapter built
+by Meson, but the old addon is excluded from Godot discovery and the active
+runtime does not link it. No legacy repair or retirement is claimed here.
+Production `ElsewhereCompositorSession` already exposes packed RGBA8 with
+separate source metadata, supported-format rejection, widened dimension checks
+and bounded allocations. No implementation change was needed.
+
+Fresh automated verification: native frame regression (1/1), full Godot binding
+suite (including exact padded ARGB/XRGB bytes and six rejection cases), and
+plugin/parser checks pass. Sandbox socket/settings failures were resolved by
+approved execution outside the sandbox. Coverage limits and call/build-path
+evidence are in [handoff 48](handoffs/48-shm-snapshot-review.md). No new tests,
+visual or human acceptance claimed.
+
+Next task: stop after review item 2; await the next owner-requested finding.
+P22-T07 remains unstarted and unauthorized.
+
 ## Code review item 1 verified (2026-10-12, from `c40748d`)
 
 The reported unstable enumeration belongs to an unused C bridge, excluded from

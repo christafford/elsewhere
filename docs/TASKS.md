@@ -22,6 +22,15 @@ No implementation change or legacy-adapter fix is claimed. See
 [handoff 48](handoffs/48-shm-snapshot-review.md). Stop after this bounded review;
 no later finding or P22 task is authorized.
 
+Owner-requested review item 3, completed 2026-10-12 from `a3ae3df`: removed
+commit-driven keyboard focus in the retained native compositor, moved initial
+selection to application entry, and reused focused-seat key/cleanup routing.
+Godot production policy was already explicit. New native and extended runtime
+regressions cover background redraws; native build, 35 Meson tests, full Godot
+binding suite and parser checks pass. See
+[handoff 49](handoffs/49-keyboard-commit-focus-review.md). No later review finding
+or P22 task is authorized; stop here.
+
 ## Project 22: Elsewhere village square (current authorized plan, 2026-10-09)
 
 Owner-approved replacement of the **physical** study, preserving the working

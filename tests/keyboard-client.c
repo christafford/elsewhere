@@ -112,8 +112,25 @@ int main(int argc, char **argv) {
     for (int i=0; i<2; ++i) { wl_surface_attach(surfaces[i], buffer, 0, 0); wl_surface_commit(surfaces[i]); }
     struct wl_surface *roleless = wl_compositor_create_surface(compositor);
     sync_client(display); mark(argv[2], "ready");
-    int detached=0, late=0, destroyed=0;
+    int detached=0, late=0, destroyed=0, redraw=0;
     while (!exists(argv[2], "finish")) {
+        char request[32], response[32];
+        snprintf(request, sizeof request, "redraw-%d", redraw);
+        snprintf(response, sizeof response, "redraw-%d-ok", redraw);
+        if (!detached && !destroyed && exists(argv[2], request)) {
+            for (int frame=0; frame<8; ++frame) {
+                for (int i=0; i<2; ++i) {
+                    wl_surface_attach(surfaces[i], buffer, 0, 0);
+                    wl_surface_damage(surfaces[i], 0, 0, 2, 2);
+                    wl_surface_commit(surfaces[i]);
+                    wl_surface_commit(surfaces[i]); // no new buffer
+                }
+                wl_surface_attach(roleless, buffer, 0, 0);
+                wl_surface_commit(roleless);
+                sync_client(display);
+            }
+            mark(argv[2], response); ++redraw;
+        }
         if (!late && exists(argv[2], "late")) {
             keyboards[1].proxy = wl_seat_get_keyboard(seat);
             wl_keyboard_add_listener(keyboards[1].proxy, &keyboard_listener, &keyboards[1]);

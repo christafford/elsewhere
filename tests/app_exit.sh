@@ -10,11 +10,11 @@
 #      detects focused surface was destroyed in Application mode → switches
 #      to World mode and clears seat focus pointers.
 #   4. Input script sends key 42 press AFTER the mode switch.
-#   5. Second client connects in World mode, receives kbd_enter (always)
-#      but NOT key 42 (World mode discards key events).
+#   5. Second client connects in World mode, receives neither keyboard focus
+#      nor key 42 (World mode discards key events).
 #
 # Verification:
-#   - Second client receives kbd_enter but not key 42 press
+#   - Second client receives neither kbd_enter nor key 42 press
 #     (proves compositor is in World mode when second client connects)
 #   - No crash during surface destruction or compositor cleanup
 #     (proves no dangling pointers)
@@ -49,14 +49,16 @@ run_client --toplevel --buffer 200x100 --color 00ff00 --exit-after-ms 4000
 sleep 1
 
 # Second client: connects after first client exited.
-# In World mode it receives kbd_enter but not key 42 press (sent at t≈9s).
+# In World mode it receives neither kbd_enter nor key 42 press (sent at t≈9s).
 run_client --toplevel --buffer 100x100 --color ff0000 --report-input --exit-after-ms 3000
 
 expect_line "$WORK/client.out" "^connected$"
 expect_line "$WORK/client.out" "^configure 800 600$"
 
-# The second client receives kbd_enter (always, regardless of mode).
-expect_line "$WORK/client.out" "^kbd_enter$"
+# Mapping in World mode must not select the new client.
+if grep -q "^kbd_enter$" "$WORK/client.out"; then
+    fail "second client acquired keyboard focus without selection"
+fi
 
 # After the compositor switched to World mode, the second key 42 press
 # (sent at ~9 s) must NOT have reached the second client.

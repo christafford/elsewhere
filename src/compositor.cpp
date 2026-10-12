@@ -20,6 +20,11 @@ static void surface_destroy_callback(struct wl_resource* resource) {
     if (!surface) return;
 
     wl_list_remove(&surface->link);
+    // Orphans retain only renderer-owned pixels, never live buffer listeners.
+    wl_list_remove(&surface->buffer_destroy_listener.link);
+    wl_list_init(&surface->buffer_destroy_listener.link);
+    surface->buffer_resource = nullptr;
+    surface->pending_buffer_resource = nullptr;
 
     /* Fire remaining frame callbacks so clients are not left waiting. */
     struct wl_resource *cb, *cb_next;
@@ -34,15 +39,12 @@ static void surface_destroy_callback(struct wl_resource* resource) {
     if (surface->compositor->focused_surface_resource == surface->resource) {
         surface->compositor->focused_surface_resource = nullptr;
         seat_clear_focus_state();
-
-        /* P3-T06: If the focused surface disappears while in Application
-         * mode, return to World. Do NOT call exit_application_mode() here
-         * — it sends Wayland events that may crash when the Wayland library
-         * is simultaneously processing the client's resource destruction. */
-        if (input_mode_get() == InputMode::Application) {
-            input_mode_set(InputMode::World);
-        }
     }
+    // The seat's resource-destroy listener can clear focus before this callback.
+    // In either ordering, application mode must not survive its selected window.
+    if (!surface->compositor->focused_surface_resource &&
+        input_mode_get() == InputMode::Application)
+        input_mode_set(InputMode::World);
 
     /* Insert at tail (newest last). If the list exceeds the max, evict
      * the oldest surface (first in the list) and free its resources. */
@@ -66,7 +68,8 @@ static void surface_destroy_callback(struct wl_resource* resource) {
 }
 
 static void surface_destroy(struct wl_client* client, struct wl_resource* resource) {
-    (void)client; (void)resource;
+    (void)client;
+    wl_resource_destroy(resource);
 }
 
 /* Buffer destroy listener — fires when the client destroys the wl_buffer proxy.
@@ -198,11 +201,7 @@ static void surface_commit(struct wl_client* client, struct wl_resource* resourc
     /* Clear pending — committed (whether null or a buffer). */
     surface->pending_buffer_resource = nullptr;
 
-    /* Give keyboard focus to the most recently mapped toplevel. */
-    if (surface->buffer_resource) {
-        seat_set_keyboard_focus(surface->compositor->seat,
-                                  surface->resource, surface->compositor);
-    }
+    /* Rendering activity never selects a keyboard target; input policy does. */
 
     /* Clear pending damage. */
     surface->damage_count = 0;

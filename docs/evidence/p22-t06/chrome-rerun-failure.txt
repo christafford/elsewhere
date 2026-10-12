@@ -1,0 +1,30 @@
+Verified 9 Poly Haven village maps (offline)
+[  1%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.1d6pep
+Godot import and runtime checks passed (not visual acceptance).
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+libdecor-0.so.0: cannot open shared object file: No such file or directory
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 4.6 (Core Profile) Mesa 26.2.4-arch1.1 - Compatibility - Using Device: AMD - AMD Custom GPU 0405 (radeonsi, vangogh, ACO, DRM 3.65, 6.18.50-valve2-1-neptune-618-gc7289a96b14d)
+
+ERROR: Browser page did not report value=Elsewhere browser 42!: { "value": "lsewhere browser 42!", "ready": true, "clicks": 0.0, "trusted": true, "width": 1184.0, "height": 551.0, "scroll": 0.0 }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] wait_page (res://tests/chrome_application.gd:16)
+Opening in existing browser session.
+CHROME_APPLICATION_OK failures=1
+15:ERROR: Browser page did not report value=Elsewhere browser 42!: { "value": "lsewhere browser 42!", "ready": true, "clicks": 0.0, "trusted": true, "width": 1184.0, "height": 551.0, "scroll": 0.0 }
+Chrome application check failed

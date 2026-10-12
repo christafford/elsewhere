@@ -19,6 +19,14 @@ See [the architecture handoff](handoffs/42-village-architecture.md),
 [the landscape handoff](handoffs/41-village-landscape.md) and
 [the outdoor startup handoff](handoffs/40-outdoor-startup.md).
 
+P22-T06 adds a continuous real Terminal/Vim trial in the default village:
+search launch, independent panels, committed drag/rotation, a walk down the
+south approach and back, preserved running state, focus and client-owned close.
+Run `tools/check-godot-village-applications.sh` with a graphical display and the
+installed applications. It reuses the existing runtime/input paths; no new
+compositor or lifecycle architecture is introduced. See
+[handoff 46](handoffs/46-village-applications.md) for evidence and limits.
+
 The following records the integration developed under Decision 06 / Project 21.
 The Godot study now renders real furniture and supports movement (P21-T36).
 The legacy `--room-camera` executable remains separate. The experimental

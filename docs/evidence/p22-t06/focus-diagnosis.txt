@@ -1,0 +1,7 @@
+2026-10-12 diagnostic run, before the browser fixture correction.
+Temporary DOM event tracing and WAYLAND_DEBUG=client; tracing removed afterward.
+The old readiness predicate accepted element focus despite absent document focus.
+This traced run passed, illustrating the timing-sensitive readiness gap.
+
+CHROME_BEFORE_TYPING { "value": "", "focused": false, "keys": [["focus", <null>, true, "", 47.0999999940395], ["focus", <null>, true, "", 47.8999999761581], ["focus", <null>, false, "note", 49.0]], "ready": true, "clicks": 0.0, "trusted": false, "width": 1184.0, "height": 551.0, "scroll": 0.0 } app=true host=true focus=2
+CHROME_APPLICATION_OK failures=0

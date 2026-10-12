@@ -27,9 +27,10 @@ project validation runs the same check. No material download is needed to launch
 
 The existing player controller and desktop runtime are reused. Startup opens
 no application; use Tab / Applications to launch a terminal or another installed
-application. Home returns to the level square. P22-T05 material/render
-acceptance is agent-observed; owner art review and
-explicit authorization remain required before the P22-T06 integration gate.
+application. Home returns to the level square. The owner authorized P22-T06 on
+2026-10-12, proceeding with version 2 past the art checkpoint. Material/render
+and live-application checks are agent-observed; human comfort and final Project
+22 acceptance remain separate. See [the integration handoff](../docs/handoffs/46-village-applications.md).
 
 From the repository root, using the existing pinned tools:
 
@@ -106,6 +107,8 @@ tools/check-godot-architecture.sh
 tools/check-godot-landscape.sh
 # Headless and graphical default startup, boundary collision, live terminal.
 tools/check-godot-outdoor.sh
+# Real Terminal + Vim: search launch, manipulate, walk away, revisit and close.
+tools/check-godot-village-applications.sh
 # Retained study geometry plus general desktop checks on the current default.
 tools/check-godot-study.sh
 # Existing bounded real-Chrome compatibility regression on the current default.
@@ -115,6 +118,8 @@ tools/check-chrome-application.sh
 Architecture captures are written to `.tools/village-architecture-test/`.
 Landscape captures are written to `.tools/village-landscape-test/`; the outdoor
 startup check writes `.tools/outdoor-startup-test/`.
+The multi-application trial writes `.tools/village-applications-test/`; it
+requires installed Weston Terminal and Vim plus a graphical display.
 Open them for visual review. Headless checks cannot supply visual acceptance;
 injected input and screenshots do not establish human comfort or comprehensive
 application compatibility. See [status](../docs/STATUS.md) and the

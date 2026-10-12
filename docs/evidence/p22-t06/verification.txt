@@ -1,0 +1,71 @@
+P22-T06 current-session evidence, 2026-10-12, base a13b671.
+Detailed commands/environment: README.md.
+Initial Chrome failures are preserved separately; these are successful result excerpts.
+
+[village-applications.log]
+Verified 9 Poly Haven village maps (offline)
+Godot import and runtime checks passed (not visual acceptance).
+VILLAGE_REVISIT distance_one_way_m=12.2910289764404 shell=689740:still-here terminal_entity=2dd397335eda6446f9cebebae873a944 editor_entity=b364782b16617a975a6c070a424b00d8 background_revision_delta=24
+VILLAGE_APPLICATIONS_OK clients=2 failures=0
+Village application checks passed; inspect /home/deck/distrobox-homes/mansion-dev/code/elsewhere/.tools/village-applications-test/*.png.
+
+[outdoor.log]
+Verified 9 Poly Haven village maps (offline)
+Godot import and runtime checks passed (not visual acceptance).
+OUTDOOR_STARTUP_OK mode=headless boundaries=10 failures=0
+OUTDOOR_STARTUP_OK mode=Wayland boundaries=10 failures=0
+Outdoor startup checks passed; inspect .tools/outdoor-startup-test/*.png.
+
+[screen_color.log]
+SCREEN_COLOR_OK failures=0
+
+[terminal_input.log]
+TERMINAL_INPUT_OK repeat_characters=9 pixels=11163 failures=0
+
+[terminal_pointer.log]
+TERMINAL_POINTER_OK selection_pixels=7496 scroll_pixels=1875 failures=0
+
+[terminal_resize.log]
+TERMINAL_RESIZE_OK cells=[(77, 22), (95, 25), (68, 18), (103, 26)] pixels=8573 failures=0
+
+[app_launcher.log]
+APP_LAUNCHER_OK entries=16 failures=0
+
+[application_objects.log]
+APPLICATION_OBJECTS_OK clients=2 failures=0
+
+[application_transition.log]
+APPLICATION_TRANSITION_OK failures=0
+
+[chrome-focus-fix.log]
+Verified 9 Poly Haven village maps (offline)
+Godot import and runtime checks passed (not visual acceptance).
+CHROME_APPLICATION_OK failures=0
+Real Chrome checks passed; captures: /home/deck/distrobox-homes/mansion-dev/code/elsewhere/.tools/chrome-application-test
+
+[python-desktop.log]
+Ran 7 tests in 1.690s
+OK
+
+[python-launcher.log]
+Ran 1 test in 0.223s
+OK
+
+[node.log]
+ℹ tests 62
+ℹ pass 62
+ℹ fail 0
+
+[chrome-focus-confirm.log]
+Verified 9 Poly Haven village maps (offline)
+Godot import and runtime checks passed (not visual acceptance).
+CHROME_APPLICATION_OK failures=0
+Real Chrome checks passed; captures: /home/deck/distrobox-homes/mansion-dev/code/elsewhere/.tools/chrome-application-test
+
+[final documentation/source checks]
+DOC_LINKS_OK files=8 links=222
+TASK_SCOPE_OK P22-T06 complete; P22-T07 through P22-T10 unchecked
+Actual unfinishedTasks(Project 22): [ 'P22-T07', 'P22-T08', 'P22-T09' ] (human T10 excluded by parser)
+bash -n tools/check-godot-village-applications.sh: passed
+python3 -m py_compile tests/browser_fixture.py: passed
+git diff --check: passed

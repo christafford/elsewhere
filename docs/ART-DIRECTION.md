@@ -32,9 +32,11 @@ commit `340ca97` / local tag `art-reference-1`, with its original captures intac
 Use the [interactive render comparison](art-direction/compare.html) and
 [handoff 44](handoffs/44-village-reference-2.md). Reverting to the first direction
 must preserve intervening desktop work; do not reset the repository's history.
-The selection establishes direction; review of the refined P22-T05 renders and
-explicit authorization are still required before P22-T06. See
-[the materials and lighting handoff](handoffs/45-village-materials.md).
+The selection establishes direction. The owner's explicit 2026-10-12 request
+for P22-T06 authorizes proceeding past the art checkpoint with this version;
+it does not provide personal comfort observations or final Project 22 approval.
+See [the materials and lighting handoff](handoffs/45-village-materials.md) and
+[the live-application handoff](handoffs/46-village-applications.md).
 
 ## Previous comparison candidate: reference 1 (2026-10-11)
 

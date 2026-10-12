@@ -18,7 +18,6 @@
 
 #include "compositor-core.h"
 #include "compositor-private.h"
-#include "elsewhere_bridge.h"
 
 /* ─── Exported API ─── */
 

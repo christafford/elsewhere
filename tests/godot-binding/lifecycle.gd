@@ -56,6 +56,14 @@ func run() -> void:
 		check(session.client_count() == 1, "Fixture did not connect to private server")
 		check(session.surface_count() == 16, "Fixture surface requests were not served")
 		check(session.toplevel_count() == 16, "Toplevel registrations missing")
+		var original: PackedInt64Array = session.surface_handles()
+		var original_ids := {}
+		for handle in original:
+			check(handle > 0 and not original_ids.has(handle), "Same-client handles must be positive and unique")
+			original_ids[handle] = true
+		for frame in range(8):
+			await tick()
+			check(session.surface_handles() == original and session.toplevel_handles() == original, "Enumeration changed surface identity")
 		if mode == "server-stop":
 			check(session.stop(), session.last_error())
 		var barrier := FileAccess.open(marker + ".go", FileAccess.WRITE)
@@ -66,8 +74,25 @@ func run() -> void:
 			if not await wait_for_marker(marker + ".partial"):
 				break
 			check(session.toplevel_count() == 8 and session.surface_count() == 8, "Non-first window removal failed")
+			var survivors: PackedInt64Array = session.surface_handles()
+			for handle in survivors:
+				check(original_ids.has(handle), "Surviving window changed identity")
 			barrier = FileAccess.open(marker + ".resume", FileAccess.WRITE)
 			if not check(barrier != null, "Could not release partial destruction barrier"):
+				break
+			barrier.close()
+			if not await wait_for_marker(marker + ".recreated"):
+				break
+			var replacements: PackedInt64Array = session.surface_handles()
+			check(replacements.size() == 16 and session.toplevel_count() == 16, "Replacement windows missing")
+			var replacement_ids := {}
+			for handle in replacements:
+				check(handle > 0 and not replacement_ids.has(handle), "Replacement handles must be positive and unique")
+				replacement_ids[handle] = true
+			for handle in original:
+				check(replacements.has(handle) == survivors.has(handle), "Recreation reused a destroyed handle or changed a survivor")
+			barrier = FileAccess.open(marker + ".finish", FileAccess.WRITE)
+			if not check(barrier != null, "Could not release recreation barrier"):
 				break
 			barrier.close()
 		if not await wait_for_marker(marker + ".ok"):
@@ -86,7 +111,7 @@ func run() -> void:
 		check(session.client_count() == 0, "Client destruction leaked connection")
 		check(session.stop() and session.stop(), "Stop is not idempotent")
 		check(not DirAccess.dir_exists_absolute(private_dir), "Socket directory was not removed")
-		for suffix in [".ready", ".go", ".partial", ".resume", ".ok"]:
+		for suffix in [".ready", ".go", ".partial", ".resume", ".recreated", ".finish", ".ok"]:
 			DirAccess.remove_absolute(marker + suffix)
 	if child_pid > 0 and OS.is_process_running(child_pid):
 		OS.kill(child_pid)

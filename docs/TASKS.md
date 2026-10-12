@@ -5,6 +5,14 @@ Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.
 Older automatic-first-eligible instructions apply only to historical programs.
 
+Owner-requested review item 1, completed 2026-10-12 from `c40748d`: audited
+surface-identifier reachability, retired the unused unstable C bridge, and added
+native/Godot regressions for the active runtime's creation-time 64-bit handles.
+Build, 34 Meson tests, full binding suite, default world startup and parser checks
+pass. See [handoff 47](handoffs/47-surface-identity-review.md). This is a bounded
+review repair outside the village roadmap; no later finding or P22 task is
+authorized by it.
+
 ## Project 22: Elsewhere village square (current authorized plan, 2026-10-09)
 
 Owner-approved replacement of the **physical** study, preserving the working

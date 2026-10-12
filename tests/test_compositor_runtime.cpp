@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <string>
+#include <set>
 
 static void require(bool condition, const char* message) {
     if (!condition) { std::fprintf(stderr, "FAIL: %s\n", message); std::exit(1); }
@@ -23,6 +24,7 @@ int main(int argc, char** argv) {
     require(!runtime.pump(), "pump stopped server must fail");
     require(!runtime.start("relative"), "relative directory must fail");
     require(!runtime.start(std::string(temp) + "/missing"), "missing directory must fail");
+    std::set<int64_t> retired;
     for (int trial = 0; trial < 16; ++trial) {
         require(runtime.start(temp), runtime.last_error().c_str());
         require(!runtime.start(temp), "double start must fail without losing live server");
@@ -46,6 +48,20 @@ int main(int argc, char** argv) {
         require(runtime.client_count() == 1, "connected client count");
         require(runtime.surface_count() == 16, "client surface requests reached server");
         require(runtime.toplevel_count() == 16, "registered toplevel count");
+        const auto original = runtime.surface_handles();
+        const std::set<int64_t> original_ids(original.begin(), original.end());
+        require(original.size() == 16 && original_ids.size() == 16 && *original_ids.begin() > 0,
+                "same-client surfaces have distinct positive handles");
+        for (auto handle : original) require(!retired.contains(handle), "restart must not reuse handles");
+        for (int i = 0; i < 32; ++i) {
+            require(runtime.pump(), "enumeration pump");
+            require(runtime.surface_handles() == original && runtime.toplevel_handles() == original,
+                    "repeated enumeration preserves every handle and its order");
+            for (auto handle : original) {
+                auto frame = runtime.snapshot(handle);
+                require(frame && frame->mapped && frame->handle == handle, "enumerated handle resolves to its frame");
+            }
+        }
         if (trial % 8 == 2) require(runtime.stop(), "shutdown while client connected");
         mark(marker + ".go");
         if (trial % 8 == 0) {
@@ -55,7 +71,27 @@ int main(int argc, char** argv) {
                 usleep(1000);
             }
             require(runtime.toplevel_count() == 8 && runtime.surface_count() == 8, "non-first window removal");
+            const auto survivors = runtime.surface_handles();
+            const std::set<int64_t> surviving_ids(survivors.begin(), survivors.end());
+            for (auto handle : survivors) require(original_ids.contains(handle), "survivors retain their handles");
+            for (auto handle : original)
+                require(bool(runtime.snapshot(handle)) == surviving_ids.contains(handle), "destroyed handles become invalid");
             mark(marker + ".resume");
+            while (access((marker + ".recreated").c_str(), F_OK) < 0) {
+                require(runtime.pump(), "replacement pump");
+                require(std::chrono::steady_clock::now() < deadline, "replacement timeout");
+                usleep(1000);
+            }
+            const auto replacements = runtime.surface_handles();
+            const std::set<int64_t> replacement_ids(replacements.begin(), replacements.end());
+            require(replacements.size() == 16 && replacement_ids.size() == 16 && runtime.toplevel_count() == 16,
+                    "replacement windows registered with unique handles");
+            for (auto handle : original) {
+                require(replacement_ids.contains(handle) == surviving_ids.contains(handle), "recreation cannot alias destroyed handles");
+                require(bool(runtime.snapshot(handle)) == surviving_ids.contains(handle), "stale snapshot lookup stays invalid");
+            }
+            retired.insert(replacements.begin(), replacements.end());
+            mark(marker + ".finish");
         }
         int status = 0;
         pid_t waited;
@@ -73,8 +109,10 @@ int main(int argc, char** argv) {
             require(runtime.client_count() == 0, "disconnect leaked client");
         }
         require(runtime.stop() && runtime.stop(), "idempotent stop");
+        retired.insert(original.begin(), original.end());
+        for (auto handle : retired) require(!runtime.snapshot(handle), "stopped session rejects retired handles");
         require(access(socket.c_str(), F_OK) < 0 && access(directory.c_str(), F_OK) < 0, "socket/directory cleanup");
-        for (const char* suffix : {".ready", ".go", ".partial", ".resume", ".ok"}) unlink((marker + suffix).c_str());
+        for (const char* suffix : {".ready", ".go", ".partial", ".resume", ".recreated", ".finish", ".ok"}) unlink((marker + suffix).c_str());
     }
     std::string scoped_socket;
     {

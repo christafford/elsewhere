@@ -1,5 +1,37 @@
 # Current direction — Elsewhere (2026-10-13)
 
+## P22-T08 verified (2026-10-13, from `e063fba`)
+
+The existing backdrop now owns wooded foothills, 144 instanced firs, two distant
+track glimpses and local mountain haze. These decorative surroundings sit beyond
+the unchanged stone bank. No new functional destination, collision, application
+binding, runtime/input change, global lighting change or dependency.
+
+Verified by automated checks: import/default startup/bridge build; headless/GPU
+atmosphere, architecture, landscape and outdoor checks; real pavilion placement,
+stool manipulation and shell continuity; two-client Terminal/Vim continuity;
+six default-world graphical interaction regressions; four headless transform/map/
+runtime checks; 11 Python and 62 Node tests. Model regeneration, syntax, document
+links/task parsing and diff validation pass. Both landscape runs walk 337.8m.
+Pavilion shell state and 50 background revisions survive; the two-client trial
+preserves both panels and the unsaved editor buffer with 22 background revisions.
+
+Agent-observed: seven final actual landscape renders show layered hills/groves,
+partly screened paths and continuous boundaries without obvious voids or clipping.
+Reactivated terminal and editor renders remain readable. Matched before/after
+samples add four draw calls; median frame times stay around 16.7ms, final p95
+at most 17.251ms on a vsync-bound RTX 3080/60 Hz private Weston GL output.
+See [evidence](evidence/p22-t08/README.md) and
+[handoff 51](handoffs/51-village-atmosphere.md).
+
+Not verified: Steam Deck/sustained target performance, owner art approval or
+human comfort/latency. Legacy study source assets and Chrome remain absent;
+those broader fixtures were not rerun or counted as passed. No fresh full native
+suite or restart-persistence claim. P22-T09 and human P22-T10 remain unchecked.
+
+Next task: **stop after P22-T08**. P22-T09 requires a separate owner request;
+no other task or unattended continuation is authorized.
+
 ## P22-T07 verified (2026-10-13, from `3478f0d`)
 
 The covered pavilion now has two fixed timber worktables facing the square,
@@ -99,7 +131,7 @@ The owner selected **version 2**, the weathered mountain village, and explicitly
 requested P22-T06, authorizing progress past the P22-T05 art checkpoint.
 Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md) govern
 current world work; Project 21 below is historical.
-**P22-T01 through P22-T07 are complete. P22-T08 is unstarted and unauthorized.**
+**P22-T01 through P22-T08 are complete. P22-T09 is unstarted and unauthorized.**
 
 ## P22-T06 verified (2026-10-12, from `a13b671`)
 

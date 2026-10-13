@@ -1,5 +1,12 @@
 # Godot and the existing Wayland compositor
 
+P22-T08 adds decorative wooded foothills, distant path glimpses and local mountain
+haze outside the existing playable bank. Run `tools/check-godot-atmosphere.sh`
+for headless geometry budgets, graphical instance-boundary checks and seven
+matched 1280×800 views with rendering counters. Actual renders still require
+inspection. See [evidence](evidence/p22-t08/README.md); the cost sample is a host
+before/after comparison, not P22-T09 or Steam Deck acceptance.
+
 Current startup: P22-T04 adds a landmark, three exteriors and covered pavilion
 to the authored square, terrain and approach paths
 using the desktop runtime extracted in P22-T01. The selected-preview mesh remains

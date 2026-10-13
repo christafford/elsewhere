@@ -94,6 +94,17 @@ and directional shadow settings are local art changes. Application shaders,
 Filmic exposure and desktop/runtime ownership remain unchanged. See
 [handoff 45](handoffs/45-village-materials.md).
 
+P22-T08 keeps the existing `MountainBackdrop` and adds a `Surrounds` child using
+`village_surrounds.gd`. It constructs a small foothill ring from the existing
+landscape boundary/crest data and one deterministic MultiMesh of distant firs.
+Two painted path glimpses and local mountain haze imply terrain beyond the
+square. These nodes have no collision, world entities, application bindings,
+input handlers, shadow passes or per-frame script work. The playable boundary,
+controller, desktop services and client lighting remain unchanged. This stays
+within the location-owned presentation boundary; there is no terrain service,
+new destination or global atmosphere affecting application content. See
+[handoff 51](handoffs/51-village-atmosphere.md).
+
 ---
 
 # Architecture: current prototype and target boundaries

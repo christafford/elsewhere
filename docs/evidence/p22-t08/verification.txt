@@ -1,0 +1,135 @@
+P22-T08 verification, 2026-10-13, base e063fba plus task changes.
+Private Weston GL output; actual NVIDIA RTX 3080; Godot 4.7.2.
+
+atmosphere-check:
+Godot import and runtime checks passed (not visual acceptance).
+ATMOSPHERE_GEOMETRY firs=144 tree_triangles=3327 foothill_triangles=1680
+VILLAGE_ATMOSPHERE_OK mode=headless baseline=false failures=0
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+ATMOSPHERE_GEOMETRY firs=144 tree_triangles=3327 foothill_triangles=1680
+ATMOSPHERE_SAMPLE {"draw_calls":426.0,"median_ms":16.665,"p95_ms":17.014,"primitives":1319547.0,"view":"arrival"}
+ATMOSPHERE_SAMPLE {"draw_calls":61.0,"median_ms":16.673,"p95_ms":17.251,"primitives":646863.0,"view":"north-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":53.0,"median_ms":16.689,"p95_ms":17.207,"primitives":588783.0,"view":"east-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":38.0,"median_ms":16.667,"p95_ms":17.003,"primitives":427035.0,"view":"south-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":41.0,"median_ms":16.674,"p95_ms":17.01,"primitives":501663.0,"view":"west-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":449.0,"median_ms":16.669,"p95_ms":17.209,"primitives":1258403.0,"view":"south-return"}
+ATMOSPHERE_SAMPLE {"draw_calls":41.0,"median_ms":16.676,"p95_ms":17.072,"primitives":501663.0,"view":"pavilion-edge"}
+VILLAGE_ATMOSPHERE_OK mode=Wayland baseline=false failures=0
+Atmosphere checks passed; inspect .tools/p22-t08/final/*.png and render-cost.json.
+
+architecture:
+Godot import and runtime checks passed (not visual acceptance).
+VILLAGE_ARCHITECTURE_OK mode=headless exteriors=3 landmark=1 pavilion=1 failures=0
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+VILLAGE_ARCHITECTURE_OK mode=Wayland exteriors=3 landmark=1 pavilion=1 failures=0
+WARNING: Failed to load cached shader, recompiling.
+Architecture checks passed; inspect .tools/village-architecture-test/*.png.
+
+landscape:
+Godot import and runtime checks passed (not visual acceptance).
+LANDSCAPE_ROUTE south_approach round_trip=true endpoint_y=0.94326603412628
+LANDSCAPE_ROUTE west_rise round_trip=true endpoint_y=2.68331003189087
+LANDSCAPE_ROUTE north_saddle round_trip=true endpoint_y=1.85634458065033
+LANDSCAPE_ROUTE east_shelf round_trip=true endpoint_y=0.89649957418442
+VILLAGE_LANDSCAPE_OK mode=headless samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.00555356609788 failures=0
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+LANDSCAPE_ROUTE south_approach round_trip=true endpoint_y=0.94326627254486
+LANDSCAPE_ROUTE west_rise round_trip=true endpoint_y=2.68330478668213
+LANDSCAPE_ROUTE north_saddle round_trip=true endpoint_y=1.85634315013885
+LANDSCAPE_ROUTE east_shelf round_trip=true endpoint_y=0.89649921655655
+VILLAGE_LANDSCAPE_OK mode=Wayland samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.0055534423753 failures=0
+Landscape checks passed; inspect .tools/village-landscape-test/*.png.
+
+outdoor:
+Godot import and runtime checks passed (not visual acceptance).
+OUTDOOR_STARTUP_OK mode=headless boundaries=10 failures=0
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+OUTDOOR_STARTUP_OK mode=Wayland boundaries=10 failures=0
+Outdoor startup checks passed; inspect .tools/outdoor-startup-test/*.png.
+
+pavilion:
+Godot import and runtime checks passed (not visual acceptance).
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+PAVILION_REVISIT shell=77225:at-my-desk entity=203b5d0b4226faff53ea59bc59e06dd3 anchor_offset=(0.0, 0.447161, -0.02697) background_revisions=50 placed=[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-20.0, 2.479015, 16.09303)]
+PAVILION_WORKSPACE_OK failures=0
+Pavilion workspace checks passed; inspect /home/chris/code/elsewhere/.tools/pavilion-workspace-test/*.png.
+
+applications:
+Godot import and runtime checks passed (not visual acceptance).
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+VILLAGE_REVISIT distance_one_way_m=12.2910289764404 shell=78803:still-here terminal_entity=69a3e7f0beea3a30363852e5309a361b editor_entity=67aa0ec8ad2f2b529ae4f412128594eb background_revision_delta=22
+VILLAGE_APPLICATIONS_OK clients=2 failures=0
+Village application checks passed; inspect /home/chris/code/elsewhere/.tools/village-applications-test/*.png.
+
+screen_color:
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+WARNING: Failed to load cached shader, recompiling.
+SCREEN_COLOR_OK failures=0
+
+terminal_input:
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+WARNING: Failed to load cached shader, recompiling.
+TERMINAL_INPUT_OK repeat_characters=9 pixels=11163 failures=0
+
+terminal_pointer:
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+TERMINAL_POINTER_OK selection_pixels=7496 scroll_pixels=1875 failures=0
+
+terminal_resize:
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+TERMINAL_RESIZE_OK cells=[(77, 22), (95, 25), (68, 18), (103, 26)] pixels=8573 failures=0
+
+app_launcher:
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+APP_LAUNCHER_OK entries=49 failures=0
+
+application_transition:
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+APPLICATION_TRANSITION_OK failures=0
+
+screen_transform:
+SCREEN_TRANSFORM_OK cases=8 failures=0
+
+keyboard_map:
+KEYBOARD_MAP_OK cases=27 failures=0
+
+pointer_map:
+POINTER_MAP_OK cases=302 failures=0
+
+desktop_runtime:
+DESKTOP_RUNTIME_OK sessions=2 failures=0
+
+Python: test_desktop_apps 7/7; test_godot_launcher 1/1; test_village_materials 3/3.
+Node: auto-continue 62/62.
+Model regeneration byte-identical: e36562a4c251f5a5efa458b7691dc8d51b1881f5ed0d02af172e0bb44570c1a3.
+Old village GLBs unchanged. Bash/Python syntax passed.
+Legacy source cache inspection: only world/assets/cache/.gdignore.
+Chrome inspection: no executable or desktop entry found. Fixtures not rerun.
+No C++ changes; bridge build passed via every helper import validation.
+Documentation: 242 local links across 8 documents pass.
+Task parser: P22-T08 complete; Project 22 remaining non-human task P22-T09; human P22-T10 unchecked.
+Final whitespace/diff validation passed.

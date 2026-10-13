@@ -119,3 +119,35 @@ c044679e1d9f793cf8b2e53cd6116c1ebd340d3af58b098115941cd751489d8f  pavilion_workt
 
 See [P22-T07 evidence](../../../docs/evidence/p22-t07/README.md) for actual
 renders, live shell continuity and verification limits.
+
+## P22-T08 distant landscape (2026-10-13)
+
+Original repository-authored fir model and procedural foothills by the Codex
+agent; no downloaded model, texture or new dependency. Rebuild the fir alone:
+
+```sh
+python3 world/tools/build_village_surrounds.py
+```
+
+`distant_fir.glb` has 3,327 triangles, three opaque material surfaces, a tapered
+trunk, nine tiers of separate boughs/needle sprays and a narrow crown. It is
+321,932 bytes; default Godot import/LOD settings are tracked. Byte-identical
+regeneration SHA-256:
+
+```text
+e36562a4c251f5a5efa458b7691dc8d51b1881f5ed0d02af172e0bb44570c1a3
+```
+
+`village_surrounds.gd` creates 144 deterministic instances in one MultiMesh,
+varied in yaw/scale, outside the playable bank. The 1,680-triangle foothill ring
+starts at the existing bank's outer shoulder and extends beneath the distant
+mountains. Original analytic meadow/rock color variation and two narrow track
+stretches need no texture assets. Trees/foothills have no collision or shadow
+passes and no per-frame scripts. Maximum placed geometry before LOD is 480,768
+triangles; the renderer's primitive monitor counts the instanced tree mesh once,
+so that counter must not be mistaken for placed triangle cost. Four additional
+draw calls were measured. Distant mountain color receives local haze; existing
+mountain geometry, cloud cover, global exposure and client materials are intact.
+
+See [P22-T08 evidence](../../../docs/evidence/p22-t08/README.md) for seven actual
+renders, matched before/after counters and precise host-performance limits.

@@ -171,12 +171,20 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   [handoff 50](handoffs/50-pavilion-workspace.md) and
   [evidence](evidence/p22-t07/README.md). Stop; P22-T08 remains unstarted.
 
-- [ ] **P22-T08 Add atmosphere and visual boundaries.**
+- [x] **P22-T08 Add atmosphere and visual boundaries.**
   **Depends:** P22-T07. Add distant hills/trees, path glimpses and modest
   ambient detail to imply a larger explorable world, without introducing
   additional functional destinations or excessive rendering cost.
   **Acceptance:** multi-angle actual renders show a composed landscape with
   no obvious voids, clipping, or distracting performance regressions.
+  **Verified (agent, 2026-10-13):** seven actual views reviewed; wooded foothills,
+  two distant track glimpses and local mountain haze remain outside the existing
+  playable boundary. Four added draw calls; matched 60 Hz host samples show no
+  distracting timing regression. Headless/GPU scene checks, live pavilion and
+  Terminal/Vim continuity, default interaction regressions and small suites pass.
+  [Evidence and host limits](evidence/p22-t08/README.md),
+  [handoff 51](handoffs/51-village-atmosphere.md). Legacy assets/Chrome unavailable;
+  no target-device or human acceptance claim. Stop; P22-T09 remains unstarted.
 
 - [ ] **P22-T09 Verify outdoor desktop quality and performance.**
   **Depends:** P22-T08. Run relevant automated/headless suites, real-app

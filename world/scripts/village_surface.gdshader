@@ -1,5 +1,5 @@
 shader_type spatial;
-// Original weathered surfaces for reference 2, in projected meter UVs.
+// Original warm village finishes, in projected meter UVs.
 uniform vec4 base_color : source_color = vec4(.4,.4,.35,1);
 uniform int surface_kind = 0; // plaster, wood, stone, slate, leaf, metal, tiles, water, carved stone
 uniform float surface_roughness = .9;
@@ -33,12 +33,12 @@ void fragment() {
     float h=detail(UV);
     float contrast=surface_kind==1 ? .55 : .4;
     ALBEDO=base_color.rgb*(1.0-contrast+contrast*h);
-    // Broad damp stains sit below the fine pores/grain.
-    if(surface_kind<4) ALBEDO*=.72+.28*noise(UV*vec2(.65,1.2));
+    // Restrained weathering leaves the sunlit material color visible.
+    if(surface_kind<4) ALBEDO*=.88+.12*noise(UV*vec2(.65,1.2));
     ROUGHNESS=surface_roughness;
     if(surface_kind==4) {
         ALBEDO=base_color.rgb*(.86+.14*noise(UV*18.0));
-        BACKLIGHT=base_color.rgb*.35;
+        BACKLIGHT=base_color.rgb*.18;
         ROUGHNESS=.9;
     }
     // Carved fountain bowls/caps are solid stone, without wall-sized mortar lines.
@@ -53,7 +53,7 @@ void fragment() {
     if(use_photo) {
         vec2 uv=UV*photo_scale;
         vec3 photo=texture(diff_texture,uv).rgb;
-        // Preserve the selected gray/warm finish while keeping the scan's wear.
+        // Preserve the selected plaster/oak finish while keeping the scan's wear.
         float luminance=dot(photo,vec3(.2126,.7152,.0722));
         ALBEDO=base_color.rgb*clamp(luminance*(surface_kind==1 ? 1.9 : 1.45),.3,.95);
         NORMAL_MAP=texture(nor_gl_texture,uv).rgb;

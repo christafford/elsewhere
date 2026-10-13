@@ -10,10 +10,10 @@ void vertex() { location=VERTEX; slope=NORMAL; }
 void fragment() {
     float weather=noise(location.xz*.16)*.5+noise(location.xz*.63)*.3+noise(location.xz*2.1)*.2;
     float snow=smoothstep(57.0,69.0,location.y+noise(location.xz*.2)*11.0)*smoothstep(.48,.86,slope.y);
-    vec3 rock=mix(vec3(.09,.125,.15),vec3(.18,.215,.23),weather);
+    vec3 rock=mix(vec3(.12,.18,.22),vec3(.23,.30,.33),weather);
     vec3 dust=mix(vec3(.28,.33,.35),vec3(.43,.46,.46),weather);
     // Local atmospheric perspective preserves unlit application pixels.
     float haze=smoothstep(75.0,250.0,length(location.xz))*.48;
-    ALBEDO=mix(mix(rock,dust,snow),vec3(.38,.46,.50),haze);
+    ALBEDO=mix(mix(rock,dust,snow),vec3(.42,.56,.63),haze);
     ROUGHNESS=1.0;
 }

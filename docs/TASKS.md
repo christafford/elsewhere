@@ -5,6 +5,14 @@ Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.
 Older automatic-first-eligible instructions apply only to historical programs.
 
+Owner-requested art revision, completed 2026-10-13 from `a597286`: the new
+`art-direction-1.jpg` reference replaces the drab palette with clay roofs,
+cream plaster/oak, fresher greens, blue distance and small flower borders.
+Actual before/after and close renders inspected; scene, desktop interaction,
+Terminal/Vim, pavilion and Firefox regressions pass. See
+[handoff 53](handoffs/53-sunlit-village-palette.md). This bounded revision
+advances no numbered roadmap task or human gate; stop here.
+
 Owner-reported Firefox launch repair, completed 2026-10-13 from `4235435`:
 isolated persistent profile, repeat-launch reuse and seat-owned GTK data-device
 support. Real Firefox launch/input/clipboard/pointer/world return, multiple

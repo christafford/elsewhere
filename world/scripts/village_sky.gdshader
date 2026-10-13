@@ -7,9 +7,9 @@ float noise(vec2 p) {
 }
 void sky() {
     float up=max(EYEDIR.y,0.0);
-    vec3 blue=mix(vec3(.57,.68,.73),vec3(.20,.39,.52),pow(up,.5));
+    vec3 blue=mix(vec3(.51,.72,.80),vec3(.12,.42,.61),pow(up,.5));
     vec2 p=EYEDIR.xz/(up+.22)*2.4;
     float cloud=noise(p)*.55+noise(p*2.1)*.25+noise(p*4.3)*.13+noise(p*8.7)*.07;
     float coverage=smoothstep(.48,.68,cloud)*smoothstep(.02,.18,up);
-    COLOR=mix(blue,vec3(.88,.89,.85),coverage);
+    COLOR=mix(blue,vec3(.96,.95,.89),coverage);
 }

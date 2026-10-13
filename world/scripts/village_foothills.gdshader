@@ -9,8 +9,8 @@ float noise(vec2 p) {
 void vertex() { location=VERTEX; slope=NORMAL; }
 void fragment() {
     float patch=noise(location.xz*.16)*.6+noise(location.xz*.65)*.4;
-    vec3 meadow=mix(vec3(.17,.215,.095),vec3(.30,.32,.17),patch);
-    vec3 rock=mix(vec3(.23,.25,.23),vec3(.36,.37,.30),patch);
+    vec3 meadow=mix(vec3(.13,.235,.065),vec3(.30,.38,.12),patch);
+    vec3 rock=mix(vec3(.25,.27,.22),vec3(.40,.39,.30),patch);
     vec3 ground=mix(rock,meadow,smoothstep(.65,.90,slope.y));
     float north=abs(location.x-(10.0+10.0*sin((location.z+50.0)*.06)));
     float south=abs(location.x-(-15.0+8.0*sin((location.z-50.0)*.07)));

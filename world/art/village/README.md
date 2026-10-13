@@ -151,3 +151,34 @@ mountain geometry, cloud cover, global exposure and client materials are intact.
 
 See [P22-T08 evidence](../../../docs/evidence/p22-t08/README.md) for seven actual
 renders, matched before/after counters and precise host-performance limits.
+
+
+## Sunlit palette and flower borders (owner revision, 2026-10-13)
+
+The owner's `docs/art-direction/art-direction-1.jpg` guides a warm clay-roof,
+cream-plaster/oak palette; it is reference only, not a runtime asset. Existing
+architectural GLBs and texture bytes are unchanged. `village_materials.gd`
+overrides their named material roles, including the five existing roof-course
+roles. The historical `blue` flower role now renders orange in this palette.
+Procedural ground, sky, stone bank and distant terrain use matching colors.
+
+`courtyard_flowers.glb` is original deterministic repository geometry by the
+Codex agent, reusing the existing standard-library `Model` flower/lathe/merge
+functions. It has 3,264 triangles, 319,648 bytes, and eight material surfaces.
+Four fixed .8-scale decorative instances add 13,056 placed triangles before LOD;
+there is no collision, processing loop or desktop ownership. Soil discs ground
+three pink/amber/orange clumps beside existing facades, clear of doorways.
+No downloaded asset or dependency was added. Rebuild:
+
+```sh
+python3 world/tools/build_village_flowers.py
+```
+
+Verified byte-identical SHA-256:
+
+```text
+69156443da8f7fce044e551764f71b1cceeedc8f5a2d0720694af5bc5c4332bf
+```
+
+See [visual evidence](../../../docs/evidence/sunlit-village/README.md) and
+[handoff 53](../../../docs/handoffs/53-sunlit-village-palette.md).

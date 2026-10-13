@@ -1,0 +1,51 @@
+[
+  {
+    "draw_calls": 522.0,
+    "median_ms": 16.672,
+    "p95_ms": 17.13,
+    "primitives": 1354491.0,
+    "view": "arrival"
+  },
+  {
+    "draw_calls": 61.0,
+    "median_ms": 16.696,
+    "p95_ms": 17.031,
+    "primitives": 646863.0,
+    "view": "north-outlook"
+  },
+  {
+    "draw_calls": 53.0,
+    "median_ms": 16.66,
+    "p95_ms": 17.093,
+    "primitives": 588783.0,
+    "view": "east-outlook"
+  },
+  {
+    "draw_calls": 38.0,
+    "median_ms": 16.741,
+    "p95_ms": 17.303,
+    "primitives": 427035.0,
+    "view": "south-outlook"
+  },
+  {
+    "draw_calls": 41.0,
+    "median_ms": 16.682,
+    "p95_ms": 17.367,
+    "primitives": 501663.0,
+    "view": "west-outlook"
+  },
+  {
+    "draw_calls": 545.0,
+    "median_ms": 16.698,
+    "p95_ms": 17.225,
+    "primitives": 1291019.0,
+    "view": "south-return"
+  },
+  {
+    "draw_calls": 41.0,
+    "median_ms": 16.661,
+    "p95_ms": 17.101,
+    "primitives": 501663.0,
+    "view": "pavilion-edge"
+  }
+]

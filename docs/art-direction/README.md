@@ -26,3 +26,14 @@ render viewpoints. It works directly from disk without a server or dependency.
 Both references can be expanded below the render comparison. Reference 1's
 implementation is preserved at `340ca97` / local tag `art-reference-1`;
 [handoff 44](../handoffs/44-village-reference-2.md) explains switching safely.
+
+
+`art-direction-1.jpg` was supplied by the owner on 2026-10-13 to shift the
+village away from its drab palette. It was inspected directly and retained
+unchanged as a reference. Artist/source/license were not supplied; no external
+license or redistribution permission is asserted. The image is not loaded by
+Godot, used as a texture or represented as an application render. The new palette,
+lighting and flower geometry are repository work; existing CC0 maps remain
+unchanged. See [the current brief](../ART-DIRECTION.md),
+[handoff 53](../handoffs/53-sunlit-village-palette.md) and
+[actual before/after renders](../evidence/sunlit-village/README.md).

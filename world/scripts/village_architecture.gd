@@ -96,7 +96,7 @@ func entrance_steps(model: Node3D, front: float, door_x: float) -> void:
 func stone_finish() -> ShaderMaterial:
 	var mat := ShaderMaterial.new()
 	mat.shader = Materials.SURFACE
-	mat.set_shader_parameter("base_color",Color("85877b"))
+	mat.set_shader_parameter("base_color",Materials.COLORS["cut_stone"])
 	mat.set_shader_parameter("surface_kind",8)
 	mat.set_shader_parameter("surface_roughness",0.95)
 	return mat

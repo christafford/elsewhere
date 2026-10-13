@@ -1,0 +1,29 @@
+Full retained-study suite: environment-blocked. Excerpts from .tools/p22-t07/study-missing-assets.log
+
+ERROR: Resource file not found: res://assets/textures/walnut_veneer_4k_jpg.jpg (expected type: unknown)
+ERROR: Resource file not found: res://assets/textures/beige_wall_001_4k_jpg.jpg (expected type: unknown)
+ERROR: Resource file not found: res://assets/book_encyclopedia_set_01.gltf (expected type: unknown)
+SCRIPT ERROR: Attempt to call function 'instantiate' in base 'null instance' on a null instance.
+ERROR: Resource file not found: res://assets/dining_chair_02.gltf (expected type: unknown)
+ERROR: Resource file not found: res://assets/potted_plant_02.gltf (expected type: unknown)
+ERROR: Resource file not found: res://assets/desk_lamp_arm_01.gltf (expected type: unknown)
+ERROR: Resource file not found: res://assets/metal_office_desk.gltf (expected type: unknown)
+SCRIPT ERROR: Assertion failed: Missing imported model: metal_office_desk
+SCRIPT ERROR: Assertion failed: Missing imported model: dining_chair_02
+ERROR: Resource file not found: res://assets/wooden_bookshelf_worn.gltf (expected type: unknown)
+SCRIPT ERROR: Assertion failed: Missing imported model: wooden_bookshelf_worn
+SCRIPT ERROR: Assertion failed: Missing imported model: potted_plant_02
+SCRIPT ERROR: Assertion failed: Missing imported model: desk_lamp_arm_01
+SCRIPT ERROR: Assertion failed: Missing imported model: book_encyclopedia_set_01
+ERROR: Node not found: "Desk" (relative to "/root/Study").
+SCRIPT ERROR: Cannot call method 'add_child' on a null value.
+ERROR: Furniture must have real texture materials
+ERROR: Node not found: "Chair" (relative to "/root/Study").
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'null instance'.
+ERROR: Wayland client error code 32.
+
+Earlier completed checks:
+SCREEN_TRANSFORM_OK cases=8 failures=0
+KEYBOARD_MAP_OK cases=27 failures=0
+POINTER_MAP_OK cases=302 failures=0
+DESKTOP_RUNTIME_OK sessions=2 failures=0

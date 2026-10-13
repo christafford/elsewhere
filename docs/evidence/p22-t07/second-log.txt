@@ -1,0 +1,35 @@
+Verified 9 Poly Haven village maps (offline)
+[  1%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.qy2PYY
+Godot import and runtime checks passed (not visual acceptance).
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+ERROR: Shell did not create before.txt
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] wait_file (res://tests/terminal_input.gd:61)
+ERROR: Initial shell state was not set
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] run (res://tests/village_applications.gd:68)
+       [2] wait_file (res://tests/terminal_input.gd:62)
+ERROR: World Tab did not open Applications
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] launch_from_search (res://tests/village_applications.gd:7)
+       [2] tap (res://tests/terminal_input.gd:34)
+       [3] key (res://tests/terminal_input.gd:30)
+ERROR: Installed application missing from search: vim.desktop
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] launch_from_search (res://tests/village_applications.gd:13)
+       [2] search_text (res://tests/app_launcher.gd:33)
+VILLAGE_APPLICATIONS_OK clients=2 failures=4

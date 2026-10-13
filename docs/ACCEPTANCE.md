@@ -3,6 +3,27 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-13 P22-T07 pavilion workspace
+
+Agent-run and agent-observed, based on `3478f0d`: two timber worktables with
+physical placement pads and two movable stools furnish the existing covered
+pavilion. An actual Weston Terminal is manually dragged onto the west pad and
+supported by existing physics. The east stool moves/rotates, settles and retains
+its committed pose after another cancelled drag. A walk down the ramp into the
+square and back preserves the original panel entity/transform and shell state
+`43110:at-my-desk`; 50 background revisions advance. Double-click reactivation,
+client-owned close and runtime shutdown pass. Eight final actual renders reviewed.
+
+Headless/GPU scene checks, six default-world interaction regressions, isolated
+Terminal/Vim, four headless transform/map/runtime checks, 11 Python and 62 Node
+tests pass. Two shared-host multi-client failures are retained; the unchanged
+trial passes on a private Weston GL output with fake seat. The full retained-study
+suite is blocked by missing cached models/textures, and Chrome is not installed;
+neither is a fresh pass. No native suite, human comfort, general focus repair,
+restart persistence or performance claim. See
+[commands, images, exact outputs and limits](evidence/p22-t07/README.md) and
+[handoff 50](handoffs/50-pavilion-workspace.md). P22-T07 only is complete.
+
 ## 2026-10-12 P22-T06 outdoor live-application integration
 
 The owner explicitly authorized P22-T06 with the selected version 2 village.

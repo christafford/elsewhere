@@ -70,6 +70,21 @@ func run() -> void:
 	await frames(10)
 	var pavilion: Node3D = architecture.get_node("Pavilion")
 	check(walker.is_on_floor() and absf(walker.position.y-pavilion.position.y)<0.03,"Pavilion is not walkably supported")
+	# Both authored work pads must match collision and leave panel/head clearance.
+	for side in ["West", "East"]:
+		var table: StaticBody3D = pavilion.get_node("Workspace/" + side + "Worktable")
+		var anchor: Marker3D = table.get_node("WorkAnchor")
+		var surface := root.world_3d.direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(anchor.global_position+Vector3.UP*0.2,anchor.global_position-Vector3.UP*0.2,1))
+		check(not surface.is_empty() and surface.collider==table and absf(surface.position.y-anchor.global_position.y)<0.005,"Work pad collision does not match its anchor: " + side)
+		var query := PhysicsShapeQueryParameters3D.new()
+		var shape := BoxShape3D.new()
+		shape.size = Vector3(1.4,1.02,0.08)
+		query.shape = shape
+		query.collision_mask = 7
+		query.transform.origin = anchor.global_position+Vector3.UP*0.54
+		check(root.world_3d.direct_space_state.intersect_shape(query).is_empty(),"Work pad cannot fit an ordinary panel: " + side)
+		var cover := root.world_3d.direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(anchor.global_position+Vector3.UP*1.1,anchor.global_position+Vector3.UP*6,1))
+		check(not cover.is_empty() and cover.collider.is_in_group("village_architecture_collision"),"Work pad is outside the covered area: " + side)
 	var roof := root.world_3d.direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(walker.camera.global_position,walker.camera.global_position+Vector3.UP*8,1))
 	check(not roof.is_empty() and roof.collider.is_in_group("village_architecture_collision"),"Pavilion does not cover its usable floor")
 	if DisplayServer.get_name() != "headless":

@@ -149,15 +149,27 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   document focus preserves its exact assertions and passes two subsequent
   trials. No production runtime or world change. Actual renders/outputs and
   limitations: [handoff 46](handoffs/46-village-applications.md),
-  [evidence](evidence/p22-t06/README.md). P22-T07 remains unstarted.
+  [evidence](evidence/p22-t06/README.md). P22-T07 was unstarted at that checkpoint.
 
-- [ ] **P22-T07 Create functional pavilion workspace.**
+- [x] **P22-T07 Create functional pavilion workspace.**
   **Depends:** P22-T06. Place usable surfaces and anchors supporting existing
   object/application interactions in a pleasant covered location.
   **Acceptance:** leave a live application at a chosen spot, walk away and
   return to the *same instance* with its within-session placement intact;
   moving/rotating other supported objects continues working. Restart
   restoration is explicitly out of scope.
+  Verified 2026-10-13 from `3478f0d`: two fixed timber worktables with physical
+  placement pads/anchors and two movable stools reuse existing panel physics
+  and furniture controls. Real terminal placement, stool move/rotate/cancel,
+  walk-away/revisit, same shell/entity/transform and live background updates
+  pass; final actual renders inspected. Headless/GPU scene checks, six default
+  graphical interaction regressions, isolated Terminal/Vim, four headless
+  runtime/map checks, 11 Python and 62 Node tests pass. Broader retained-study
+  checks are blocked by the absent asset cache; Chrome is not installed.
+  Shared-host multi-client failures and passing isolated verification are
+  recorded, without claiming a general focus repair. See
+  [handoff 50](handoffs/50-pavilion-workspace.md) and
+  [evidence](evidence/p22-t07/README.md). Stop; P22-T08 remains unstarted.
 
 - [ ] **P22-T08 Add atmosphere and visual boundaries.**
   **Depends:** P22-T07. Add distant hills/trees, path glimpses and modest

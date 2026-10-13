@@ -1,0 +1,45 @@
+Verified 9 Poly Haven village maps (offline)
+[  1%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.q4QC09
+Godot import and runtime checks passed (not visual acceptance).
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+ERROR: Double-click did not focus targeted window
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] activate (res://tests/application_objects.gd:45)
+       [2] settle (res://tests/app_launcher.gd:6)
+ERROR: Shell did not create editor.txt
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] wait_file (res://tests/terminal_input.gd:61)
+ERROR: Editor buffer or focus did not survive the walk
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] run (res://tests/village_applications.gd:140)
+       [2] wait_file (res://tests/terminal_input.gd:62)
+ERROR: Editor close removed the wrong panel or retained focus
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] run (res://tests/village_applications.gd:145)
+ERROR: Double-click did not focus targeted window
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] activate (res://tests/application_objects.gd:45)
+       [2] settle (res://tests/app_launcher.gd:6)
+ERROR: Closing applications left panels, focus or movement behind
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] run (res://tests/village_applications.gd:151)
+VILLAGE_REVISIT distance_one_way_m=12.2910289764404 shell=25637:still-here terminal_entity=a140a948c8454a8dcca51a0483292817 editor_entity=781a825fbbc2fb5b1931dbc4500c7648 background_revision_delta=24
+VILLAGE_APPLICATIONS_OK clients=2 failures=6

@@ -15,7 +15,8 @@ func ground_at(p: Vector2) -> Dictionary:
 	var query := PhysicsRayQueryParameters3D.create(Vector3(p.x,15,p.y),Vector3(p.x,-5,p.y),1)
 	# P22-T04 adds intentional structures; test terrain beneath them independently.
 	# Architecture collision/navigation is covered by village_architecture.gd.
-	for body in get_nodes_in_group("village_architecture_collision"): query.exclude += [body.get_rid()]
+	for group in ["village_architecture_collision", "village_workspace_collision"]:
+		for body in get_nodes_in_group(group): query.exclude += [body.get_rid()]
 	return root.world_3d.direct_space_state.intersect_ray(query)
 
 func place_at(p: Vector2) -> void:

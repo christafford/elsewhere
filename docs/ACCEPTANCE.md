@@ -3,6 +3,27 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-13 P22-T08 atmosphere and boundaries
+
+Agent-run and agent-observed, based on `e063fba`: original wooded foothills and
+144 instanced firs fill the middle distance beyond the existing bank, with two
+partly visible tracks and mountain-local haze. Seven actual final views were
+inspected for composition, voids and clipping; none obvious in the sampled views.
+The initial coarse firs were refined after render inspection. Playable geometry,
+application pixels and runtime/input ownership remain unchanged.
+
+Matched 1280×800 host samples add four draw calls with median frame times around
+16.7ms (final p95 at most 17.251ms), on a vsync-bound RTX 3080/private Weston GL
+output. This is a bounded regression sample, not P22-T09/Steam Deck acceptance.
+Headless/GPU atmosphere/architecture/landscape/outdoor checks, live pavilion and
+Terminal/Vim continuity, six default interaction regressions, four headless
+map/transform/runtime checks, 11 Python and 62 Node tests pass. Reactivated terminal
+and editor renders were also inspected. Legacy source assets and Chrome remain
+unavailable, so those broader fixtures are not fresh passes. No human approval,
+comfort/latency, sustained target performance or restart-persistence claim.
+See [images, counters, commands and results](evidence/p22-t08/README.md) and
+[handoff 51](handoffs/51-village-atmosphere.md). P22-T08 only is complete.
+
 ## 2026-10-13 P22-T07 pavilion workspace
 
 Agent-run and agent-observed, based on `3478f0d`: two timber worktables with

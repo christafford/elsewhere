@@ -57,7 +57,7 @@ These are geometry counts, not a performance benchmark. The former link's
 
 Buildings remain sealed exteriors. The hall's turret is decorative, not a new
 accessible room. Water jets/ripples are visual effects, not fluid simulation.
-The pavilion remains walkable and covered; work surfaces/anchors remain P22-T07.
+The pavilion remains walkable and covered; P22-T07 adds the furniture below.
 Architecture uses static mesh collision, trees only trunk cylinders, and the
 mountains have no collision. Application materials are unchanged.
 
@@ -79,4 +79,43 @@ renders and verification. [Handoff 44](../../../docs/handoffs/44-village-referen
 and the [original comparison](../../../docs/art-direction/compare.html) preserve
 the earlier checkpoints and safe switching instructions. The link hash above
 belongs to the unchanged dormant reference-1 asset. Owner review/authorization
-remains required before P22-T06.
+for P22-T06 was subsequently supplied; see handoff 46.
+
+
+## P22-T07 pavilion furniture (2026-10-13)
+
+Two original meshes authored by the Codex agent for Elsewhere, using the same
+standard-library `Model` writer as the architecture. These are original
+repository assets; no third-party models were incorporated.
+No external model or new dependency. Reuses the recorded CC0 rough-wood maps
+and existing timber/teal/metal material mapping. Rebuild independently:
+
+```sh
+python3 world/tools/build_pavilion_furniture.py
+```
+
+| Model | Form | Triangles | Instances |
+| --- | --- | ---: | ---: |
+| `pavilion_worktable.glb` | 2.52 × 1.04m framed plank top, trestle legs/braces, stretchers, brass pegs and a raised teal placement pad | 420 | 2 |
+| `pavilion_stool.glb` | 0.70m round beveled seat, four legs and stretchers; 0.58m high | 320 | 2 |
+
+Adds 1,480 placed triangles before LOD. Both GLBs and default Godot import
+settings are tracked. Coordinates remain meters/Y-up; the table pad is at
+0.98m above the pavilion floor. Geometry is deterministic and launches offline.
+
+`pavilion_workspace.gd` owns the fixed tables, fitted convex collision,
+`WorkAnchor` markers at the pad tops, and two existing `pushable_furniture.gd`
+assemblies. Anchors are physical, manually chosen support locations, with no
+snapping, window assignment or persistent identity service. The central 1.48m
+passage stays clear. Stools use ordinary carry, wheel rotation, cancel and push;
+they are movable props, with no sitting mechanic. Tables stay fixed.
+
+Verified byte-identical rebuild hashes:
+
+```text
+c044679e1d9f793cf8b2e53cd6116c1ebd340d3af58b098115941cd751489d8f  pavilion_worktable.glb
+312ccf698f83571c2cc28b8ab798fc9962bc3d48e788ea080008d54e25e87a8c  pavilion_stool.glb
+```
+
+See [P22-T07 evidence](../../../docs/evidence/p22-t07/README.md) for actual
+renders, live shell continuity and verification limits.

@@ -25,7 +25,11 @@ func run() -> void:
 	check(study.name == "Outdoor", "Default startup is not outdoors")
 	for script in ["study", "hallway", "elsewhere_rooms", "grand_foyer"]:
 		check(not ResourceLoader.has_cached("res://scripts/" + script + ".gd"), "Default startup loads legacy geometry: " + script)
-	check(get_nodes_in_group("pushable_furniture").is_empty(), "Legacy furnishings are active")
+	# P22-T07 intentionally adds two stools; still reject retained study furniture.
+	var furnishings := get_nodes_in_group("pushable_furniture")
+	check(furnishings.size() == 2, "Expected only the two pavilion stools")
+	for body in furnishings:
+		check(body.get_parent() == study.get_node("Architecture/Pavilion/Workspace") and body.name in ["WestStool", "EastStool"], "Non-pavilion furnishings are active")
 	check(get_nodes_in_group("hallway_doors").is_empty(), "Legacy doors are active")
 	var env: Environment = study.get_node("WorldEnvironment").environment
 	check(env.background_mode == Environment.BG_SKY and env.sky != null, "Outdoor sky missing")

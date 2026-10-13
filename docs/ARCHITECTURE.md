@@ -22,6 +22,14 @@ The retained study keeps autostart enabled. `--terminal` / `--terminal-demo`
 explicitly request a startup client; `--no-terminal` retains the geometry-only
 path without a compositor.
 
+P22-T07 adds a location-owned `pavilion_workspace.gd` child beneath the existing
+pavilion model. Two fixed tables have physical placement pads and local
+`WorkAnchor` markers; two stools reuse `pushable_furniture.gd`. Panels are placed
+manually and supported through existing collision/gravity. No anchor registry,
+automatic binding, compositor ownership, input policy or persistence layer is
+introduced. The desktop services continue to receive only the location's player,
+presentation nodes and placement-bounds callable.
+
 The prior main scene is retained unchanged as `study.tscn`; `study.gd` still
 supplies its physical monitor and hallway bounds when explicitly loaded.
 Desktop services do not resolve physical room paths. Both locations expose

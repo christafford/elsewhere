@@ -25,7 +25,12 @@ func _ready() -> void:
 		model.rotation.y = site.yaw
 		Materials.apply(model)
 		add_collision(model)
-		if label == "Pavilion": pavilion_access(model)
+		if label == "Pavilion":
+			pavilion_access(model)
+			var workspace := Node3D.new()
+			workspace.name = "Workspace"
+			workspace.set_script(preload("res://scripts/pavilion_workspace.gd"))
+			model.add_child(workspace)
 		elif label in ["Lodge","Guildhall","Workshop"]:
 			entrance_steps(model,3.75 if label=="Lodge" else 3.25,-1.8 if label=="Workshop" else 0.0)
 
@@ -39,8 +44,7 @@ func add_collision(node: Node) -> void:
 	for child in node.get_children(): add_collision(child)
 
 func pavilion_access(model: Node3D) -> void:
-	# A continuous north ramp provides ordinary walking access. No workspace
-	# furniture or attachment system is introduced (those belong to P22-T07).
+	# A continuous north ramp provides ordinary walking access to the workspace.
 	var mat := stone_finish()
 	var skirt := MeshInstance3D.new()
 	skirt.name = "Foundation"

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/chris/code/elsewhere/world/tools/prepare_study_assets.py", line 52, in <module>
+    prepare(Path(__file__).resolve().parents[1])
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/chris/code/elsewhere/world/tools/prepare_study_assets.py", line 22, in prepare
+    model = json.loads(source.read_text())
+                       ~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/chris/code/elsewhere/world/assets/cache/book_encyclopedia_set_01_glb.gltf'

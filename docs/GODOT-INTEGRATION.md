@@ -27,6 +27,16 @@ installed applications. It reuses the existing runtime/input paths; no new
 compositor or lifecycle architecture is introduced. See
 [handoff 46](handoffs/46-village-applications.md) for evidence and limits.
 
+P22-T07 furnishes the pavilion with two fixed worktables and two movable stools.
+Walk up its north ramp, stand behind a table looking toward the square, launch
+an application with Tab, return with Ctrl+Alt+Escape, and drag the panel above
+the teal pad. Release to let the existing panel gravity place it on the table.
+Stools use the existing drag/wheel/both-buttons rotation controls. WorkAnchor
+markers describe physical pad tops only; apps keep their session-local entities
+and bindings. Run `tools/check-godot-pavilion.sh` for the real-terminal placement,
+stool manipulation and walk-away/revisit trial. See
+[handoff 50](handoffs/50-pavilion-workspace.md).
+
 The following records the integration developed under Decision 06 / Project 21.
 The Godot study now renders real furniture and supports movement (P21-T36).
 The legacy `--room-camera` executable remains separate. The experimental

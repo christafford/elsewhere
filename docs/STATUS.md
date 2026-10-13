@@ -1,4 +1,35 @@
-# Current direction — Elsewhere (2026-10-12)
+# Current direction — Elsewhere (2026-10-13)
+
+## P22-T07 verified (2026-10-13, from `3478f0d`)
+
+The covered pavilion now has two fixed timber worktables facing the square,
+physical placement pads/anchors, and two movable stools. Location-owned geometry
+reuses the existing panel support/gravity and furniture controls. No compositor,
+desktop ownership, launcher, input or client-shader changes.
+
+Verified by automated checks: a real terminal lands on the chosen pad; another
+stool moves/rotates and cancels correctly; walking into the square and returning
+preserves the panel entity, transform, shell PID and variable. Fifty background
+frame revisions advance. Client-owned close and owned-child shutdown pass.
+Import/startup/bridge build; headless/GPU architecture, landscape and outdoor;
+six default-world graphical interaction regressions; isolated Terminal/Vim;
+four headless transform/map/runtime checks; 11 Python and 62 Node tests pass.
+Model regeneration, documentation links/task parsing and diff checks pass.
+
+Agent-observed: eight final actual pavilion renders show usable shaded work
+surfaces, open circulation, the square-facing view and readable application mode.
+Initial tabletop dimensions/layout were corrected after render inspection.
+See [evidence](evidence/p22-t07/README.md) and
+[handoff 50](handoffs/50-pavilion-workspace.md).
+
+Not freshly verified: full retained-study suite (source asset cache absent),
+Chrome (not installed), human comfort/art approval, restart restoration or target
+performance. Two shared-X11 multi-client trials failed; the unchanged test passes
+on the documented private Weston GL/fake-seat display. Exact interference source
+was not established; no general focus repair claimed. All failures/limits recorded.
+
+Next task: **stop after P22-T07**. P22-T08 requires a separate owner request;
+no later task or unattended continuation is authorized.
 
 ## Code review item 3 verified (2026-10-12, from `a3ae3df`)
 
@@ -68,7 +99,7 @@ The owner selected **version 2**, the weathered mountain village, and explicitly
 requested P22-T06, authorizing progress past the P22-T05 art checkpoint.
 Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md) govern
 current world work; Project 21 below is historical.
-**P22-T01 through P22-T06 are complete. P22-T07 is unstarted and unauthorized.**
+**P22-T01 through P22-T07 are complete. P22-T08 is unstarted and unauthorized.**
 
 ## P22-T06 verified (2026-10-12, from `a13b671`)
 

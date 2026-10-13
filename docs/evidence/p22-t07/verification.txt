@@ -1,0 +1,92 @@
+P22-T07 verification — 2026-10-13, base 3478f0d plus task changes.
+
+architecture:
+Godot import and runtime checks passed (not visual acceptance).
+VILLAGE_ARCHITECTURE_OK mode=headless exteriors=3 landmark=1 pavilion=1 failures=0
+VILLAGE_ARCHITECTURE_OK mode=X11 exteriors=3 landmark=1 pavilion=1 failures=0
+Architecture checks passed; inspect .tools/village-architecture-test/*.png.
+
+landscape:
+Godot import and runtime checks passed (not visual acceptance).
+VILLAGE_LANDSCAPE_OK mode=headless samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.00555356609788 failures=0
+VILLAGE_LANDSCAPE_OK mode=X11 samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.0055534423753 failures=0
+Landscape checks passed; inspect .tools/village-landscape-test/*.png.
+
+outdoor:
+Godot import and runtime checks passed (not visual acceptance).
+OUTDOOR_STARTUP_OK mode=headless boundaries=10 failures=0
+OUTDOOR_STARTUP_OK mode=X11 boundaries=10 failures=0
+Outdoor startup checks passed; inspect .tools/outdoor-startup-test/*.png.
+
+village-isolated:
+Godot import and runtime checks passed (not visual acceptance).
+VILLAGE_REVISIT distance_one_way_m=12.2910289764404 shell=29822:still-here terminal_entity=69e5b8a1e3a1dec67093831094b0ed1f editor_entity=078ef07fce4c590459b5c32483e41206 background_revision_delta=22
+VILLAGE_APPLICATIONS_OK clients=2 failures=0
+Village application checks passed; inspect /home/chris/code/elsewhere/.tools/village-applications-test/*.png.
+
+screen_color:
+SCREEN_COLOR_OK failures=0
+
+terminal_input:
+TERMINAL_INPUT_OK repeat_characters=9 pixels=11163 failures=0
+
+terminal_pointer:
+TERMINAL_POINTER_OK selection_pixels=7496 scroll_pixels=1875 failures=0
+
+terminal_resize:
+TERMINAL_RESIZE_OK cells=[(77, 22), (95, 25), (68, 18), (103, 26)] pixels=8573 failures=0
+
+app_launcher:
+APP_LAUNCHER_OK entries=49 failures=0
+
+application_transition:
+APPLICATION_TRANSITION_OK failures=0
+
+Python tests:
+.
+(desktop-apps.py:20206): Gtk-WARNING **: 10:20:58.417: Could not find the icon 'application-x-executable'. The 'hicolor' theme
+was not found either, perhaps you need to install it.
+You can get a copy from:
+	http://icon-theme.freedesktop.org/releases
+......
+----------------------------------------------------------------------
+Ran 7 tests in 0.411s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.053s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.008s
+
+OK
+
+Node parser/plugin tests:
+✔ invalid scopes saved by an older plugin are not resumed (44.706076ms)
+ℹ tests 62
+ℹ suites 0
+ℹ pass 62
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2817.87204
+
+Original furniture: deterministic byte-identical rebuild; prior village GLBs unchanged.
+pavilion_worktable.glb 420 triangles, 43392 bytes, SHA256 c044679e1d9f793cf8b2e53cd6116c1ebd340d3af58b098115941cd751489d8f
+pavilion_stool.glb 320 triangles, 32468 bytes, SHA256 312ccf698f83571c2cc28b8ab798fc9962bc3d48e788ea080008d54e25e87a8c
+
+Final pavilion trial, private Weston display:
+Godot import and runtime checks passed (not visual acceptance).
+PAVILION_REVISIT shell=43110:at-my-desk entity=b1f5b4974dfe76c1e3362adf6ddbfc60 anchor_offset=(0.0, 0.447161, -0.02697) background_revisions=50 placed=[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-20.0, 2.479015, 16.09303)]
+PAVILION_WORKSPACE_OK failures=0
+Pavilion workspace checks passed; inspect /home/chris/code/elsewhere/.tools/pavilion-workspace-test/*.png.
+
+Full retained-study suite: BLOCKED by missing cached assets; four preceding headless checks passed. See study-missing-assets.txt and study-staging.txt.
+Chrome: UNAVAILABLE, installed Google Chrome desktop entry missing. No fresh browser pass claimed. See chrome-unavailable.txt.
+Shared X11 host multi-client failures retained in log.txt/second-log.txt; unchanged isolated trial passes above.
+
+Final documentation validation: 232 local links across eight files; P22-T07 complete, T08/T09 and human T10 unchanged/unchecked. Shell/Python syntax and git diff --check pass.

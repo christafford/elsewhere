@@ -19,6 +19,8 @@ struct SeatPointerClient {
 };
 
 struct ElsewhereSeat {
+    struct ElsewhereDataDevice* data_device = nullptr;
+    uint32_t focus_serial = 0;
     struct wl_display* display;
     struct wl_global* global;
     struct wl_list resources;

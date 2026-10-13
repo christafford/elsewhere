@@ -118,8 +118,12 @@ metadata; launch resolves a desktop ID again and execs argv with the private
 display environment. `Terminal=true` uses Weston and an exec wrapper. The
 launcher serializes pending launches and selects a newly mapped window; this
 initial candidate association is not durable identity or complete multiwindow
-matching. Every launcher selection starts a fresh instance; live labels map
-window handles to desktop IDs, while recents deduplicate by desktop ID.
+matching. Launcher selections start fresh instances except native Firefox: it
+uses a persistent repository-local profile and returns to its mapped window.
+Ctrl+N inside Firefox creates additional windows. If only an unassociated
+browser-created window remains, the launcher asks the user to select it in the
+world instead of starting a competing profile owner. Live labels map window
+handles to desktop IDs, while recents deduplicate by desktop ID.
 Verified successful launches populate eight persistent desktop IDs.
 See [Decision 07](decisions/07-application-launcher.md) for dependencies and limits.
 
@@ -146,8 +150,13 @@ motion, Linux button codes and scroll through that session, with no world or
 margin clicks. The seat owns focused-client delivery, bounded held-button state,
 implicit grab and destruction cleanup. Mode/focus exit releases buttons before
 leave. See [pointer handoff](handoffs/22-godot-terminal-pointer.md) for exact APIs,
-validation and limitations: client cursors, clipboard and popup menus remain
-unsupported even though real text highlighting and scrollback work.
+validation and limitations. Client cursors and popup menus remain unsupported.
+The Firefox repair adds seat-owned `wl_data_device_manager` v1: focused clients
+can exchange declared clipboard MIME types through FDs, and stale offers lose
+read authorization after focus/selection changes. Source destruction clears the
+selection; no host clipboard, persistent clipboard manager or drag/drop support
+is claimed. This global also enables GTK to initialize its input seat. See
+[Firefox evidence](handoffs/52-firefox-launch.md).
 
 `request_resize(handle, width, height)` suggests a bounded window-geometry size
 through xdg configure; the client chooses when/what to commit. `window_state`

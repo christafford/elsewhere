@@ -1,5 +1,30 @@
 # Current direction — Elsewhere (2026-10-13)
 
+## Firefox launch repair verified (2026-10-13, from `4235435`)
+
+Native Firefox now uses its own persistent Elsewhere profile and Wayland backend.
+Repeat launcher selection reactivates its existing associated window; Ctrl+N
+creates additional windows. The shared native seat now provides GTK's required
+data-device global with focused clipboard transfer and lifetime checks. The host
+Firefox stayed running; no host profile or service was changed.
+
+Verified by automated checks: native build and 36/36 Meson tests; new data-device
+ASan/UBSan trial; full Godot binding suite; real Firefox trusted typing, clipboard,
+click, world return/reuse, independent windows, close confirmation and profile
+release/relaunch. Six default graphical interaction checks, Terminal/Vim village
+continuity, pavilion workspace, 11 Python and 62 Node tests pass. Import/startup,
+syntax, document links, unchanged roadmap checkboxes and diff checks pass.
+
+Agent-observed: actual browser input/click/world/relaunch renders and retained
+terminal/editor/pavilion renders inspected. See [evidence](evidence/firefox-launch-fix/README.md)
+and [handoff 52](handoffs/52-firefox-launch.md) for commands, failed trials and
+limits. Firefox 157.0.1 on private Weston GL/RTX 3080; no human acceptance,
+general browser compatibility, host clipboard, drag/drop or multi-runtime profile
+sharing claim. Chrome and retained study source assets remain unavailable.
+
+Next task: **stop after the owner-reported Firefox repair**. Restart Elsewhere
+to load the rebuilt extension. P22-T09 remains unstarted and unauthorized.
+
 ## P22-T08 verified (2026-10-13, from `e063fba`)
 
 The existing backdrop now owns wooded foothills, 144 instanced firs, two distant

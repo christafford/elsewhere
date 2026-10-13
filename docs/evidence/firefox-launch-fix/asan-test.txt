@@ -1,0 +1,8 @@
+ninja: Entering directory `/home/chris/code/elsewhere/.tools/firefox-launch-fix/asan-build'
+ninja: no work to do.
+1/1 elsewhere:data-device OK              0.01s
+
+Ok:                1
+Fail:              0
+
+Full log written to /home/chris/code/elsewhere/.tools/firefox-launch-fix/asan-build/meson-logs/testlog.txt

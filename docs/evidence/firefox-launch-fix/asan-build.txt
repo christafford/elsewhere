@@ -1,0 +1,6 @@
+ninja: Entering directory `/home/chris/code/elsewhere/.tools/firefox-launch-fix/asan-build'
+[1/3] Compiling C++ object libcompositor-protocol.a.p/src_data-device.cpp.o
+[2/3] Linking static target libcompositor-protocol.a
+[3/3] Linking target test_data_device
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /usr/bin/ninja -C /home/chris/code/elsewhere/.tools/firefox-launch-fix/asan-build test_data_device

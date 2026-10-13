@@ -1,0 +1,15 @@
+ninja: Entering directory `/home/chris/code/elsewhere/build'
+[1/12] Compiling C++ object libcompositor-protocol.a.p/src_data-device.cpp.o
+[2/12] Linking static target libcompositor-protocol.a
+[3/12] Linking target test_compositor_core
+[4/12] Linking target libelsewhere_godot.so
+[5/12] Linking target test_surface_tree
+[6/12] Linking target test_host_input
+[7/12] Linking target test_commit_focus
+[8/12] Linking target test_data_device
+[9/12] Linking target test_frame_snapshot
+[10/12] Generating symbol file libelsewhere_godot.so.p/libelsewhere_godot.so.symbols
+[11/12] Linking target test_compositor_runtime
+[12/12] Linking target elsewhere
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /usr/bin/ninja -C /home/chris/code/elsewhere/build

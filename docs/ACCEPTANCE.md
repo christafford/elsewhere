@@ -3,6 +3,32 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-13 agent-run Firefox launch repair
+
+Based on `4235435`: Firefox 157.0.1 launches through the real desktop catalog
+using a separate persistent profile while the owner's existing Firefox process
+remains running. The real-client test passes trusted typing, clipboard copy/paste,
+click/save, world return, launcher reuse preserving entity/PID, Ctrl+N,
+independent close, prevention of another profile owner, confirmed quit and fresh
+typing after relaunch. It uses local HTML as test content, not a mock browser.
+Test-only homepage prefs bypass onboarding; production prefs are untouched.
+
+Agent inspected actual [input](evidence/firefox-launch-fix/firefox-input.png),
+[click](evidence/firefox-launch-fix/firefox-pointer.png),
+[world panel](evidence/firefox-launch-fix/firefox-in-world.png) and
+[relaunch](evidence/firefox-launch-fix/firefox-relaunched.png) captures, plus
+retained terminal/editor/pavilion renders. Native 36/36, focused clipboard
+protocol + ASan/UBSan, binding, six default graphical interaction trials,
+Terminal/Vim continuity, pavilion and Python/Node checks pass. Environment:
+Godot 4.7.2, private Weston 15.0.1 GL/fake-seat output, 1280×800, RTX 3080 and
+NVIDIA 615.78.08. The retained resize trial uses 1600×1000.
+
+See [handoff 52](handoffs/52-firefox-launch.md) and
+[evidence](evidence/firefox-launch-fix/README.md) for reproduction, failed trials
+and precise limits. No human acceptance, general menus/dialogs/downloads,
+accelerated-browser, host clipboard, drag/drop or Firefox resize/scroll claim.
+Chrome is absent and legacy-study assets remain missing. No P22 gate advanced.
+
 ## 2026-10-13 P22-T08 atmosphere and boundaries
 
 Agent-run and agent-observed, based on `e063fba`: original wooded foothills and

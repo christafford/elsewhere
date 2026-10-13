@@ -24,3 +24,17 @@ func _ready() -> void:
 		tree.add_child(body)
 		body.add_child(collider)
 		body.add_to_group("village_architecture_collision")
+
+	# Low decorative borders sit beside facades, away from doors and routes.
+	# No new collision or per-frame behavior; the walking surface is unchanged.
+	for p in [Vector2(-16,-10.6), Vector2(-8.5,-10.6), Vector2(12,-12.4), Vector2(13.4,-5.4)]:
+		var flowers: Node3D = preload("res://art/village/courtyard_flowers.glb").instantiate()
+		flowers.name = "FlowerBorder"
+		add_child(flowers)
+		flowers.position = Vector3(p.x,Landscape.height_at(p)+.015,p.y)
+		flowers.scale = Vector3.ONE * .8
+		if p.x > 13: flowers.rotation.y = PI/2
+		Materials.apply(flowers)
+		# Tiny border shadows are lost at walking distance; avoid extra sun passes.
+		for mesh in flowers.find_children("*", "MeshInstance3D"):
+			mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

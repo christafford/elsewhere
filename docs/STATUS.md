@@ -1,5 +1,32 @@
 # Current direction — Elsewhere (2026-10-13)
 
+## Sunlit art revision verified (2026-10-13, from `a597286`)
+
+The owner's new `art-direction-1.jpg` reference now guides the active village:
+terracotta roofs, cream plaster, warm oak, sandy stone, fresh greens and four
+small pink/amber/orange flower borders, balanced by blue sky/mountain distance.
+The current art brief supersedes the prior gray/slate palette. All existing
+layout, collision, workspace, desktop ownership and input paths remain intact.
+
+Verified by automated checks: import/default startup/bridge build, headless/GPU
+architecture and atmosphere, six default graphical interaction regressions,
+real Terminal/Vim continuity, pavilion placement/stool/shell continuity and
+Firefox typing/clipboard/click/reuse/close/relaunch. Exact application RGB/gray
+swatches survive the lighting changes. Fourteen Python and 62 Node tests pass;
+new flower-model regeneration is byte-identical. Links/task references/diffs pass.
+
+Agent-observed: actual matched before/after views and close material/foliage/
+pavilion renders, plus live terminal/editor/Firefox renders inspected. Initial
+excessively bright materials and unnecessary flower shadow passes were corrected.
+See [evidence](evidence/sunlit-village/README.md) and
+[handoff 53](handoffs/53-sunlit-village-palette.md) for results and host limits.
+No human art approval, exact reference reconstruction or sustained target-hardware
+performance claim. Chrome/retained-study source assets remain unavailable;
+no fresh native-suite result is claimed for this scene-only revision.
+
+Next task: **stop after this owner-requested art revision**. Restart Elsewhere
+to see it. P22-T09 and the human P22-T10 gate remain unchecked and unauthorized.
+
 ## Firefox launch repair verified (2026-10-13, from `4235435`)
 
 Native Firefox now uses its own persistent Elsewhere profile and Wayland backend.

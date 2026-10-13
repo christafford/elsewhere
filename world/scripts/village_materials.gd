@@ -2,14 +2,19 @@
 extends RefCounted
 
 const SURFACE = preload("res://scripts/village_surface.gdshader")
+# Owner reference art-direction-1: sunlit plaster, clay roofs and warm oak.
 const COLORS := {
-	"lime": Color("aaa99b"), "ochre": Color("989a90"),
-	"stone": Color("737972"), "cut_stone": Color("96988c"),
-	"wood": Color("69665b"), "timber": Color("373932"),
-	"slate": Color("3f4b55"), "tile": Color("66554c"),
-	"glass": Color("293537"), "teal": Color("505951"),
-	"leaf": Color("557334"), "leaf_light": Color("7d9149"), "leaf_dark": Color("354d29"),
-	"water": Color("627d80"), "water_jet": Color("bbcdd0"),
+	"lime": Color("d6c9ae"), "ochre": Color("cbbb93"),
+	"stone": Color("9f977f"), "cut_stone": Color("ada58f"),
+	"wood": Color("a27a51"), "timber": Color("714f33"),
+	"slate": Color("a76637"), "tile": Color("b97643"),
+	"roof0": Color("b67540"), "roof1": Color("c88950"),
+	"roof2": Color("a96335"), "roof3": Color("d2965c"), "roof4": Color("bb7a46"),
+	"glass": Color("3a514f"), "teal": Color("48786b"),
+	"leaf": Color("578435"), "leaf_light": Color("7c9f48"), "leaf_dark": Color("365d2d"),
+	"pink": Color("e46b9a"), "yellow": Color("efa836"), "blue": Color("dc793b"),
+	"petal_white": Color("f3e7bf"), "terracotta": Color("b8764d"),
+	"water": Color("568e91"), "water_jet": Color("c1dfe0"),
 }
 
 static func apply(node: Node) -> void:

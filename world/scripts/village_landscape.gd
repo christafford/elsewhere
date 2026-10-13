@@ -133,14 +133,14 @@ func build_boundary() -> void:
 	face.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var rock := ShaderMaterial.new()
 	rock.shader = preload("res://scripts/village_surface.gdshader")
-	rock.set_shader_parameter("base_color",Color("7a8078"))
+	rock.set_shader_parameter("base_color",Color("94917c"))
 	rock.set_shader_parameter("surface_kind",2)
 	rock.set_shader_parameter("surface_roughness",0.95)
 	face.set_material(rock)
 	var top := SurfaceTool.new()
 	top.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var turf := StandardMaterial3D.new()
-	turf.albedo_color = Color("596447")
+	turf.albedo_color = Color("6f8746")
 	turf.roughness = 1.0
 	top.set_material(turf)
 	for i in range(BOUNDARY.size()):

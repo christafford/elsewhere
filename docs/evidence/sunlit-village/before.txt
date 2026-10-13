@@ -1,0 +1,36 @@
+Verified 9 Poly Haven village maps (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.3pxkwz
+Godot import and runtime checks passed (not visual acceptance).
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ATMOSPHERE_GEOMETRY firs=144 tree_triangles=3327 foothill_triangles=1680
+VILLAGE_ATMOSPHERE_OK mode=headless baseline=false failures=0
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+WARNING: Failed to load cached shader, recompiling.
+     at: _load_from_cache (drivers/gles3/shader_gles3.cpp:615)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+ATMOSPHERE_GEOMETRY firs=144 tree_triangles=3327 foothill_triangles=1680
+ATMOSPHERE_SAMPLE {"draw_calls":426.0,"median_ms":16.716,"p95_ms":17.43,"primitives":1319547.0,"view":"arrival"}
+ATMOSPHERE_SAMPLE {"draw_calls":61.0,"median_ms":16.662,"p95_ms":16.922,"primitives":646863.0,"view":"north-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":53.0,"median_ms":16.663,"p95_ms":17.035,"primitives":588783.0,"view":"east-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":38.0,"median_ms":16.674,"p95_ms":16.934,"primitives":427035.0,"view":"south-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":41.0,"median_ms":16.657,"p95_ms":17.408,"primitives":501663.0,"view":"west-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":449.0,"median_ms":16.638,"p95_ms":17.402,"primitives":1258403.0,"view":"south-return"}
+ATMOSPHERE_SAMPLE {"draw_calls":41.0,"median_ms":16.682,"p95_ms":17.438,"primitives":501663.0,"view":"pavilion-edge"}
+VILLAGE_ATMOSPHERE_OK mode=Wayland baseline=false failures=0
+Atmosphere checks passed; inspect .tools/p22-t08/final/*.png and render-cost.json.

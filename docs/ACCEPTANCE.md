@@ -3,6 +3,29 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-13 owner-requested sunlit art revision
+
+Agent-run/agent-observed, based on `a597286`: the active village follows the
+new owner reference's warm terracotta/cream/oak palette, fresh greens and blue
+mountain/sky counterpoint. Four original small flower borders supply pink,
+amber and orange accents. Existing routes, collisions and desktop services
+are unchanged. Actual matched before/after and close material/pavilion renders
+were inspected; over-bright initial material values and tiny flower shadow costs
+were corrected. This is a palette/mood interpretation, not a claim of matching
+the reference's geometry or photographic detail.
+
+Import/startup/bridge build, headless/GPU architecture/atmosphere, all six default
+interaction regressions, real Terminal/Vim continuity, pavilion manipulation/
+shell revisit and real Firefox launch/input/clipboard/reuse/close/relaunch pass.
+Exact screen-color swatches are unchanged. Live application renders were also
+inspected; 14 Python and 62 Node checks plus deterministic flower rebuild pass.
+
+[Before/after evidence](evidence/sunlit-village/README.md) and
+[handoff 53](handoffs/53-sunlit-village-palette.md) record settings, raw counters,
+commands and limits. Private Weston GL, Godot 4.7.2 and RTX 3080 host samples
+are not Steam Deck or sustained performance acceptance. No human approval or
+P22 gate advanced. Chrome and retained-study assets remain unavailable.
+
 ## 2026-10-13 agent-run Firefox launch repair
 
 Based on `4235435`: Firefox 157.0.1 launches through the real desktop catalog

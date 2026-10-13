@@ -16,8 +16,8 @@ void fragment() {
     // The scanned patch covers 2m: stones stay roughly 20–30cm across.
     vec2 uv=UV*.5;
     vec3 stone=texture(cobble_diff,uv).rgb;
-    stone*=.40+.12*noise(UV*.19);
-    vec3 grass=mix(vec3(.07,.10,.044),vec3(.135,.175,.075),noise(UV*2.0));
+    stone*=vec3(.58,.56,.49)*(.90+.10*noise(UV*.19));
+    vec3 grass=mix(vec3(.115,.175,.038),vec3(.19,.26,.058),noise(UV*2.0));
     ALBEDO=mix(grass,stone,paving);
     ROUGHNESS=mix(.98,clamp(texture(cobble_rough,uv).r,.85,1.0),paving);
     NORMAL_MAP=mix(vec3(.5,.5,1),texture(cobble_normal,uv).rgb,paving);

@@ -15,7 +15,28 @@ multiple views. Leave application content unlit/readable. No additional
 functional locations, building interiors, creatures, NPCs, weather systems, or
 day/night simulation in this milestone.
 
-## Selected direction: reference 2 (owner, 2026-10-11)
+## Current palette: sunlit village (owner, 2026-10-13)
+
+Follow [art-direction-1.jpg](art-direction/art-direction-1.jpg), supplied by the
+owner to replace the drab color mood. This is a warmer evolution of the existing
+village: clay/terracotta roof courses, cream plaster, honey-brown joinery,
+sand-colored stone, fresh meadow greens and pink/amber/orange flower accents.
+Keep the blue sky and hazy blue mountain distance as a cool counterpoint.
+Aim for inviting clear daylight, with shaded timber still readable and material
+grain intact. Avoid fluorescent leaves, clipped cream highlights, uniform brown
+tinting and global saturation effects that alter application pixels.
+
+Retain the current landmark, building silhouettes/footprints, walkable routes,
+covered workspace and desktop interactions. The reference guides color and mood;
+it does not authorize more destinations, interiors or a wholesale geometry reset.
+Use the existing licensed texture maps and original model pipeline. Four small
+facade-side flower borders supply color at walking height. Compare fixed actual
+Godot views before/after, and verify live app colors and interactions separately.
+See [handoff 53](handoffs/53-sunlit-village-palette.md) for this bounded revision.
+The owner requested this direction; final visual approval is still theirs.
+P22-T09 and the human gate remain separate and unchecked.
+
+## Previous selected direction: reference 2 (owner, 2026-10-11)
 
 The owner requested [reference 2](art-direction/village-square-example-2.jpg)
 as an alternative to the preceding courtyard, with the ability to compare and

@@ -1,0 +1,6 @@
+2026-10-13 agent verification
+PASS changed Markdown links
+PASS numbered roadmap checkboxes unchanged from a597286
+PASS Python syntax: world/tools/build_village_flowers.py
+PASS byte-identical flower-model rebuild
+PASS git diff --check

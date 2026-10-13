@@ -48,7 +48,7 @@ sources_display = files(
 
 # Protocol ownership is shared by the legacy frontend and the Godot runtime.
 compositor_protocol_lib = static_library('compositor-protocol',
-    'src/seat.cpp', 'src/xdg-shell.cpp', xdg_shell_server_h, xdg_shell_code,
+    'src/seat.cpp', 'src/data-device.cpp', 'src/xdg-shell.cpp', xdg_shell_server_h, xdg_shell_code,
     cpp_args: cpp_args, pic: true,
     dependencies: [wayland_server, xkbcommon], install: false)
 
@@ -262,3 +262,9 @@ surface_tree_test = executable('test_surface_tree',
     link_with: compositor_core_lib, dependencies: [wayland_client, wayland_server, xkbcommon],
     cpp_args: cpp_args, include_directories: include_directories('src'))
 test('surface-tree', surface_tree_test, suite: 'p21', timeout: 30)
+
+# GTK requires a data-device manager before creating its keyboard/pointer seat.
+data_device_test = executable('test_data_device', 'tests/test_data_device.cpp',
+    link_with: compositor_core_lib, dependencies: [wayland_client, wayland_server, xkbcommon],
+    cpp_args: cpp_args, include_directories: include_directories('src'))
+test('data-device', data_device_test, timeout: 15)

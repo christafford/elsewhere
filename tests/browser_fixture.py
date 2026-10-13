@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local test page; real Chrome is the client under test, not this fixture."""
+"""Local test page; a real browser is the client under test, not this fixture."""
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 import json
@@ -12,7 +12,7 @@ page = b'''<!doctype html><meta charset="utf-8"><title>Elsewhere browser accepta
 h1{font-size:36px}input{display:block;font:24px sans-serif;padding:14px;width:470px}
 button{margin-top:24px;border:0;background:rgb(20,120,200);color:white;padding:20px 36px;font:22px sans-serif}
 footer{margin-top:1100px;padding:30px;background:#253338;color:white}</style>
-<h1>A browser in the elsewhere</h1><p>This page is running in real Chrome through Elsewhere's Wayland compositor.</p>
+<h1>A browser in the elsewhere</h1><p>This page is running in a real browser through Elsewhere's Wayland compositor.</p>
 <label>Workspace note<input id="note" autofocus autocomplete="off"></label>
 <button id="save">Save note</button><p id="result">Ready for keyboard and pointer input.</p>
 <footer>End of the local scrolling test page.</footer>
@@ -24,7 +24,7 @@ save.onclick=e=>{clicks++;trusted=e.isTrusted;result.textContent='Saved: '+note.
 onresize=report;onscroll=report;
 onload=()=>{
   note.focus();
-  // Element autofocus can precede Chrome's content-view focus after navigation.
+  // Element autofocus can precede the browser's content-view focus after navigation.
   // Wait for actual document focus, not a fixed delay or a sacrificial key.
   const reportFocused=()=>{
     if(document.hasFocus()&&document.activeElement===note) report();

@@ -1,0 +1,7 @@
+2026-10-13 agent final validation
+PASS changed Markdown relative links
+PASS all numbered task checkboxes unchanged from 4235435
+PASS Python syntax for helper, helper tests, browser fixture
+PASS bash -n tools/check-firefox-application.sh
+PASS git diff --check
+Host Firefox PID 1349 still running; original start Tue Oct 13 09:57:40 2026

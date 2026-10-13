@@ -1,5 +1,6 @@
 #include "seat.h"
 #include "seat-private.h"
+#include "data-device.h"
 #include "compositor-private.h"
 #include <algorithm>
 #include <cerrno>
@@ -232,11 +233,15 @@ struct ElsewhereSeat* seat_create(struct wl_display* display, uint32_t version) 
         return nullptr;
     }
 
+    seat->data_device = data_device_create(seat);
+    if (!seat->data_device) { seat_destroy(seat); return nullptr; }
+
     return seat;
 }
 
 void seat_destroy(struct ElsewhereSeat* seat) {
     if (!seat) return;
+    data_device_destroy(seat->data_device);
     wl_list_remove(&seat->keyboard_focus_destroy.link);
     wl_list_remove(&seat->pointer_focus_destroy.link);
 
@@ -345,6 +350,7 @@ static void keyboard_focus_destroyed(wl_listener* listener, void* data) {
     // The surface proxy is already gone. Never send a leave referencing it.
     keyboard_release_all(seat);
     seat->focused_surface_resource = nullptr;
+    data_device_focus(seat->data_device);
     if (seat->keyboard_compositor && seat->keyboard_compositor->focused_surface_resource == data)
         seat->keyboard_compositor->focused_surface_resource = nullptr;
     wl_list_remove(&seat->keyboard_focus_destroy.link);
@@ -368,6 +374,7 @@ void seat_set_keyboard_focus(ElsewhereSeat* seat, wl_resource* surface, Elsewher
     comp->keyboard_focus_serial = serial;
     comp->focused_surface_resource = surface;
     seat->focused_surface_resource = surface;
+    seat->focus_serial = serial;
     seat->keyboard_compositor = comp;
     if (surface) {
         wl_resource_add_destroy_listener(surface, &seat->keyboard_focus_destroy);
@@ -376,6 +383,7 @@ void seat_set_keyboard_focus(ElsewhereSeat* seat, wl_resource* surface, Elsewher
         wl_list_for_each(kc, &seat->keyboard_clients, seat_link)
             if (wl_resource_get_client(kc->resource) == client) keyboard_enter(seat, kc->resource, serial);
     }
+    data_device_focus(seat->data_device);
 }
 
 void compositor_set_seat(struct ElsewhereCompositor* compositor,

@@ -1,0 +1,43 @@
+ninja: Entering directory `/home/chris/code/elsewhere/build'
+ninja: no work to do.
+ 1/36 p1 - elsewhere:client-globals      OK              0.76s
+ 2/36 p1 - elsewhere:smoke-headless      OK              0.85s
+ 3/36 p1 - elsewhere:client-toplevel     OK              1.75s
+ 4/36 p1 - elsewhere:client-frame        OK              2.78s
+ 5/36 p3 - elsewhere:mode-exit           OK              2.15s
+ 6/36 p3 - elsewhere:mode-routing        OK              2.29s
+ 7/36 p1 - elsewhere:launch-client       OK              3.75s
+ 8/36 p3 - elsewhere:focus-loss          OK              2.21s
+ 9/36 p1 - elsewhere:input-routing       OK              4.71s
+10/36 p3 - elsewhere:select-panel        OK              2.18s
+11/36 p1 - elsewhere:lifecycle           OK              5.68s
+12/36 p1 - elsewhere:render-mixed        OK              5.79s
+13/36 p2 - elsewhere:math                OK              0.00s
+14/36 p4 - elsewhere:host-events         OK              0.00s
+15/36 p1 - elsewhere:render-shm          OK              5.83s
+16/36 p2 - elsewhere:render-panel        OK              5.83s
+17/36 p2 - elsewhere:compositor-core     OK              0.00s
+18/36 p2 - elsewhere:render-egl          OK              5.82s
+19/36 elsewhere:commit-focus             OK              0.10s
+20/36 p4 - elsewhere:host-input          OK              0.17s
+21/36 elsewhere:data-device              OK              0.00s
+22/36 p21 - elsewhere:frame-snapshot     OK              0.16s
+23/36 p21 - elsewhere:surface-tree       OK              0.12s
+24/36 p21 - elsewhere:compositor-runtime OK              0.33s
+25/36 p3 - elsewhere:present-fullsize    OK              4.12s
+26/36 p4 - elsewhere:xdg-shell           OK              7.15s
+27/36 p2 - elsewhere:camera-move         OK              7.19s
+28/36 p2 - elsewhere:render-lifecycle    OK              7.72s
+29/36 p2 - elsewhere:render-update       OK              8.87s
+30/36 p4 - elsewhere:room-render         OK              5.20s
+31/36 p4 - elsewhere:teleport            OK              7.17s
+32/36 p4 - elsewhere:room-collision      OK              8.18s
+33/36 p5 - elsewhere:focus-cycle         OK              6.87s
+34/36 p4 - elsewhere:milestone1          OK             12.27s
+35/36 p3 - elsewhere:app-exit            OK             15.11s
+36/36 p4 - elsewhere:p4-surface-state    OK             20.38s
+
+Ok:                36
+Fail:              0
+
+Full log written to /home/chris/code/elsewhere/build/meson-logs/testlog.txt

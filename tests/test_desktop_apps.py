@@ -107,6 +107,51 @@ class DesktopApps(unittest.TestCase):
             self.assertEqual(module.graphical_command(['/usr/bin/editor'], temp), ['/usr/bin/editor'])
             self.assertEqual(module.graphical_command(['/usr/bin/google-chrome-stable', 'https://example.test'], temp), argv)
 
+    def test_firefox_recipe_separates_host_profile_and_reuses_browser_data(self):
+        with tempfile.TemporaryDirectory(prefix='elsewhere profiles ') as temp:
+            for binary in ('firefox', 'firefox-esr'):
+                command = ['/usr/bin/' + binary, '--private-window', 'https://example.test']
+                argv = module.graphical_command(command, temp)
+                profile = Path(temp) / binary
+                self.assertEqual(argv, command + ['--new-instance', '--profile', str(profile)])
+                self.assertEqual(profile.stat().st_mode & 0o777, 0o700)
+                (profile / 'keep.txt').write_text('existing browser data')
+                self.assertEqual(module.graphical_command(command, temp), argv)
+                self.assertEqual((profile / 'keep.txt').read_text(), 'existing browser data')
+                self.assertEqual(command, ['/usr/bin/' + binary, '--private-window', 'https://example.test'])
+
+    def test_firefox_explicit_profile_selectors_cannot_override_isolation(self):
+        with tempfile.TemporaryDirectory() as temp:
+            for selector in ('-P', '--profile', '--profile=/host/profile', '-profile', '--ProfileManager'):
+                with self.subTest(selector=selector), self.assertRaisesRegex(ValueError, 'explicit profile'):
+                    module.graphical_command(['/usr/bin/firefox', selector], temp)
+            self.assertEqual(list(Path(temp).iterdir()), [])
+
+    def test_firefox_launch_environment_and_single_instance_catalog(self):
+        import socket
+        with tempfile.TemporaryDirectory() as temp, socket.socket(socket.AF_UNIX) as display:
+            base = Path(temp)
+            binary = base / 'firefox'
+            binary.write_text('#!/bin/sh\nexit 0\n')
+            binary.chmod(0o755)
+            item = app('Exec=' + str(binary) + '\n')
+            display_path = str(base / 'display')
+            display.bind(display_path)
+            with mock.patch.object(module, 'applications', return_value={'firefox.desktop': item}), \
+                 mock.patch.dict(os.environ, {'ELSEWHERE_BROWSER_PROFILE_DIR': str(base / 'profiles'), 'MOZ_ENABLE_WAYLAND': '0'}), \
+                 mock.patch.object(module.os, 'execvpe', side_effect=RuntimeError('exec boundary')) as execute:
+                self.assertTrue(module.catalog(base / 'icons')['entries'][0]['single_instance'])
+                with self.assertRaisesRegex(RuntimeError, 'exec boundary'):
+                    module.launch('firefox.desktop', display_path)
+                executable, argv, env = execute.call_args.args
+                self.assertEqual(executable, str(binary))
+                self.assertEqual(argv[-3:], ['--new-instance', '--profile', str(base / 'profiles/firefox')])
+                self.assertEqual(env['MOZ_ENABLE_WAYLAND'], '1')
+                self.assertEqual(env['WAYLAND_DISPLAY'], display_path)
+                self.assertEqual(env['DBUS_SESSION_BUS_ADDRESS'], 'disabled:')
+                self.assertNotIn('DISPLAY', env)
+                self.assertEqual(os.environ['MOZ_ENABLE_WAYLAND'], '0')
+
     def test_terminal_wrapper_uses_clean_prompt_and_exact_argv(self):
         import socket
         item = app('Exec=/usr/bin/printf "two words"\nTerminal=true\n')

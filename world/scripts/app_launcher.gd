@@ -18,6 +18,9 @@ var catalog_due := 0
 var initial_recorded := false
 var directory := ""
 var cache_directory := ""
+# Native Firefox owns one persistent profile; additional windows come from the
+# browser. These PIDs are transient launch ownership, never entity identities.
+var single_instance_children: Dictionary = {}
 var helper := ""
 var opened := false
 var overlay: ColorRect
@@ -208,7 +211,7 @@ func open() -> void:
 	search_panel.hide()
 	heading.text = "Recent applications"
 	if catalog_pid <= 0 and pending.is_empty() and not entries.is_empty():
-		notice.text = "Click to launch a new instance · Newest at the top\nClick the center to find an application · Esc to return"
+		notice.text = "Click to open an application · Newest at the top\nClick the center to find an application · Esc to return"
 	_refresh_wheel()
 
 func close() -> void:
@@ -241,6 +244,8 @@ func _filter(text: String) -> void:
 		var index := results.add_item(item.name, _icon(item))
 		results.set_item_metadata(index, item.id)
 		results.set_item_tooltip(index, item.unavailable if not item.unavailable.is_empty() else item.description)
+		if item.get("single_instance", false) and item.unavailable.is_empty():
+			results.set_item_tooltip(index, "Returns to Firefox if already open. Use Ctrl+N in Firefox for another window.")
 		results.set_item_disabled(index, not item.unavailable.is_empty())
 	for index in range(results.item_count):
 		if not results.is_item_disabled(index):
@@ -317,12 +322,24 @@ func launch(identifier: String) -> void:
 	if terminal.session == null or not terminal.session.is_running():
 		notice.text = "The Elsewhere display is unavailable"
 		return
+	if item.get("single_instance", false):
+		var handles: PackedInt64Array = terminal.session.toplevel_handles()
+		for handle in live_windows:
+			if live_windows[handle] == identifier and handles.has(handle):
+				remember(identifier)
+				_activate(handle)
+				return
+		var existing_pid: int = single_instance_children.get(identifier, -1)
+		if terminal.launched_children.has(existing_pid) and OS.is_process_running(existing_pid):
+			notice.text = item.name + " is already open. Select its window in the world."
+			return
 	var error_path := cache_directory.path_join("launch-%d.json" % Time.get_ticks_usec())
 	var pid := OS.create_process("/usr/bin/python3", PackedStringArray([helper, "launch", "--id", identifier, "--socket", terminal.session.socket_path(), "--output", error_path]))
 	if pid <= 0:
 		notice.text = "Could not start " + item.name
 		return
 	terminal.launched_children.append(pid)
+	if item.get("single_instance", false): single_instance_children[identifier] = pid
 	pending = {"id": identifier, "pid": pid, "before": terminal.session.toplevel_handles(), "error": error_path, "deadline": Time.get_ticks_msec() + 12000}
 	notice.text = "Starting " + item.name + "…"
 

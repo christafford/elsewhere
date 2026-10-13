@@ -10,6 +10,8 @@ import re
 import shutil
 import sys
 
+FIREFOX_BINARIES = ("firefox", "firefox-esr")
+
 
 def libraries():
     import gi
@@ -105,8 +107,10 @@ def catalog(cache):
     entries = []
     for identifier, app in applications().items():
         reason = ""
+        single_instance = False
         try:
-            command(app)
+            argv, _ = command(app)
+            single_instance = Path(argv[0]).name in FIREFOX_BINARIES and not app.get_boolean("Terminal")
         except Exception as error:
             reason = str(error)
         icon_path = ""
@@ -124,6 +128,7 @@ def catalog(cache):
         entries.append({"id": identifier, "name": app.get_name(),
                         "description": app.get_description() or app.get_generic_name() or "",
                         "keywords": list(app.get_keywords() or []), "icon": icon_path,
+                        "single_instance": single_instance,
                         "unavailable": reason})
     return {"entries": sorted(entries, key=lambda entry: entry["name"].casefold())}
 
@@ -132,6 +137,16 @@ def graphical_command(argv, profile_root):
     # Chromium otherwise selects X11 or forwards to the host browser's process.
     # Keep a separate persistent profile, and request CPU-rendered wl_shm frames.
     binary = Path(argv[0]).name
+    if binary in FIREFOX_BINARIES:
+        # The host profile may be locked even though host remoting is disabled.
+        # Keep browser data across Elsewhere launches without opening that profile.
+        if any(arg.split("=", 1)[0].lower() in
+               ("-p", "-profile", "--profile", "-profilemanager", "--profilemanager")
+               for arg in argv[1:]):
+            raise ValueError("Firefox entries with an explicit profile are unsupported; use the standard Firefox entry")
+        profile = Path(profile_root) / binary
+        profile.mkdir(parents=True, exist_ok=True, mode=0o700)
+        return argv + ["--new-instance", "--profile", str(profile.resolve())]
     if binary not in ("google-chrome", "google-chrome-stable", "chromium", "chromium-browser"):
         return argv
     profile = Path(profile_root) / binary
@@ -169,6 +184,8 @@ def launch(identifier, socket):
         env["ELSEWHERE_TERMINAL_ARGV"] = json.dumps(argv)
         argv = [shutil.which("weston-terminal"), "--font=monospace", "--font-size=16", "--shell=" + str(Path(__file__).resolve())]
     argv = graphical_command(argv, os.environ.get("ELSEWHERE_BROWSER_PROFILE_DIR") or Path(__file__).resolve().parents[2] / ".tools/browser-profiles")
+    if Path(argv[0]).name in FIREFOX_BINARIES:
+        env["MOZ_ENABLE_WAYLAND"] = "1"
     if directory:
         os.chdir(directory)
     os.execvpe(argv[0], argv, env)

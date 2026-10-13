@@ -1,0 +1,114 @@
+[  0%] Built target generate_bindings
+[  9%] Built target elsewhere_runtime
+[ 13%] Built target runtime-client
+[ 17%] Built target frame-client
+[ 18%] Linking CXX executable frame-snapshot
+[ 22%] Built target keyboard-client
+[ 23%] Linking CXX executable runtime-keyboard
+[ 24%] Built target frame-snapshot
+[ 29%] Built target pointer-client
+[ 30%] Built target runtime-keyboard
+[ 30%] Linking CXX executable runtime-pointer
+[ 34%] Built target resize-client
+[ 35%] Linking CXX executable runtime-resize
+[ 36%] Built target runtime-pointer
+[ 38%] Linking CXX executable surface-tree
+[ 38%] Built target runtime-resize
+[ 93%] Built target godot-cpp
+[ 94%] Linking CXX executable runtime-lifecycle
+[ 97%] Built target surface-tree
+[ 99%] Built target elsewhere_probe
+[100%] Built target runtime-lifecycle
+error in client communication (pid 111107)
+xdg_surface#20: error 4: ack_configure serial 17 was not pending
+error in client communication (pid 111108)
+xdg_surface#20: error 4: ack_configure serial 0 was not pending
+error in client communication (pid 111109)
+xdg_surface#67: error 3: buffer committed before configure acknowledgement
+error in client communication (pid 111110)
+xdg_surface#67: error 1: commit requires an xdg_surface role
+error in client communication (pid 111111)
+xdg_surface#20: error 5: window geometry must be positive
+error in client communication (pid 111115)
+xdg_surface#20: error 4: ack_configure serial 17 was not pending
+error in client communication (pid 111116)
+xdg_surface#20: error 4: ack_configure serial 0 was not pending
+error in client communication (pid 111117)
+xdg_surface#67: error 3: buffer committed before configure acknowledgement
+error in client communication (pid 111118)
+xdg_surface#67: error 1: commit requires an xdg_surface role
+error in client communication (pid 111119)
+xdg_surface#20: error 5: window geometry must be positive
+RUNTIME_LIFECYCLE_OK: 16 real client trials; xdg handshake, seat v1/v4, lifecycle and protocol errors
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+error in client communication (pid 111148)
+xdg_surface#20: error 4: ack_configure serial 17 was not pending
+error in client communication (pid 111149)
+xdg_surface#20: error 4: ack_configure serial 0 was not pending
+error in client communication (pid 111151)
+xdg_surface#67: error 3: buffer committed before configure acknowledgement
+error in client communication (pid 111152)
+xdg_surface#67: error 1: commit requires an xdg_surface role
+error in client communication (pid 111153)
+xdg_surface#20: error 5: window geometry must be positive
+error in client communication (pid 111157)
+xdg_surface#20: error 4: ack_configure serial 17 was not pending
+error in client communication (pid 111158)
+xdg_surface#20: error 4: ack_configure serial 0 was not pending
+error in client communication (pid 111159)
+xdg_surface#67: error 3: buffer committed before configure acknowledgement
+error in client communication (pid 111160)
+xdg_surface#67: error 1: commit requires an xdg_surface role
+error in client communication (pid 111161)
+xdg_surface#20: error 5: window geometry must be positive
+GODOT_LIFECYCLE_OK trials=16 frames=434 max_pump_us=2185 failures=0
+error in client communication (pid 111168)
+wl_surface#3: error 0: invalid buffer scale
+error in client communication (pid 111169)
+wl_surface#3: error 1: invalid buffer transform
+error in client communication (pid 111170)
+wl_display#1: error 3: shm frame exceeds supported dimensions/64 MiB limit
+error in client communication (pid 111171)
+[destroyed object]: error 0: invalid format 0x36314752
+error in client communication (pid 111172)
+wl_surface#3: error 2: buffer dimensions must be divisible by buffer scale
+error in client communication (pid 111173)
+wl_buffer#10: error 2: error accessing SHM buffer
+FRAME_SNAPSHOTS_OK: two sessions, 32 pixel/state barriers and six rejected buffer/state cases
+RUNTIME_KEYBOARD_OK: two clients, focus/key/modifier routing, late bind, detach and destruction
+RUNTIME_POINTER_OK: client isolation, coordinates, buttons, scroll, grab, late bind, detach, destruction and disconnect
+error in client communication (pid 111184)
+xdg_surface#7: error 4: ack_configure serial 72 was not pending
+error in client communication (pid 111185)
+xdg_toplevel#8: error 2: size limits must be nonnegative
+error in client communication (pid 111186)
+xdg_toplevel#8: error 2: minimum size exceeds maximum size
+error in client communication (pid 111187)
+xdg_surface#7: error 5: window geometry does not intersect surface
+RUNTIME_RESIZE_OK: configure/ack/commit, client choice, constraints, geometry, isolation, queue bound, destruction and invalid requests
+error in client communication (pid 111189)
+wl_subcompositor#8: error 1: cyclic or excessive subsurface hierarchy
+error in client communication (pid 111189)
+wl_subcompositor#8: error 0: surface already has a role or invalid parent
+error in client communication (pid 111189)
+wl_subsurface#10: error 0: stacking target must be parent or sibling
+SURFACE_TREE_OK stages=15 sync/desync, stacking, regions, transforms, pointer grabs, ownership
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+error in client communication (pid 111215)
+wl_surface#3: error 0: invalid buffer scale
+error in client communication (pid 111220)
+wl_surface#3: error 1: invalid buffer transform
+error in client communication (pid 111225)
+wl_display#1: error 3: shm frame exceeds supported dimensions/64 MiB limit
+error in client communication (pid 111226)
+[destroyed object]: error 0: invalid format 0x36314752
+error in client communication (pid 111227)
+wl_surface#3: error 2: buffer dimensions must be divisible by buffer scale
+error in client communication (pid 111228)
+wl_buffer#10: error 2: error accessing SHM buffer
+GODOT_FRAMES_OK barriers=32 negative_cases=6 ticks=125 failures=0
+4.7.2.stable.official.ed1daf0bf
+507ed9d840c01a3c5b2a39af8bb4000bfac30bf5
+Binding checks passed: 300 probe calls, 32 protocol trials, 16 frame/client trials and keyboard/pointer/resize routing. Logs: /home/chris/code/elsewhere/build-godot-probe

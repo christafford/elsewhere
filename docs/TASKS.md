@@ -5,6 +5,14 @@ Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.
 Older automatic-first-eligible instructions apply only to historical programs.
 
+Owner-reported Firefox launch repair, completed 2026-10-13 from `4235435`:
+isolated persistent profile, repeat-launch reuse and seat-owned GTK data-device
+support. Real Firefox launch/input/clipboard/pointer/world return, multiple
+windows, confirmed quit and same-profile relaunch pass while host Firefox stays
+running. Native 36/36, sanitizer, binding, retained graphical interactions and
+parser checks pass. See [handoff 52](handoffs/52-firefox-launch.md). This bounded
+bug fix advances no P22 task; stop here. P22-T09 remains unauthorized.
+
 Owner-requested review item 1, completed 2026-10-12 from `c40748d`: audited
 surface-identifier reachability, retired the unused unstable C bridge, and added
 native/Godot regressions for the active runtime's creation-time 64-bit handles.

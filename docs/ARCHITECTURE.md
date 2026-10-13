@@ -141,6 +141,12 @@ Subsurface stacking and input regions route pointer events to the child while
 world identities and keyboard focus remain associated with the root. The launch
 helper supplies an isolated native-Wayland/software-rendering recipe for Chrome.
 See [the graphical application handoff](handoffs/37-graphical-applications.md).
+The Firefox repair adds an isolated persistent Firefox profile, Wayland forcing
+and launcher reuse of its associated live window. `data-device.cpp` is owned by
+the shared seat, providing GTK's required data-device global and focused
+clipboard FD transfer. Shell launch policy remains in Godot/Python; protocol
+ownership and source/offer lifetimes remain in C++. No host clipboard or D-Bus
+access. See [handoff 52](handoffs/52-firefox-launch.md).
 Godot maps physical US keys; the seat owns XKB and held-key state, filters events
 to the focused client, and clears focus on destruction.
 The original addon is isolated

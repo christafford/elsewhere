@@ -24,7 +24,7 @@ foreach(TYPE server-header client-header private-code)
         DEPENDS "${XDG_XML}" VERBATIM)
 endforeach()
 add_library(elsewhere_runtime STATIC ../../src/compositor-core.cpp ../../src/surface-tree.cpp ../../src/compositor-runtime.cpp
-    ../../src/seat.cpp ../../src/xdg-shell.cpp xdg-shell-server-protocol.h xdg-shell-protocol.c)
+    ../../src/seat.cpp ../../src/data-device.cpp ../../src/xdg-shell.cpp xdg-shell-server-protocol.h xdg-shell-protocol.c)
 target_include_directories(elsewhere_runtime PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 target_compile_features(elsewhere_runtime PUBLIC cxx_std_20)
 set_target_properties(elsewhere_runtime PROPERTIES POSITION_INDEPENDENT_CODE ON)

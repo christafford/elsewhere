@@ -81,3 +81,15 @@ second window and closes it through Chrome. Missing Chrome/display is a failure.
 The local page is test content, not a substitute application. Captures are under
 `.tools/chrome-application-test`; the profile there is separate from regular
 Elsewhere and host browser profiles. See [evidence and limitations](../docs/handoffs/37-graphical-applications.md).
+
+`tools/check-firefox-application.sh` requires native Firefox (`firefox.desktop`)
+and graphical output. Its separate test profile loads the local browser fixture;
+trusted keyboard/pointer events, clipboard, world return, repeat-launch reuse,
+Ctrl+N, independent close, quit confirmation and profile release/relaunch are
+checked through Godot. Captures are in `.tools/firefox-application-test`.
+The quit-button pixel locator targets the tested Firefox 157 default theme;
+a changed theme/UI can require fixture adaptation. Production launch does not
+change Firefox preferences. See [Firefox evidence](../docs/handoffs/52-firefox-launch.md).
+`meson test -C build data-device --print-errorlogs` separately checks focused
+selection ownership, real FD transfer, invalid/stale requests and teardown using
+two actual Wayland connections; it does not substitute for browser acceptance.

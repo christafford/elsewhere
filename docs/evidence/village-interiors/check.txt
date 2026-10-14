@@ -1,0 +1,34 @@
+Verified 9 Poly Haven village maps (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.Mboc05
+Godot import and runtime checks passed (not visual acceptance).
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+INTERIOR_TRAVERSAL building=Lodge floor_y=1.63381063938141 usable_size=(9.44, 9.1955)
+INTERIOR_TRAVERSAL building=Guildhall floor_y=1.06648981571198 usable_size=(7.24, 7.8705)
+INTERIOR_TRAVERSAL building=Workshop floor_y=0.8284866809845 usable_size=(7.44, 7.8705)
+VILLAGE_INTERIORS_OK mode=headless failures=0
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+INTERIOR_REVISIT building=Lodge shell=245815:Lodge entity=376611d4de6814cc65b3c3c7eec1e2df
+INTERIOR_TRAVERSAL building=Lodge floor_y=1.63381063938141 usable_size=(9.44, 9.1955)
+INTERIOR_REVISIT building=Guildhall shell=245864:Guildhall entity=06415c15a9fbcba4ae7c96eb994499c3
+INTERIOR_TRAVERSAL building=Guildhall floor_y=1.06648981571198 usable_size=(7.24, 7.8705)
+INTERIOR_REVISIT building=Workshop shell=245929:Workshop entity=c089836ad7fe283a606983d047d0aebc
+INTERIOR_TRAVERSAL building=Workshop floor_y=0.8284866809845 usable_size=(7.44, 7.8705)
+VILLAGE_INTERIORS_OK mode=Wayland failures=0
+Interior checks passed; inspect .tools/village-interiors-test/*.png.

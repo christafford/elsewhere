@@ -1,4 +1,36 @@
-# Current direction — Elsewhere (2026-10-13)
+# Current direction — Elsewhere (2026-10-14)
+
+## Building interiors verified (2026-10-14, from `228a550`)
+
+The owner-requested Lodge, Guildhall and Workshop ground floors are now
+enterable and larger, with open doorways, continuous ramps/landings, warm
+finishes/lights, two worktables and movable stools each. Rear extensions add
+32.5% body depth while keeping square-facing routes. Geometry and placement
+remain location-owned; desktop/runtime/input paths are unchanged. Decision 08
+records this bounded exception to the original exterior-only scope.
+
+Verified by automated checks: import/default startup/bridge build; headless/GPU
+interior walking, floor/enclosure and both desk clearances; real terminal
+placement, same-shell revisit and close in all three buildings; architecture,
+landscape and outdoor regressions; pavilion stool/desk/shell continuity;
+Terminal/Vim continuity; Firefox input/clipboard/reuse/close/relaunch; six default
+graphical interaction checks with exact screen colors. Both landscape modes
+walk 337.8m. Fourteen Python and 62 Node/parser tests, deterministic model rebuild,
+syntax, links/task references and diff checks pass.
+
+Agent-observed: actual interiors, open entries, enlarged exteriors, placed/live
+terminals and retained pavilion/editor/Firefox renders inspected. Ramp crossing,
+threshold lips and a small foundation gap were corrected. See
+[evidence](evidence/village-interiors/README.md) and
+[handoff 54](handoffs/54-building-interiors.md).
+
+Not verified: human appearance/comfort acceptance, Steam Deck/sustained
+performance or restart persistence. Upper floors/windows/turret remain
+decorative. Chrome and retained-study source assets remain unavailable; no fresh
+full native suite is claimed for this scene-only revision.
+
+Next task: **stop after this owner-requested interior revision**. Restart
+Elsewhere to load it. P22-T09 and human P22-T10 remain unchecked and unauthorized.
 
 ## Sunlit art revision verified (2026-10-13, from `a597286`)
 

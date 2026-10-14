@@ -12,8 +12,21 @@ scale, collision, material cohesion, and distinctive silhouettes. Avoid large
 anonymous primitive buildings, sprawling empty terrain, repetitious facades,
 and unverified screenshots. Produce and inspect actual Godot captures from
 multiple views. Leave application content unlit/readable. No additional
-functional locations, building interiors, creatures, NPCs, weather systems, or
-day/night simulation in this milestone.
+functional locations, creatures, NPCs, weather systems, or day/night simulation
+in this milestone. The existing-building amendment below permits ground floors.
+
+## Enterable existing buildings (owner, 2026-10-14)
+
+Open the Lodge, Guildhall and Workshop ground floors and enlarge their rear
+footprints to give application work meaningful space. Preserve the warm exterior
+palette and square-facing routes. Use cream plaster/stone walls, oak floors,
+exposed ceiling beams, warm pendant lighting, and the existing worktables and
+movable stools. Doorways stay visibly open with continuous stone approaches;
+enter by ordinary walking. Keep application pixels unlit and readable.
+This supersedes the earlier no-interiors/unchanged-footprints constraint only
+for these three buildings. Upper floors and the turret remain decorative.
+See [Decision 08](decisions/08-elsewhere-village-world.md) and
+[handoff 54](handoffs/54-building-interiors.md).
 
 ## Current palette: sunlit village (owner, 2026-10-13)
 
@@ -26,7 +39,8 @@ Aim for inviting clear daylight, with shaded timber still readable and material
 grain intact. Avoid fluorescent leaves, clipped cream highlights, uniform brown
 tinting and global saturation effects that alter application pixels.
 
-Retain the current landmark, building silhouettes/footprints, walkable routes,
+For this palette revision, retain the landmark, building silhouettes/footprints,
+walkable routes,
 covered workspace and desktop interactions. The reference guides color and mood;
 it does not authorize more destinations, interiors or a wholesale geometry reset.
 Use the existing licensed texture maps and original model pipeline. Four small

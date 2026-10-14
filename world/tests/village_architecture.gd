@@ -44,7 +44,7 @@ func run() -> void:
 		print("ARCHITECTURE_CAPTURE_OK failures=",failures)
 		quit(1 if failures else 0)
 		return
-	# Walking into each sealed exterior must stop at its real facade collision.
+	# Walking beside each entrance must still stop at its real facade collision.
 	for entry in [["Lodge",3.75],["Guildhall",3.25],["Workshop",3.25]]:
 		var model: Node3D = architecture.get_node(entry[0])
 		var start: Vector3 = model.to_global(Vector3(2.8,0,entry[1]+3.0))
@@ -54,7 +54,7 @@ func run() -> void:
 		await frames(70)
 		await key(KEY_W,false)
 		var local := model.to_local(walker.position)
-		check(local.z>entry[1]+0.15 and local.z<entry[1]+1.0 and walker.is_on_floor(),"Closed exterior collision failed: %s %s" % [entry[0],local])
+		check(local.z>entry[1]+0.15 and local.z<entry[1]+1.0 and walker.is_on_floor(),"Facade beside doorway collision failed: %s %s" % [entry[0],local])
 	await place_at(Vector2(-5,1))
 	walker.rotation.y = 0
 	await key(KEY_W,true)

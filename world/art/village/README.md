@@ -55,13 +55,15 @@ triangles to 313,690 before Godot LOD, plus ground, boundary, steps and ramp.
 These are geometry counts, not a performance benchmark. The former link's
 2,160 triangles are inactive.
 
-Buildings remain sealed exteriors. The hall's turret is decorative, not a new
+At the P22-T05 checkpoint, buildings remained sealed exteriors. The hall's
+turret is decorative, not a new
 accessible room. Water jets/ripples are visual effects, not fluid simulation.
 The pavilion remains walkable and covered; P22-T07 adds the furniture below.
 Architecture uses static mesh collision, trees only trunk cylinders, and the
 mountains have no collision. Application materials are unchanged.
 
-SHA-256 of the verified byte-identical rebuild:
+P22-T05 SHA-256 of the verified byte-identical rebuild (historical; see the
+interior revision below for the three current building hashes):
 
 ```text
 1b6f4b8643ebc93aca323fcc6e3a171e1d2389a6b22bd6eff60334eb35f23622  alpine_lodge.glb
@@ -182,3 +184,41 @@ Verified byte-identical SHA-256:
 
 See [visual evidence](../../../docs/evidence/sunlit-village/README.md) and
 [handoff 53](../../../docs/handoffs/53-sunlit-village-palette.md).
+
+## Enterable ground floors (owner revision, 2026-10-14)
+
+The three original building models now contain thick walls with open front
+apertures, wood floors/ceilings, trim/beams and a pendant shade. Their rear halves
+extend by 65%, increasing total body depth by 32.5% while keeping the front
+planes and square-facing routes. The upper volumes and facade windows remain
+decorative; there are no accessible upper floors. No downloaded assets or new
+dependencies. Rebuild with the existing `build_village_models.py` command above.
+
+| Current model | Body footprint | Clear inner wall rectangle | Triangles |
+| --- | --- | --- | ---: |
+| Lodge | 10 × 9.9375m | 9.44 × 9.1955m | 16,572 |
+| Guildhall | 7.8 × 8.6125m | 7.24 × 7.8705m | 17,584 |
+| Workshop | 8 × 8.6125m, excluding lean-to | 7.44 × 7.8705m, excluding chimney | 7,268 |
+
+Room dimensions exclude wall thickness but precede trim/furniture intrusion.
+The 2.44m-wide door aperture has about 2.59m clear height under its lintel;
+ceiling beams leave about 2.95m. The scene samples the enlarged footprint for
+floor elevation and creates 3m stone approaches with level threshold landings.
+Each room reuses two existing worktables and stools; the workshop's east stool
+moves inward to clear the chimney. Six added tables and six stools contribute
+4,440 placed triangles; the three building meshes add 720. Three local warm lights
+illuminate the physical rooms without changing application shaders.
+
+The model writer keeps meter UVs and recomputes normals after rear extension.
+Static mesh collision follows visible geometry, including inside wall faces.
+Only the three building GLBs change; all other GLBs are byte-identical.
+Verified current hashes:
+
+```text
+94fba5bd06575d98af5f8b666f188b68ad1e4e34f21398c2edc42927c7b9050d  alpine_lodge.glb
+6de8941c9613bb496458f2368cf82ce6e5967af6416a671c2b580e7f0e50be68  guildhall.glb
+5c5a5aac5b29394581e31a8f2588b119c082c6a34bd997b44a09901d16c52cfa  stone_workshop.glb
+```
+
+[Handoff 54](../../../docs/handoffs/54-building-interiors.md) records walking,
+real-app checks, rendered evidence and limitations.

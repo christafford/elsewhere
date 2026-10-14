@@ -245,6 +245,59 @@ class Model:
         self.box('metal',(x+width*.28,1.05,z+.25),(.06,.25,.07))
         self.box('cut_stone',(x,.04,z+.4),(width+.5,.08,.8))
 
+    def open_entry(self, x, z):
+        # 2.4m clear opening, with solid jambs and a high timber lintel.
+        for side in [-1, 1]:
+            self.box('cut_stone', (x+side*1.35, 1.3, z+.1), (.24,2.6,.4))
+        self.box('wood', (x,2.7,z+.1), (2.95,.22,.42))
+        self.box('cut_stone', (x,2.92,z+.06), (3.15,.18,.34))
+
+    def split_band(self, mat, x, y, z, width, height, depth):
+        for low, high in [(-width/2,x-1.22),(x+1.22,width/2)]:
+            if high > low: self.box(mat,((low+high)/2,y,z),(high-low,height,depth))
+
+    def room_shell(self, width, depth, mat, door_x=0):
+        # True enclosed ground floor. Thick walls and inward-facing box surfaces
+        # share the render mesh used for collision; the doorway has no triangles.
+        front=depth/2
+        self.box('stone',(0,-1.57,0),(width,2.86,depth))
+        self.box('wood',(0,-.07,0),(width-.28,.14,depth-.28))
+        for side in [-1,1]:
+            self.box(mat,(side*(width/2-.14),1.6,0),(.28,3.2,depth))
+        self.box(mat,(0,1.6,-front+.14),(width,3.2,.28))
+        for lo,hi in [(-width/2,door_x-1.22),(door_x+1.22,width/2)]:
+            self.box(mat,((lo+hi)/2,1.6,front-.14),(hi-lo,3.2,.28))
+        self.box(mat,(door_x,2.95,front-.14),(2.44,.5,.28))
+        self.box('wood',(0,3.24,0),(width,.16,depth))
+        # Interior wainscot, cornice and ceiling beams establish a finished room.
+        for y in [.16,.8,3.02]:
+            for side in [-1,1]:
+                self.box('wood',(side*(width/2-.31),y,0),(.12,.12,depth-.4))
+            self.box('wood',(0,y,-front+.32),(width-.4,.12,.12))
+        for z in [-front+.65,0,front-.65]:
+            self.box('timber',(0,3.05,z),(width-.4,.19,.18))
+        # Visible pendant; its local light is supplied by the scene, not the app.
+        self.beam('metal',(0,3.13,-1),(0,2.7,-1),.035)
+        self.lathe('metal',[(.1,0),(.38,.16),(.4,.2),(.12,.23)],(0,2.55,-1),24)
+        self.lathe('petal_white',[(0,0),(.33,0),(.12,.05),(0,.05)],(0,2.56,-1),24)
+        self.open_entry(door_x,front)
+
+    def extend_rear(self, factor=1.65):
+        # Grow toward the bank, preserving the front facade and square routes.
+        for rows in self.parts.values():
+            for i,row in enumerate(rows):
+                x,y,z=row[:3]
+                uv=list(row[6:])
+                if z<0:
+                    dominant=max(range(3),key=lambda axis:abs(row[3+axis]))
+                    if dominant==0: uv[0]*=factor
+                    elif dominant==1: uv[1]*=factor
+                    z*=factor
+                rows[i]=(x,y,z,*row[3:6],*uv)
+            for i in range(0,len(rows),3):
+                normal=unit(cross(sub(rows[i+1][:3],rows[i][:3]),sub(rows[i+2][:3],rows[i][:3])))
+                for j in range(i,i+3): rows[j]=(*rows[j][:3],*normal,*rows[j][6:])
+
     def merge(self, other, origin, yaw):
         c,s=math.cos(yaw),math.sin(yaw)
         def rotate(p): return (c*p[0]+s*p[2],p[1],-s*p[0]+c*p[2])
@@ -292,20 +345,20 @@ class Model:
 
 def lodge():
     m=Model('alpine_lodge')
-    m.box('stone',(0,-.7,0),(10,1.8,7.5))
-    m.polygon('lime',[(-5,0),(5,0),(5,5.1),(0,9.1),(-5,5.1)],3.75,-3.75)
+    m.room_shell(10,7.5,'lime')
+    m.polygon('lime',[(-5,3.32),(5,3.32),(5,5.1),(0,9.1),(-5,5.1)],3.75,-3.75)
     m.polygon('wood',[(-4.9,5.12),(4.9,5.12),(0,9.05)],3.79,3.75)
     m.roof(11.5,9.1,5.1,9.3)
     for side in [-1,1]: m.dormer((side*3.3,6.4,-.7),side*math.pi/2)
     for x in [-4.9,-2.5,0,2.5,4.9]:
-        m.box('timber',(x,2.6,3.85),(.27,5.2,.24))
-    for y in [.22,2.8,5.0]: m.box('timber',(0,y,3.85),(10.1,.19,.18))
+        m.box('timber',(x,4.0 if x==0 else 2.6,3.85),(.27,2.4 if x==0 else 5.2,.24))
+    for y in [2.8,5.0]: m.box('timber',(0,y,3.85),(10.1,.19,.18))
+    m.split_band('timber',0,.22,3.85,10.1,.19,.18)
     for side in [-1,1]:
         m.beam('timber',(0,8.8,3.87),(side*4.8,5.1,3.87),.19)
         m.beam('timber',(side*2.5,2.9,3.87),(side*4.8,4.9,3.87),.22)
-        m.beam('timber',(side*.2,.35,3.88),(side*2.35,2.65,3.88),.21)
+        m.beam('timber',(side*1.35,.35,3.88),(side*2.35,2.65,3.88),.21)
         m.ivy((side*2.6,5.15,3.99),1.9,2.7)
-    m.door(0,3.8)
     for x in [-3.3,3.3]: m.window(x,1.55,3.82,1.1,1.45,True)
     for x in [-3.3,0,3.3]: m.window(x,3.98,3.82,1.05,1.45,True)
     for side in [-1,1]: m.beam('timber',(side*1.0,5.1,3.89),(side*2.8,6.8,3.89),.15)
@@ -324,16 +377,18 @@ def lodge():
     m.box('stone',(-3,6.5,-1.8),(.8,3.3,.85))
     m.box('cut_stone',(-3,8.2,-1.8),(1.05,.22,1.1))
     m.elevations(5,3.75,[1.55,3.98],[-1.5,1.5],True)
+    m.extend_rear()
     m.write()
 
 
 def guildhall():
     m=Model('guildhall')
-    m.box('stone',(0,-.75,0),(7.8,1.8,6.5))
-    m.polygon('lime',[(-3.9,0),(3.9,0),(3.9,8.1),(0,11.9),(-3.9,8.1)],3.25,-3.25)
+    m.room_shell(7.8,6.5,'lime')
+    m.polygon('lime',[(-3.9,3.32),(3.9,3.32),(3.9,8.1),(0,11.9),(-3.9,8.1)],3.25,-3.25)
     m.roof(9.1,8.0,8.1,12.2)
     for x in [-3.8,-1.4,1.4,3.8]: m.box('timber',(x,4.05,3.38),(.27,8.1,.25))
-    for y in [.3,2.85,5.55,8.0]: m.box('timber',(0,y,3.38),(8,.23,.25))
+    for y in [2.85,5.55,8.0]: m.box('timber',(0,y,3.38),(8,.23,.25))
+    m.split_band('timber',0,.3,3.38,8,.23,.25)
     for side in [-1,1]:
         m.beam('timber',(0,11.8,3.4),(side*3.8,8.1,3.4),.26)
         for y in [.4,3.0,5.7]:
@@ -341,11 +396,10 @@ def guildhall():
         for y in [1.5,4.25,6.95]: m.window(side*2.4,y,3.43,1.0,1.5)
         m.ivy((side*2.9,8.1,3.6),2.1,3.6)
     m.window(0,9.55,3.32,.9,1.35)
-    m.door(0,3.3,1.65,True)
     m.elevations(3.9,3.25,[1.6,4.3,6.95],[-1.5,1.5])
     # Attached tower stays inside the building footprint. Exterior only.
     center=(-2.05,0,-1.25)
-    m.lathe('stone',[(1.55,0),(1.55,8.6),(1.8,8.7),(1.8,9.0),(1.5,9.05),(1.5,11.1)],center,8)
+    m.lathe('stone',[(1.55,3.32),(1.55,8.6),(1.8,8.7),(1.8,9.0),(1.5,9.05),(1.5,11.1)],center,8)
     m.lathe('wood',[(1.5,8.95),(1.5,11.15)],center,8)
     for j in range(8):
         a=j*math.tau/8
@@ -355,19 +409,21 @@ def guildhall():
     m.beam('metal',(-2.05,15.0,-1.25),(-2.05,16.4,-1.25),.045)
     flag=[(-2.05,16.3,-1.25),(-4.3,15.9,-1.16),(-3.8,15.62,-1.23),(-2.05,15.85,-1.25)]
     m.quad('canvas',*flag);m.quad('canvas',*reversed(flag))
+    m.extend_rear()
     m.write()
 
 
 def workshop():
     m=Model('stone_workshop')
-    m.box('stone',(0,1.45,0),(8,5.3,6.5))
+    m.room_shell(8,6.5,'stone',-1.8)
+    m.box('stone',(0,3.71,0),(8,.78,6.5))
     m.roof(9.5,8.0,4.1,7.05,'slate',1.3)
     m.dormer((2.7,4.9,-.8),math.pi/2)
-    for y in [.15,3.9]: m.box('cut_stone',(0,y,3.34),(8.1,.2,.26))
-    m.door(-1.8,3.3,1.8,True)
+    m.box('cut_stone',(0,3.9,3.34),(8.1,.2,.26))
+    m.split_band('cut_stone',-1.8,.15,3.34,8.1,.2,.26)
     m.window(1.55,2.0,3.3,2.4,1.5)
     # Tall capped chimney and a lower side lean-to produce an asymmetric profile.
-    m.box('cut_stone',(2.45,4.1,-.8),(1.0,5.2,1.05))
+    m.box('cut_stone',(2.45,3.35,-.8),(1.0,6.7,1.05))
     for y in [5.7,6.6]: m.box('stone',(2.45,y,-.8),(1.3,.22,1.35))
     for x in [2.15,2.7]: m.lathe('tile',[(.17,0),(.17,.7),(.23,.72),(.23,.84),(.12,.84),(.12,.05)],(x,6.7,-.8),16)
     # Masonry corner blocks and voussoirs differentiate the stone facade.
@@ -380,6 +436,7 @@ def workshop():
     for side in [-1,1]:
         m.box('cut_stone',(side*4.04,.15,0),(.18,.2,6.5))
         m.box('cut_stone',(side*4.04,3.9,0),(.18,.2,6.5))
+    m.extend_rear()
     m.write()
 
 

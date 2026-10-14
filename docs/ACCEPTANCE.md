@@ -3,6 +3,36 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-14 owner-requested building interiors
+
+Agent-run/agent-observed from `228a550`: the Lodge, Guildhall and Workshop now
+have enlarged, enterable ground floors, continuous ramp/threshold access and
+two worktables plus movable stools per room. Existing warm finishes continue
+inside. Upper floors, windows and turret remain decorative; no door key or new
+input mode is introduced.
+
+The new headless and GPU trials walk every entrance and full room depth, probe
+floors/enclosure, and check both work pads. The graphical trial places a real
+terminal on a desk in each building, walks outside and returns, verifies the
+same panel entity/transform and shell PID/variable, resumes typing and closes
+the client. Actual room/entry/workspace/application renders were inspected.
+See [evidence](evidence/village-interiors/README.md) and
+[handoff 54](handoffs/54-building-interiors.md) for commands and iteration.
+
+Retained architecture/landscape/outdoor, pavilion manipulation and shell
+continuity, Terminal/Vim continuity, Firefox input/clipboard/reuse/close/relaunch
+and all six default graphical interaction checks pass. Exact gray/RGB swatches
+remain unchanged. Fourteen Python and 62 Node/parser tests pass; model rebuild
+is byte-identical. No fresh full native-suite result is claimed.
+
+Owner procedure: restart Elsewhere, walk up each front ramp, explore the room,
+launch an app with Tab, return with Ctrl+Alt+Escape, drag it above a teal desk
+pad and release. Leave and revisit it, double-click to resume typing, then close
+it normally. Try moving a stool and using the original pavilion as well.
+Human appearance/comfort acceptance is **not observed**. Private Weston GL/RTX
+3080 checks are not Steam Deck or sustained performance acceptance. This request
+advances no P22 gate or restart-persistence claim.
+
 ## 2026-10-13 owner-requested sunlit art revision
 
 Agent-run/agent-observed, based on `a597286`: the active village follows the

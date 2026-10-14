@@ -5,6 +5,15 @@ Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.
 Older automatic-first-eligible instructions apply only to historical programs.
 
+Owner-requested building interiors, completed 2026-10-14 from `228a550`:
+Lodge, Guildhall and Workshop ground floors now have open entrances, continuous
+ramps, rear extensions, finished interiors and reused workspaces. Actual walking
+and real-terminal placement/revisit/typing/close pass in every room. Render
+inspection and retained outdoor, pavilion, Terminal/Vim, Firefox and default
+interaction regressions pass. See [handoff 54](handoffs/54-building-interiors.md).
+Decision 08 records this bounded amendment; no numbered roadmap task or human
+gate advances. Stop here; P22-T09 remains unauthorized.
+
 Owner-requested art revision, completed 2026-10-13 from `a597286`: the new
 `art-direction-1.jpg` reference replaces the drab palette with clay roofs,
 cream plaster/oak, fresher greens, blue distance and small flower borders.

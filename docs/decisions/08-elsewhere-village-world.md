@@ -45,3 +45,15 @@ minimal outdoor replacement and must not claim application integration is
 fully verified before P22-T06. Each task records checks and precise blockers.
 The first acceptance gate is **visual delight** after P22-T05; the second is
 **live desktop usability** after P22-T09 and owner review at P22-T10.
+
+## Owner amendment: enterable existing buildings (2026-10-14)
+
+The owner explicitly requested entry into the existing buildings and larger,
+useful interiors. This supersedes the initial exterior-only restriction for the
+Lodge, Guildhall and Workshop ground floors. Extend their rear footprints,
+provide physical doorways and continuous walking access, and reuse the existing
+workspace furniture and live application behavior. Keep the square-facing
+routes, warm art direction, desktop services and nested/headless paths intact.
+Upper floors/turrets remain decorative. This bounded request authorizes no new
+building, roadmap continuation, P22-T09 performance gate or human acceptance.
+See [handoff 54](../handoffs/54-building-interiors.md).

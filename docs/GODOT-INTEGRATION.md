@@ -7,7 +7,7 @@ matched 1280×800 views with rendering counters. Actual renders still require
 inspection. See [evidence](evidence/p22-t08/README.md); the cost sample is a host
 before/after comparison, not P22-T09 or Steam Deck acceptance.
 
-Current startup: P22-T04 adds a landmark, three exteriors and covered pavilion
+Current startup: P22-T04 adds a landmark, three buildings and covered pavilion
 to the authored square, terrain and approach paths
 using the desktop runtime extracted in P22-T01. The selected-preview mesh remains
 a hidden texture adapter;
@@ -46,6 +46,17 @@ markers describe physical pad tops only; apps keep their session-local entities
 and bindings. Run `tools/check-godot-pavilion.sh` for the real-terminal placement,
 stool manipulation and walk-away/revisit trial. See
 [handoff 50](handoffs/50-pavilion-workspace.md).
+
+The owner's 2026-10-14 revision opens all three building ground floors. Walk
+through the open front doorway via its stone ramp; no interaction key is needed.
+The Lodge and Guildhall face the square; the Workshop entry faces west. Each
+room has two fixed worktables and movable stools using the pavilion controls.
+Launch with Tab, return with Ctrl+Alt+Escape, then drag an application above a
+teal pad and release. Rooms and furniture retain the existing session behavior;
+upper floors are decorative. `tools/check-godot-interiors.sh` checks headless
+walking/enclosure and graphical real-shell placement, exit, revisit and close
+in every building. Inspect its actual captures in `.tools/village-interiors-test`.
+See [handoff 54](handoffs/54-building-interiors.md).
 
 The following records the integration developed under Decision 06 / Project 21.
 The Godot study now renders real furniture and supports movement (P21-T36).

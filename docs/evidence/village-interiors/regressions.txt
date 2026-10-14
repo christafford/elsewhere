@@ -1,0 +1,12 @@
+PASS architecture
+PASS landscape
+PASS outdoor
+PASS pavilion
+PASS village-applications
+PASS firefox
+PASS screen_color
+PASS terminal_input
+PASS terminal_pointer
+PASS terminal_resize
+PASS app_launcher
+PASS application_transition

@@ -60,7 +60,8 @@ P22-T04 adds a sibling `Architecture` node. `village_architecture.gd` places fiv
 original imported GLB models at fixed sites, grounds their foundations using the
 landscape height function, and creates static mesh collision on the existing
 world collision layer. Terrain-fitted entrance steps and the pavilion ramp are
-local geometry. The three buildings are sealed exteriors; the pavilion is open.
+local geometry. At P22-T04 the three buildings were sealed exteriors; the
+pavilion was open.
 No controller, desktop service, application identity, placement policy or native
 compositor change is required. Models and reproducible authoring source are
 recorded in [the asset provenance](../world/art/village/README.md).
@@ -104,6 +105,16 @@ controller, desktop services and client lighting remain unchanged. This stays
 within the location-owned presentation boundary; there is no terrain service,
 new destination or global atmosphere affecting application content. See
 [handoff 51](handoffs/51-village-atmosphere.md).
+
+The owner's 2026-10-14 interior revision keeps the same location boundary.
+Three original GLBs now have thick ground-floor walls, open door apertures,
+floors and ceilings. Rear-only extension preserves each front plane. Their
+visible meshes still supply collision; terrain sampling covers the enlarged,
+rotated footprint, and continuous stone ramps replace entrance steps.
+Each building instantiates the existing `pavilion_workspace.gd` under a local
+`Interior` node, plus one warm light. There is no new room/door service, input
+mode, snapping, panel identity, controller or compositor change. Upper volumes
+remain decorative. See [handoff 54](handoffs/54-building-interiors.md).
 
 ---
 

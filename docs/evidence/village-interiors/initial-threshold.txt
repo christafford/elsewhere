@@ -1,0 +1,30 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Walking route blocked: (-12.0, -15.2) actual=(-12.0, 1.536301, -12.20723)
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] walk_to (res://tests/pavilion_workspace.gd:15)
+       [2] frames (res://tests/village_applications.gd:26)
+ERROR: Walking route blocked: (-12.0, -15.2) actual=(-12.0, 1.536301, -12.20723)
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] walk_to (res://tests/pavilion_workspace.gd:15)
+       [2] frames (res://tests/village_applications.gd:26)
+ERROR: Interior floor/threshold mismatch: Lodge
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] run (res://tests/village_interiors.gd:43)
+       [2] key (res://tests/terminal_input.gd:30)
+ERROR: Walking route blocked: (-12.0, -15.2) actual=(-12.0, 1.536301, -12.20723)
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] walk_to (res://tests/pavilion_workspace.gd:15)
+       [2] frames (res://tests/village_applications.gd:26)
+INTERIOR_TRAVERSAL building=Lodge floor_y=1.63381063938141 usable_size=(9.44, 9.3775)
+INTERIOR_TRAVERSAL building=Guildhall floor_y=1.06648981571198 usable_size=(7.24, 8.0525)
+INTERIOR_TRAVERSAL building=Workshop floor_y=0.8284866809845 usable_size=(7.44, 8.0525)
+VILLAGE_INTERIORS_OK mode=headless failures=4

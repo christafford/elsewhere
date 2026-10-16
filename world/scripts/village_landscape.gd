@@ -1,6 +1,8 @@
 ## P22-T03: one authored site, in meters. No random terrain or runtime services.
 extends Node3D
 
+const Lanes = preload("res://scripts/village_lanes.gd")
+
 const HALF_GROUND := 48.0
 const GRID_STEP := 0.5
 # Clockwise as seen from above; x/z coordinates. The inner foot of the bank
@@ -41,7 +43,7 @@ static func height_at(p: Vector2) -> float:
 
 static func route_distance(p: Vector2) -> float:
 	var nearest := INF
-	for route in ROUTES.values():
+	for route in ROUTES.values() + Lanes.ROUTES.values():
 		for i in range(route.size() - 1):
 			var a: Vector2 = route[i]
 			var d: Vector2 = route[i+1] - a

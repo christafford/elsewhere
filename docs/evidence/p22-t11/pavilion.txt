@@ -1,0 +1,23 @@
+Verified 9 Poly Haven village maps (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.1sH6tD
+Godot import and runtime checks passed (not visual acceptance).
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+PAVILION_REVISIT shell=214200:at-my-desk entity=dc1ca001ee81a514e73dcab0c80498ec anchor_offset=(0.0, 0.447161, -0.02697) background_revisions=49 placed=[X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-20.0, 2.479015, 16.09303)]
+PAVILION_WORKSPACE_OK failures=0
+Pavilion workspace checks passed; inspect /home/chris/code/elsewhere/.tools/pavilion-workspace-test/*.png.

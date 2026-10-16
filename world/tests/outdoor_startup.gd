@@ -25,8 +25,8 @@ func run() -> void:
 	check(study.name == "Outdoor", "Default startup is not outdoors")
 	for script in ["study", "hallway", "elsewhere_rooms", "grand_foyer"]:
 		check(not ResourceLoader.has_cached("res://scripts/" + script + ".gd"), "Default startup loads legacy geometry: " + script)
-	# Only the pavilion and the three explicitly authorized ground-floor workspaces.
-	# Keep rejecting retained-study furniture or any unexpected new destination.
+	# Movable stools remain in the pavilion and three original ground floors.
+	# P22-T11 adds fixed trade furnishings; reject unexpected movable furniture.
 	var expected: Array[Node] = []
 	for location in ["Pavilion/Workspace", "Lodge/Interior/Workspace", "Guildhall/Interior/Workspace", "Workshop/Interior/Workspace"]:
 		for side in ["West", "East"]:

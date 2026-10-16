@@ -1,0 +1,19 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+EXPANSION_LANE north_lane
+EXPANSION_LANE book_lane
+EXPANSION_LANE library_lane
+EXPANSION_LANE potters_lane
+EXPANSION_LANE bakery_lane
+EXPANSION_LANE herb_lane
+EXPANSION_LANE store_lane
+EXPANSION_LANE hearth_lane
+EXPANSION_LANE meadow_lane
+ERROR: Walking route blocked: (18.0, 12.2) actual=(16.6016, 0.226363, 12.19714)
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tests/terminal_input.gd:12)
+       [1] walk_to (res://tests/pavilion_workspace.gd:15)
+       [2] frames (res://tests/village_applications.gd:26)
+EXPANSION_LANE south_court
+VILLAGE_EXPANSION_OK mode=headless buildings=10 failures=1

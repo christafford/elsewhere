@@ -57,3 +57,16 @@ routes, warm art direction, desktop services and nested/headless paths intact.
 Upper floors/turrets remain decorative. This bounded request authorizes no new
 building, roadmap continuation, P22-T09 performance gate or human acceptance.
 See [handoff 54](../handoffs/54-building-interiors.md).
+
+## Owner amendment: furnished village expansion (2026-10-15)
+
+The owner explicitly authorized **P22-T11**: ten new buildings with furnished,
+enterable ground floors, appropriate artifacts and connected streets, retaining
+the current warm palette and existing square. Two taverns, two inns, a library,
+bookbinder, bakery, apothecary, general store and pottery shop are in scope.
+This supersedes the initial compact-square/no-extra-destinations restriction
+for this task only. People/creatures, commerce/crafting simulation, new desktop
+services and restart persistence remain excluded. Preserve the existing
+playable boundary and real desktop behavior. Verification requires actual renders,
+walking and real-app continuity. This authorizes neither P22-T09/P22-T10
+acceptance nor another task. See [scope](../handoffs/55-village-expansion-plan.md).

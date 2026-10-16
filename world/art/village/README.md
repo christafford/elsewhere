@@ -1,5 +1,43 @@
 # Village architecture — selected reference 2, P22-T05 finishes
 
+## P22-T11 village expansion (2026-10-15)
+
+Twenty original repository meshes authored by the Codex agent: ten buildings
+and ten sets of trade furnishings, using the existing Python standard-library
+`Model` writer. No external model, font, texture or new dependency was added.
+Reuse the recorded Poly Haven CC0 wood/plaster maps and current warm material
+mapping. Signs use Godot's existing default font. `expansion.json` is the shared
+authoritative building-size/site manifest for model authoring and runtime.
+
+```sh
+python3 world/tools/build_village_expansion.py
+```
+
+Each `village_<id>.glb` contains a solid open-entry ground floor, buried stone
+foundation, finished inside faces/beams, differentiated upper volume, course-tiled
+roof, lattice windows, chimney, canopy or balcony, ivy and flower boxes.
+Each `village_<id>_artifacts.glb` batches the corresponding trade furniture and
+objects by material. Units/winding/UVs follow the existing writer below; the
+runtime loads tracked GLBs and requires no generation/network access.
+
+The ten destinations are Copper Kettle, Lantern Inn, Village Library, Bookbinder,
+Morning Loaf Bakery, Leaf & Root Apothecary, Earthenware Pottery, General Store,
+Hearthside and Meadow Inn. Widths are 7.4–9.2m; depths are 6.6–8m. Ground floors
+use the existing 2.44m aperture and 3.2m ceiling construction. Ten additional
+instances of the retained worktable supply clear physical application supports.
+The world adds mesh collision for fixed architecture/furnishings, a warm shadowed
+interior light and two sign labels per site; there are no NPCs or trade mechanics.
+Original movable stools and existing architecture models remain unchanged.
+
+The twenty new GLBs contain 192,672 triangles and total 18,740,208 bytes.
+The ten reused worktables add 4,200 placed triangles before LOD. See the
+[per-model budgets](../../../docs/evidence/p22-t11/model-budgets.json),
+[SHA-256 manifest](../../../docs/evidence/p22-t11/models.sha256) and
+[render/test evidence](../../../docs/evidence/p22-t11/README.md). Regeneration
+was checked byte-for-byte after the final geometry correction.
+
+The following sections are the historical asset records for earlier milestones.
+
 Original models authored for Elsewhere on 2026-10-10 and refined on
 2026-10-11 by the Codex agent. The active set follows the owner's second
 reference: weathered timber/stone, ivy, a pointed turret and tiered fountain.

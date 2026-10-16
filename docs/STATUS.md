@@ -1,4 +1,35 @@
-# Current direction — Elsewhere (2026-10-14)
+# Current direction — Elsewhere (2026-10-15)
+
+## P22-T11 furnished village verified (2026-10-15, from `5e5c416`)
+
+The village now has thirteen buildings. Ten new destinations include two taverns,
+two inns, a library, bookbinder, bakery, apothecary, general store and pottery.
+Connected cobbled lanes lead to furnished, enterable ground floors with fixed
+worktables and appropriate trade artifacts. The terracotta/cream/oak art style,
+original square and desktop runtime are retained. No people or simulated commerce.
+
+Verified by automated checks: import/default startup/bridge build; headless/GPU
+walking of all ten lanes both ways and every room, floor/enclosure/clearance and
+Home return; real-terminal placement, same-shell revisit, resumed typing and
+close in all ten new destinations. Retained architecture, landscape, outdoor,
+original interiors, pavilion, Terminal/Vim, Firefox and six default graphical
+interaction checks pass. Fourteen Python and 62 Node/parser tests, deterministic
+model regeneration, syntax, document links/task parsing and diffs pass.
+
+Agent-observed: actual eye-level streets, entrances, furnished rooms, artifacts
+and live-application renders inspected. Roof/canopy, shelf/sign, chimney-base and
+ramp-approach defects were corrected. See [evidence](evidence/p22-t11/README.md)
+and [handoff 56](handoffs/56-furnished-village.md) for logs, named-host before/after
+rendering costs, verification order and limits. The denser village increases draw
+calls substantially; the host sample does not establish target-hardware headroom.
+
+Not verified: human appearance/comfort approval, Steam Deck/sustained performance,
+restart persistence or general application compatibility. Upper stories remain
+decorative. Chrome/retained-study sources remain unavailable; no fresh full native
+suite is claimed for this scene-only change.
+
+Next task: **stop after the explicitly authorized P22-T11**. Restart Elsewhere
+to load the village. P22-T09 and human P22-T10 remain unchecked and unauthorized.
 
 ## Building interiors verified (2026-10-14, from `228a550`)
 
@@ -215,7 +246,8 @@ The owner selected **version 2**, the weathered mountain village, and explicitly
 requested P22-T06, authorizing progress past the P22-T05 art checkpoint.
 Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md) govern
 current world work; Project 21 below is historical.
-**P22-T01 through P22-T08 are complete. P22-T09 is unstarted and unauthorized.**
+**P22-T01 through P22-T08 and separately authorized P22-T11 are complete.
+P22-T09 is unstarted and unauthorized.**
 
 ## P22-T06 verified (2026-10-12, from `a13b671`)
 

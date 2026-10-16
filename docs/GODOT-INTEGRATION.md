@@ -1,5 +1,17 @@
 # Godot and the existing Wayland compositor
 
+P22-T11 adds ten furnished ground-floor destinations around the retained square.
+Follow the cobbled lanes and walk through the open signed entries. Every new
+destination has a fixed trestle worktable with the existing teal support pad;
+launch, drag/release, leave/revisit and application controls are unchanged.
+Trade artifacts are fixed decoration, not commerce/crafting interactions.
+Upper stories are decorative and no people are present.
+Run `tools/check-godot-expansion.sh` for headless/graphical lane and doorway
+walking, support/enclosure checks and a real-terminal placement/revisit trial in
+all ten rooms. `world/tests/village_streets.gd` captures fourteen eye-level street
+views. Both require actual render inspection for visual acceptance; the test
+prints no human-approval or target-hardware claim.
+
 P22-T08 adds decorative wooded foothills, distant path glimpses and local mountain
 haze outside the existing playable bank. Run `tools/check-godot-atmosphere.sh`
 for headless geometry budgets, graphical instance-boundary checks and seven

@@ -3,6 +3,38 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-16 P22-T12 stairs and second floors
+
+Agent-run/agent-observed from `9ba86aa` plus P22-T12: the Lodge, Guildhall,
+Copper Kettle, Lantern Inn, Library and Meadow Inn have usable second floors,
+internal timber stairs, guarded openings/landings, finished rooms, pendant
+lights, suitable artifacts and ordinary worktables. Seven lower buildings remain
+unchanged. One tree moves north to clear the Lantern Inn's upper stairwell.
+
+Headless/GPU trials pass ordinary ascent, slow descent, route headroom, guards,
+floor/enclosure/work-pad checks and Home return in all six rooms. Real terminals
+are placed upstairs through normal pointer/wheel controls, left while walking
+downstairs/outside, and revisited with the same entity/transform and shell
+PID/variable. Resumed typing and normal close pass. Actual downstairs, stair,
+landing, room and live-application renders were inspected.
+
+Retained world, original/expanded downstairs rooms, pavilion, Terminal/Vim,
+Firefox and six default graphical interaction suites pass. Fourteen Python and
+62 Node tests pass; all 39 rebuilt village GLBs regenerate identically. The upstairs
+live-app trial precedes the last chimney trim/tree move; final import and
+headless/GPU roof/canopy checks plus fresh actual renders follow both. See
+[evidence and verification order](evidence/p22-t12/README.md) and
+[handoff 58](handoffs/58-village-second-floors.md).
+
+Owner procedure: restart Elsewhere, enter a selected building, walk up the
+right-wall stair and down again without jumping. Launch/place an application
+on the upstairs teal pad, descend/leave/revisit and resume it. Try slow descent
+and Home return. Human appearance/comfort acceptance is **not observed**.
+The additional rooms/lights raise draw calls; short capped RTX 3080 samples
+are not sustained/Steam Deck performance acceptance. P22-T09/P22-T10,
+restart restoration and general application compatibility remain unverified.
+No fresh full native Meson/sanitizer result is claimed for this scene-only work.
+
 ## 2026-10-15 P22-T11 furnished village
 
 Agent-run/agent-observed from `5e5c416` plus P22-T11: ten additional buildings

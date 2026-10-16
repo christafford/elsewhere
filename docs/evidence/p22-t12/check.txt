@@ -1,0 +1,45 @@
+Verified 9 Poly Haven village maps (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.vMGdsQ
+Godot import and runtime checks passed (not visual acceptance).
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+UPSTAIRS_TRAVERSAL building=Lodge floor_y=4.95381063938141
+UPSTAIRS_TRAVERSAL building=Guildhall floor_y=4.38648981571198
+UPSTAIRS_TRAVERSAL building=CopperKettle floor_y=5.83302981376648
+UPSTAIRS_TRAVERSAL building=LanternInn floor_y=6.50460464477539
+UPSTAIRS_TRAVERSAL building=Library floor_y=5.21143133163452
+UPSTAIRS_TRAVERSAL building=MeadowInn floor_y=4.35132569789887
+VILLAGE_UPSTAIRS_OK mode=headless buildings=6 failures=0
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+WARNING: Failed to load cached shader, recompiling.
+     at: _load_from_cache (drivers/gles3/shader_gles3.cpp:615)
+UPSTAIRS_REVISIT building=Lodge shell=355495:Lodge entity=c8b509cba81e65f770b62e65abf1cff1
+UPSTAIRS_TRAVERSAL building=Lodge floor_y=4.95381063938141
+UPSTAIRS_REVISIT building=Guildhall shell=358222:Guildhall entity=feed46a57e6fd03a69bbaf11ed3381bd
+UPSTAIRS_TRAVERSAL building=Guildhall floor_y=4.38648981571198
+UPSTAIRS_REVISIT building=CopperKettle shell=360074:CopperKettle entity=814b58f86b64435a5297af803bcaf5f3
+UPSTAIRS_TRAVERSAL building=CopperKettle floor_y=5.83302981376648
+UPSTAIRS_REVISIT building=LanternInn shell=363320:LanternInn entity=64ff7d7b2250bfa9af2c1fef46d37382
+UPSTAIRS_TRAVERSAL building=LanternInn floor_y=6.50460464477539
+UPSTAIRS_REVISIT building=Library shell=365054:Library entity=a7246f0917c096e6dd3e365397badee7
+UPSTAIRS_TRAVERSAL building=Library floor_y=5.21143133163452
+UPSTAIRS_REVISIT building=MeadowInn shell=365560:MeadowInn entity=0882c9683be8300dc52d9c09ef5ead62
+UPSTAIRS_TRAVERSAL building=MeadowInn floor_y=4.35132569789887
+VILLAGE_UPSTAIRS_OK mode=Wayland buildings=6 failures=0
+Upstairs checks passed; inspect .tools/p22-t12/upstairs/*.png.

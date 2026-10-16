@@ -70,3 +70,16 @@ services and restart persistence remain excluded. Preserve the existing
 playable boundary and real desktop behavior. Verification requires actual renders,
 walking and real-app continuity. This authorizes neither P22-T09/P22-T10
 acceptance nor another task. See [scope](../handoffs/55-village-expansion-plan.md).
+
+## Owner amendment: stairs and second floors (2026-10-16)
+
+The owner authorized **P22-T12** after reviewing its scope: internal stairs and
+usable second floors in the Lodge, Guildhall, Copper Kettle, Lantern Inn, Library
+and Meadow Inn. This supersedes the decorative-upper-floor restriction for those
+six second floors only. Preserve exterior silhouettes, warm materials, existing
+entries/workspaces and desktop behavior. Provide real ceiling openings, guarded
+stairs/landings, headroom, finished rooms and appropriate furnishings. Verify
+ordinary ascent/descent, actual renders and upstairs real-application continuity.
+No additional buildings, further floors, NPCs, new services or restart persistence.
+P22-T09/P22-T10 remain separate gates; stop after this task. See
+[approved scope](../handoffs/57-village-upstairs-plan.md).

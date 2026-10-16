@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://scripts/outdoor.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="2"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" path="res://scripts/village_backdrop.gd" id="9"]
 
 [ext_resource type="Script" path="res://scripts/village_expansion.gd" id="10"]
+
+[ext_resource type="Script" path="res://scripts/village_upstairs.gd" id="11"]
 
 [sub_resource type="CapsuleShape3D" id="player_shape"]
 radius = 0.22
@@ -54,6 +56,9 @@ script = ExtResource("6")
 
 [node name="VillageExtension" type="Node3D" parent="."]
 script = ExtResource("10")
+
+[node name="UpperFloors" type="Node3D" parent="."]
+script = ExtResource("11")
 
 [node name="MountainBackdrop" parent="." instance=ExtResource("7")]
 script = ExtResource("9")

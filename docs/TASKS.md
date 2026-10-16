@@ -5,6 +5,12 @@ Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.
 Older automatic-first-eligible instructions apply only to historical programs.
 
+Owner-requested stairs, completed 2026-10-16: **P22-T12** adds internal
+stairs and usable second floors to the six taller buildings. Actual stair walking,
+render inspection and upstairs live-terminal revisits pass.
+See [scope](handoffs/57-village-upstairs-plan.md) and
+[completion evidence](handoffs/58-village-second-floors.md). Stop after this task.
+
 Owner-requested village expansion, authorized 2026-10-15: **P22-T11** below
 adds ten differentiated buildings with appropriate furnishings and no people.
 The owner explicitly authorized this task ID after reviewing the scope.
@@ -264,6 +270,33 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   short frame samples do not establish Steam Deck/sustained performance. Human
   approval and P22-T09/P22-T10 remain unclaimed. See [handoff 56](handoffs/56-furnished-village.md)
   and [logs/images](evidence/p22-t11/README.md).
+
+- [x] **P22-T12 Add stairs and usable second floors to taller buildings.**
+  **Authorized and verified 2026-10-16, from `9ba86aa`.**
+  **Depends:** P22-T11 and the verified original-building interiors.
+  Convert the Lodge, Guildhall, Copper Kettle, Lantern Inn, Library and Meadow
+  Inn upper volumes into usable second floors with internal timber stairs,
+  genuine ceiling openings, guarded landings, finished/lighted rooms, modest
+  appropriate artifacts and one usable worktable each. Preserve silhouettes,
+  ground-floor access/workspaces, current art style and desktop behavior. Keep
+  at least 2.1m headroom along stairs and usable upstairs circulation, enclosing
+  low eaves where needed. No people, further floors, new buildings or services.
+  **Acceptance:** actual downstairs/stair/upstairs renders inspected for all
+  six buildings; headless/GPU ordinary ascent, circulation and descent without
+  jumping; floor/headroom/guard collision and Home checks; real-terminal
+  placement upstairs, downstairs/exit/revisit with preserved panel/shell state,
+  resumed input and normal close. Retain affected world and real-app regressions,
+  deterministic assets and import checks; record named-host rendering cost,
+  documentation/task-parser checks and truthful limits. Human approval and
+  P22-T09/P22-T10 remain separate. Scope and procedure:
+  [handoff 57](handoffs/57-village-upstairs-plan.md). Stop after this task.
+  **Result:** six furnished upper rooms and guarded timber stairs. Headless/GPU
+  walking and real-terminal placement/downstairs/exit/revisit/input/close pass;
+  retained world/app regressions, 14 Python and 62 Node tests pass. Actual renders
+  reviewed; final roof/canopy checks and import follow the last visual fixes.
+  All 39 rebuilt GLBs regenerate identically. Named-host draw calls increase; no sustained
+  or Steam Deck result is inferred. See [handoff 58](handoffs/58-village-second-floors.md)
+  and [evidence/verification order](evidence/p22-t12/README.md).
 
 ---
 

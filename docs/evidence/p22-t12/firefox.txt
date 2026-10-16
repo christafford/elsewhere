@@ -1,0 +1,24 @@
+Verified 9 Poly Haven village maps (offline)
+[ 13%] Built target elsewhere_runtime
+[ 13%] Built target generate_bindings
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.x4sN6H
+Godot import and runtime checks passed (not visual acceptance).
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+FIREFOX_CLOSE windows=0 owned_children=[]
+[GFX1-]: Wayland compositor unavailable (elsewhere), proxy: WP:E WP:CA WP:CR WP:CPCA WP:CPCF  - scheduling graceful shutdown
+FIREFOX_APPLICATION_OK failures=0
+Firefox application checks passed; inspect .tools/firefox-application-test/*.png.

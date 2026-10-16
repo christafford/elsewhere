@@ -1,0 +1,8 @@
+[
+  {"id":"Lodge","model":"alpine_lodge","path":"Architecture/Lodge","width":10.0,"depth":7.5,"rear_scale":1.65,"eave":5.1,"ridge":9.3,"roof_width":11.5,"kind":"lodge"},
+  {"id":"Guildhall","model":"guildhall","path":"Architecture/Guildhall","width":7.8,"depth":6.5,"rear_scale":1.65,"eave":8.1,"ridge":12.2,"roof_width":9.1,"kind":"meeting"},
+  {"id":"CopperKettle","model":"village_copperkettle","path":"VillageExtension/CopperKettle","width":8.4,"depth":7.0,"rear_scale":1.0,"eave":5.2,"ridge":8.5,"roof_width":9.4,"kind":"tavern"},
+  {"id":"LanternInn","model":"village_lanterninn","path":"VillageExtension/LanternInn","width":8.4,"depth":7.2,"rear_scale":1.0,"eave":6.2,"ridge":9.5,"roof_width":9.4,"kind":"inn"},
+  {"id":"Library","model":"village_library","path":"VillageExtension/Library","width":9.2,"depth":8.0,"rear_scale":1.0,"eave":5.8,"ridge":9.4,"roof_width":10.2,"kind":"library"},
+  {"id":"MeadowInn","model":"village_meadowinn","path":"VillageExtension/MeadowInn","width":9.0,"depth":8.0,"rear_scale":1.0,"eave":6.0,"ridge":9.1,"roof_width":10.0,"kind":"inn"}
+]

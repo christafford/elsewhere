@@ -1,5 +1,38 @@
 # Village architecture — selected reference 2, P22-T05 finishes
 
+## P22-T12 stairs and upstairs (2026-10-16)
+
+Six selected shells become hollow above real ceiling openings: `alpine_lodge`,
+`guildhall`, `village_copperkettle`, `village_lanterninn`, `village_library` and
+`village_meadowinn`. `upstairs.json` is their shared authoring/runtime manifest;
+`world/tools/village_upper.py` supplies ceiling openings, beam splitting and
+hollow upper shells. Hidden dormer portions are clipped above the main roof so
+the finished underside stays continuous. Exterior chimney/tower bases are
+trimmed above the occupied rooms. Four directly affected ground-floor artifact
+sets are rearranged to clear stair approaches. Other building assets are unchanged.
+
+Twelve new original GLBs, `upstairs_<id>.glb` and `upstairs_<id>_treads.glb`,
+contain timber guards/handrails, modest room artifacts/pendants and separate
+solid stair treads. Each flight rises 3.32m over 4.6m with twenty 16.6cm rises,
+23cm runs and 1.2m-wide treads. Runtime uses a fitted character-only walking
+surface; panels still collide with the visible treads. Six existing worktables
+add 2,520 placed triangles before LOD. No new downloaded asset or dependency.
+
+```sh
+python3 world/tools/build_village_models.py
+python3 world/tools/build_village_expansion.py
+python3 world/tools/build_village_upstairs.py
+```
+
+The 22 changed/new models total 136,024 triangles and 13,218,060 bytes, versus
+115,524 triangles and 11,207,892 bytes for their previously tracked counterparts.
+The six reused worktables are additional instances, not part of those GLB totals.
+All 39 rebuilt village GLBs regenerate byte-identically with these commands. Existing
+Poly Haven texture provenance and material overrides continue unchanged.
+See [final hashes](../../../docs/evidence/p22-t12/models.sha256),
+[model budgets](../../../docs/evidence/p22-t12/model-budgets.json) and
+[render/check evidence](../../../docs/evidence/p22-t12/README.md).
+
 ## P22-T11 village expansion (2026-10-15)
 
 Twenty original repository meshes authored by the Codex agent: ten buildings

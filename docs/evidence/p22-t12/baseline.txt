@@ -1,0 +1,23 @@
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+WARNING: Failed to load cached shader, recompiling.
+     at: _load_from_cache (drivers/gles3/shader_gles3.cpp:615)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+ATMOSPHERE_SAMPLE {"draw_calls":1455.0,"median_ms":16.676,"p95_ms":17.303,"primitives":1601627.0,"view":"arrival"}
+ATMOSPHERE_SAMPLE {"draw_calls":423.0,"median_ms":16.66,"p95_ms":17.265,"primitives":809327.0,"view":"north-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":59.0,"median_ms":16.653,"p95_ms":17.044,"primitives":588783.0,"view":"east-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":38.0,"median_ms":16.678,"p95_ms":17.243,"primitives":427035.0,"view":"south-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":41.0,"median_ms":16.653,"p95_ms":17.247,"primitives":501663.0,"view":"west-outlook"}
+ATMOSPHERE_SAMPLE {"draw_calls":2113.0,"median_ms":16.658,"p95_ms":17.36,"primitives":1728095.0,"view":"south-return"}
+ATMOSPHERE_SAMPLE {"draw_calls":41.0,"median_ms":16.669,"p95_ms":17.284,"primitives":501663.0,"view":"pavilion-edge"}
+VILLAGE_ATMOSPHERE_OK mode=Wayland baseline=true failures=0

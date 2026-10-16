@@ -1,5 +1,18 @@
 # Godot and the existing Wayland compositor
 
+P22-T12 adds stairs inside the Lodge, Guildhall, Copper Kettle, Lantern Inn,
+Library and Meadow Inn. Enter normally and follow the timber stair along the
+right-hand wall to a usable second floor. Walk up/down without a jump or special
+key. Guards surround the stair opening; Home still returns to the square.
+Each upstairs room provides an ordinary teal-pad worktable. Existing application
+launch, placement, world return, revisit and close controls are unchanged.
+`tools/check-godot-upstairs.sh` runs headless and graphical stair/room/guard tests
+and a real-terminal placement, downstairs/exit/revisit and same-shell trial in
+all six upstairs rooms. Inspect actual captures in `.tools/p22-t12/upstairs`.
+`world/tests/village_upstairs_views.gd` separately scans roof/canopy clearance
+and captures final views; it does not establish walking/live-app behavior.
+No human comfort or target-hardware acceptance follows from these fixtures alone.
+
 P22-T11 adds ten furnished ground-floor destinations around the retained square.
 Follow the cobbled lanes and walk through the open signed entries. Every new
 destination has a fixed trestle worktable with the existing teal support pad;

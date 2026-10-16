@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+UPSTAIRS_ROOF_GRID building=Lodge samples=72
+UPSTAIRS_ROOF_GRID building=Guildhall samples=35
+UPSTAIRS_ROOF_GRID building=CopperKettle samples=35
+UPSTAIRS_ROOF_GRID building=LanternInn samples=35
+UPSTAIRS_ROOF_GRID building=Library samples=49
+UPSTAIRS_ROOF_GRID building=MeadowInn samples=49
+VILLAGE_UPSTAIRS_VIEWS_OK mode=headless failures=0

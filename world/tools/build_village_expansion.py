@@ -7,6 +7,7 @@ Coordinates: meters, Y up, open front at +Z. No external models or dependencies.
 import json
 import math
 from build_village_models import Model, PALETTE, OUT
+from village_upper import BY_MODEL, upper_shell
 
 PALETTE.update({
     'paper': ('e5d4ac', .95), 'leather': ('704637', .85),
@@ -143,10 +144,10 @@ def artifacts(spec):
     # Furniture stays outside the entrance/central aisle and west worktable.
     bench(m,-2,.85,2.05)
     if kind in ['tavern','hearth']:
-        table(m,1.95,.35,2.15,1.05)
-        bench(m,1.95,1.3)
-        for x,z in [(1.4,.4),(2.3,.25)]: vessel(m,(x,.88,z),.12,.23,handle=True)
-        vessel(m,(2.1,.88,.55),.19,.46,'terracotta',True)
+        table(m,1.55 if kind=='tavern' else 1.95,.35,1.5 if kind=='tavern' else 2.15,1.05)
+        bench(m,1.55 if kind=='tavern' else 1.95,1.3,1.5 if kind=='tavern' else 2)
+        for x,z in ([(1.2,.4),(1.9,.25)] if kind=='tavern' else [(1.4,.4),(2.3,.25)]): vessel(m,(x,.88,z),.12,.23,handle=True)
+        vessel(m,(1.65 if kind=='tavern' else 2.1,.88,.55),.19,.46,'terracotta',True)
         if kind=='hearth':
             hearth(m,-1.9,back)
             for j in range(7): m.beam('wood',(-3.2,.13+(j//3)*.16,back+(j%3)*.17),(-2.6,.13+(j//3)*.16,back+(j%3)*.17),.13)
@@ -180,17 +181,17 @@ def artifacts(spec):
             for x in [-2.7,-1.7]: m.box('metal',(x,.25+i*.48,back+.41),(.055,.4,.025))
             m.box('metal',(-2.2,.28+i*.48,back+.43),(.25,.055,.04))
         if kind=='meadow':
-            table(m,right,.2,1.0,1.3)
-            vessel(m,(right,.88,.2),.18,.36,handle=True)
-            loaf(m,(right,.88,-.2))
+            table(m,1.5,.2,1.0,1.3)
+            vessel(m,(1.5,.88,.2),.18,.36,handle=True)
+            loaf(m,(1.5,.88,-.2))
         else:
-            bench(m,right,.3,1.4)
-            for j in range(3): m.box('flour',(right,.57+j*.09,.3),(1.0,.08,.4))
+            bench(m,1.5,.3,1.4)
+            for j in range(3): m.box('flour',(1.5,.57+j*.09,.3),(1.0,.08,.4))
     elif kind=='library':
         shelf(m,-2.4,back,3.1)
         shelf(m,1.7,back,3.0)
         side=Model('bookwall'); shelf(side,0,0,3.0)
-        m.merge(side,(right+.45,0,-.2),-math.pi/2)
+        m.merge(side,(-right-.45,0,-.2),math.pi/2)
         # Sloped lectern, open book, page seam and pedestal.
         m.box('timber',(1.6,.12,1.6),(.85,.24,.65))
         m.box('wood',(1.6,.64,1.6),(.18,1.05,.18))
@@ -259,7 +260,9 @@ def architecture(spec):
     front=d/2; half=w/2; kind=spec['kind']; accent=spec['accent']
     wall='stone' if kind in ['hearth','pottery'] else 'lime'
     m.room_shell(w,d,wall)
-    if spec['hip']:
+    if m.name in BY_MODEL:
+        upper_shell(m)
+    elif spec['hip']:
         m.box(wall,(0,(3.32+e)/2,0),(w,e-3.32,d))
     else:
         m.polygon(wall,[(-half,3.32),(half,3.32),(half,e),(0,r-.2),(-half,e)],front,-front)
@@ -309,8 +312,8 @@ def architecture(spec):
     for y in [3.24,4.06]: m.box('metal',(0,y,sign_z+.12),(3.3,.035,.025))
     # Capped masonry chimney, with two ceramic pots.
     x=-half*.65; z=-d*.24
-    # Keep the decorative exterior flue above the finished ground-floor ceiling.
-    m.box('stone',(x,e+.8,z),(.75,2.2,.8))
+    # Clip selected upper-room flues to the roof, retaining their exterior height.
+    m.roof_flue((x,e+.8,z),(.75,2.2,.8))
     m.box('cut_stone',(x,e+1.94,z),(.98,.16,1.02))
     for dx in [-.22,.22]: m.lathe('tile',[(.12,0),(.12,.45),(.17,.47),(.17,.56),(.08,.56),(.08,0)],(x+dx,e+2.02,z),12)
     for side in [-1,1]:

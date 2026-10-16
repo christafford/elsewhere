@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+UPSTAIRS_TRAVERSAL building=Lodge floor_y=4.95381063938141
+UPSTAIRS_TRAVERSAL building=Guildhall floor_y=4.38648981571198
+UPSTAIRS_TRAVERSAL building=CopperKettle floor_y=5.83302981376648
+UPSTAIRS_TRAVERSAL building=LanternInn floor_y=6.50460464477539
+UPSTAIRS_TRAVERSAL building=Library floor_y=5.21143133163452
+UPSTAIRS_TRAVERSAL building=MeadowInn floor_y=4.35132569789887
+VILLAGE_UPSTAIRS_OK mode=headless buildings=6 failures=0

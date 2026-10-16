@@ -1,0 +1,23 @@
+Verified 9 Poly Haven village maps (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.RUSPTX
+Godot import and runtime checks passed (not visual acceptance).
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+VILLAGE_REVISIT distance_one_way_m=12.2910289764404 shell=371041:still-here terminal_entity=3d2998f70331aa77d271a307f58e3c8f editor_entity=17e4c30f0fa601e55d22d9395d4cc82f background_revision_delta=22
+VILLAGE_APPLICATIONS_OK clients=2 failures=0
+Village application checks passed; inspect /home/chris/code/elsewhere/.tools/village-applications-test/*.png.

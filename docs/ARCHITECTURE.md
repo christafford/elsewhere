@@ -1,5 +1,16 @@
 # Elsewhere architecture transition
 
+P22-T12 adds location-owned `village_upstairs.gd`, initialized after the original
+architecture and village extension. `art/village/upstairs.json` identifies six
+buildings and supplies shared dimensions to the model authoring and runtime.
+The authored shells have real ceiling openings and finished second floors at
+local Y=3.32m. Separate tread models retain ordinary object collision; only the
+player excludes their bodies and uses a fitted layer-8 walking guide. Railings,
+landings, walls and furniture retain physical collision. The existing controller,
+input modes, application ownership and identity behavior are unchanged. Upstairs
+worktables reuse the existing fixed support constructor. No retired-study scene
+is loaded; its stair collision approach is reused at the location boundary.
+
 P22-T11 adds a location-owned `VillageExtension` beside the existing architecture.
 `village_expansion.gd` reads ten authored sites from `art/village/expansion.json`,
 loads original building/artifact GLBs, applies the existing finishes and mesh

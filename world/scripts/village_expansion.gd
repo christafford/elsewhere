@@ -49,7 +49,7 @@ func _ready() -> void:
 			sign.position = Vector3(0,line[1],spec.depth/2+sign_offset)
 			model.add_child(sign)
 
-func worktable(model: Node3D) -> void:
+static func worktable(model: Node3D) -> void:
 	# One retained trestle table per destination; props and central aisle stay clear.
 	var body := StaticBody3D.new()
 	body.name = "Worktable"

@@ -1,0 +1,156 @@
+[
+  {
+    "model": "alpine_lodge.glb",
+    "triangles_before": 16572,
+    "triangles_after": 16840,
+    "bytes_before": 1603944,
+    "bytes_after": 1629676
+  },
+  {
+    "model": "guildhall.glb",
+    "triangles_before": 17584,
+    "triangles_after": 17792,
+    "bytes_before": 1700984,
+    "bytes_after": 1720968
+  },
+  {
+    "model": "upstairs_copperkettle.glb",
+    "triangles_before": 0,
+    "triangles_after": 2832,
+    "bytes_before": 0,
+    "bytes_after": 276436
+  },
+  {
+    "model": "upstairs_copperkettle_treads.glb",
+    "triangles_before": 0,
+    "triangles_after": 720,
+    "bytes_before": 0,
+    "bytes_after": 70920
+  },
+  {
+    "model": "upstairs_guildhall.glb",
+    "triangles_before": 0,
+    "triangles_after": 2592,
+    "bytes_before": 0,
+    "bytes_after": 255476
+  },
+  {
+    "model": "upstairs_guildhall_treads.glb",
+    "triangles_before": 0,
+    "triangles_after": 720,
+    "bytes_before": 0,
+    "bytes_after": 70888
+  },
+  {
+    "model": "upstairs_lanterninn.glb",
+    "triangles_before": 0,
+    "triangles_after": 1380,
+    "bytes_before": 0,
+    "bytes_after": 136992
+  },
+  {
+    "model": "upstairs_lanterninn_treads.glb",
+    "triangles_before": 0,
+    "triangles_after": 720,
+    "bytes_before": 0,
+    "bytes_after": 70920
+  },
+  {
+    "model": "upstairs_library.glb",
+    "triangles_before": 0,
+    "triangles_after": 5244,
+    "bytes_before": 0,
+    "bytes_after": 510248
+  },
+  {
+    "model": "upstairs_library_treads.glb",
+    "triangles_before": 0,
+    "triangles_after": 720,
+    "bytes_before": 0,
+    "bytes_after": 70924
+  },
+  {
+    "model": "upstairs_lodge.glb",
+    "triangles_before": 0,
+    "triangles_after": 1380,
+    "bytes_before": 0,
+    "bytes_after": 136980
+  },
+  {
+    "model": "upstairs_lodge_treads.glb",
+    "triangles_before": 0,
+    "triangles_after": 720,
+    "bytes_before": 0,
+    "bytes_after": 70880
+  },
+  {
+    "model": "upstairs_meadowinn.glb",
+    "triangles_before": 0,
+    "triangles_after": 1380,
+    "bytes_before": 0,
+    "bytes_after": 136976
+  },
+  {
+    "model": "upstairs_meadowinn_treads.glb",
+    "triangles_before": 0,
+    "triangles_after": 720,
+    "bytes_before": 0,
+    "bytes_after": 70888
+  },
+  {
+    "model": "village_copperkettle.glb",
+    "triangles_before": 14620,
+    "triangles_after": 14818,
+    "bytes_before": 1423012,
+    "bytes_after": 1442020
+  },
+  {
+    "model": "village_copperkettle_artifacts.glb",
+    "triangles_before": 6620,
+    "triangles_after": 6620,
+    "bytes_before": 640848,
+    "bytes_after": 640832
+  },
+  {
+    "model": "village_lanterninn.glb",
+    "triangles_before": 15444,
+    "triangles_after": 15684,
+    "bytes_before": 1499872,
+    "bytes_after": 1522912
+  },
+  {
+    "model": "village_lanterninn_artifacts.glb",
+    "triangles_before": 828,
+    "triangles_after": 828,
+    "bytes_before": 84024,
+    "bytes_after": 84020
+  },
+  {
+    "model": "village_library.glb",
+    "triangles_before": 15372,
+    "triangles_after": 15589,
+    "bytes_before": 1492164,
+    "bytes_after": 1512984
+  },
+  {
+    "model": "village_library_artifacts.glb",
+    "triangles_before": 11088,
+    "triangles_after": 11088,
+    "bytes_before": 1070572,
+    "bytes_after": 1070544
+  },
+  {
+    "model": "village_meadowinn.glb",
+    "triangles_before": 15924,
+    "triangles_after": 16165,
+    "bytes_before": 1545148,
+    "bytes_after": 1568296
+  },
+  {
+    "model": "village_meadowinn_artifacts.glb",
+    "triangles_before": 1472,
+    "triangles_after": 1472,
+    "bytes_before": 147324,
+    "bytes_after": 147280
+  }
+]

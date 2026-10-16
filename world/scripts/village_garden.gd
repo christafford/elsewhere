@@ -2,7 +2,8 @@
 extends Node3D
 const Landscape = preload("res://scripts/village_landscape.gd")
 const Materials = preload("res://scripts/village_materials.gd")
-const TREES := [Vector2(-22,-16),Vector2(-6,-27),Vector2(23,-23),Vector2(26,12),Vector2(-25,10),Vector2(15,26),Vector2(-29,-32),Vector2(31,-29)]
+# Keep the northwestern canopy clear of Lantern Inn's occupied upper floor.
+const TREES := [Vector2(-22,-16),Vector2(-6,-27),Vector2(23,-23),Vector2(26,12),Vector2(-25,10),Vector2(15,26),Vector2(-29,-36),Vector2(31,-29)]
 
 func _ready() -> void:
 	for i in range(TREES.size()):

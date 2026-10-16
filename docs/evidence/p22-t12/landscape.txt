@@ -1,0 +1,34 @@
+Verified 9 Poly Haven village maps (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.IflktU
+Godot import and runtime checks passed (not visual acceptance).
+Landscape check logs: /tmp/elsewhere-landscape-check.2vE4tv
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+LANDSCAPE_ROUTE south_approach round_trip=true endpoint_y=0.94326603412628
+LANDSCAPE_ROUTE west_rise round_trip=true endpoint_y=2.68331003189087
+LANDSCAPE_ROUTE north_saddle round_trip=true endpoint_y=1.85634458065033
+LANDSCAPE_ROUTE east_shelf round_trip=true endpoint_y=0.89649957418442
+VILLAGE_LANDSCAPE_OK mode=headless samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.00555356609788 failures=0
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+LANDSCAPE_ROUTE south_approach round_trip=true endpoint_y=0.9432669878006
+LANDSCAPE_ROUTE west_rise round_trip=true endpoint_y=2.6833062171936
+LANDSCAPE_ROUTE north_saddle round_trip=true endpoint_y=1.85634171962738
+LANDSCAPE_ROUTE east_shelf round_trip=true endpoint_y=0.89649957418442
+VILLAGE_LANDSCAPE_OK mode=Wayland samples=24178 walked_m=337.8 max_grade_deg=14.39 floor_gap=0.00555346593628 failures=0
+Landscape checks passed; inspect .tools/village-landscape-test/*.png.

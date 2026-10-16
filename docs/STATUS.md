@@ -1,4 +1,37 @@
-# Current direction — Elsewhere (2026-10-15)
+# Current direction — Elsewhere (2026-10-16)
+
+## P22-T12 stairs and second floors verified (2026-10-16, from `9ba86aa`)
+
+Lodge, Guildhall, Copper Kettle, Lantern Inn, Library and Meadow Inn now have
+internal timber stairs to finished, furnished second floors. Real ceiling
+openings, guarded landings, warm pendant lights and one ordinary worktable per
+room continue the existing art style. The character walks up/down without a
+jump or control change; seven lower buildings remain unchanged. One nearby tree
+moves north to keep its canopy outside Lantern Inn's occupied upper floor.
+
+Verified by automated checks: headless/GPU ascent, slow descent, 2.1m route
+headroom, guards, floor/enclosure/worktable clearance and Home; real-terminal
+placement upstairs, downstairs/exit/revisit with preserved entity/transform and
+shell state, resumed typing and close in all six rooms. Retained world, all
+original/expansion downstairs rooms, pavilion, Terminal/Vim, Firefox and six
+default graphical interaction checks pass. Fourteen Python and 62 Node tests,
+deterministic regeneration of all 39 rebuilt village GLBs, import/bridge/startup,
+final roof/canopy checks, document links/task parsing and diffs pass.
+
+Agent-observed: actual downstairs/stair/landing/upstairs and application renders
+inspected. Dormer/chimney intrusions, seating clearance and a canopy obstruction
+were corrected. [Evidence](evidence/p22-t12/README.md) and
+[handoff 58](handoffs/58-village-second-floors.md) distinguish full live-app runs
+from the final visual-only corrections and checks. Added room/light cost raises
+draw calls; short capped RTX 3080 samples do not establish hardware headroom.
+
+Not verified: human appearance/comfort approval, Steam Deck/sustained performance,
+general application compatibility or restart persistence. Higher Guildhall
+stories/turret, windows and exterior balconies remain decorative. Chrome and
+retained-study sources remain unavailable; no fresh full native suite claimed.
+
+Next task: **stop after the explicitly authorized P22-T12**. Restart Elsewhere
+to load the stairs. P22-T09 and human P22-T10 remain unchecked and unauthorized.
 
 ## P22-T11 furnished village verified (2026-10-15, from `5e5c416`)
 
@@ -246,7 +279,7 @@ The owner selected **version 2**, the weathered mountain village, and explicitly
 requested P22-T06, authorizing progress past the P22-T05 art checkpoint.
 Project 22 and [Decision 08](decisions/08-elsewhere-village-world.md) govern
 current world work; Project 21 below is historical.
-**P22-T01 through P22-T08 and separately authorized P22-T11 are complete.
+**P22-T01 through P22-T08 and separately authorized P22-T11/P22-T12 are complete.
 P22-T09 is unstarted and unauthorized.**
 
 ## P22-T06 verified (2026-10-12, from `a13b671`)

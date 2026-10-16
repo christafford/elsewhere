@@ -1,5 +1,19 @@
 # Current art brief — Elsewhere village square
 
+## P22-T12 stairs and second floors (owner, 2026-10-16)
+
+The Lodge, Guildhall, Copper Kettle, Lantern Inn, Library and Meadow Inn gain
+usable second floors through internal timber stairs. Preserve roof silhouettes,
+footprints and the established warm palette. Real ceiling openings, framed
+landings, timber handrails/guards, plaster walls, wood floors and pendant lamps
+make the route legible. Use the existing sloped roof undersides where appropriate;
+the Guildhall closes its higher stories above the second-floor room. Keep 2.1m
+clear headroom along usable circulation and stairs. Trunks/linens/seating,
+tavern crockery, meeting furniture and reading shelves continue each building's
+purpose upstairs, with a clear worktable in every room. No people. The seven
+lower buildings, higher stories/turret and exterior balconies retain their
+previous scope. See [approved plan](handoffs/57-village-upstairs-plan.md).
+
 ## P22-T11 furnished village (owner, 2026-10-15)
 
 The owner authorized expanding the three-building square into a thirteen-building

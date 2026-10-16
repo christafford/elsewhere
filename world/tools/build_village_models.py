@@ -10,6 +10,7 @@ import math
 import random
 from pathlib import Path
 import struct
+from village_upper import BY_MODEL, ceiling, ceiling_beam, upper_shell, trim_above_roof
 
 OUT = Path(__file__).resolve().parents[1] / 'art' / 'village'
 # Reference 2: weathered timber, cool limestone, dark slate and restrained ivy.
@@ -199,7 +200,22 @@ class Model:
         d.polygon('lime',[(-.65,0),(.65,0),(.65,1),(0,1.8),(-.65,1)],.8,-.65)
         d.roof(1.65,1.85,1.05,1.9)
         d.window(0,.56,.81,.73,.82)
-        self.merge(d,origin,yaw)
+        if self.name in BY_MODEL:
+            placed=Model('dormer_cut')
+            placed.merge(d,origin,yaw)
+            trim_above_roof(placed,BY_MODEL[self.name])
+            self.merge(placed,(0,0,0),0)
+        else:
+            self.merge(d,origin,yaw)
+
+    def roof_flue(self, center, size):
+        if self.name not in BY_MODEL:
+            self.box('stone',center,size)
+            return
+        flue=Model('flue_cut')
+        flue.box('stone',center,size)
+        trim_above_roof(flue,BY_MODEL[self.name])
+        self.merge(flue,(0,0,0),0)
 
     def window(self, x,y,z,w=1.05,h=1.5,shutters=False):
         self.box('timber',(x,y,z+.04),(w+.26,h+.25,.18))
@@ -268,14 +284,14 @@ class Model:
         for lo,hi in [(-width/2,door_x-1.22),(door_x+1.22,width/2)]:
             self.box(mat,((lo+hi)/2,1.6,front-.14),(hi-lo,3.2,.28))
         self.box(mat,(door_x,2.95,front-.14),(2.44,.5,.28))
-        self.box('wood',(0,3.24,0),(width,.16,depth))
+        ceiling(self,width,depth)
         # Interior wainscot, cornice and ceiling beams establish a finished room.
         for y in [.16,.8,3.02]:
             for side in [-1,1]:
                 self.box('wood',(side*(width/2-.31),y,0),(.12,.12,depth-.4))
             self.box('wood',(0,y,-front+.32),(width-.4,.12,.12))
         for z in [-front+.65,0,front-.65]:
-            self.box('timber',(0,3.05,z),(width-.4,.19,.18))
+            ceiling_beam(self,width,z)
         # Visible pendant; its local light is supplied by the scene, not the app.
         self.beam('metal',(0,3.13,-1),(0,2.7,-1),.035)
         self.lathe('metal',[(.1,0),(.38,.16),(.4,.2),(.12,.23)],(0,2.55,-1),24)
@@ -346,7 +362,7 @@ class Model:
 def lodge():
     m=Model('alpine_lodge')
     m.room_shell(10,7.5,'lime')
-    m.polygon('lime',[(-5,3.32),(5,3.32),(5,5.1),(0,9.1),(-5,5.1)],3.75,-3.75)
+    upper_shell(m)
     m.polygon('wood',[(-4.9,5.12),(4.9,5.12),(0,9.05)],3.79,3.75)
     m.roof(11.5,9.1,5.1,9.3)
     for side in [-1,1]: m.dormer((side*3.3,6.4,-.7),side*math.pi/2)
@@ -374,7 +390,7 @@ def lodge():
     for side in [-1,1]:
         for z in [-2.7,0,2.7]: m.box('timber',(side*5.04,2.55,z),(.15,5.1,.18))
         for y in [.25,2.8,4.9]: m.box('timber',(side*5.04,y,0),(.15,.16,7.5))
-    m.box('stone',(-3,6.5,-1.8),(.8,3.3,.85))
+    m.roof_flue((-3,6.5,-1.8),(.8,3.3,.85))
     m.box('cut_stone',(-3,8.2,-1.8),(1.05,.22,1.1))
     m.elevations(5,3.75,[1.55,3.98],[-1.5,1.5],True)
     m.extend_rear()
@@ -384,7 +400,7 @@ def lodge():
 def guildhall():
     m=Model('guildhall')
     m.room_shell(7.8,6.5,'lime')
-    m.polygon('lime',[(-3.9,3.32),(3.9,3.32),(3.9,8.1),(0,11.9),(-3.9,8.1)],3.25,-3.25)
+    upper_shell(m)
     m.roof(9.1,8.0,8.1,12.2)
     for x in [-3.8,-1.4,1.4,3.8]: m.box('timber',(x,4.05,3.38),(.27,8.1,.25))
     for y in [2.85,5.55,8.0]: m.box('timber',(0,y,3.38),(8,.23,.25))
@@ -399,7 +415,7 @@ def guildhall():
     m.elevations(3.9,3.25,[1.6,4.3,6.95],[-1.5,1.5])
     # Attached tower stays inside the building footprint. Exterior only.
     center=(-2.05,0,-1.25)
-    m.lathe('stone',[(1.55,3.32),(1.55,8.6),(1.8,8.7),(1.8,9.0),(1.5,9.05),(1.5,11.1)],center,8)
+    m.lathe('stone',[(1.55,6.42),(1.55,8.6),(1.8,8.7),(1.8,9.0),(1.5,9.05),(1.5,11.1)],center,8)
     m.lathe('wood',[(1.5,8.95),(1.5,11.15)],center,8)
     for j in range(8):
         a=j*math.tau/8

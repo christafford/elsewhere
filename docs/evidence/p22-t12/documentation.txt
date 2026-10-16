@@ -1,0 +1,23 @@
+P22-T12 final document/asset checks, 2026-10-16
+
+- Resolve relative Markdown links in all changed/new Markdown files.
+- Require twelve unique P22 task headings; compare all historical checkbox
+  states to HEAD. Only P22-T12 is newly added and checked.
+- Existing unfinishedTasks parser: Project 22 returns only P22-T09; exact
+  P22-T12 returns no unfinished task. Human P22-T10 remains unchecked.
+- All 39 rebuilt village GLBs regenerate byte-identically using the three generators.
+- Parse GLB JSON vertex/index-accessor counts and check model-budgets.json.
+- Verify every changed/new model against models.sha256.
+- Python compile checks for all four model-authoring modules; bash -n for
+  tools/check-godot-upstairs.sh; git diff --check including staged task files.
+
+This is validation only, not a continuation workflow. No task beyond P22-T12
+was executed or checked. Full runtime commands/results are in README.md.
+
+PASS 11 changed/new Markdown documents and 373 relative links.
+PASS twelve unique P22 tasks; historical checkbox states unchanged.
+PASS all 22 changed/new GLB hashes, triangle counts and byte counts.
+
+Generator scope: 7 base models + 20 expansion models + 12 upstairs models =
+39 rebuilt GLBs. All 44 tracked/new village asset hashes stayed stable across
+regeneration; five assets outside these generators were retained unchanged.

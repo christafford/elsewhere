@@ -3,6 +3,33 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-10-15 P22-T11 furnished village
+
+Agent-run/agent-observed from `5e5c416` plus P22-T11: ten additional buildings
+bring the village to thirteen. Two taverns, two inns and six business/cultural
+buildings have connected cobbled lanes, open ground floors, appropriate fixed
+artifacts and usable worktables. No people; upper stories remain decorative.
+Actual street, entry, interior, artifact and live-application renders inspected.
+See [evidence](evidence/p22-t11/README.md) and [handoff 56](handoffs/56-furnished-village.md).
+
+Headless/GPU trials walk all ten lanes both ways and every room, check floors,
+enclosure, boundary separation, worktable clearance and Home return. Graphical
+trials place real terminals through ordinary pointer/wheel input in every new
+building, walk away/return, verify panel and shell PID/variable continuity,
+resume typing and close. Import/bridge build, retained world and original-room
+checks, pavilion manipulation, Terminal/Vim, Firefox and six default graphical
+interaction checks pass. Fourteen Python and 62 Node/parser tests pass;
+models regenerate byte-identically. No fresh complete native suite is claimed.
+
+Owner procedure: restart Elsewhere, follow the north/west/east/south lanes,
+walk through open entrances, launch with Tab, return with Ctrl+Alt+Escape and
+place a panel above a teal worktable pad. Leave and revisit, double-click to
+resume, then close. Compare the original pavilion and three original rooms.
+Human appearance/comfort acceptance is **not observed**. Named-host rendering
+costs increase with the denser village; short RTX 3080/Weston samples are not
+Steam Deck/sustained performance acceptance. P22-T09/P22-T10 and restart
+restoration remain unverified. Only P22-T11 is completed by this work.
+
 ## 2026-10-14 owner-requested building interiors
 
 Agent-run/agent-observed from `228a550`: the Lodge, Guildhall and Workshop now

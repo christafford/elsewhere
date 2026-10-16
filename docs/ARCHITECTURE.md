@@ -1,5 +1,16 @@
 # Elsewhere architecture transition
 
+P22-T11 adds a location-owned `VillageExtension` beside the existing architecture.
+`village_expansion.gd` reads ten authored sites from `art/village/expansion.json`,
+loads original building/artifact GLBs, applies the existing finishes and mesh
+collision, and reuses continuous entrance ramps. Fixed trestle worktables expose
+physical support anchors through existing panel behavior. Signs and interior
+lights belong to the location. `village_lanes.gd` adds paving centerlines to the
+existing ground shader's distance field; terrain heights/boundary stay unchanged.
+No new compositor, input, lifecycle, world-identity or persistence boundary.
+The original architecture/pavilion and movable stools remain in their existing
+nodes. See [scope](handoffs/55-village-expansion-plan.md).
+
 Project 22 separates desktop services from physical locations incrementally;
 see [Decision 08](decisions/08-elsewhere-village-world.md). P22-T01 introduces
 `world/scripts/desktop_runtime.gd`, a scene-owned Node that composes the existing

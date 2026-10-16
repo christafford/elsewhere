@@ -1,0 +1,75 @@
+Verified 9 Poly Haven village maps (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.BqV8xC
+Godot import and runtime checks passed (not visual acceptance).
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+EXPANSION_LANE north_lane
+EXPANSION_LANE book_lane
+EXPANSION_LANE library_lane
+EXPANSION_LANE potters_lane
+EXPANSION_LANE bakery_lane
+EXPANSION_LANE herb_lane
+EXPANSION_LANE store_lane
+EXPANSION_LANE hearth_lane
+EXPANSION_LANE meadow_lane
+EXPANSION_LANE south_court
+EXPANSION_INTERIOR CopperKettle floor_y=2.51302981376648
+EXPANSION_INTERIOR LanternInn floor_y=3.18460464477539
+EXPANSION_INTERIOR Library floor_y=1.89143133163452
+EXPANSION_INTERIOR Bookbinder floor_y=2.25903463363647
+EXPANSION_INTERIOR Bakery floor_y=2.28735566139221
+EXPANSION_INTERIOR Apothecary floor_y=1.70422554016113
+EXPANSION_INTERIOR Pottery floor_y=1.20049977302551
+EXPANSION_INTERIOR GeneralStore floor_y=0.91255980730057
+EXPANSION_INTERIOR Hearthside floor_y=0.83806055784225
+EXPANSION_INTERIOR MeadowInn floor_y=1.03132569789886
+VILLAGE_EXPANSION_OK mode=headless buildings=10 failures=0
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+EXPANSION_LANE north_lane
+EXPANSION_LANE book_lane
+EXPANSION_LANE library_lane
+EXPANSION_LANE potters_lane
+EXPANSION_LANE bakery_lane
+EXPANSION_LANE herb_lane
+EXPANSION_LANE store_lane
+EXPANSION_LANE hearth_lane
+EXPANSION_LANE meadow_lane
+EXPANSION_LANE south_court
+EXPANSION_REVISIT building=CopperKettle shell=235026:CopperKettle entity=88848fb5d386fe533b9f2c61468a94ab
+EXPANSION_INTERIOR CopperKettle floor_y=2.51302981376648
+EXPANSION_REVISIT building=LanternInn shell=235083:LanternInn entity=c612689cea1886e57bdbbbe775794103
+EXPANSION_INTERIOR LanternInn floor_y=3.18460464477539
+EXPANSION_REVISIT building=Library shell=235120:Library entity=c9d1b82a96cb1d85c59db50236bc2897
+EXPANSION_INTERIOR Library floor_y=1.89143133163452
+EXPANSION_REVISIT building=Bookbinder shell=235162:Bookbinder entity=5cd5ba7acc0fdfda74b4c32cd7a48878
+EXPANSION_INTERIOR Bookbinder floor_y=2.25903463363647
+EXPANSION_REVISIT building=Bakery shell=235184:Bakery entity=7f524e45fe01555002455fc1a7dfe62b
+EXPANSION_INTERIOR Bakery floor_y=2.28735566139221
+EXPANSION_REVISIT building=Apothecary shell=235242:Apothecary entity=2f7e2107470790df1ae984e21255ed8c
+EXPANSION_INTERIOR Apothecary floor_y=1.70422554016113
+EXPANSION_REVISIT building=Pottery shell=235279:Pottery entity=d1d59c09865afad061095c068e6e9950
+EXPANSION_INTERIOR Pottery floor_y=1.20049977302551
+EXPANSION_REVISIT building=GeneralStore shell=235306:GeneralStore entity=df565363a71ddd71d2dbdbd4ed291362
+EXPANSION_INTERIOR GeneralStore floor_y=0.91255980730057
+EXPANSION_REVISIT building=Hearthside shell=235332:Hearthside entity=9359a008e491ada6a98b3e4aa1567ff2
+EXPANSION_INTERIOR Hearthside floor_y=0.83806055784225
+EXPANSION_REVISIT building=MeadowInn shell=235371:MeadowInn entity=bd797e6de3915d74a817987cac1b9a29
+EXPANSION_INTERIOR MeadowInn floor_y=1.03132569789886
+VILLAGE_EXPANSION_OK mode=Wayland buildings=10 failures=0
+Expansion checks passed; inspect .tools/p22-t11/expansion/*.png.

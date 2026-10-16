@@ -1,0 +1,22 @@
+P22-T11 final document and asset validation, 2026-10-15
+
+Checks performed from repository root:
+- Resolve Markdown relative links in all changed/new Markdown documents.
+- Require eleven unique P22 task headings and compare all pre-existing task
+  checkboxes with git show HEAD:docs/TASKS.md; no old checkbox may change.
+- Parse Project 22 and exact P22-T11 with the existing unfinishedTasks function:
+  Project 22 returns only P22-T09; P22-T11 returns no unfinished task; the human
+  P22-T10 checkbox remains unchecked. No continuation workflow is invoked.
+- Parse GLB headers/JSON/vertex-accessor counts and compare model-budgets.json.
+- Compare every final GLB SHA-256 against models.sha256.
+- python3 -m py_compile world/tools/build_village_expansion.py
+- bash -n tools/check-godot-expansion.sh
+- git diff --check (including newly staged task files before commit).
+
+Model regeneration after the final flue correction was byte-identical for all
+20 GLBs. Final totals: 192,672 triangles; 18,740,208 bytes.
+The Python generator uses only the existing standard-library model writer.
+
+PASS 11 changed Markdown files, 369 relative links.
+PASS eleven unique P22 task IDs; only new P22-T11 checked; historical checkboxes unchanged.
+PASS twenty final GLB hashes and parsed triangle/byte budgets.

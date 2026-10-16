@@ -1,0 +1,566 @@
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+TAP version 13
+# Subtest: default export is a V2 plugin definition
+ok 1 - default export is a V2 plugin definition
+  ---
+  duration_ms: 0.856781
+  type: 'test'
+  ...
+# Subtest: limits: defaults, env overrides, options override env, validation
+ok 2 - limits: defaults, env overrides, options override env, validation
+  ---
+  duration_ms: 0.791914
+  type: 'test'
+  ...
+# Subtest: assistantText joins text parts only
+ok 3 - assistantText joins text parts only
+  ---
+  duration_ms: 0.117125
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: registers both commands and requires a scope
+ok 4 - registers both commands and requires a scope
+  ---
+  duration_ms: 3.890006
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: child sessions cannot opt in
+ok 5 - child sessions cannot opt in
+  ---
+  duration_ms: 0.716097
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: follow-up 2/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 2 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: start sends the instructions; each finished turn produces one follow-up
+ok 6 - start sends the instructions; each finished turn produces one follow-up
+  ---
+  duration_ms: 67.618818
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: opt-in only: turns in sessions without a run are ignored
+ok 7 - opt-in only: turns in sessions without a run are ignored
+  ---
+  duration_ms: 35.409714
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: duplicate completion events produce a single follow-up
+ok 8 - duplicate completion events produce a single follow-up
+  ---
+  duration_ms: 87.330044
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (AUTOCONTINUE_DONE); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: stops on a final AUTOCONTINUE_DONE line
+ok 9 - stops on a final AUTOCONTINUE_DONE line
+  ---
+  duration_ms: 68.248766
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (AUTOCONTINUE_BLOCKED); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: stops on a final AUTOCONTINUE_BLOCKED line
+ok 10 - stops on a final AUTOCONTINUE_BLOCKED line
+  ---
+  duration_ms: 66.432292
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: a marker inside the text but not on the last line does not stop
+ok 11 - a marker inside the text but not on the last line does not stop
+  ---
+  duration_ms: 35.558223
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (session.execution.failed); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: stops on session.execution.failed
+ok 12 - stops on session.execution.failed
+  ---
+  duration_ms: 38.674656
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (session.execution.interrupted); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: stops on session.execution.interrupted
+ok 13 - stops on session.execution.interrupted
+  ---
+  duration_ms: 37.737567
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (session.deleted); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: stops on session.deleted
+ok 14 - stops on session.deleted
+  ---
+  duration_ms: 37.781283
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (permission.asked); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: stops on permission.asked
+ok 15 - stops on permission.asked
+  ---
+  duration_ms: 39.915754
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (form.created); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: stops on form.created
+ok 16 - stops on form.created
+  ---
+  duration_ms: 37.715131
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (turn interrupted); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: failed or interrupted idle outcome stops the run
+ok 17 - failed or interrupted idle outcome stops the run
+  ---
+  duration_ms: 35.753573
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (new user input); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: new user input through the prompt hook cancels the run
+ok 18 - new user input through the prompt hook cancels the run
+  ---
+  duration_ms: 34.301673
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (new user input); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: a newer user message in the transcript cancels the run
+ok 19 - a newer user message in the transcript cancels the run
+  ---
+  duration_ms: 34.629307
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (user requested stop); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: autostop cancels and sends a report request
+ok 20 - autostop cancels and sends a report request
+  ---
+  duration_ms: 35.106054
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (continuation failed: offline); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":2,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: prompt failures stop instead of retrying forever
+ok 21 - prompt failures stop instead of retrying forever
+  ---
+  duration_ms: 68.081061
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit 2, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/2 sent
+[auto-continue] main: follow-up 2/2 sent
+[auto-continue] main: stopped (run limit reached); 2 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":1,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: continuation count is bounded
+ok 22 - continuation count is bounded
+  ---
+  duration_ms: 131.065744
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit 1
+[auto-continue] main: stopped (run limit reached); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: elapsed time prevents further follow-ups
+ok 23 - elapsed time prevents further follow-ups
+  ---
+  duration_ms: 39.605536
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: follow-up 2/unlimited sent
+[auto-continue] main: stopped (empty or repeated response); 2 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: identical final replies stop the loop
+ok 24 - identical final replies stop the loop
+  ---
+  duration_ms: 132.727552
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (empty or repeated response); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":2,"falseDoneLimit":2}
+# Subtest: empty final reply stops the loop
+ok 25 - empty final reply stops the loop
+  ---
+  duration_ms: 34.579738
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (no repository change in 2 follow-ups); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":2,"falseDoneLimit":2}
+# Subtest: a streak of follow-ups without repository changes stops the run
+ok 26 - a streak of follow-ups without repository changes stops the run
+  ---
+  duration_ms: 131.747752
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: follow-up 2/unlimited sent
+[auto-continue] main: follow-up 3/unlimited sent
+[auto-continue] main: follow-up 4/unlimited sent
+[auto-continue] main: follow-up 5/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 5 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: repository changes reset the stall counter
+ok 27 - repository changes reset the stall counter
+  ---
+  duration_ms: 167.048941
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: does not continue non-final replies: incomplete
+ok 28 - does not continue non-final replies: incomplete
+  ---
+  duration_ms: 37.438695
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: does not continue non-final replies: tool-calls without idle marker
+ok 29 - does not continue non-final replies: tool-calls without idle marker
+  ---
+  duration_ms: 34.170707
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (assistant error: boom); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: does not continue non-final replies: error
+ok 30 - does not continue non-final replies: error
+  ---
+  duration_ms: 34.242487
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":40,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: tool-calls finish followed by an idle marker still counts as a completed turn
+ok 31 - tool-calls finish followed by an idle marker still counts as a completed turn
+  ---
+  duration_ms: 34.833084
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":10,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: execution start cancels a pending follow-up timer
+ok 32 - execution start cancels a pending follow-up timer
+  ---
+  duration_ms: 169.819588
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":30,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: poll fallback detects idleness without events
+ok 33 - poll fallback detects idleness without events
+  ---
+  duration_ms: 63.53252
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":30,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+[auto-continue] state not saved: ENOENT: no such file or directory, open '/project/.opencode/auto-continue.state.json.tmp'
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: cleanup cancels a pending follow-up
+ok 34 - cleanup cancels a pending follow-up
+  ---
+  duration_ms: 87.42924
+  type: 'test'
+  ...
+# Subtest: parseScope understands project ranges and task ids
+ok 35 - parseScope understands project ranges and task ids
+  ---
+  duration_ms: 2.173469
+  type: 'test'
+  ...
+# Subtest: unfinishedTasks ignores ticked, human, and out-of-scope tasks
+ok 36 - unfinishedTasks ignores ticked, human, and out-of-scope tasks
+  ---
+  duration_ms: 0.93037
+  type: 'test'
+  ...
+# Subtest: the repository task list is parsed: Projects 1–4 are not finished
+ok 37 - the repository task list is parsed: Projects 1–4 are not finished
+  ---
+  duration_ms: 0.488456
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: AUTOCONTINUE_DONE claimed but 1 task(s) in scope are unticked: P2-T01 (claim 1/2)
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: follow-up 2/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 2 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: AUTOCONTINUE_DONE with unticked tasks in scope continues and names them
+ok 38 - AUTOCONTINUE_DONE with unticked tasks in scope continues and names them
+  ---
+  duration_ms: 74.901004
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (AUTOCONTINUE_DONE); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: AUTOCONTINUE_DONE is honoured once every in-scope task is ticked
+ok 39 - AUTOCONTINUE_DONE is honoured once every in-scope task is ticked
+  ---
+  duration_ms: 67.637035
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: AUTOCONTINUE_DONE claimed but 1 task(s) in scope are unticked: P2-T01 (claim 1/2)
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: AUTOCONTINUE_DONE claimed but 1 task(s) in scope are unticked: P2-T01 (claim 2/2)
+[auto-continue] main: stopped (AUTOCONTINUE_DONE claimed 2 times with unticked tasks: P2-T01); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: repeated false AUTOCONTINUE_DONE claims stop the run
+ok 40 - repeated false AUTOCONTINUE_DONE claims stop the run
+  ---
+  duration_ms: 101.668386
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: unrecognized scopes are rejected before enabling a run
+ok 41 - unrecognized scopes are rejected before enabling a run
+  ---
+  duration_ms: 1.907973
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: recognized scopes matching no tasks are rejected
+ok 42 - recognized scopes matching no tasks are rejected
+  ---
+  duration_ms: 1.714231
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: an unreadable task list prevents enabling a run
+ok 43 - an unreadable task list prevents enabling a run
+  ---
+  duration_ms: 1.611706
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (AUTOCONTINUE_BLOCKED); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: AUTOCONTINUE_BLOCKED still stops without consulting the task list
+ok 44 - AUTOCONTINUE_BLOCKED still stops without consulting the task list
+  ---
+  duration_ms: 66.803415
+  type: 'test'
+  ...
+# Subtest: P5 tasks are visible when included in scope
+ok 45 - P5 tasks are visible when included in scope
+  ---
+  duration_ms: 0.430496
+  type: 'test'
+  ...
+# Subtest: reopened gate task is required for DONE verification
+ok 46 - reopened gate task is required for DONE verification
+  ---
+  duration_ms: 0.231804
+  type: 'test'
+  ...
+# Subtest: unknown scopes cannot be parsed or used for completion verification
+ok 47 - unknown scopes cannot be parsed or used for completion verification
+  ---
+  duration_ms: 0.228355
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: a failed scope change preserves an existing valid run
+ok 48 - a failed scope change preserves an existing valid run
+  ---
+  duration_ms: 38.047462
+  type: 'test'
+  ...
+# Subtest: numeric IDs are parsed correctly across all projects
+ok 49 - numeric IDs are parsed correctly across all projects
+  ---
+  duration_ms: 0.619324
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: run state is saved on start and after each follow-up
+ok 50 - run state is saved on start and after each follow-up
+  ---
+  duration_ms: 34.988379
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+[auto-continue] main: resumed after reload; 1 follow-ups so far
+[auto-continue] main: follow-up 2/unlimited sent
+[auto-continue] main: AUTOCONTINUE_DONE claimed but 1 task(s) in scope are unticked: P2-T01 (claim 1/2)
+[auto-continue] main: follow-up 3/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 3 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: a reload resumes the run and continues after the next finished turn
+ok 51 - a reload resumes the run and continues after the next finished turn
+  ---
+  duration_ms: 110.820463
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+[auto-continue] main: resumed after reload; 0 follow-ups so far
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: a reload after the turn already ended sends the pending follow-up
+ok 52 - a reload after the turn already ended sends the pending follow-up
+  ---
+  duration_ms: 54.422524
+  type: 'test'
+  ...
+[auto-continue] ghost: saved run dropped, session no longer exists
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: saved runs whose session is gone are dropped on load
+ok 53 - saved runs whose session is gone are dropped on load
+  ---
+  duration_ms: 45.006033
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (user requested stop); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: autostop removes the saved state
+ok 54 - autostop removes the saved state
+  ---
+  duration_ms: 12.674325
+  type: 'test'
+  ...
+[auto-continue] saved state unreadable, starting clean: disk
+[auto-continue] state not saved: disk
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] state not saved: disk
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: a broken state store does not prevent starting a run
+ok 55 - a broken state store does not prevent starting a run
+  ---
+  duration_ms: 34.999281
+  type: 'test'
+  ...
+# Subtest: zero disables count/time budgets, with positive opt-in budgets still available
+ok 56 - zero disables count/time budgets, with positive opt-in budgets still available
+  ---
+  duration_ms: 0.891087
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+[auto-continue] main: resumed after reload; 1000 follow-ups so far
+[auto-continue] main: follow-up 1001/unlimited sent
+[auto-continue] main: stopped (AUTOCONTINUE_DONE); 1001 automatic follow-ups
+# Subtest: unlimited budgets continue beyond the old count and duration limits after reload
+ok 57 - unlimited budgets continue beyond the old count and duration limits after reload
+  ---
+  duration_ms: 78.182949
+  type: 'test'
+  ...
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: AUTOCONTINUE_DONE claimed but 67 task(s) in scope are unticked: P21-T67, P21-T65, P21-T66, P21-T36, P21-T37, P21-T38, P21-T39, P21-T40, P21-T41, P21-T42, P21-T43, P21-T44, P21-T45, P21-T46, P21-T47, P21-T48, P21-T49, P21-T50, P21-T51, P21-T52, P21-T53, P21-T54, P21-T55, P21-T56, P21-T57, P21-T58, P21-T59, P21-T60, P21-T61, P21-T62, P21-T63, P21-T64, P21-T00, P21-T01, P21-T02, P21-T03, P21-T04, P21-T05, P21-T06, P21-T07, P21-T08, P21-T09, P21-T10, P21-T11, P21-T12, P21-T13, P21-T14, P21-T15, P21-T16, P21-T17, P21-T18, P21-T19, P21-T20, P21-T21, P21-T22, P21-T23, P21-T24, P21-T25, P21-T26, P21-T27, P21-T28, P21-T29, P21-T30, P21-T31, P21-T32, P21-T33, P21-T35 (claim 1/2)
+[auto-continue] main: follow-up 1/unlimited sent
+[auto-continue] main: stopped (plugin unloaded; state kept for resume); 1 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: Project 21 task grammar is fully visible, including the final human-dependent gate
+ok 58 - Project 21 task grammar is fully visible, including the final human-dependent gate
+  ---
+  duration_ms: 39.521406
+  type: 'test'
+  ...
+# Subtest: unlimited prompt carries task-specific verification and current visual direction
+ok 59 - unlimited prompt carries task-specific verification and current visual direction
+  ---
+  duration_ms: 0.285239
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (continuation failed: Scope "Projects 1–2" matches no tasks in docs/TASKS.md); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: deleting scoped tasks during a run cannot verify DONE
+ok 60 - deleting scoped tasks during a run cannot verify DONE
+  ---
+  duration_ms: 35.796421
+  type: 'test'
+  ...
+[auto-continue] main: enabled, follow-up limit unlimited, wall-clock limit unlimited
+[auto-continue] main: stopped (continuation failed: task list missing); 0 automatic follow-ups
+[auto-continue] loaded; limits {"maxContinuations":0,"maxDurationMs":0,"delayMs":5,"pollMs":0,"repeatLimit":3,"stallLimit":12,"falseDoneLimit":2}
+# Subtest: a task list becoming unreadable during a run stops continuation
+ok 61 - a task list becoming unreadable during a run stops continuation
+  ---
+  duration_ms: 38.111415
+  type: 'test'
+  ...
+[auto-continue] main: saved run dropped, invalid scope/task list: Scope must name a numeric project or task range in docs/TASKS.md
+# Subtest: invalid scopes saved by an older plugin are not resumed
+ok 62 - invalid scopes saved by an older plugin are not resumed
+  ---
+  duration_ms: 44.799383
+  type: 'test'
+  ...
+1..62
+# tests 62
+# suites 0
+# pass 62
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2778.809153

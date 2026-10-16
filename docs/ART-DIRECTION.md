@@ -1,5 +1,27 @@
 # Current art brief — Elsewhere village square
 
+## P22-T11 furnished village (owner, 2026-10-15)
+
+The owner authorized expanding the three-building square into a thirteen-building
+village, with ten furnished ground-floor destinations and no people. Continue
+the sunlit terracotta, cream plaster, oak and sandy stone palette. Connect the
+new frontages with cobbled lanes and courts around the existing square: northern
+books/lodging, western food/herbs, eastern shops and southern inn/tavern.
+Use varied roof heights, gables/hips, balconies, dormers, shop canopies, flower
+boxes and readable signs to distinguish destinations without changing art family.
+
+Occupation-specific artifacts establish each interior: tavern bars/casks/crockery,
+inn counters/key racks/ledgers/trunks, library shelves/lectern, a binding press,
+bread oven/loaves/sacks/peel, apothecary jars/herbs/mortar, store crates/scales,
+and pottery kiln/wheel/vessels. Keep entrances, central aisles and application
+worktables clear. Upper stories remain decorative. No people, commerce, crafting
+or simulated desktop interactions. Inspect actual eye-level renders and exercise
+ordinary walking and real applications. See [approved scope](handoffs/55-village-expansion-plan.md)
+and [Decision 08](decisions/08-elsewhere-village-world.md).
+
+This amendment supersedes the original no-extra-destinations restriction below
+for P22-T11 only; the following paragraphs retain the earlier milestones' scope.
+
 The first new scene is one compact, attractive, outdoor village square in an
 alpine/temperate valley. Author a strong central landmark, distinct surrounding
 exteriors, one usable covered pavilion, coherent paving and pathways, soft

@@ -5,6 +5,13 @@ Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.
 Older automatic-first-eligible instructions apply only to historical programs.
 
+Owner-requested village expansion, authorized 2026-10-15: **P22-T11** below
+adds ten differentiated buildings with appropriate furnishings and no people.
+The owner explicitly authorized this task ID after reviewing the scope.
+Implementation, actual render review and walking/live-app verification passed.
+See [the scope](handoffs/55-village-expansion-plan.md) and
+[completion evidence](handoffs/56-furnished-village.md). Stop after this task.
+
 Owner-requested building interiors, completed 2026-10-14 from `228a550`:
 Lodge, Guildhall and Workshop ground floors now have open entrances, continuous
 ramps, rear extensions, finished interiors and reused workspaces. Actual walking
@@ -225,6 +232,38 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   try apps, and judge enjoyment, comfort and spatial recognition.
   **Acceptance:** owner feedback is recorded and future village expansion is
   separately authorized. Agent must not check this task for the owner.
+
+- [x] **P22-T11 Expand the square into a furnished village.**
+  **Authorized and completed on 2026-10-15, from `5e5c416`.**
+  **Depends:** P22-T08 and the verified existing-building interiors recorded in
+  [handoff 54](handoffs/54-building-interiors.md). The owner's 2026-10-15 request
+  supplies the new direction; do not infer P22-T09/P22-T10 completion.
+  Add ten buildings: two taverns, two inns, a library, a bookbinder, a bakery,
+  an apothecary, a general store and a pottery shop. Retain the current three
+  buildings, fountain and pavilion. Arrange connected streets and small courts
+  within the existing playable site, with distinct silhouettes, signed entries,
+  enterable ground floors and recognizable occupation-specific artifacts.
+  Continue the terracotta/cream/oak art direction. No people, creatures,
+  commerce simulation, new desktop services or restart persistence.
+  **Acceptance:** inspect actual eye-level street, entry and furnished-interior
+  renders for every new building; verify continuous walks from the existing
+  routes into and out of every ground floor, floor/enclosure collision, clear
+  circulation and usable application surfaces. Demonstrate real-terminal
+  placement, walk-away/revisit, preserved shell state, resumed input and close
+  in the new destinations. Preserve existing scene and real-app regressions;
+  compare named-host rendering cost before/after without claiming Steam Deck
+  acceptance. Verify asset provenance, deterministic regeneration, import,
+  task parsing and documentation links. Record evidence, limitations and the
+  Decision 08 scope amendment; stop after this task. Detailed art and validation
+  scope: [handoff 55](handoffs/55-village-expansion-plan.md).
+  **Result:** thirteen buildings total; ten new furnished destinations and ten
+  connected lane polylines. Actual street/entry/interior renders inspected;
+  headless/GPU walks and real-terminal placement/revisit/input/close pass in all
+  ten rooms. Retained world/app regressions, deterministic assets, import,
+  fourteen Python and 62 Node tests pass. Named-host draw calls rise substantially;
+  short frame samples do not establish Steam Deck/sustained performance. Human
+  approval and P22-T09/P22-T10 remain unclaimed. See [handoff 56](handoffs/56-furnished-village.md)
+  and [logs/images](evidence/p22-t11/README.md).
 
 ---
 

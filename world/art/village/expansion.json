@@ -1,0 +1,12 @@
+[
+  {"id":"CopperKettle","name":"COPPER KETTLE","subtitle":"TAVERN","kind":"tavern","xz":[-14,-31],"yaw":0,"width":8.4,"depth":7.0,"eave":5.2,"ridge":8.5,"hip":0,"accent":"canvas"},
+  {"id":"LanternInn","name":"LANTERN INN","subtitle":"ROOMS & REST","kind":"inn","xz":[-27,-26],"yaw":90,"width":8.4,"depth":7.2,"eave":6.2,"ridge":9.5,"hip":0,"accent":"teal"},
+  {"id":"Library","name":"VILLAGE LIBRARY","subtitle":"READING ROOM","kind":"library","xz":[17,-32],"yaw":-90,"width":9.2,"depth":8.0,"eave":5.8,"ridge":9.4,"hip":0,"accent":"teal"},
+  {"id":"Bookbinder","name":"PAPER & BINDING","subtitle":"BOOKBINDER","kind":"binder","xz":[-4,-33],"yaw":90,"width":7.4,"depth":6.6,"eave":4.4,"ridge":7.0,"hip":0,"accent":"canvas"},
+  {"id":"Bakery","name":"MORNING LOAF","subtitle":"VILLAGE BAKERY","kind":"bakery","xz":[-31,1],"yaw":90,"width":7.6,"depth":7.0,"eave":4.0,"ridge":6.8,"hip":1.0,"accent":"canvas"},
+  {"id":"Apothecary","name":"LEAF & ROOT","subtitle":"APOTHECARY","kind":"herbs","xz":[-31,17],"yaw":90,"width":7.8,"depth":7.0,"eave":5.0,"ridge":7.7,"hip":0,"accent":"teal"},
+  {"id":"Pottery","name":"EARTHENWARE","subtitle":"POTTERY","kind":"pottery","xz":[31,-19],"yaw":-90,"width":7.6,"depth":7.0,"eave":3.9,"ridge":6.7,"hip":1.1,"accent":"canvas"},
+  {"id":"GeneralStore","name":"THE VILLAGE STORE","subtitle":"PROVISIONS","kind":"store","xz":[32,0],"yaw":-90,"width":8.0,"depth":7.0,"eave":4.5,"ridge":7.4,"hip":1.0,"accent":"teal"},
+  {"id":"Hearthside","name":"HEARTHSIDE","subtitle":"TAVERN","kind":"hearth","xz":[18,19],"yaw":180,"width":8.6,"depth":7.6,"eave":4.2,"ridge":7.2,"hip":1.2,"accent":"canvas"},
+  {"id":"MeadowInn","name":"MEADOW INN","subtitle":"ROOMS & BREAKFAST","kind":"meadow","xz":[7,32],"yaw":180,"width":9.0,"depth":8.0,"eave":6.0,"ridge":9.1,"hip":0,"accent":"teal"}
+]

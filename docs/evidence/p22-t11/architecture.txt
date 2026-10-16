@@ -1,0 +1,26 @@
+Verified 9 Poly Haven village maps (offline)
+[ 13%] Built target elsewhere_runtime
+[ 13%] Built target generate_bindings
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.8z7PdP
+Godot import and runtime checks passed (not visual acceptance).
+Architecture check logs: /tmp/elsewhere-architecture-check.3FvbWV
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+VILLAGE_ARCHITECTURE_OK mode=headless exteriors=3 landmark=1 pavilion=1 failures=0
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+VILLAGE_ARCHITECTURE_OK mode=Wayland exteriors=3 landmark=1 pavilion=1 failures=0
+Architecture checks passed; inspect .tools/village-architecture-test/*.png.

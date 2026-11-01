@@ -1,5 +1,11 @@
 # Task list
 
+Owner-requested world surroundings in application mode (2026-11-01): preserve
+the existing client size while revealing the live scene around it. The opaque
+background is removed; camera and input ownership remain unchanged. Import,
+transition/resize/help regressions and actual render inspection pass; see [handoff 63](handoffs/63-application-world-surroundings.md).
+This bounded desktop revision advances no numbered task or human gate.
+
 Owner-requested command overlay, completed 2026-11-01: **F1 everywhere**
 supersedes the initial question-mark binding. Persistent instructional text is
 removed; the complete reference opens on F1 and closes on F1, Escape or Close.

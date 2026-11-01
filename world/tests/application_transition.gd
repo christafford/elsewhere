@@ -13,6 +13,34 @@ func flight_capture(name: String) -> void:
 	await RenderingServer.frame_post_draw
 	check(root.get_texture().get_image().save_png(output_dir.path_join(name)) == OK, "Flight capture failed")
 
+func check_world_surroundings() -> void:
+	var rect: Rect2 = app.image_rect()
+	var camera_pose: Transform3D = objects.camera.global_transform
+	var shown := root.get_texture().get_image()
+	# Reveal the same live world for comparison, without leaving application mode.
+	app.panel.hide()
+	await RenderingServer.frame_post_draw
+	var world := root.get_texture().get_image()
+	app.panel.show()
+	await RenderingServer.frame_post_draw
+	var samples := 0
+	var wrong := 0
+	for y in range(4, shown.get_height(), 8):
+		for x in range(4, shown.get_width(), 8):
+			if rect.has_point(Vector2(x, y)): continue
+			samples += 1
+			var a := shown.get_pixel(x, y)
+			var b := world.get_pixel(x, y)
+			if absi(a.r8 - b.r8) > 2 or absi(a.g8 - b.g8) > 2 or absi(a.b8 - b.b8) > 2: wrong += 1
+	check(samples > 100 and wrong == 0, "Application margins obscure the live world: %d/%d" % [wrong, samples])
+	await mouse(Vector2(4, 4), true)
+	await mouse(Vector2(4, 4), false)
+	await mouse(Vector2(4, 4), true, false, MOUSE_BUTTON_RIGHT)
+	await motion(Vector2(20, 20))
+	await mouse(Vector2(20, 20), false, false, MOUSE_BUTTON_RIGHT)
+	check(app.active and not terminal.session.pointer_grabbed() and not objects.has_grab(), "Visible world margins accepted a click")
+	check(objects.camera.global_transform.is_equal_approx(camera_pose) and app.image_rect() == rect, "Margin input changed camera or application size")
+
 func run() -> void:
 	output_dir = ProjectSettings.globalize_path("res://../.tools/application-transition-test")
 	DirAccess.make_dir_recursive_absolute(output_dir)
@@ -39,6 +67,7 @@ func run() -> void:
 	var player = study.get_node("Player")
 	var player_pose: Transform3D = player.global_transform
 	var original: Transform3D = object.global_transform
+	await capture("world-before-application.png")
 	check(app.enter_application(), "Could not enter application")
 	check(app.active and transition.running and not app.panel.visible and object.presentation_hidden, "Entry did not start a world flight")
 	var start: Transform3D = transition.surface.global_transform
@@ -66,6 +95,7 @@ func run() -> void:
 			var shown := actual.get_pixelv(Vector2i(app.view.position) + Vector2i(x, y))
 			if absf(shown.r - pixel.r) > 0.01 or absf(shown.g - pixel.g) > 0.01 or absf(shown.b - pixel.b) > 0.01: wrong += 1
 	check(wrong == 0, "Native endpoint changed client pixels")
+	await check_world_surroundings()
 	await capture("application.png")
 	await type_text("while true; do date +%T.%N; sleep 0.05; done\n")
 	app.exit_application()
@@ -98,6 +128,8 @@ func run() -> void:
 	await finish_flight()
 	await create_timer(0.4).timeout
 	check(app.active and app.panel.visible and app.view.size.x <= 968, "Resize interrupted application presentation")
+	await check_world_surroundings()
+	await capture("application-resized.png")
 	root.size = old_size
 	await create_timer(0.4).timeout
 	# The return target follows the latest world placement, not a saved entry pose.

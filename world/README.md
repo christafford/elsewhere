@@ -93,6 +93,8 @@ supplied); the application-status label reports this in the world.
 | Wheel while dragging | Adjust distance |
 | Both buttons + wheel | Rotate the held panel |
 
+Application mode keeps the live world visible around the focused application
+at the same camera viewpoint. The surrounding area does not accept world input.
 Application mode uses physical US keyboard positions. Ordinary application
 keys, including Space, Escape, Tab, Home and WASD, belong to the client. Pointer
 selection/scroll and actual client resize retain their existing paths. Host

@@ -21,10 +21,8 @@ func _ready() -> void:
 	panel = Control.new()
 	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(panel)
-	var background := ColorRect.new()
-	background.color = Color(0.025, 0.03, 0.035, 1)
-	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	panel.add_child(background)
+	# Keep the live world visible around the client at the unchanged camera pose.
+	# Application-mode input ownership still prevents interaction through margins.
 	view = TextureRect.new()
 	view.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	view.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED

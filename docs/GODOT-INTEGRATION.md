@@ -1,5 +1,13 @@
 # Godot and the existing Wayland compositor
 
+Application mode now shows the live world around the existing client rectangle
+(2026-11-01). Its CanvasLayer no longer paints an opaque full-window background.
+The camera stays at the entry viewpoint; client sizing, pixel presentation,
+transition endpoints and input ownership are unchanged. Visible margins do not
+accept world input. The graphical `application_transition.gd` regression compares
+margin pixels with the underlying world at two sizes and checks pointer isolation.
+See [handoff 63](handoffs/63-application-world-surroundings.md).
+
 F1 now opens the commands and techniques overlay in every input mode
 (2026-11-01). F1, Escape or Close dismisses it; `?` is ordinary input. Permanent
 world/object instructions, application-view headings and launcher instructional

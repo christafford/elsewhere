@@ -3,6 +3,17 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-11-01 Live world around focused applications
+
+Agent-run/agent-observed from `437511e` plus this revision and pre-existing
+P22-T13 work: focused apps retain their existing size while the surrounding
+area reveals the live scene at the entry camera pose. The graphical transition
+regression checks native client pixels, world-margin pixels at two sizes,
+margin input isolation, transitions and lifecycle. Four-size terminal resize
+and pointer selection pass. Actual before/application/resized renders inspected;
+see [handoff 63](handoffs/63-application-world-surroundings.md).
+Human physical-input, comfort and target-device acceptance remain **not observed**.
+
 ## 2026-11-01 F1 commands overlay
 
 Agent-run/agent-observed from `082e8d4` plus this revision and the pre-existing

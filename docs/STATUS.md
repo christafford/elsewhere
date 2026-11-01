@@ -1,5 +1,18 @@
 # Current direction — Elsewhere (2026-10-16)
 
+## Owner-requested world surroundings in application view (2026-11-01)
+
+The focused application keeps its existing size and pixel presentation; its
+outer margins now reveal the live world at the same camera pose. Import/startup,
+bridge build and graphical transition checks pass, including a regression that
+failed against the old opaque background. Actual before/application/resized
+renders inspected by the agent. Real-terminal resize/selection, F1 help and
+62 Node tests also pass. Human comfort and target-device acceptance are unobserved.
+See [handoff 63](handoffs/63-application-world-surroundings.md).
+
+Next task: stop after this bounded request. Pre-existing P22-T13 work
+remains separate; no roadmap or human gate advances.
+
 ## Owner-requested F1 command overlay verified (2026-11-01)
 
 F1 opens and closes the full commands and techniques overlay in every view;

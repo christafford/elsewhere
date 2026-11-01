@@ -1,5 +1,17 @@
 # Godot and the existing Wayland compositor
 
+F1 now opens the commands and techniques overlay in every input mode
+(2026-11-01). F1, Escape or Close dismisses it; `?` is ordinary input. Permanent
+world/object instructions, application-view headings and launcher instructional
+notices have been removed; the Applications button and genuine status/error
+messages remain. Application content uses the reclaimed header space.
+DesktopRuntime owns the help CanvasLayer below the host shortcut handler.
+While help is open, the player and underlying UI/client routing are suspended;
+keyboard/pointer state is released without stopping the client. Dismissal
+restores the current app or launcher search, with focus-loss/client-exit cleanup.
+Run `bash tools/check-godot-help.sh` for actual layout, input and live-client
+checks. See [handoff 62](handoffs/62-command-help-overlay.md).
+
 Fullscreen is the default (2026-11-01). F11 toggles a resizable window; Alt+F4
 quits through DesktopRuntime's existing compositor/owned-client cleanup path.
 Both are reserved host shortcuts in world, launcher and application modes;

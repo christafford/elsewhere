@@ -6,7 +6,6 @@ const TERMINAL_ID := "elsewhere-weston-terminal.desktop"
 var terminal: Node
 var app: CanvasLayer
 var player: CharacterBody3D
-var world_hud: CanvasLayer
 var entries: Array = []
 var recent: Array[String] = []
 var icons: Dictionary = {}
@@ -50,8 +49,8 @@ func _ready() -> void:
 
 func _build_ui() -> void:
 	open_button = Button.new()
-	open_button.text = "Applications  ·  Tab"
-	open_button.position = Vector2(22, 78)
+	open_button.text = "Applications"
+	open_button.position = Vector2(22, 20)
 	open_button.add_theme_font_size_override("font_size", 18)
 	open_button.pressed.connect(open)
 	add_child(open_button)
@@ -211,13 +210,13 @@ func open() -> void:
 	search_panel.hide()
 	heading.text = "Recent applications"
 	if catalog_pid <= 0 and pending.is_empty() and not entries.is_empty():
-		notice.text = "Click to open an application · Newest at the top\nClick the center to find an application · Esc to return"
+		notice.text = ""
 	_refresh_wheel()
 
 func close() -> void:
 	opened = false
 	app.launcher_active = false
-	player.application_mode = app.active
+	player.application_mode = app.active or app.help_active
 	player.release_pointer()
 	wheel.enabled = false
 	overlay.hide()
@@ -252,7 +251,7 @@ func _filter(text: String) -> void:
 			results.select(index)
 			break
 	if pending.is_empty():
-		notice.text = "No matching applications" if results.item_count == 0 else "Enter or double-click to launch · Esc to return to recents"
+		notice.text = "No matching applications" if results.item_count == 0 else ""
 
 func _launch_selected() -> void:
 	var selected := results.get_selected_items()
@@ -263,6 +262,7 @@ func _slot_selected(_slot: Control, index: int) -> void:
 	elif index >= 0 and index < recent.size(): launch(recent[index])
 
 func _input(event: InputEvent) -> void:
+	if app.help_active: return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if not opened and not app.active and event.physical_keycode == KEY_TAB:
 			open()
@@ -351,7 +351,6 @@ func _activate(handle: int) -> void:
 
 func _process(_delta: float) -> void:
 	open_button.visible = not opened and not app.active
-	if world_hud != null: world_hud.visible = not opened and not app.active
 	if catalog_pid > 0:
 		if not OS.is_process_running(catalog_pid):
 			catalog_pid = -1
@@ -364,7 +363,7 @@ func _process(_delta: float) -> void:
 				recent = recent.filter(func(id: String): return not entry(id).is_empty())
 				_refresh_wheel()
 				if search_panel.visible: _filter(query.text)
-				else: notice.text = "Newest at the top · Click the center to find an application"
+				else: notice.text = ""
 		elif Time.get_ticks_msec() > catalog_due:
 			OS.kill(catalog_pid)
 			catalog_pid = -1

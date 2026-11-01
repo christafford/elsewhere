@@ -39,10 +39,16 @@ tools/validate-godot-project.sh
 tools/run-godot.sh --audio-driver Dummy
 ```
 
+**F1** opens the complete commands and techniques overlay from the world,
+launcher or application view. F1, Escape or Close dismisses it. Scroll on small
+windows. Help releases held input and restores the previous view on dismissal;
+applications keep running. `?` remains ordinary text everywhere. The world and
+application views have no persistent instructional text.
+
 Elsewhere opens fullscreen. **F11** toggles between fullscreen and a resizable
 window; **Alt+F4** quits Elsewhere and closes its owned applications. These are
-reserved host shortcuts in the world, launcher and application view. Other
-application shortcuts, including Ctrl+Q, continue to reach the client.
+reserved host shortcuts, alongside F1, in the world, launcher and application
+view. Other application shortcuts, including Ctrl+Q, continue to reach the client.
 For development, start windowed with `tools/run-godot.sh -- --windowed`
 (the `--` separator is required). F11 returns to the last window size, initially
 1280×800. This remains a nested application; it does not replace the host session.
@@ -70,6 +76,7 @@ supplied); the application-status label reports this in the world.
 
 | Control | Action |
 | --- | --- |
+| F1 | Open / close the commands and techniques overlay in any view |
 | F11 | Toggle Elsewhere fullscreen / windowed, in every input mode |
 | Alt+F4 | Quit Elsewhere and close its owned applications |
 | W/A/S/D | Walk relative to heading; A/D strafe |

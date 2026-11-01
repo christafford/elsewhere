@@ -7,6 +7,7 @@ var player: CharacterBody3D
 var active := false
 var host_focused := true
 var launcher_active := false
+var help_active := false
 var focused_handle := 0
 var panel: Control
 var view: TextureRect
@@ -24,11 +25,6 @@ func _ready() -> void:
 	background.color = Color(0.025, 0.03, 0.035, 1)
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	panel.add_child(background)
-	var help := Label.new()
-	help.text = "Application  •  US keyboard  •  Ctrl+Alt+Esc returns to the room\nDrag to select  •  Wheel to scroll  •  F11 fullscreen / window  •  Alt+F4 quit Elsewhere"
-	help.position = Vector2(22, 12)
-	help.add_theme_font_size_override("font_size", 16)
-	panel.add_child(help)
 	view = TextureRect.new()
 	view.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	view.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -41,7 +37,7 @@ func _ready() -> void:
 func enter_application() -> bool:
 	if not host_focused or terminal.session == null or not terminal.screen.visible:
 		return false
-	if not terminal.session.focus_keyboard(terminal.handle):
+	if not help_active and not terminal.session.focus_keyboard(terminal.handle):
 		push_error(terminal.session.last_error())
 		return false
 	focused_handle = terminal.handle
@@ -66,7 +62,7 @@ func exit_application(animated := true) -> void:
 	active = false
 	resize_pending = false
 	focused_handle = 0
-	player.application_mode = false
+	player.application_mode = help_active
 	player.release_pointer()
 	panel.hide()
 	view.texture = null
@@ -75,11 +71,11 @@ func update_view() -> void:
 	view.texture = terminal.texture
 	if view.texture == null:
 		return
-	var available := get_viewport().get_visible_rect().size - Vector2(32, 88)
+	var available := get_viewport().get_visible_rect().size - Vector2(32, 32)
 	var native_size: Vector2 = view.texture.get_size()
 	var scale := minf(1.0, minf(available.x / native_size.x, available.y / native_size.y))
 	view.size = (native_size * maxf(scale, 0.01)).floor()
-	view.position = (Vector2(16, 64) + (available - view.size) * 0.5).floor()
+	view.position = (Vector2(16, 16) + (available - view.size) * 0.5).floor()
 
 func queue_resize() -> void:
 	resize_viewport = get_viewport().get_visible_rect().size
@@ -96,7 +92,7 @@ func resize_client() -> void:
 	var margins: Vector2 = (Vector2(state.surface_width, state.surface_height) - Vector2(state.declared_width, state.declared_height)).max(Vector2.ZERO)
 	# Leave 16px extra on each side for client size increments (terminal cells).
 	# Rounding a configure upward should not force fractional text scaling.
-	var wanted: Vector2 = (resize_viewport - Vector2(64, 120) - margins).floor().clamp(Vector2(1, 1), Vector2(2048, 2048))
+	var wanted: Vector2 = (resize_viewport - Vector2(64, 64) - margins).floor().clamp(Vector2(1, 1), Vector2(2048, 2048))
 	if not terminal.session.request_resize(focused_handle, int(wanted.x), int(wanted.y)):
 		# A stalled/oversized client keeps its last valid pixels and input target.
 		push_warning(terminal.session.last_error())
@@ -105,7 +101,7 @@ func _process(delta: float) -> void:
 	if not active:
 		transition.advance(delta)
 		return
-	if terminal.session == null or not terminal.session.is_running() or not terminal.screen.visible or terminal.session.keyboard_focus_handle() != focused_handle:
+	if terminal.session == null or not terminal.session.is_running() or not terminal.screen.visible or (not help_active and terminal.session.keyboard_focus_handle() != focused_handle):
 		exit_application(false)
 		return
 	update_view()
@@ -114,7 +110,7 @@ func _process(delta: float) -> void:
 	transition.advance(delta)
 
 func _input(event: InputEvent) -> void:
-	if not host_focused or launcher_active:
+	if not host_focused or launcher_active or help_active:
 		return
 	if event is InputEventKey:
 		var key: int = event.physical_keycode if event.physical_keycode else event.keycode

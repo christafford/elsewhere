@@ -1,5 +1,13 @@
 # Task list
 
+Owner-requested command overlay, completed 2026-11-01: **F1 everywhere**
+supersedes the initial question-mark binding. Persistent instructional text is
+removed; the complete reference opens on F1 and closes on F1, Escape or Close.
+Normal punctuation typing and live-client/launcher focus survive the overlay.
+Graphical modal, resize and transition checks, headless lifecycle, import and
+actual render inspection pass. See [handoff 62](handoffs/62-command-help-overlay.md).
+This bounded desktop revision advances no numbered task or human gate; stop here.
+
 Owner-requested fullscreen startup and shortcuts, completed 2026-11-01:
 F11 toggles fullscreen/windowed and Alt+F4 quits the desktop with owned-client
 cleanup. Both work ahead of launcher/client input. Actual graphical startup,

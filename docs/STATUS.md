@@ -1,5 +1,21 @@
 # Current direction — Elsewhere (2026-10-16)
 
+## Owner-requested F1 command overlay verified (2026-11-01)
+
+F1 opens and closes the full commands and techniques overlay in every view;
+Escape or Close also dismisses it. `?` remains normal text. Permanent world,
+object, application and launcher instructions are removed. The application view
+uses the freed header space. Help suspends input while clients keep running,
+then restores client or launcher focus. Import/startup/bridge build, headless
+lifecycle, focused graphical modal checks, four-size real-terminal resize,
+application transitions and 62 Node tests pass. Agent inspected clean views,
+two-column help and narrow scrolling renders. Human physical-input, Wayland-host
+and target-device acceptance remain unobserved. See
+[handoff 62](handoffs/62-command-help-overlay.md).
+
+Next task: stop after this bounded owner request. Pre-existing P22-T13 changes
+remain separate; no roadmap checkbox or human gate advances.
+
 ## Owner-requested fullscreen desktop verified (2026-11-01)
 
 Elsewhere opens fullscreen. F11 toggles a resizable window and restores its

@@ -8,6 +8,7 @@ var application_mode: CanvasLayer
 var app_launcher: CanvasLayer
 var application_objects: Node3D
 var window_controls: Node
+var help_overlay: CanvasLayer
 var closing := false
 
 # The location supplies presentation nodes and its placement policy; desktop
@@ -32,22 +33,6 @@ func initialize(player: CharacterBody3D, screen: MeshInstance3D, status: Label3D
 	app_launcher.player = player
 	add_child(app_launcher)
 	get_tree().auto_accept_quit = false
-	var ui := CanvasLayer.new()
-	var help := Label.new()
-	help.text = "WASD move   •   Hold right mouse to look   •   Shift faster   •   Ctrl / M slow\nEnter use application   •   Ctrl+Alt+Esc return   •   Tab applications   •   Home reset view"
-	help.position = Vector2(22, 20)
-	help.add_theme_font_size_override("font_size", 16)
-	help.add_theme_color_override("font_shadow_color", Color.BLACK)
-	help.add_theme_constant_override("shadow_offset_x", 1)
-	help.add_theme_constant_override("shadow_offset_y", 2)
-	ui.add_child(help)
-	var window_help := help.duplicate() as Label
-	window_help.text = "F11 fullscreen / window   •   Alt+F4 quit Elsewhere"
-	ui.add_child(window_help)
-	window_help.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
-	window_help.position = Vector2(22, -32)
-	add_child(ui)
-	app_launcher.world_hud = ui
 	application_objects = preload("res://scripts/application_objects.gd").new()
 	application_objects.terminal = terminal_screen
 	application_objects.app = application_mode
@@ -60,6 +45,12 @@ func initialize(player: CharacterBody3D, screen: MeshInstance3D, status: Label3D
 	transition.objects = application_objects
 	application_mode.transition = transition
 	add_child(transition)
+	help_overlay = preload("res://scripts/help_overlay.gd").new()
+	help_overlay.app = application_mode
+	help_overlay.launcher = app_launcher
+	help_overlay.objects = application_objects
+	help_overlay.player = player
+	add_child(help_overlay)
 	# Input traverses children in reverse order. Reserve host shortcuts before
 	# the launcher and application keyboard forwarding can consume them.
 	window_controls = preload("res://scripts/desktop_window.gd").new()

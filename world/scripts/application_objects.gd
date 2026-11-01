@@ -24,25 +24,12 @@ var drag_pointer := Vector2.ZERO
 var drag_camera_transform := Transform3D.IDENTITY
 var drag_depth := 2.0
 var next_number := 1
-var hint: Label
 
 func _ready() -> void:
 	camera = player.get_node("Camera3D")
-	var ui := CanvasLayer.new()
-	add_child(ui)
-	hint = Label.new()
-	hint.position = Vector2(22, 116)
-	hint.add_theme_font_size_override("font_size", 16)
-	hint.add_theme_color_override("font_shadow_color", Color.BLACK)
-	hint.add_theme_constant_override("shadow_offset_y", 2)
-	hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui.add_child(hint)
 
 func _process(_delta: float) -> void:
 	if app.active: selected = app.focused_handle
-	hint.visible = not app.active and not launcher.opened
-	hint.text = "Apps: double-click to use · Apps/furniture: drag to move · Esc cancels\nWhile dragging: WASD move · Right mouse look\n"
-	hint.text += "Both buttons + wheel: up turns left / down turns right" if has_grab() and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED else "Wheel: up away / down closer · Both buttons + wheel: rotate"
 	if has_grab() and (app.active or launcher.opened or not app.host_focused): finish_drag(true)
 	if terminal.session == null or not terminal.session.is_running():
 		clear_objects()
@@ -202,7 +189,7 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if app.active or launcher.opened or not app.host_focused: return
+	if app.active or app.help_active or launcher.opened or not app.host_focused: return
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not has_grab(): return
 	if event is InputEventKey and has_grab():
 		var key: int = event.physical_keycode if event.physical_keycode else event.keycode

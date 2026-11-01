@@ -3,6 +3,23 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-11-01 F1 commands overlay
+
+Agent-run/agent-observed from `082e8d4` plus this revision and the pre-existing
+P22-T13 working tree: F1 opens help in world, launcher and application modes;
+F1/Escape/Close dismiss it. Real Weston-terminal trials pass normal `?` typing,
+modal keyboard/pointer isolation, resumed typing, focus loss and client exit
+beneath help. Launcher search/focus and world grab cancellation pass. Existing
+four-size terminal resize and application transition regressions pass.
+Actual clean world/application and 1280×800 / 640×480 help renders were inspected:
+no permanent instructions, readable two-column reference, contained scrolling
+single-column reference. Captures: `.tools/help-overlay-test/`.
+
+Human physical-input/comfort, Wayland-host and target-device acceptance are
+**not observed**. No human gate advances. Owner procedure: restart, press F1 in
+the world, launcher search and a live app; dismiss and continue typing/moving.
+See [handoff 62](handoffs/62-command-help-overlay.md) for checks and limitations.
+
 ## 2026-10-16 P22-T12 stairs and second floors
 
 Agent-run/agent-observed from `9ba86aa` plus P22-T12: the Lodge, Guildhall,

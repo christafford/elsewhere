@@ -1,5 +1,14 @@
 # Godot and the existing Wayland compositor
 
+Walking now adds a subtle vertical camera gait (2026-11-01): at most 2cm either
+side of eye height, with one cycle per 1.4m of actual grounded travel. Slow
+walking reduces amplitude; stopping, walls and jumping fade it out. Application
+mode, launcher, focus loss and Home reset it. Collision and viewing angles are
+unchanged. Use `tools/run-godot.sh -- --no-head-bob` for reduced motion, or set
+the player's exported `head_bob_amplitude` to zero. Run
+`bash tools/check-godot-head-bob.sh` for focused headless/graphical checks.
+See [gait evidence](handoffs/60-walking-camera-gait.md).
+
 P22-T12 adds stairs inside the Lodge, Guildhall, Copper Kettle, Lantern Inn,
 Library and Meadow Inn. Enter normally and follow the timber stair along the
 right-hand wall to a usable second floor. Walk up/down without a jump or special

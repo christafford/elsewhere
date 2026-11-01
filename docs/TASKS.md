@@ -1,5 +1,13 @@
 # Task list
 
+Owner-requested walking gait, completed 2026-11-01: subtle vertical camera bob
+follows grounded travel, eases out at rest/in air and resets on input ownership
+changes. `--no-head-bob` provides reduced motion. Focused headless/graphical
+checks, real Terminal/Vim continuity and actual render inspection pass. This
+bounded navigation revision advances no numbered task or human gate. See
+[handoff 60](handoffs/60-walking-camera-gait.md). Stop after this request;
+pre-existing P22-T13 work remains separate.
+
 This is the executable form of [PROJECT-ROADMAP.md](../PROJECT-ROADMAP.md).
 Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.

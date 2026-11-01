@@ -1,5 +1,19 @@
 # Current direction — Elsewhere (2026-10-16)
 
+## Owner-requested walking gait verified (2026-11-01)
+
+The camera gently bobs vertically during actual grounded walking, at most ±2cm,
+and settles on stopping, wall contact or jumping. Application/launcher entry,
+focus loss and Home reset it. `--no-head-bob` disables it. Collision and look
+angles are unchanged. Import/bridge/startup and focused headless, disabled and
+graphical checks pass; the real Terminal/Vim leave/revisit/type/close trial
+passes with preserved live instances and shell/editor state. Agent inspected
+actual walking and revisited application renders. Human motion comfort remains
+unobserved. See [handoff 60](handoffs/60-walking-camera-gait.md).
+
+Next task: stop after this bounded owner request. Pre-existing P22-T13 work
+remains separate and unfinished; no roadmap checkbox or human gate advances.
+
 ## P22-T12 stairs and second floors verified (2026-10-16, from `9ba86aa`)
 
 Lodge, Guildhall, Copper Kettle, Lantern Inn, Library and Meadow Inn now have

@@ -1,5 +1,15 @@
 # Godot and the existing Wayland compositor
 
+Fullscreen is the default (2026-11-01). F11 toggles a resizable window; Alt+F4
+quits through DesktopRuntime's existing compositor/owned-client cleanup path.
+Both are reserved host shortcuts in world, launcher and application modes;
+Ctrl+Q and modified F11 remain application keys. A final DesktopWindow child
+handles them before client forwarding, suppressing repeats and matched key
+releases. The first window is 1280×800; later toggles restore its resized size.
+`tools/run-godot.sh -- --windowed` explicitly starts windowed. Headless operation
+remains supported. Run `bash tools/check-godot-window.sh` for actual graphical
+mode, input, resize and quit checks. See [handoff 61](handoffs/61-fullscreen-desktop.md).
+
 Walking now adds a subtle vertical camera gait (2026-11-01): at most 2cm either
 side of eye height, with one cycle per 1.4m of actual grounded travel. Slow
 walking reduces amplitude; stopping, walls and jumping fade it out. Application

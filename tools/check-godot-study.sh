@@ -17,7 +17,12 @@ run() {
     if [[ "$label" == grand-foyer ]]; then timeout_seconds=180; fi
     if [[ "$label" == room-furniture ]]; then timeout_seconds=180; fi
     shift 2
-    if ! timeout -k 2s "${timeout_seconds}s" "$GODOT" --path "$ROOT/world" --audio-driver Dummy --max-fps 60 "$@" > "$LOG_DIR/$label.log" 2>&1; then
+    local args=("$@")
+    # Preserve existing user arguments while opting resize/capture fixtures out
+    # of the fullscreen default. The pinned engine ignores native --windowed.
+    if [[ " ${args[*]} " != *" -- "* ]]; then args+=(--); fi
+    args+=(--windowed)
+    if ! timeout -k 2s "${timeout_seconds}s" "$GODOT" --path "$ROOT/world" --audio-driver Dummy --max-fps 60 "${args[@]}" > "$LOG_DIR/$label.log" 2>&1; then
         cat "$LOG_DIR/$label.log"
         exit 1
     fi

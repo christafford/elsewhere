@@ -39,6 +39,14 @@ tools/validate-godot-project.sh
 tools/run-godot.sh --audio-driver Dummy
 ```
 
+Elsewhere opens fullscreen. **F11** toggles between fullscreen and a resizable
+window; **Alt+F4** quits Elsewhere and closes its owned applications. These are
+reserved host shortcuts in the world, launcher and application view. Other
+application shortcuts, including Ctrl+Q, continue to reach the client.
+For development, start windowed with `tools/run-godot.sh -- --windowed`
+(the `--` separator is required). F11 returns to the last window size, initially
+1280×800. This remains a nested application; it does not replace the host session.
+
 No study assets are needed by the default scene. The launcher builds and stages
 `addons/elsewhere_runtime/` using the repository's godot-cpp checkout and C++
 build dependencies. Godot uses Compatibility/OpenGL. `/usr/bin/weston-terminal`
@@ -62,6 +70,8 @@ supplied); the application-status label reports this in the world.
 
 | Control | Action |
 | --- | --- |
+| F11 | Toggle Elsewhere fullscreen / windowed, in every input mode |
+| Alt+F4 | Quit Elsewhere and close its owned applications |
 | W/A/S/D | Walk relative to heading; A/D strafe |
 | Hold right mouse | Look; release frees the pointer |
 | Shift | Walk faster |

@@ -7,6 +7,7 @@ var terminal_screen: Node
 var application_mode: CanvasLayer
 var app_launcher: CanvasLayer
 var application_objects: Node3D
+var window_controls: Node
 var closing := false
 
 # The location supplies presentation nodes and its placement policy; desktop
@@ -40,6 +41,11 @@ func initialize(player: CharacterBody3D, screen: MeshInstance3D, status: Label3D
 	help.add_theme_constant_override("shadow_offset_x", 1)
 	help.add_theme_constant_override("shadow_offset_y", 2)
 	ui.add_child(help)
+	var window_help := help.duplicate() as Label
+	window_help.text = "F11 fullscreen / window   •   Alt+F4 quit Elsewhere"
+	ui.add_child(window_help)
+	window_help.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
+	window_help.position = Vector2(22, -32)
 	add_child(ui)
 	app_launcher.world_hud = ui
 	application_objects = preload("res://scripts/application_objects.gd").new()
@@ -54,13 +60,23 @@ func initialize(player: CharacterBody3D, screen: MeshInstance3D, status: Label3D
 	transition.objects = application_objects
 	application_mode.transition = transition
 	add_child(transition)
+	# Input traverses children in reverse order. Reserve host shortcuts before
+	# the launcher and application keyboard forwarding can consume them.
+	window_controls = preload("res://scripts/desktop_window.gd").new()
+	window_controls.name = "DesktopWindow"
+	window_controls.quit_requested.connect(request_quit)
+	add_child(window_controls)
 
 func shutdown() -> void:
 	if terminal_screen != null:
 		await terminal_screen.shutdown()
 
+func request_quit() -> void:
+	if closing: return
+	closing = true
+	await shutdown()
+	get_tree().quit()
+
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST and terminal_screen != null and not closing:
-		closing = true
-		await shutdown()
-		get_tree().quit()
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		request_quit()

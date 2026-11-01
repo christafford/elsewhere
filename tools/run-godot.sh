@@ -3,7 +3,8 @@
 # Launch the outdoor startup. The legacy C++ executable remains separate.
 #
 # Usage:
-#   tools/run-godot.sh                  # run the outdoor startup
+#   tools/run-godot.sh                  # open fullscreen (F11 toggles, Alt+F4 quits)
+#   tools/run-godot.sh -- --windowed    # open a resizable development window
 #   tools/run-godot.sh res://scenes/study.tscn  # retained study (requires assets)
 #   tools/run-godot.sh --editor         # open the editor
 #   tools/run-godot.sh --headless       # run without GUI (for CI)

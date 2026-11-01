@@ -1,5 +1,20 @@
 # Current direction — Elsewhere (2026-10-16)
 
+## Owner-requested fullscreen desktop verified (2026-11-01)
+
+Elsewhere opens fullscreen. F11 toggles a resizable window and restores its
+last size; Alt+F4 quits Elsewhere and its owned clients from world, launcher or
+application mode. Both are documented reserved host shortcuts. Use
+`tools/run-godot.sh -- --windowed` for development. Import/startup/bridge build,
+headless desktop lifecycle, two graphical startup/input/quit trials and the
+existing four-size real-terminal resize regression pass. Agent inspected actual
+fullscreen/windowed and live-application renders. Human physical-keyboard,
+Wayland-host and target-device acceptance remain unobserved. See
+[handoff 61](handoffs/61-fullscreen-desktop.md).
+
+Next task: stop after this bounded owner request. Pre-existing P22-T13 work
+remains separate; no roadmap checkbox or human gate advances.
+
 ## Owner-requested walking gait verified (2026-11-01)
 
 The camera gently bobs vertically during actual grounded walking, at most ±2cm,

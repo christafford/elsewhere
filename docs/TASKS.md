@@ -1,5 +1,12 @@
 # Task list
 
+Owner-requested fullscreen startup and shortcuts, completed 2026-11-01:
+F11 toggles fullscreen/windowed and Alt+F4 quits the desktop with owned-client
+cleanup. Both work ahead of launcher/client input. Actual graphical startup,
+toggle, typing, resize and quit checks, headless lifecycle and render inspection
+pass. See [handoff 61](handoffs/61-fullscreen-desktop.md). This bounded desktop
+revision advances no numbered task or human gate; stop after this request.
+
 Owner-requested walking gait, completed 2026-11-01: subtle vertical camera bob
 follows grounded travel, eases out at rest/in air and resets on input ownership
 changes. `--no-head-bob` provides reduced motion. Focused headless/graphical

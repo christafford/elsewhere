@@ -25,7 +25,7 @@ func _ready() -> void:
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	panel.add_child(background)
 	var help := Label.new()
-	help.text = "Application  •  US keyboard  •  Ctrl+Alt+Esc returns to the room\nDrag to select  •  Wheel to scroll  •  Resize the window to resize the application"
+	help.text = "Application  •  US keyboard  •  Ctrl+Alt+Esc returns to the room\nDrag to select  •  Wheel to scroll  •  F11 fullscreen / window  •  Alt+F4 quit Elsewhere"
 	help.position = Vector2(22, 12)
 	help.add_theme_font_size_override("font_size", 16)
 	panel.add_child(help)

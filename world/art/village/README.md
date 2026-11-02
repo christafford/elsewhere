@@ -1,5 +1,12 @@
 # Village architecture — selected reference 2, P22-T05 finishes
 
+Current storage policy (2026-11-01): GLBs are generated, ignored build outputs.
+Run `python3 world/tools/prepare_world_assets.py` or the normal build/launcher;
+source generators, JSON data and import settings remain tracked. This supersedes
+the tracked-GLB statements in the historical records below. The retired courtyard
+link is available in the original-history backup only. See
+[history cleanup](../../../docs/handoffs/67-source-only-history.md).
+
 ## P22-T12 stairs and upstairs (2026-10-16)
 
 Six selected shells become hollow above real ceiling openings: `alpine_lodge`,

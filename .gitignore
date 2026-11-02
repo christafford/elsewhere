@@ -122,3 +122,18 @@ world/addons/advanced_radial_menu/*.import
 
 # Local scratch output.
 /tmp/
+
+# Reproducible world assets: source, manifests and .import settings stay tracked.
+/world/art/village/*.glb
+/world/art/animals/*.glb
+/world/art/village/textures/*.jpg
+
+# Captures are local acceptance artifacts, not source. Keep written evidence.
+/docs/evidence/**/*.png
+/docs/evidence/**/*.jpg
+/docs/evidence/**/*.jpeg
+/docs/evidence/**/*.webp
+/docs/evidence/**/*.mp4
+/docs/evidence/**/*.webm
+/docs/capture_*.png
+/tests/mansion-test-client

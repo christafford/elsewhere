@@ -14,8 +14,10 @@ python3 world/tools/build_village_animals.py
 python3 world/tools/verify_village_animals.py
 ```
 
-The five GLBs, their Godot import settings and `manifest.json` are tracked for
-offline startup. The manifest records actual byte sizes, SHA-256, triangle counts
+The five GLBs are ignored outputs generated during build/launch. Their Godot
+import settings, authoring source and `manifest.json` remain tracked. Model
+generation uses only Python's standard library and works offline. The manifest
+records actual byte sizes, SHA-256, triangle counts
 and joint names. The models contain 19,720 triangles total; the default twelve
 instances place 47,760 triangles before LOD. Original meter-scale coat grain is
 in `animal_coat.gdshader`; glTF material swatches retain sRGB-to-linear conversion.

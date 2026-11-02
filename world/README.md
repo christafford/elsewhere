@@ -17,13 +17,14 @@ P22-T05 refines this selection with curated materials, foliage and daylight;
 see [the render review](../docs/handoffs/45-village-materials.md). The comparison
 page preserves the two earlier checkpoints.
 
-The seven active original GLB models and import settings are included.
-The former bridge remains tracked but inactive. Optional deterministic rebuild:
-`python3 world/tools/build_village_models.py` (standard library only).
-See [model provenance and dimensions](art/village/README.md) and
-[tracked Poly Haven material maps](art/village/textures/README.md).
-`python3 world/tools/verify_village_materials.py` verifies them offline;
-project validation runs the same check. No material download is needed to launch.
+Original models are generated from tracked Python sources during build/launch;
+import settings remain tracked. Nine pinned Poly Haven maps are downloaded only
+when neither verified runtime files nor a verified cache is available. Run
+`python3 world/tools/prepare_world_assets.py` to prepare assets independently,
+or add `--offline` to require cached textures. Build/launch accepts the equivalent
+`ELSEWHERE_ASSETS_OFFLINE=1`. See [model provenance](art/village/README.md),
+[material provenance](art/village/textures/README.md) and
+[history/archive policy](../docs/handoffs/67-source-only-history.md).
 
 The existing player controller and desktop runtime are reused. Startup opens
 no application; use Tab / Applications to launch a terminal or another installed

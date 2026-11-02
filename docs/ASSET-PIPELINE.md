@@ -1,5 +1,15 @@
 # Reproducible Poly Haven asset pipeline
 
+Current policy (2026-11-01): generated GLBs and downloadable JPEGs are ignored.
+`python3 world/tools/prepare_world_assets.py` generates all 48 active models and
+fetches the nine pinned maps, verifying bytes/SHA-256 before publishing them.
+The runtime build and launch call it automatically before Godot import. Use
+`--offline` or `ELSEWHERE_ASSETS_OFFLINE=1` to prohibit network access. Verified
+runtime files or the existing ignored texture cache support offline builds.
+Sources, provenance, manifests and import settings remain tracked. The historical
+records below describe their original tracked-artifact workflow. See
+[cleanup and recovery](handoffs/67-source-only-history.md).
+
 P22-T05 adds a small verified village subset to the shared JSON manifest:
 three Poly Haven texture sets, nine byte-identical 1K JPEG maps tracked with
 Godot import settings. `python3 world/tools/verify_village_materials.py` checks

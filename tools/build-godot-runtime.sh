@@ -2,6 +2,7 @@
 # Build the verified standard binding and stage it for the study.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+python3 "$ROOT/world/tools/prepare_world_assets.py"
 BUILD="$ROOT/build-godot-probe"
 if [[ ! -f "$BUILD/CMakeCache.txt" ]]; then
     cmake -S "$ROOT/tests/godot-binding" -B "$BUILD" -DCMAKE_BUILD_TYPE=Debug

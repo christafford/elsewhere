@@ -16,7 +16,8 @@ Owner reference JPEGs are not material sources.
 The authoritative [shared manifest](../../../assets/manifest.json) has entries
 with `usage: P22-T05 village`: source/metadata URLs, author/license, dimensions,
 exact CDN URLs, provider bytes/MD5, locked SHA-256, cache and runtime paths.
-Original 1024 × 1024 JPEGs are tracked here, byte-identical to the downloads;
+Original 1024 × 1024 JPEGs are fetched here as ignored files, byte-identical to
+the downloads;
 there is no resizing, conversion tool or new dependency. Nine files total
 5,244,021 bytes. Ignored originals live in `world/assets/cache/village/`.
 
@@ -30,19 +31,21 @@ modulates the selected palette, with normal strengths 0.35/0.55. Ground normal
 strength is 0.65. Beam UVs run along each post/brace. Fountain, masonry, roofs,
 foliage and grass retain original repository shaders/geometry.
 
-No network is needed for import or runtime. From the repository root:
+Build/launch prepares missing assets automatically. Network is needed only when
+a verified runtime file and cached download are both missing. From the repository
+root:
 
 ```sh
+python3 world/tools/prepare_world_assets.py
 python3 world/tools/verify_village_materials.py
 python3 tests/test_village_materials.py
 tools/validate-godot-project.sh
 ```
 
 Missing/corrupt files fail verification with the path and recovery instruction;
-there is no accepted fallback. Restore the named tracked file from the current
-revision, or download its manifest URL using the existing
-`world/tools/fetch_assets.py:atomic_download` helper into a temporary/cache path,
-check provider size/MD5 and locked SHA-256, then copy it here and verify again.
+there is no accepted fallback. Run `python3 world/tools/prepare_world_assets.py`
+to restore files from verified cache or their pinned URLs. Use `--offline` to
+prohibit downloads. Size and SHA-256 are checked before publishing downloads.
 Do not refresh hashes to bless a changed remote file. The fetch helper uses
 finite retries and atomic writes. API requests during selection used an
 Elsewhere User-Agent and sequential cached metadata; the helper now also

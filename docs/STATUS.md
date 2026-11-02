@@ -1,5 +1,16 @@
 # Current direction — Elsewhere (2026-10-17)
 
+## Owner-requested source-only history cleanup (2026-11-01)
+
+Generated GLBs, downloaded village textures and screenshot artifacts are removed
+from main history and ignored. Original history/captures are retained in a local
+backup. Build/launch now prepares 48 models and nine SHA-256-pinned textures;
+source-only regeneration matches the original bytes. Fresh CDN acquisition,
+offline reuse/recovery and 20 Python tests pass. See
+[cleanup, archive and publishing procedure](handoffs/67-source-only-history.md).
+Historical revision/image references refer to the archive. No push, roadmap
+advance or new human/visual acceptance. Next task: stop after this cleanup.
+
 ## P22-T14 village animals verified (2026-11-01)
 
 Twelve original articulated animals now inhabit the outdoors: two pigs, four

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the tracked village texture subset of the shared asset manifest offline."""
+"""Verify the prepared village texture subset of the shared manifest offline."""
 import hashlib
 import json
 from pathlib import Path
@@ -15,7 +15,7 @@ def verify(root: Path) -> int:
             entry = asset["maps"][channel]
             path = root / entry["runtime"]
             if not path.is_file():
-                raise ValueError(f"Missing {path}; restore the tracked file or fetch {entry['url']} with fetch_assets.atomic_download, then verify again")
+                raise ValueError(f"Missing {path}; run python3 world/tools/prepare_world_assets.py, then verify again")
             data = path.read_bytes()
             if len(data) != entry["bytes"] or hashlib.sha256(data).hexdigest() != entry["sha256"]:
                 raise ValueError(f"Size/SHA-256 mismatch: {path}; refusing unverified material")

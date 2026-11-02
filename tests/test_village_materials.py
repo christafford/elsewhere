@@ -12,7 +12,7 @@ from verify_village_materials import verify
 
 
 class VillageMaterialTest(unittest.TestCase):
-    def test_tracked_maps(self):
+    def test_prepared_maps(self):
         self.assertEqual(verify(ROOT), 9)
 
     def test_missing_and_corrupt_maps(self):
@@ -30,7 +30,7 @@ class VillageMaterialTest(unittest.TestCase):
                 shutil.copyfile(ROOT / entry["runtime"], path)
             target = root / entries[0]["runtime"]
             target.unlink()
-            with self.assertRaisesRegex(ValueError, "Missing.*restore the tracked file"):
+            with self.assertRaisesRegex(ValueError, "Missing.*prepare_world_assets.py"):
                 verify(root)
             # Same byte count: hash validation must catch corruption independently.
             original = (ROOT / entries[0]["runtime"]).read_bytes()

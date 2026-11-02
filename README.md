@@ -1,5 +1,9 @@
 # Elsewhere
 
+Generated models, downloaded textures and captured screenshots are kept out of
+Git. Build/launch prepares the world assets automatically; see
+[asset preparation and history cleanup](docs/handoffs/67-source-only-history.md).
+
 **Elsewhere** is an experimental Linux spatial desktop where live applications
 inhabit a persistent, explorable 3D world.
 Current direction: replace the study physical environment with a compact,

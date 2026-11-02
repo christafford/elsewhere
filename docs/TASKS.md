@@ -1,5 +1,12 @@
 # Task list
 
+Owner-requested animal blasts completed 2026-11-01: world double-click randomly
+selects temporary lightning, fire, cyclone or love effects on an existing animal.
+All five species, pursuit, cleanup, input/occlusion, actual renders and live
+Terminal/Vim continuity during effects are verified. See
+[handoff 70](handoffs/70-animal-blasts.md). This bounded interaction advances no
+numbered roadmap task or human gate; stop after the request.
+
 Owner-requested engine migration completed 2026-11-01: Godot 4.8 beta 2 and
 Forward+/Vulkan now target capable desktop hardware. Applicable physics,
 launcher, lighting and texture-streaming features are adopted; native/binding,

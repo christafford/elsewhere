@@ -3,6 +3,25 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-11-01 temporary animal blasts
+
+Agent-run/agent-observed against `1cc1469` plus this change, Godot 4.8 beta 2 /
+Forward+ on RTX 3080, private Weston/Wayland 1280×800. All 20 combinations of
+five species/four effects pass behavior, pursuit, expiry and cleanup checks;
+actual lightning/charred jump, player beams, eye-fire, cyclone motion, smoke
+hearts, licking and restored animal renders were inspected. Input/occlusion and
+normal population behavior/crowding checks pass. Real Terminal/Vim typing,
+placement, travel/revisit, shell/unsaved-buffer continuity and close pass while
+four concurrent effects run and expire without stealing client focus. Help/input
+checks pass. See [full evidence](evidence/animal-blasts/README.md).
+
+Owner procedure: restart Elsewhere, wait for animals to appear, release mouse-look
+and double-click an animal in the world. Each outcome is equally likely; wait
+for the effect to end before trying that animal again. Watch fire/love pursue
+nearby companions, then use a real app and return. F1 includes the binding.
+Human physical-input/appearance/comfort and sustained/target-device acceptance
+remain **not observed**. No roadmap or human gate advances.
+
 ## 2026-11-01 Godot 4.8 beta 2 / Forward+
 
 Agent-run/agent-observed against `f516db5` plus this migration, on an NVIDIA

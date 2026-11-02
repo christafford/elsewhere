@@ -1,5 +1,24 @@
 # Current direction — Elsewhere (2026-10-17)
 
+## Owner-requested animal blasts verified (2026-11-01)
+
+World double-click now randomly selects Lightning, Fire, Cyclone or Love on an
+animal. Timed coat/jump/run, eye-fire pursuit, cyclone lift/spin/drop and smoky
+heart/licking effects restore normal behavior after 1.8–5 seconds. Navigation,
+wall/panel occlusion and application/help/launcher input ownership are retained.
+
+Verified by automated checks: import/startup/bridge build, all 20 species/effect
+combinations headlessly and on Forward+, nearest-companion pursuit, expiry and
+cleanup, repeat/solo cases, random selection, input and occlusion, normal
+population behavior/crowding, real Terminal/Vim continuity during concurrent
+effects, help/input and 62 Node tests. Agent inspected actual effect and restored
+animal renders. See [handoff 70](handoffs/70-animal-blasts.md) and
+[evidence](evidence/animal-blasts/README.md) for complete checks and limitations.
+
+Human physical-input/comfort and sustained/target-device performance remain
+unobserved. No numbered task or human gate advances. Next task: stop after this
+bounded owner request; await the owner's next request.
+
 ## Owner-requested Godot 4.8 / Forward+ migration (2026-11-01)
 
 Migration completed under [Decision 09](decisions/09-godot-48-prerelease.md):

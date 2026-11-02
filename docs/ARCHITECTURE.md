@@ -13,6 +13,19 @@ world lighting by their unshaded inverse-Filmic material. That shader supplies
 linear albedo under Forward+ and retains its Compatibility comparison path.
 See [Decision 09](decisions/09-godot-48-prerelease.md).
 
+The owner-requested animal blasts add a location-owned `animal_blast.gd` child
+for one temporary effect per animal. The herd gates world double-clicks on
+application/help/launcher/focus/grab state, uses a 20m occluded physics ray and
+checks live panel housing. Panel/furniture picking now treats animal layer 16
+as an occluder too. No client protocol or application identity changes.
+The herd's existing one-animal-per-tick planner schedules bounded pursuit;
+animals retain swept clearance, collision, terrain support and ordinary gait.
+Aerial stunts offset the visual model while reserving its ground collider, then
+restore the model. Per-instance charcoal uniforms leave shared coats intact.
+Transient ribbons, smoke hearts, eye glow and tongue meshes are owned by the
+effect/animal and removed at expiry. No damage, recursive blasts or persistence.
+See [implementation and checks](handoffs/70-animal-blasts.md).
+
 P22-T14 adds a location-owned `Animals` sibling. `village_animals.gd` loads the
 species/population data, owns per-animal RNG and stable animal IDs, shares coat
 materials and schedules at most one planning decision per physics tick.
@@ -31,7 +44,8 @@ freezing when a player or moving object enters their padded clearance envelope.
 Terrain height supplies vertical support, with navigation checking real ground
 collision before movement; body sweeps exclude that dense ground mesh while
 retaining physical obstacle/actor collisions. Idle bodies skip movement sweeps.
-No compositor, launcher, input, panel identity or persistence service changes.
+The original P22-T14 added no compositor, launcher, input, panel identity or
+persistence service changes; the later blast interaction is described above.
 See [animal assets and configuration](../world/art/animals/README.md).
 
 P22-T12 adds location-owned `village_upstairs.gd`, initialized after the original

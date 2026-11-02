@@ -1,0 +1,13 @@
+Godot Engine v4.8.beta2.official.cafc17a19 - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5708)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5715)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5720)
+Vulkan 1.4.351 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 3080
+
+ANIMALS_DURING_APPLICATION traveled_m=34.6847759170996
+ANIMAL_BLASTS_LIVE_CLIENT_OK
+VILLAGE_REVISIT distance_one_way_m=20.4890251159668 shell=1665121:still-here terminal_entity=1f591eca7f0a794c2c4fdd0064eb1d3d editor_entity=35769f10521b905137be223b1ea9781c background_revision_delta=22
+VILLAGE_APPLICATIONS_OK clients=2 failures=0

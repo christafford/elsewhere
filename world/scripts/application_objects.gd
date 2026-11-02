@@ -135,7 +135,7 @@ func visible_placement(object: Node3D, point: Vector3) -> bool:
 func pick(position: Vector2) -> int:
 	var origin := camera.project_ray_origin(position)
 	var direction := camera.project_ray_normal(position)
-	var query := PhysicsRayQueryParameters3D.create(origin, origin + direction * 20, 1)
+	var query := PhysicsRayQueryParameters3D.create(origin, origin + direction * 20, 1|16)
 	query.exclude = [player.get_rid()]
 	var hit := get_world_3d().direct_space_state.intersect_ray_into(query, _pick_result)
 	var nearest: float = origin.distance_to(_pick_result.position) if hit else 20.0
@@ -151,7 +151,7 @@ func pick_furniture(position: Vector2) -> RigidBody3D:
 	var origin := camera.project_ray_origin(position)
 	var direction := camera.project_ray_normal(position)
 	var candidates := get_tree().get_nodes_in_group("pushable_furniture")
-	var query := PhysicsRayQueryParameters3D.create(origin, origin + direction * 20, 1)
+	var query := PhysicsRayQueryParameters3D.create(origin, origin + direction * 20, 1|16)
 	# Array-valued properties return copies; assign the completed exclusions.
 	var exclusions: Array[RID] = []
 	for body in candidates: exclusions.append(body.get_rid())

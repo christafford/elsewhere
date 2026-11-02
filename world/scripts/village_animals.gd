@@ -1,4 +1,4 @@
-## Location-owned ambient life. No desktop IDs, input, compositor or persistence.
+## Location-owned ambient life. No desktop IDs, compositor or persistence.
 extends Node3D
 
 const Landscape = preload("res://scripts/village_landscape.gd")
@@ -11,6 +11,8 @@ const Models = {
 	"goat": preload("res://art/animals/goat.glb"),
 	"cow": preload("res://art/animals/cow.glb"),
 }
+const Blast = preload("res://scripts/animal_blast.gd")
+var blast_rng := RandomNumberGenerator.new()
 var navigation: Node3D
 var animals: Array[CharacterBody3D] = []
 var player: CharacterBody3D
@@ -37,6 +39,7 @@ func apply_coats(model: Node3D) -> void:
 			mesh.set_surface_override_material(surface,coats[key])
 
 func _ready() -> void:
+	blast_rng.randomize()
 	if "--no-animals" in OS.get_cmdline_user_args(): return
 	population = JSON.parse_string(FileAccess.get_file_as_string("res://art/animals/population.json"))
 	seed_value = int(population.seed)
@@ -104,6 +107,9 @@ func _physics_process(_delta: float) -> void:
 	# population. Movement and joint animation remain smooth at physics rate.
 	cursor = (cursor+1)%animals.size()
 	var animal: CharacterBody3D = animals[cursor]
+	if is_instance_valid(animal.blast):
+		animal.blast.plan()
+		return
 	var away: Vector3 = (animal.position-player.position)*Vector3(1,0,1)
 	if away.length()<animal.radius+1.5 and animal.yield_cooldown<=0:
 		choose_route(animal,away.normalized())
@@ -166,3 +172,54 @@ func steer(animal: CharacterBody3D, desired: Vector3) -> Vector3:
 		var point: Vector3 = navigation.surface(Vector2(start.x+option.x*reach,start.z+option.z*reach))
 		if navigation.segment_clear(start,point,animal.profile,true,[animal.get_rid()]): return option*desired.length()
 	return Vector3.ZERO
+
+
+func nearest_companion(animal: CharacterBody3D) -> CharacterBody3D:
+	var result: CharacterBody3D
+	var distance := INF
+	for other in animals:
+		if not is_instance_valid(other) or other == animal: continue
+		var candidate := animal.position.distance_squared_to(other.position)
+		if candidate < distance:
+			distance = candidate
+			result = other
+	return result
+
+func start_blast(animal: CharacterBody3D, origin: Vector3, kind := -1) -> bool:
+	if not initialized or not is_instance_valid(animal) or not animals.has(animal) or is_instance_valid(animal.blast): return false
+	if kind < -1 or kind > 3: return false
+	var effect := Blast.new()
+	effect.animal = animal
+	effect.target = nearest_companion(animal)
+	effect.kind = blast_rng.randi_range(0,3) if kind == -1 else kind
+	effect.source = origin
+	animal.blast = effect
+	animal.add_child(effect)
+	return true
+
+func pick_animal(pointer: Vector2) -> CharacterBody3D:
+	var objects: Node3D = get_parent().application_objects
+	var camera: Camera3D = objects.camera
+	var origin := camera.project_ray_origin(pointer)
+	var direction := camera.project_ray_normal(pointer)
+	var query := PhysicsRayQueryParameters3D.create(origin,origin+direction*20,1|2|16)
+	query.exclude = [player.get_rid()]
+	var hit := get_world_3d().direct_space_state.intersect_ray(query)
+	if hit.is_empty() or not hit.collider is CharacterBody3D or not animals.has(hit.collider): return null
+	var distance := origin.distance_to(hit.position)
+	for panel in objects.bindings.values():
+		if panel.occlusion_distance(origin,direction) < distance: return null
+	return hit.collider
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not initialized or not event is InputEventMouseButton: return
+	if event.button_index != MOUSE_BUTTON_LEFT or not event.pressed or not event.double_click: return
+	var desktop: Node = get_parent().desktop_runtime
+	var app: CanvasLayer = desktop.application_mode
+	if app.active or app.help_active or desktop.app_launcher.opened or not app.host_focused: return
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or desktop.application_objects.has_grab(): return
+	var animal := pick_animal(event.position)
+	if animal == null: return
+	var camera: Camera3D = desktop.application_objects.camera
+	start_blast(animal,camera.global_position-camera.global_basis.y*.3+camera.global_basis.x*.25)
+	get_viewport().set_input_as_handled()

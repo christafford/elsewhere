@@ -1,5 +1,16 @@
 # Current art brief — Elsewhere village square
 
+## Temporary animal magic (owner, 2026-11-01)
+
+Double-clicking an animal triggers one short cartoon interruption: sky lightning
+and charcoal/jump/run; red player energy, glowing eyes and companion-directed
+fire; a descending tapered cyclone with lift/spin/drop; or a one-second pink
+beam carrying soft smoke hearts followed by pursuit and attempted licking.
+Keep normal coats/poses and navigation after expiry. Use original procedural
+ribbons/heart density and existing articulated models, without new assets,
+permanent injuries, damage, breeding or desktop roles. Actual rendered frames
+and live interaction checks govern acceptance; see [handoff 70](handoffs/70-animal-blasts.md).
+
 ## P22-T14 ambient animals (owner, 2026-11-01)
 
 A small population of pigs, chickens, dogs, goats and cows brings visible life

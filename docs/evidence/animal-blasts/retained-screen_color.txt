@@ -1,0 +1,21 @@
+Godot Engine v4.8.beta2.official.cafc17a19 - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5708)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5715)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5720)
+Vulkan 1.4.351 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 3080
+
+SCREEN_COLOR (0.0, 0.0, 0.0, 1.0) -> 0 0 0
+SCREEN_COLOR (0.0627, 0.0627, 0.0627, 1.0) -> 16 16 16
+SCREEN_COLOR (0.1255, 0.1255, 0.1255, 1.0) -> 32 32 32
+SCREEN_COLOR (0.251, 0.251, 0.251, 1.0) -> 64 64 64
+SCREEN_COLOR (0.502, 0.502, 0.502, 1.0) -> 128 128 128
+SCREEN_COLOR (0.7529, 0.7529, 0.7529, 1.0) -> 192 192 192
+SCREEN_COLOR (1.0, 1.0, 1.0, 1.0) -> 255 255 255
+SCREEN_COLOR (1.0, 0.0, 0.0, 1.0) -> 255 0 0
+SCREEN_COLOR (0.0, 1.0, 0.0, 1.0) -> 0 255 0
+SCREEN_COLOR (0.0, 0.0, 1.0, 1.0) -> 0 0 255
+SCREEN_COLOR (0.1451, 0.4431, 0.8588, 1.0) -> 37 113 219
+SCREEN_COLOR_OK failures=0

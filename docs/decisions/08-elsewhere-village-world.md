@@ -110,3 +110,14 @@ and navigation; the compositor, desktop identities and input ownership remain
 unchanged. Use original reproducible models and existing Godot/Python facilities;
 no dependency is added. Preserve the independent unfinished P22-T13 work and
 P22-T09/P22-T10 gates. See [approved scope](../handoffs/65-village-animals-plan.md).
+
+## Owner amendment: temporary animal blasts (2026-11-01)
+
+The owner directly requested four random double-click reactions on the existing
+animals: Lightning-Blast, Fire-Blast, Cyclone-Blast and Love-Blast. This bounded
+interaction is authorized independently of roadmap continuation. Effects are
+brief and reversible, preserve collision-aware movement, and return to ordinary
+animal life without damage or persistence. Retain application/launcher/help
+input ownership and verify actual renders and real-client continuity. No new
+species, destination, dependency, numbered milestone or human gate is authorized.
+See [handoff 70](../handoffs/70-animal-blasts.md).

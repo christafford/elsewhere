@@ -1,6 +1,7 @@
 ## One ambient animal: physical travel, bounded decisions, distance-driven joints.
 extends CharacterBody3D
 
+var blast: Node3D
 var animal_id := ""
 var species := ""
 var spec: Dictionary
@@ -95,6 +96,7 @@ func follow(route: PackedVector3Array, yielding := false) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not herd.navigation.ready_for_paths: return
+	if is_instance_valid(blast): blast.tick(delta)
 	age += delta
 	yield_cooldown = maxf(0,yield_cooldown-delta)
 	remaining -= delta
@@ -109,14 +111,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			desired = (path[waypoint]-position)*Vector3(1,0,1)
 			desired = desired.normalized()
-			desired *= float(spec.speed)*(1.25 if state=="yield" else 1.0)
+			desired *= float(spec.speed)*(3.5 if is_instance_valid(blast) else (1.25 if state=="yield" else 1.0))
 			desired = herd.steer(self,desired)
 			if desired.length_squared()>.001:
 				var target_yaw := atan2(desired.x,desired.z)
 				rotation.y = rotate_toward(rotation.y,target_yaw,delta*(1.8 if species=="cow" else 3.0))
 				var facing := Vector3(sin(rotation.y),0,cos(rotation.y))
 				desired = facing*desired.length()*maxf(0,facing.dot(desired.normalized()))
-	var flat := Vector3(velocity.x,0,velocity.z).move_toward(desired,delta*1.8)
+	var flat := Vector3(velocity.x,0,velocity.z).move_toward(desired,delta*(6.0 if is_instance_valid(blast) else 1.8))
 	# Check the swept clearance before travel; local avoidance cannot cut walls,
 	# boundary corners or graph exclusion zones. A blocked animal decelerates/stops.
 	var next := position+flat*delta
@@ -140,6 +142,7 @@ func _physics_process(delta: float) -> void:
 		stalled = stalled+delta if travel_speed<.04 else 0.0
 		if stalled>1.8: pause(true)
 	animate(delta)
+	if is_instance_valid(blast): blast.present()
 
 func animate(delta: float) -> void:
 	gait = move_toward(gait,clampf(travel_speed/float(spec.speed),0,1.25),delta*5)

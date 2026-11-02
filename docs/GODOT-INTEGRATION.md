@@ -16,7 +16,11 @@ this contract. The procedural sky uses bounded noise and source-color uniforms
 to avoid the old Vulkan cloud discontinuities and color-space mismatch.
 
 P22-T14 populates the active village with twelve ambient animals. Walk normally;
-animals yield on approach. They have no interaction bindings or desktop roles.
+animals yield on approach. In world mode, double-click an animal for an equally
+likely lightning, fire, cyclone or love blast. Effects expire after 1.8–5 seconds;
+active animals ignore repeat clicks. Fire/love pursue the nearest companion using
+outdoor navigation; a lone animal still recovers normally. F1 lists the binding.
+Animals have no desktop roles. See [blast behavior](handoffs/70-animal-blasts.md).
 `--no-animals` disables this population/navigation for comparison;
 `--animal-seed=2214` selects a repeatable behavior seed. Edit
 `world/art/animals/population.json` for later population/habitat changes, and

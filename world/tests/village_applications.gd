@@ -70,6 +70,10 @@ func run() -> void:
 	var animal_ids: Array = herd.animals.map(func(a):return a.animal_id)
 	var animal_distance := 0.0
 	for animal in herd.animals: animal_distance += animal.walked
+	# Bounded animal effects keep simulating while a real client owns input.
+	if "--exercise-animal-blasts" in OS.get_cmdline_user_args():
+		for kind in range(4):
+			check(herd.start_blast(herd.animals[kind],player.global_position+Vector3.UP,kind),"Background blast did not start")
 	await type_text("VILLAGE_SESSION=still-here; printf '%s:%s\\n' \"$$\" \"$VILLAGE_SESSION\" > '" + output_dir.path_join("before.txt") + "'\n")
 	var before := await wait_file("before.txt")
 	check(before.ends_with(":still-here\n"), "Initial shell state was not set")
@@ -78,6 +82,11 @@ func run() -> void:
 	for animal in herd.animals: animal_after += animal.walked
 	check(app.active and animal_after-animal_distance>.5,"Animal simulation froze during ordinary terminal typing")
 	print("ANIMALS_DURING_APPLICATION traveled_m=",animal_after-animal_distance)
+	if "--exercise-animal-blasts" in OS.get_cmdline_user_args():
+		await frames(310)
+		check(herd.animals.all(func(a):return not is_instance_valid(a.blast)),"Effect failed to restore during live typing")
+		check(app.active and terminal.session.keyboard_focus_handle()==first,"Effect stole live terminal focus")
+		print("ANIMAL_BLASTS_LIVE_CLIENT_OK")
 	await return_to_room()
 	var second := await launch_from_search("vim.desktop", "Vim")
 	if failures:

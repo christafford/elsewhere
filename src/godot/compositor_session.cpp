@@ -5,6 +5,7 @@
 
 namespace elsewhere {
 void ElsewhereCompositorSession::_bind_methods() {
+    godot::ClassDB::bind_method(godot::D_METHOD("set_output_size", "width", "height"), &ElsewhereCompositorSession::set_output_size);
     godot::ClassDB::bind_method(godot::D_METHOD("request_resize", "handle", "width", "height"), &ElsewhereCompositorSession::request_resize);
     godot::ClassDB::bind_method(godot::D_METHOD("window_state", "handle"), &ElsewhereCompositorSession::window_state);
     godot::ClassDB::bind_method(godot::D_METHOD("pointer_motion", "handle", "x", "y"), &ElsewhereCompositorSession::pointer_motion);

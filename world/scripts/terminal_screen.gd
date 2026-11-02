@@ -15,6 +15,7 @@ var screen: MeshInstance3D
 var status: Label3D
 var closing := false
 var started_ms := 0
+var output_size := Vector2i.ZERO
 const APERTURE := Vector2(0.885, 0.495)
 
 func _ready() -> void:
@@ -32,6 +33,7 @@ func _ready() -> void:
 	if not session.start(runtime_dir):
 		fail(session.last_error())
 		return
+	update_output_size()
 	if not auto_start_terminal and not "--terminal" in OS.get_cmdline_user_args() and not "--terminal-demo" in OS.get_cmdline_user_args():
 		status.text = ""
 		return
@@ -115,9 +117,18 @@ func reap_launched_children() -> void:
 	for pid in launched_children.duplicate():
 		if not OS.is_process_running(pid): launched_children.erase(pid)
 
+func update_output_size() -> void:
+	# GTK constrains ordinary windows to the advertised output, even when a
+	# larger xdg configure arrives. Publish host changes before client dispatch.
+	var wanted := Vector2i(get_viewport().get_visible_rect().size).clamp(Vector2i.ONE, Vector2i(4096, 4096))
+	if wanted == output_size: return
+	if session.set_output_size(wanted.x, wanted.y): output_size = wanted
+	else: push_error(session.last_error())
+
 func _process(_delta: float) -> void:
 	if session == null or closing or not session.is_running():
 		return
+	update_output_size()
 	if not session.pump():
 		fail(session.last_error())
 		return

@@ -19,6 +19,10 @@ public:
     godot::PackedInt64Array toplevel_handles() const;
     godot::Dictionary snapshot(int64_t handle, int64_t after_revision = 0) const;
     godot::Dictionary window_state(int64_t handle) const;
+    bool set_output_size(int64_t width, int64_t height) {
+        return width >= 1 && width <= 4096 && height >= 1 && height <= 4096 &&
+            runtime_.set_output_size(static_cast<int32_t>(width), static_cast<int32_t>(height));
+    }
     bool request_resize(int64_t handle, int64_t width, int64_t height) {
         return width >= 1 && width <= 2048 && height >= 1 && height <= 2048 &&
             runtime_.request_resize(handle, static_cast<int32_t>(width), static_cast<int32_t>(height));

@@ -1,5 +1,20 @@
 # Godot and the existing Wayland compositor
 
+Ghostty presentation repair (2026-11-01): `terminal_screen.gd` publishes the
+current viewport through `set_output_size` before dispatching clients. The
+private `wl_output` keeps scale 1 and broadcasts changed modes with versioned
+`done` events; late bindings receive the latest size. Without this, Ghostty
+clamps its view to the old 1280×800 output despite larger resize suggestions.
+Output dimensions are bounded to 1–4096; existing application configure limits
+remain 1–2048. No host monitor configuration is changed.
+
+The transition retains ownership of the hidden source presentation while the
+flat application view is active, restoring it on return/cancel/focus loss.
+Entity, transform, collisions and live updates remain intact. Run
+`bash tools/check-godot-terminal-compatibility.sh` with installed Ghostty and
+Alacritty for actual launch, fullscreen/resize, revisit and close checks. See
+[handoff 64](handoffs/64-ghostty-presentation.md) for evidence and limits.
+
 Application mode now shows the live world around the existing client rectangle
 (2026-11-01). Its CanvasLayer no longer paints an opaque full-window background.
 The camera stays at the entry viewpoint; client sizing, pixel presentation,

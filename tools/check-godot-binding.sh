@@ -59,4 +59,4 @@ rg -q '^GODOT_FRAMES_OK .*failures=0$' "$BUILD/frames.log"
 cat "$BUILD/frames.log"
 "$GODOT" --version
 git -C "$CPP" rev-parse HEAD
-printf 'Binding checks passed: 300 probe calls, 32 protocol trials, 16 frame/client trials and keyboard/pointer/resize routing. Logs: %s\n' "$BUILD"
+printf 'Binding checks passed: 300 probe calls, 33 protocol trials, 16 frame/client trials and keyboard/pointer/resize routing. Logs: %s\n' "$BUILD"

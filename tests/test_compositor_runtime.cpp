@@ -21,18 +21,21 @@ int main(int argc, char** argv) {
     char temp[] = "/tmp/elsewhere-runtime-test-XXXXXX";
     require(mkdtemp(temp), "test directory");
     elsewhere::CompositorRuntime runtime;
+    require(!runtime.set_output_size(1920, 1080), "output update on stopped server");
     require(!runtime.pump(), "pump stopped server must fail");
     require(!runtime.start("relative"), "relative directory must fail");
     require(!runtime.start(std::string(temp) + "/missing"), "missing directory must fail");
     std::set<int64_t> retired;
-    for (int trial = 0; trial < 16; ++trial) {
+    for (int trial = 0; trial < 17; ++trial) {
         require(runtime.start(temp), runtime.last_error().c_str());
         require(!runtime.start(temp), "double start must fail without losing live server");
+        require(!runtime.set_output_size(0, 800) && !runtime.set_output_size(1280, -1) &&
+                !runtime.set_output_size(4097, 800), "invalid output size");
         const auto socket = runtime.socket_path();
         const auto directory = socket.substr(0, socket.rfind('/'));
         const std::string marker = std::string(temp) + "/client-" + std::to_string(trial);
         const char* modes[] = {"destroy", "disconnect", "server-stop", "stale-ack", "unknown-ack", "unconfigured", "roleless", "bad-geometry"};
-        const char* mode = modes[trial % 8];
+        const char* mode = trial == 16 ? "output-resize" : modes[trial % 8];
         pid_t pid = fork();
         require(pid >= 0, "fork fixture");
         if (!pid) {
@@ -63,8 +66,20 @@ int main(int argc, char** argv) {
             }
         }
         if (trial % 8 == 2) require(runtime.stop(), "shutdown while client connected");
+        if (trial == 16) {
+            require(runtime.set_output_size(1920, 1080) && runtime.set_output_size(1920, 1080), "grow output");
+        }
         mark(marker + ".go");
-        if (trial % 8 == 0) {
+        if (trial == 16) {
+            while (access((marker + ".output-ready").c_str(), F_OK) < 0) {
+                require(runtime.pump(), "output update pump");
+                require(std::chrono::steady_clock::now() < deadline, "output update timeout");
+                usleep(1000);
+            }
+            require(runtime.set_output_size(900, 620), "shrink output");
+            mark(marker + ".output-shrink");
+        }
+        if (trial < 16 && trial % 8 == 0) {
             while (access((marker + ".partial").c_str(), F_OK) < 0) {
                 require(runtime.pump(), "partial destruction pump");
                 require(std::chrono::steady_clock::now() < deadline, "partial destruction timeout");
@@ -112,7 +127,7 @@ int main(int argc, char** argv) {
         retired.insert(original.begin(), original.end());
         for (auto handle : retired) require(!runtime.snapshot(handle), "stopped session rejects retired handles");
         require(access(socket.c_str(), F_OK) < 0 && access(directory.c_str(), F_OK) < 0, "socket/directory cleanup");
-        for (const char* suffix : {".ready", ".go", ".partial", ".resume", ".recreated", ".finish", ".ok"}) unlink((marker + suffix).c_str());
+        for (const char* suffix : {".ready", ".go", ".partial", ".resume", ".recreated", ".finish", ".ok", ".output-ready", ".output-shrink"}) unlink((marker + suffix).c_str());
     }
     std::string scoped_socket;
     {
@@ -122,5 +137,5 @@ int main(int argc, char** argv) {
     }
     require(access(scoped_socket.c_str(), F_OK) < 0, "destructor did not remove socket");
     require(rmdir(temp) == 0, "test left files");
-    std::puts("RUNTIME_LIFECYCLE_OK: 16 real client trials; xdg handshake, seat v1/v4, lifecycle and protocol errors");
+    std::puts("RUNTIME_LIFECYCLE_OK: 17 real client trials; output resizing, xdg handshake, seat v1/v4, lifecycle and protocol errors");
 }

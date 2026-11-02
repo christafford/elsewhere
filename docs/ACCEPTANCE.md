@@ -3,6 +3,22 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-11-01 Ghostty sizing and duplicate presentation
+
+Agent-run/agent-observed from `7d661b7` plus this repair and pre-existing P22-T13
+work: real installed Ghostty 1.4.0 and Alacritty use the same resize policy.
+At a 2259×1271 host viewport, Ghostty grows from the reproduced 1280×800 to
+2048×1207. Both terminals reflow at 1000×700 and 1600×900, return to fullscreen,
+preserve shell variables/entity/placement across world return/revisit, accept
+resumed typing and close through `exit`. The focused world copy remains hidden
+until return. Actual fullscreen, resized and returned-world renders inspected.
+
+Retained Weston transition, four-size resize/pointer selection and help checks
+pass on private Weston GL; native build/36 tests and full binding suite pass.
+Human physical-input/comfort and target-device acceptance remain **not observed**.
+Existing 2048px configure bounds remain; no general terminal/browser compatibility
+claim. See [handoff 64](handoffs/64-ghostty-presentation.md).
+
 ## 2026-11-01 Live world around focused applications
 
 Agent-run/agent-observed from `437511e` plus this revision and pre-existing

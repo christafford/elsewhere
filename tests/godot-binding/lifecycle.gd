@@ -38,12 +38,15 @@ func run() -> void:
 		quit(1)
 		return
 	session = ClassDB.instantiate("ElsewhereCompositorSession")
+	check(not session.set_output_size(1280, 800), "Stopped output update succeeded")
 	check(not session.pump(), "Stopped pump succeeded")
 	check(not session.start("relative"), "Relative runtime directory accepted")
 	for trial in range(16):
 		if not check(session.start(args[1]), session.last_error()):
 			break
 		check(not session.start(args[1]), "Double start accepted")
+		check(not session.set_output_size(4294968576, 800) and not session.set_output_size(1280, 0), "Invalid output size accepted/narrowed")
+		check(session.set_output_size(4096, 4096) and session.set_output_size(1280, 800), "Output size binding failed")
 		var socket: String = session.socket_path()
 		var private_dir := socket.get_base_dir()
 		var marker := args[1].path_join("trial-%d" % trial)

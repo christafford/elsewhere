@@ -78,7 +78,7 @@ func run() -> void:
 	check(transition.surface.global_position.distance_to(start.origin) > 0.1, "Entry proxy did not approach camera")
 	check(transition.surface.material_override == object.screen.material_override, "Flight is not using the live client material")
 	await finish_flight()
-	check(app.panel.visible and not transition.surface.visible and not object.presentation_hidden, "Entry failed to switch to native presentation")
+	check(app.panel.visible and not transition.surface.visible and object.presentation_hidden, "Entry failed to hide the world copy in native presentation")
 	check(player.global_transform.is_equal_approx(player_pose) and object.global_transform.is_equal_approx(original), "Animation moved the player or physical panel")
 	await settle()
 	var target: Transform3D = transition.camera_pose()

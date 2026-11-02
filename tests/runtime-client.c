@@ -14,7 +14,7 @@ static void require(int condition, const char *message) {
     if (!condition) { fprintf(stderr, "CLIENT FAIL: %s\n", message); exit(1); }
 }
 struct seat_state { int caps, names, keymaps, repeats; uint32_t version; };
-struct output_state { int geometry, mode, scale, done; };
+struct output_state { int geometry, mode, scale, done, width, height; };
 struct globals {
     struct wl_compositor *compositor;
     struct wl_shm *shm;
@@ -71,8 +71,9 @@ static void output_geometry(void *data, struct wl_output *output, int32_t x, int
 }
 static void output_mode(void *data, struct wl_output *output, uint32_t flags, int32_t w, int32_t h, int32_t refresh) {
     (void)output;
-    require(flags == (WL_OUTPUT_MODE_CURRENT | WL_OUTPUT_MODE_PREFERRED) && w == 1280 && h == 800 && refresh == 60000, "output mode");
-    ((struct output_state*)data)->mode++;
+    require(flags == (WL_OUTPUT_MODE_CURRENT | WL_OUTPUT_MODE_PREFERRED) && w > 0 && h > 0 && refresh == 60000, "output mode");
+    struct output_state *state = data;
+    state->mode++; state->width = w; state->height = h;
 }
 static void output_scale(void *data, struct wl_output *output, int32_t scale) {
     (void)output; require(scale == 1, "output scale"); ((struct output_state*)data)->scale++;
@@ -218,7 +219,8 @@ int main(int argc, char **argv) {
         require(g.seat_state[i].caps == 1 && g.seat_state[i].names == i && g.seat_state[i].keymaps == 1 && g.seat_state[i].repeats == i, "seat event versions");
     for (int i = 0; i < 3; ++i)
         require(g.output_state[i].geometry == 1 && g.output_state[i].mode == 1 &&
-                g.output_state[i].scale == (i > 0) && g.output_state[i].done == (i > 0), "output versioned events");
+                g.output_state[i].scale == (i > 0) && g.output_state[i].done == (i > 0) &&
+                g.output_state[i].width == 1280 && g.output_state[i].height == 800, "output versioned events");
     // Release requests used to have null implementations in the server.
     wl_pointer_release(pointers[1]); wl_keyboard_release(keyboards[1]);
     wl_pointer_destroy(pointers[0]); wl_keyboard_destroy(keyboards[0]);
@@ -270,7 +272,25 @@ int main(int argc, char **argv) {
     int local = strcmp(mode, "destroy") != 0;
     int error_code = -1;
     struct window invalid = {0};
-    if (!strcmp(mode, "stale-ack") || !strcmp(mode, "unknown-ack")) {
+    if (!strcmp(mode, "output-resize")) {
+        require(wl_display_roundtrip(display) >= 0, "output resize roundtrip");
+        for (int i = 0; i < 3; ++i)
+            require(g.output_state[i].mode == 2 && g.output_state[i].done == (i > 0 ? 2 : 0) &&
+                    g.output_state[i].width == 1920 && g.output_state[i].height == 1080,
+                    "updated output size/versioned done; unchanged size must not resend");
+        memset(&g.output_state[3], 0, sizeof g.output_state[3]);
+        g.outputs[3] = wl_registry_bind(registry, g.output_id, &wl_output_interface, 3);
+        wl_output_add_listener(g.outputs[3], &output_listener, &g.output_state[3]);
+        require(wl_display_roundtrip(display) >= 0 && g.output_state[3].width == 1920 &&
+                g.output_state[3].height == 1080, "late binding receives current output size");
+        marker(argv[2], "output-ready"); barrier(argv[2], "output-shrink");
+        require(wl_display_roundtrip(display) >= 0, "output shrink roundtrip");
+        for (int i = 0; i < 4; ++i)
+            require(g.output_state[i].width == 900 && g.output_state[i].height == 620 &&
+                    g.output_state[i].mode == (i == 3 ? 2 : 3) &&
+                    g.output_state[i].done == (i == 0 ? 0 : (i == 3 ? 2 : 3)), "output shrink events");
+        wl_output_release(g.outputs[3]); g.outputs[3] = NULL;
+    } else if (!strcmp(mode, "stale-ack") || !strcmp(mode, "unknown-ack")) {
         xdg_surface_ack_configure(windows[0].xdg, !strcmp(mode, "stale-ack") ? windows[0].serial : 0);
         error_code = XDG_SURFACE_ERROR_INVALID_SERIAL;
     } else if (!strcmp(mode, "unconfigured") || !strcmp(mode, "roleless")) {
@@ -308,7 +328,7 @@ int main(int argc, char **argv) {
         }
         require(wl_display_roundtrip(display) >= 0, "replacement commit");
         marker(argv[2], "recreated"); barrier(argv[2], "finish");
-    } else require(!strcmp(mode, "disconnect"), "known trial mode");
+    } else require(!strcmp(mode, "disconnect") || !strcmp(mode, "output-resize"), "known trial mode");
     if (invalid.surface) destroy_window(&invalid, 1);
     for (int i = 0; i < 16; ++i) destroy_window(&windows[i], local);
     if (local) wl_proxy_destroy((struct wl_proxy*)buffer);

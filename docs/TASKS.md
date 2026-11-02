@@ -1,5 +1,13 @@
 # Task list
 
+Owner-reported Ghostty presentation repair, completed 2026-11-01: the private
+output now follows the host viewport, allowing Ghostty to use the same configure
+sizes as Alacritty. Application mode hides its world copy until return. Real
+Ghostty/Alacritty launch, resize, shell continuity and close, native/binding and
+retained graphical regressions pass; actual renders inspected. See
+[handoff 64](handoffs/64-ghostty-presentation.md). This bounded desktop repair
+advances no numbered task or human gate; P22-T13 work remains separate.
+
 Owner-requested world surroundings in application mode (2026-11-01): preserve
 the existing client size while revealing the live scene around it. The opaque
 background is removed; camera and input ownership remain unchanged. Import,

@@ -1,5 +1,22 @@
 # Current direction — Elsewhere (2026-10-16)
 
+## Owner-reported Ghostty presentation repair verified (2026-11-01)
+
+Ghostty now uses the same application sizing policy as Alacritty: the private
+Wayland output follows the host viewport instead of remaining 1280×800. The
+focused world panel stays hidden until world return, preserving its entity,
+placement and live content. On this 2259×1271 host, Ghostty now reaches
+2048×1207; the existing 2048px configure limit remains unchanged.
+
+Native build/36 tests, full binding suite, import/startup, real Ghostty/Alacritty
+launch/resize/revisit/shell-state/close, retained transition/resize/help and Node
+checks pass. Agent inspected actual fullscreen, resized and world-return renders.
+Human input/comfort and target-device acceptance remain unobserved. See
+[handoff 64](handoffs/64-ghostty-presentation.md).
+
+Next task: stop after this bounded bug fix. Pre-existing P22-T13 work remains
+separate; no numbered task or human gate advances.
+
 ## Owner-requested world surroundings in application view (2026-11-01)
 
 The focused application keeps its existing size and pixel presentation; its

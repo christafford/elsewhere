@@ -76,8 +76,15 @@ func advance(delta: float) -> void:
 
 func complete() -> void:
 	var show_application: bool = entering and app.active and app.focused_handle == window
-	cancel()
-	if show_application: app.panel.show()
+	if show_application:
+		# Retain ownership of the hidden world presentation until exit/cancel.
+		# Its entity, placement, collision and live texture remain intact.
+		running = false
+		surface.hide()
+		surface.material_override = null
+		app.panel.show()
+	else:
+		cancel()
 
 func cancel() -> void:
 	if is_instance_valid(source): source.set_presentation_hidden(false)

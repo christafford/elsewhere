@@ -24,6 +24,7 @@ struct ElsewhereOutput {
     wl_global* global = nullptr;
     ElsewhereCompositor* compositor = nullptr;
     wl_list resources;
+    int32_t width = 1280, height = 800;
 };
 namespace {
 struct OutputBinding {
@@ -52,6 +53,11 @@ catch (const std::bad_alloc&) {
 }
 void release_output(wl_client*, wl_resource* resource) { wl_resource_destroy(resource); }
 const struct wl_output_interface output_impl = {release_output};
+void send_output_mode(wl_resource* resource, const ElsewhereOutput* output) {
+    wl_output_send_mode(resource, WL_OUTPUT_MODE_CURRENT | WL_OUTPUT_MODE_PREFERRED,
+                        output->width, output->height, 60000);
+    if (wl_resource_get_version(resource) >= 2) wl_output_send_done(resource);
+}
 void output_destroyed(wl_resource* resource) {
     wl_list_remove(wl_resource_get_link(resource));
     delete static_cast<OutputBinding*>(wl_resource_get_user_data(resource));
@@ -66,8 +72,8 @@ void bind_output(wl_client* client, void* data, uint32_t version, uint32_t id) {
     wl_list_insert(&output->resources, wl_resource_get_link(resource));
     wl_output_send_geometry(resource, 0, 0, 338, 211, WL_OUTPUT_SUBPIXEL_UNKNOWN,
                             "Elsewhere", "Workspace", WL_OUTPUT_TRANSFORM_NORMAL);
-    wl_output_send_mode(resource, WL_OUTPUT_MODE_CURRENT | WL_OUTPUT_MODE_PREFERRED, 1280, 800, 60000);
-    if (version >= 2) { wl_output_send_scale(resource, 1); wl_output_send_done(resource); }
+    if (version >= 2) wl_output_send_scale(resource, 1);
+    send_output_mode(resource, output);
     update_output(binding);
 }
 }
@@ -137,6 +143,19 @@ bool CompositorRuntime::start(const std::string& runtime_directory) {
         stop();
         return false;
     }
+    return true;
+}
+
+bool CompositorRuntime::set_output_size(int32_t width, int32_t height) {
+    if (!output_ || width < 1 || height < 1 || width > 4096 || height > 4096) {
+        error_ = "output size requires a running server and dimensions within 1..4096";
+        return false;
+    }
+    if (output_->width == width && output_->height == height) return true;
+    output_->width = width;
+    output_->height = height;
+    wl_resource* resource;
+    wl_resource_for_each(resource, &output_->resources) send_output_mode(resource, output_);
     return true;
 }
 

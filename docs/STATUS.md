@@ -1,5 +1,28 @@
 # Current direction — Elsewhere (2026-10-16)
 
+## P22-T14 village animals verified (2026-11-01)
+
+Twelve original articulated animals now inhabit the outdoors: two pigs, four
+chickens, two dogs, two goats and two cows. Clearance-aware paths, gentle turns,
+terrain foot placement, varied resting/foraging and player/animal avoidance
+support their wandering. Navigation derives from current ground, architecture
+and travel bounds; counts and habitats are location data for later expansion.
+
+Automated: offline assets/import/bridge build, headless/GPU navigation and
+behavior, two seeds, crowded crossing, map-growth/obstacle fixtures, retained
+walking/interiors/stairs/pavilion, real Terminal/Vim continuity, transition,
+resize/help/color, 14 Python and 62 Node tests pass. Agent inspected actual close,
+walking and feeding renders plus live application revisits. See
+[handoff 66](handoffs/66-village-animals.md) and [evidence](evidence/p22-t14/README.md).
+
+Navigation builds asynchronously in 11.7–15.5 s on this host before animals
+appear. Short RTX 3080 samples record 16.6–17.1 ms frame medians with animals and
+18.6–29.9 ms p95; sustained/target-device performance and human comfort remain
+unverified. No restart persistence or automatic population growth is added.
+
+Next task: stop after **P22-T14**. Existing P22-T13 edits remain separate and
+unfinished; P22-T09/P22-T10 do not advance. No further task is authorized.
+
 ## Owner-reported Ghostty presentation repair verified (2026-11-01)
 
 Ghostty now uses the same application sizing policy as Alacritty: the private

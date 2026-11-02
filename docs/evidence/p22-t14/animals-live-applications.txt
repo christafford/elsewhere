@@ -1,0 +1,16 @@
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+ANIMALS_DURING_APPLICATION traveled_m=60.8428154766225
+VILLAGE_REVISIT distance_one_way_m=12.2910289764404 shell=1586667:still-here terminal_entity=1f1ad2e36c41e476686de76197faf0c9 editor_entity=74ce59bffdbad066910130a4ebb51306 background_revision_delta=22
+VILLAGE_APPLICATIONS_OK clients=2 failures=0

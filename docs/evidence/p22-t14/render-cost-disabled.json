@@ -1,0 +1,35 @@
+{
+  "animals": 0,
+  "mode": "Wayland",
+  "renderer": "NVIDIA GeForce RTX 3080",
+  "samples": [
+    {
+      "draw_calls": 1025.0,
+      "median_ms": 16.681,
+      "p95_ms": 17.27,
+      "physics_median_ms": 1.193,
+      "physics_p95_ms": 1.359,
+      "primitives": 1161103.0,
+      "view": "square"
+    },
+    {
+      "draw_calls": 293.0,
+      "median_ms": 16.669,
+      "p95_ms": 17.212,
+      "physics_median_ms": 1.258,
+      "physics_p95_ms": 1.298,
+      "primitives": 731235.0,
+      "view": "meadow"
+    },
+    {
+      "draw_calls": 623.0,
+      "median_ms": 16.681,
+      "p95_ms": 17.108,
+      "physics_median_ms": 1.254,
+      "physics_p95_ms": 1.55,
+      "primitives": 998502.0,
+      "view": "east"
+    }
+  ],
+  "viewport": "(1280, 800)"
+}

@@ -1,0 +1,8 @@
+Verified 9 Poly Haven village maps (offline)
+Verified 5 original village animals (offline)
+[  0%] Built target generate_bindings
+[ 13%] Built target elsewhere_runtime
+[ 96%] Built target godot-cpp
+[100%] Built target elsewhere_probe
+Godot validation logs: /tmp/elsewhere-godot-check.bRPBEL
+Godot import and runtime checks passed (not visual acceptance).

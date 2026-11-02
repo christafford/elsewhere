@@ -13,6 +13,7 @@ fi
 }
 if [[ "$(realpath "$PROJECT_DIR")" == "$(realpath "$SCRIPT_DIR/../world")" ]]; then
     python3 "$SCRIPT_DIR/../world/tools/verify_village_materials.py"
+    python3 "$SCRIPT_DIR/../world/tools/verify_village_animals.py"
     "$SCRIPT_DIR/build-godot-runtime.sh"
 fi
 LOG_DIR=$(mktemp -d "${TMPDIR:-/tmp}/elsewhere-godot-check.XXXXXX")

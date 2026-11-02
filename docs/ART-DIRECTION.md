@@ -1,5 +1,15 @@
 # Current art brief — Elsewhere village square
 
+## P22-T14 ambient animals (owner, 2026-11-01)
+
+A small population of pigs, chickens, dogs, goats and cows brings visible life
+to the outdoor village. Original articulated models use warm coats, recognizable
+anatomy and modest mesh detail consistent with the existing stylized architecture.
+Maintain ground contact, gentle starts/stops/turns, varied pauses, grazing and
+pecking. Groups should loosely share outdoor patches while leaving entrances
+and workspaces usable. Future land/building expansion changes navigation and
+habitat configuration, not the animal behavior implementation.
+
 ## P22-T12 stairs and second floors (owner, 2026-10-16)
 
 The Lodge, Guildhall, Copper Kettle, Lantern Inn, Library and Meadow Inn gain

@@ -1,0 +1,15 @@
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+ANIMAL_RENDER_COST {"animals":12,"mode":"Wayland","renderer":"NVIDIA GeForce RTX 3080","samples":[{"draw_calls":1508.0,"median_ms":17.052,"p95_ms":29.853,"physics_median_ms":6.48,"physics_p95_ms":7.405,"primitives":1214957.0,"view":"square"},{"draw_calls":495.0,"median_ms":16.596,"p95_ms":18.973,"physics_median_ms":7.06,"physics_p95_ms":8.805,"primitives":757651.0,"view":"meadow"},{"draw_calls":761.0,"median_ms":16.684,"p95_ms":18.634,"physics_median_ms":5.86,"physics_p95_ms":6.884,"primitives":1016010.0,"view":"east"}],"viewport":"(1280, 800)"}
+ANIMAL_RENDER_COST_OK failures=0

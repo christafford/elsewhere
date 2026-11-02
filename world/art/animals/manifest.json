@@ -1,0 +1,105 @@
+{
+  "author": "Elsewhere / Codex",
+  "source": "world/tools/build_village_animals.py",
+  "units": "meters; +Y up; +Z forward",
+  "models": [
+    {
+      "species": "pig",
+      "file": "pig.glb",
+      "bytes": 290620,
+      "sha256": "9592a71179a9365d0ab0fd2af9dd37e23e83c636d9035998235427106d688c2d",
+      "triangles": 3844,
+      "joints": [
+        "Body",
+        "Leg0",
+        "Shin0",
+        "Leg1",
+        "Shin1",
+        "Leg2",
+        "Shin2",
+        "Leg3",
+        "Shin3",
+        "Head",
+        "Tail"
+      ]
+    },
+    {
+      "species": "chicken",
+      "file": "chicken.glb",
+      "bytes": 309644,
+      "sha256": "df81fdb0a916f5abee6482b6557b7076c15cf53ebb249dfd3a4cec2af49c0543",
+      "triangles": 4160,
+      "joints": [
+        "Body",
+        "Wing-1",
+        "Wing1",
+        "Tail",
+        "Head",
+        "Leg0",
+        "Shin0",
+        "Leg1",
+        "Shin1"
+      ]
+    },
+    {
+      "species": "dog",
+      "file": "dog.glb",
+      "bytes": 271632,
+      "sha256": "09798cf1661dfdfb60caf3da919414b5288ecfb6b913db5ef808801c0748ca4d",
+      "triangles": 3600,
+      "joints": [
+        "Body",
+        "Leg0",
+        "Shin0",
+        "Leg1",
+        "Shin1",
+        "Leg2",
+        "Shin2",
+        "Leg3",
+        "Shin3",
+        "Head",
+        "Tail"
+      ]
+    },
+    {
+      "species": "goat",
+      "file": "goat.glb",
+      "bytes": 288480,
+      "sha256": "8db6dee72c3e892b15a974a5f2f0768fddeb0965331978aead118ed006fd5c0d",
+      "triangles": 3816,
+      "joints": [
+        "Body",
+        "Leg0",
+        "Shin0",
+        "Leg1",
+        "Shin1",
+        "Leg2",
+        "Shin2",
+        "Leg3",
+        "Shin3",
+        "Head",
+        "Tail"
+      ]
+    },
+    {
+      "species": "cow",
+      "file": "cow.glb",
+      "bytes": 324836,
+      "sha256": "ec93a07dd8e66e389985f14e87c0f63e1082d07ed0139493175741b5bf10ef9c",
+      "triangles": 4300,
+      "joints": [
+        "Body",
+        "Leg0",
+        "Shin0",
+        "Leg1",
+        "Shin1",
+        "Leg2",
+        "Shin2",
+        "Leg3",
+        "Shin3",
+        "Head",
+        "Tail"
+      ]
+    }
+  ]
+}

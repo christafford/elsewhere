@@ -1,0 +1,20 @@
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+INTERIOR_REVISIT building=Lodge shell=1560708:Lodge entity=0b48ce17c1e3249c66b4bb38c358b182
+INTERIOR_TRAVERSAL building=Lodge floor_y=1.63381063938141 usable_size=(9.44, 9.1955)
+INTERIOR_REVISIT building=Guildhall shell=1563239:Guildhall entity=1a906de701a91c29c10cd914598c2d1a
+INTERIOR_TRAVERSAL building=Guildhall floor_y=1.06648981571198 usable_size=(7.24, 7.8705)
+INTERIOR_REVISIT building=Workshop shell=1563531:Workshop entity=97b52169386c9bb6176b3ceb1418ab6c
+INTERIOR_TRAVERSAL building=Workshop floor_y=0.8284866809845 usable_size=(7.44, 7.8705)
+VILLAGE_INTERIORS_OK mode=Wayland failures=0

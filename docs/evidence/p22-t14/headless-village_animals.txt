@@ -1,0 +1,18 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ANIMAL_NAV build_ms=12723 nodes=[2957, 2653, 2380]
+ANIMAL_RESULT village-animal-pig-01 walked=21.3889375445578 transitions=14 arrived=7 blocked=0
+ANIMAL_RESULT village-animal-pig-02 walked=26.1362466668033 transitions=10 arrived=5 blocked=0
+ANIMAL_RESULT village-animal-chicken-01 walked=21.1251046762045 transitions=15 arrived=7 blocked=0
+ANIMAL_RESULT village-animal-chicken-02 walked=22.0231502757451 transitions=15 arrived=6 blocked=1
+ANIMAL_RESULT village-animal-chicken-03 walked=24.0352652355286 transitions=13 arrived=6 blocked=0
+ANIMAL_RESULT village-animal-chicken-04 walked=22.6164304929407 transitions=15 arrived=7 blocked=0
+ANIMAL_RESULT village-animal-dog-01 walked=58.8023628151859 transitions=10 arrived=5 blocked=0
+ANIMAL_RESULT village-animal-dog-02 walked=59.5539327224178 transitions=11 arrived=5 blocked=0
+ANIMAL_RESULT village-animal-goat-01 walked=26.2471774404694 transitions=11 arrived=5 blocked=0
+ANIMAL_RESULT village-animal-goat-02 walked=18.2394948024303 transitions=12 arrived=6 blocked=0
+ANIMAL_RESULT village-animal-cow-01 walked=20.9959618394496 transitions=7 arrived=3 blocked=0
+ANIMAL_RESULT village-animal-cow-02 walked=17.2093665985667 transitions=9 arrived=4 blocked=0
+ANIMAL_CROWD minimum_separation=0.90786039829254
+ANIMAL_METRICS max_gap=0.00000005899929 foot_gap=0.00100231170654 max_step=0.01589984633029 minimum_separation=0.95864977155413 path_requests=108
+VILLAGE_ANIMALS_OK seed=2214 mode=headless failures=0

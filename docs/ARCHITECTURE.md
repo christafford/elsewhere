@@ -1,5 +1,26 @@
 # Elsewhere architecture transition
 
+P22-T14 adds a location-owned `Animals` sibling. `village_animals.gd` loads the
+species/population data, owns per-animal RNG and stable animal IDs, shares coat
+materials and schedules at most one planning decision per physics tick.
+`animal_navigation.gd` constructs three AStar3D clearance graphs after geometry
+initialization, using the current terrain callback, travel polygon and physical
+ground bodies. Top-down support and swept cylinder queries exclude interiors,
+roofed workspaces, narrow/steep routes and decorative surrounds; path pruning
+preserves these exclusions. Rebuilding incorporates future land/building changes.
+
+`village_animal.gd` owns each CharacterBody3D's walk/rest/forage/yield state,
+acceleration, capped turning, physical movement, distance-driven gait and terrain
+foot placement. Layer 16 isolates animals from panel picking/support; the player's
+mask includes it, and animals see world/player/movable objects/one another.
+Dynamic clearance overlap permits outward escape, preventing two actors from
+freezing when a player or moving object enters their padded clearance envelope.
+Terrain height supplies vertical support, with navigation checking real ground
+collision before movement; body sweeps exclude that dense ground mesh while
+retaining physical obstacle/actor collisions. Idle bodies skip movement sweeps.
+No compositor, launcher, input, panel identity or persistence service changes.
+See [animal assets and configuration](../world/art/animals/README.md).
+
 P22-T12 adds location-owned `village_upstairs.gd`, initialized after the original
 architecture and village extension. `art/village/upstairs.json` identifies six
 buildings and supplies shared dimensions to the model authoring and runtime.

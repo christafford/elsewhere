@@ -1,0 +1,10 @@
+{
+  "seed": 2214,
+  "species": {
+    "pig": {"count":2,"profile":1,"speed":0.55,"stride":0.66,"pause":[5,13],"roam":8,"home":[-22,5],"grass":true},
+    "chicken": {"count":4,"profile":0,"speed":0.38,"stride":0.23,"pause":[2,6],"roam":5,"home":[-14,4],"grass":true},
+    "dog": {"count":2,"profile":1,"speed":0.95,"stride":0.62,"pause":[3,9],"roam":18,"home":[5,9],"grass":false},
+    "goat": {"count":2,"profile":1,"speed":0.65,"stride":0.62,"pause":[5,12],"roam":10,"home":[23,10],"grass":true},
+    "cow": {"count":2,"profile":2,"speed":0.48,"stride":0.95,"pause":[9,19],"roam":10,"home":[-20,30],"grass":true}
+  }
+}

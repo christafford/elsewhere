@@ -1,0 +1,12 @@
+PASS headless outdoor_startup
+OUTDOOR_STARTUP_OK mode=headless boundaries=10 failures=0
+PASS headless village_landscape
+VILLAGE_LANDSCAPE_OK mode=headless samples=24178 walked_m=338.2 max_grade_deg=14.39 floor_gap=0.00736018287568 failures=0
+PASS headless village_architecture
+VILLAGE_ARCHITECTURE_OK mode=headless exteriors=3 landmark=1 pavilion=1 failures=0
+PASS headless village_interiors
+VILLAGE_INTERIORS_OK mode=headless failures=0
+PASS headless village_expansion
+VILLAGE_EXPANSION_OK mode=headless buildings=10 failures=0
+PASS headless village_upstairs
+VILLAGE_UPSTAIRS_OK mode=headless buildings=6 failures=0

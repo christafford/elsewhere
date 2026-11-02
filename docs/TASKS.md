@@ -1,5 +1,12 @@
 # Task list
 
+Owner-requested village animals, completed 2026-11-01: **P22-T14** adds a
+configurable population of pigs, chickens, dogs, goats and cows, with articulated
+movement, outdoor navigation and species-specific pauses/foraging. Agent-observed
+renders, headless/GPU behavior and growth fixtures, retained village/desktop
+checks and named-host cost samples pass. See [handoff 66](handoffs/66-village-animals.md).
+Existing P22-T13 work and human/target-device gates remain separate. Stop here.
+
 Owner-reported Ghostty presentation repair, completed 2026-11-01: the private
 output now follows the host viewport, allowing Ghostty to use the same configure
 sizes as Alacritty. Application mode hides its world copy until return. Real
@@ -334,6 +341,29 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   All 39 rebuilt GLBs regenerate identically. Named-host draw calls increase; no sustained
   or Steam Deck result is inferred. See [handoff 58](handoffs/58-village-second-floors.md)
   and [evidence/verification order](evidence/p22-t12/README.md).
+
+- [x] **P22-T14 Add wandering village animals.**
+  **Explicitly authorized and completed 2026-11-01; agent-run/agent-observed.**
+  **Depends:** verified P22-T11/P22-T12 village geometry and retained outdoor
+  desktop behavior. P22-T13 completion is not a prerequisite; preserve its
+  in-progress changes and use the current authoritative travel boundary.
+  Add a modest configurable population of pigs, chickens, dogs, goats and cows,
+  finished animated models, species-specific feeding/resting/wandering, terrain
+  contact, reachable outdoor paths and avoidance of buildings, other animals,
+  player and movable objects. Keep entrances/workspaces usable. Derive navigation
+  from location geometry and bounds, with configurable habitats/population, so
+  future land and buildings require navigation regeneration rather than behavior
+  rewrites. No map expansion, people, farming mechanics or restart persistence.
+  **Acceptance:** actual close and moving renders of all five species inspected;
+  deterministic headless/GPU containment, ground contact, clearance, state changes,
+  blocked-route recovery and dynamic avoidance checks; isolated map-growth and
+  added-building fixture; retained walking/stair/pavilion and real Terminal/Vim
+  continuity checks with animals active. Validate provenance/offline import,
+  record matched simulation/render costs and truthful human/target-device limits,
+  update evidence and Decision 08, validate docs/task parsing/diffs, and commit
+  only this task. P22-T09/P22-T10 remain separate. See
+  [scope](handoffs/65-village-animals-plan.md) and
+  [completion evidence](handoffs/66-village-animals.md). Stop after P22-T14.
 
 ---
 

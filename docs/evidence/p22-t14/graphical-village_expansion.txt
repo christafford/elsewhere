@@ -1,0 +1,44 @@
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+EXPANSION_LANE north_lane
+EXPANSION_LANE book_lane
+EXPANSION_LANE library_lane
+EXPANSION_LANE potters_lane
+EXPANSION_LANE bakery_lane
+EXPANSION_LANE herb_lane
+EXPANSION_LANE store_lane
+EXPANSION_LANE hearth_lane
+EXPANSION_LANE meadow_lane
+EXPANSION_LANE south_court
+EXPANSION_REVISIT building=CopperKettle shell=1581428:CopperKettle entity=53b7cb08cbcb8470f2db8de72069fa72
+EXPANSION_INTERIOR CopperKettle floor_y=2.51302981376648
+EXPANSION_REVISIT building=LanternInn shell=1582387:LanternInn entity=4cd5375b5ed109bcef01612193de3f8a
+EXPANSION_INTERIOR LanternInn floor_y=3.18460464477539
+EXPANSION_REVISIT building=Library shell=1582496:Library entity=83d891b8eb8663b9999de9cda04c6c83
+EXPANSION_INTERIOR Library floor_y=1.89143133163452
+EXPANSION_REVISIT building=Bookbinder shell=1582574:Bookbinder entity=332f0895360dd945fed09d31d50e136b
+EXPANSION_INTERIOR Bookbinder floor_y=2.25903463363647
+EXPANSION_REVISIT building=Bakery shell=1582694:Bakery entity=9f25714040a8f4839b107b49b7a6422a
+EXPANSION_INTERIOR Bakery floor_y=2.28735566139221
+EXPANSION_REVISIT building=Apothecary shell=1582812:Apothecary entity=d218c11c1c7d2a3563841210d56dda8e
+EXPANSION_INTERIOR Apothecary floor_y=1.70422554016113
+EXPANSION_REVISIT building=Pottery shell=1582920:Pottery entity=c39c38c385b5297e667ca4481739014e
+EXPANSION_INTERIOR Pottery floor_y=1.20049977302551
+EXPANSION_REVISIT building=GeneralStore shell=1583023:GeneralStore entity=51c074a2985af4aea3a85c59172c508a
+EXPANSION_INTERIOR GeneralStore floor_y=0.91255980730057
+EXPANSION_REVISIT building=Hearthside shell=1583139:Hearthside entity=eb6d15719db50a942ae4c6ce9d9cc1f2
+EXPANSION_INTERIOR Hearthside floor_y=0.83806055784225
+EXPANSION_REVISIT building=MeadowInn shell=1583263:MeadowInn entity=a1242414692e35ec7abac78ba5dfabdc
+EXPANSION_INTERIOR MeadowInn floor_y=1.03132569789886
+VILLAGE_EXPANSION_OK mode=Wayland buildings=10 failures=0

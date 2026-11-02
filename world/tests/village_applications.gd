@@ -63,10 +63,21 @@ func run() -> void:
 		return
 	var first_object: Node3D = objects.bindings[first]
 	var first_id: String = first_object.entity_id
+	var herd: Node3D = study.get_node("Animals")
+	deadline = Time.get_ticks_msec()+15000
+	while not herd.initialized and Time.get_ticks_msec()<deadline: await physics_frame
+	check(herd.initialized and herd.animals.size()==12,"Ambient animals unavailable during live application trial")
+	var animal_ids: Array = herd.animals.map(func(a):return a.animal_id)
+	var animal_distance := 0.0
+	for animal in herd.animals: animal_distance += animal.walked
 	await type_text("VILLAGE_SESSION=still-here; printf '%s:%s\\n' \"$$\" \"$VILLAGE_SESSION\" > '" + output_dir.path_join("before.txt") + "'\n")
 	var before := await wait_file("before.txt")
 	check(before.ends_with(":still-here\n"), "Initial shell state was not set")
 	await type_text("while true; do printf 'LIVE VILLAGE '; date +%T; sleep 0.5; done\n")
+	var animal_after := 0.0
+	for animal in herd.animals: animal_after += animal.walked
+	check(app.active and animal_after-animal_distance>.5,"Animal simulation froze during ordinary terminal typing")
+	print("ANIMALS_DURING_APPLICATION traveled_m=",animal_after-animal_distance)
 	await return_to_room()
 	var second := await launch_from_search("vim.desktop", "Vim")
 	if failures:
@@ -150,5 +161,6 @@ func run() -> void:
 	while not objects.bindings.is_empty() and Time.get_ticks_msec() < deadline: await process_frame
 	check(objects.bindings.is_empty() and not app.active and terminal.session.keyboard_focus_handle() == 0 and player._held.is_empty(), "Closing applications left panels, focus or movement behind")
 	await capture("world-after-close.png")
+	check(herd.animals.map(func(a):return a.animal_id)==animal_ids,"Application lifecycle replaced ambient animal identities")
 	print("VILLAGE_REVISIT distance_one_way_m=", distance, " shell=", before.strip_edges(), " terminal_entity=", first_id, " editor_entity=", second_id, " background_revision_delta=", background_delta)
 	await finish()

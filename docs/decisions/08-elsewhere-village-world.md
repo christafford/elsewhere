@@ -83,3 +83,17 @@ ordinary ascent/descent, actual renders and upstairs real-application continuity
 No additional buildings, further floors, NPCs, new services or restart persistence.
 P22-T09/P22-T10 remain separate gates; stop after this task. See
 [approved scope](../handoffs/57-village-upstairs-plan.md).
+
+## Owner amendment: wandering village animals (2026-11-01)
+
+The owner explicitly authorized **P22-T14** after reviewing its scope. Add pigs,
+chickens, dogs, goats and cows as ambient outdoor inhabitants, with articulated
+movement, species-appropriate pauses/feeding, collision-aware wandering and
+navigation adaptable to later land/building changes. This supersedes the
+no-creatures restriction for these animals only. Population stays small and
+configurable; no task/reminder creatures, people, farming economy, breeding,
+map expansion or restart persistence. The location owns animal models, behavior
+and navigation; the compositor, desktop identities and input ownership remain
+unchanged. Use original reproducible models and existing Godot/Python facilities;
+no dependency is added. Preserve the independent unfinished P22-T13 work and
+P22-T09/P22-T10 gates. See [approved scope](../handoffs/65-village-animals-plan.md).

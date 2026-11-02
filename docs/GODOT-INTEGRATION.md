@@ -1,5 +1,17 @@
 # Godot and the existing Wayland compositor
 
+P22-T14 populates the active village with twelve ambient animals. Walk normally;
+animals yield on approach. They have no interaction bindings or desktop roles.
+`--no-animals` disables this population/navigation for comparison;
+`--animal-seed=2214` selects a repeatable behavior seed. Edit
+`world/art/animals/population.json` for later population/habitat changes, and
+rebuild location navigation when terrain or architecture changes.
+`tools/check-godot-animals.sh` runs headless/GPU movement, crowded crossing and
+map-growth/clearance checks; inspect its actual renders in `.tools/p22-t14/`.
+`res://tests/animal_render_cost.gd` records matched graphical rendering samples
+with and without `--no-animals`. These checks do not establish human comfort or
+sustained target-hardware performance. See [asset notes](../world/art/animals/README.md).
+
 Ghostty presentation repair (2026-11-01): `terminal_screen.gd` publishes the
 current viewport through `set_output_size` before dispatching clients. The
 private `wl_output` keeps scale 1 and broadcasts changed modes with versioned

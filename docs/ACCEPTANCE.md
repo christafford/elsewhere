@@ -3,6 +3,31 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-11-01 P22-T14 village animals
+
+Agent-run/agent-observed from `3b14342` plus P22-T14 and the existing P22-T13
+working tree: twelve pigs/chickens/dogs/goats/cows use size-aware outdoor paths,
+varied movement/rest/foraging, terrain foot placement and bounded avoidance.
+Two-seed behavior, crowded routes, player yielding, roof/narrow-gap rejection,
+new land/building regeneration and no-space failure checks pass. Original GLBs
+verify offline and regenerate identically; actual close, normal walking and
+separately staged feeding renders were inspected for all five species.
+
+Real Terminal/Vim typing, panel placement, world travel/revisit, shell/unsaved
+buffer continuity and close pass while animals continue moving. Retained
+walking, interiors, ten added buildings, six upstairs rooms, pavilion, transition,
+resize, help and native color checks pass. No walking/application assertion was
+relaxed; the transition fixture now waits for the asynchronous population before
+exercising its flight. See [evidence and cost table](evidence/p22-t14/README.md)
+and [handoff 66](handoffs/66-village-animals.md).
+
+Owner procedure: restart, allow roughly 12–16 s for navigation on this host, then
+walk west for pigs/chickens, east for goats and near the pavilion meadow for cows;
+dogs roam farther. Approach an animal, watch it yield, and use a normal desktop
+application. Human appearance/input/comfort, sustained and target-device
+performance remain **not observed**. No P22-T09/P22-T10 or P22-T13 completion is
+claimed; larger populations and restart persistence remain outside this task.
+
 ## 2026-11-01 Ghostty sizing and duplicate presentation
 
 Agent-run/agent-observed from `7d661b7` plus this repair and pre-existing P22-T13

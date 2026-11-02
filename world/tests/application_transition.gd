@@ -54,6 +54,12 @@ func run() -> void:
 	objects = study.application_objects
 	var deadline := Time.get_ticks_msec() + 15000
 	while objects.bindings.is_empty() and Time.get_ticks_msec() < deadline: await process_frame
+	# The location now initializes navigation/population asynchronously. Exercise
+	# the short flight with that population active, not during scene construction.
+	var herd: Node3D = study.get_node("Animals")
+	deadline = Time.get_ticks_msec()+45000
+	while not herd.initialized and Time.get_ticks_msec()<deadline: await process_frame
+	check(herd.initialized and herd.animals.size()==12,"Ambient population unavailable for transition trial")
 	root.grab_focus()
 	await settle()
 	check(not objects.bindings.is_empty() and app.host_focused, "Missing client/host focus")

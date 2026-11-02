@@ -1,0 +1,26 @@
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-none'
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Can't obtain the XDG decoration manager. Libdecor will be used for drawing CSDs, if available.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5635)
+WARNING: xdg-toplevel-icon protocol not found! Cannot set window icon.
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5642)
+WARNING: Can't obtain the XDG activation global. Attention requesting won't work!
+     at: init (platform/linuxbsd/wayland/wayland_thread.cpp:5647)
+OpenGL API 3.3.0 NVIDIA 615.78.08 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3080
+
+UPSTAIRS_REVISIT building=Lodge shell=1584202:Lodge entity=77839148a7225ab371b318a221704df2
+UPSTAIRS_TRAVERSAL building=Lodge floor_y=4.95381063938141
+UPSTAIRS_REVISIT building=Guildhall shell=1584509:Guildhall entity=7e5d4a851f481890d92cf56387b21b5c
+UPSTAIRS_TRAVERSAL building=Guildhall floor_y=4.38648981571198
+UPSTAIRS_REVISIT building=CopperKettle shell=1584776:CopperKettle entity=2f1aca2e485fe067a8b03906d1c49300
+UPSTAIRS_TRAVERSAL building=CopperKettle floor_y=5.83302981376648
+UPSTAIRS_REVISIT building=LanternInn shell=1585061:LanternInn entity=963e673d1781190cdc463b2356a953e2
+UPSTAIRS_TRAVERSAL building=LanternInn floor_y=6.50460464477539
+UPSTAIRS_REVISIT building=Library shell=1585353:Library entity=2c27b92a41daa5a5efad54f2f4a27e91
+UPSTAIRS_TRAVERSAL building=Library floor_y=5.21143133163452
+UPSTAIRS_REVISIT building=MeadowInn shell=1585639:MeadowInn entity=2290e1d0537eafbe7db591f59cae693c
+UPSTAIRS_TRAVERSAL building=MeadowInn floor_y=4.35132569789887
+VILLAGE_UPSTAIRS_OK mode=Wayland buildings=6 failures=0

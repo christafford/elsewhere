@@ -10,4 +10,9 @@ void fragment() {
         texture(inverse_tonemap, vec2((color.r * 255.0 + 0.5) / 256.0, 0.5)).r,
         texture(inverse_tonemap, vec2((color.g * 255.0 + 0.5) / 256.0, 0.5)).r,
         texture(inverse_tonemap, vec2((color.b * 255.0 + 0.5) / 256.0, 0.5)).r);
+    // The LUT stores Compatibility's pre-tonemap sRGB albedo. Forward+ works
+    // in linear light; apply the same conversion before its Filmic tonemapper.
+    if (!OUTPUT_IS_SRGB) {
+        ALBEDO = ALBEDO * (ALBEDO * (ALBEDO * 0.305306011 + 0.682171111) + 0.012522878);
+    }
 }

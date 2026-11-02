@@ -2,7 +2,7 @@
 # P22-T08: exterior-only geometry budgets and matched actual landscape captures.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 "$ROOT/tools/validate-godot-project.sh"
 export ELSEWHERE_LAUNCHER_STATE_DIR="$ROOT/.tools/atmosphere-launcher-check-$$"
 mkdir -p "$ROOT/.tools/p22-t08"

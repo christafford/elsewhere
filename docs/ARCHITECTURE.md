@@ -1,5 +1,18 @@
 # Elsewhere architecture transition
 
+The 4.8 beta migration preserves desktop/compositor ownership. Navigation and
+application objects each own reusable physics-query result objects; queries
+remain synchronous and result data is read only after a successful query.
+Launcher fuzzy results retain catalog indices/desktop IDs, with existing exact
+name/description/keyword matches preceding approximate names. Long recent titles
+use bounded font fitting. The native extension remains on its tested 4.7 ABI;
+the GDScript frontend requires 4.8. The owner-selected Forward+ renderer uses
+streamed world material maps and screen-space contact/ambient occlusion.
+Client pixels remain ordinary full-resolution ImageTextures, isolated from
+world lighting by their unshaded inverse-Filmic material. That shader supplies
+linear albedo under Forward+ and retains its Compatibility comparison path.
+See [Decision 09](decisions/09-godot-48-prerelease.md).
+
 P22-T14 adds a location-owned `Animals` sibling. `village_animals.gd` loads the
 species/population data, owns per-animal RNG and stable animal IDs, shares coat
 materials and schedules at most one planning decision per physics tick.

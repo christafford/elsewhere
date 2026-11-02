@@ -1,5 +1,14 @@
 # Task list
 
+Owner-requested engine migration completed 2026-11-01: Godot 4.8 beta 2 and
+Forward+/Vulkan now target capable desktop hardware. Applicable physics,
+launcher, lighting and texture-streaming features are adopted; native/binding,
+active desktop, world/animal/stair and actual render checks pass. The retired
+study cache remains unavailable/unverified. See
+[Decision 09](decisions/09-godot-48-prerelease.md) and
+[handoff 69](handoffs/69-godot-48-forward-plus.md). No numbered village milestone
+or human gate advances; stop after this bounded migration.
+
 Owner-requested faster normal travel, completed 2026-11-01: normal walking now
 matches the previous Shift speed at 4 m/s; precision walking remains 1 m/s.
 Import/startup, headless/graphical movement and live-terminal help/input checks

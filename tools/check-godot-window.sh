@@ -2,7 +2,7 @@
 # Fullscreen startup, window restoration, reserved input and owned-client quit.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 export SDL_JOYSTICK_LINUX_CLASSIC="${SDL_JOYSTICK_LINUX_CLASSIC:-1}"
 export ELSEWHERE_LAUNCHER_STATE_DIR="$ROOT/.tools/window-launcher-check-$$"
 LOG_DIR=$(mktemp -d "${TMPDIR:-/tmp}/elsewhere-window-check.XXXXXX")

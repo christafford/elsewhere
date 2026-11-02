@@ -2,7 +2,7 @@
 # Real outdoor multi-application acceptance; requires a display, Weston and Vim.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 "$ROOT/tools/validate-godot-project.sh"
 export ELSEWHERE_LAUNCHER_STATE_DIR="$ROOT/.tools/village-launcher-check-$$"
 LOG="$ROOT/.tools/village-applications-check.log"

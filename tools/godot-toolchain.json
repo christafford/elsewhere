@@ -1,0 +1,16 @@
+{
+  "engine": {
+    "version": "4.8.beta2.official.cafc17a19",
+    "release": "4.8-beta2",
+    "binary": "Godot_v4.8-beta2_linux.x86_64",
+    "url": "https://github.com/godotengine/godot-builds/releases/download/4.8-beta2/Godot_v4.8-beta2_linux.x86_64.zip",
+    "sha256": "1ed0dd2a1bb451d35b64c0ace553c0456dfff7a418790274ca4d2597057361bb",
+    "binary_sha256": "34d0599a1f17acc76583610969878065d1b1701615af77271e32201351b9c564"
+  },
+  "godot_cpp": {
+    "revision": "507ed9d840c01a3c5b2a39af8bb4000bfac30bf5",
+    "api": "4.7",
+    "url": "https://codeload.github.com/godotengine/godot-cpp/tar.gz/507ed9d840c01a3c5b2a39af8bb4000bfac30bf5",
+    "sha256": "30da4ac295997061a6af81ae531510efd4e6a86e506eb4466edc0898ef3fe048"
+  }
+}

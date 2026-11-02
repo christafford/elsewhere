@@ -15,11 +15,18 @@ var generation := 0
 var build_ms := 0
 var path_requests := 0
 var _shapes: Array[CylinderShape3D] = []
+# Queries are synchronous on the main thread; results never survive an await.
+var _ray_result := PhysicsIntersectRayResult3D.new()
+var _clear_result := PhysicsIntersectShapeResult3D.new()
+var _overlap_result := PhysicsIntersectShapeResult3D.new()
+var _motion_result := PhysicsCastMotionResult3D.new()
 
 func setup(boundary: PackedVector2Array, height: Callable, ground: Array[RID]) -> void:
 	polygon = boundary
 	sample_height = height
 	ground_rids = ground
+	_clear_result.max_intersections = 1
+	_overlap_result.max_intersections = 8
 	_shapes.clear()
 	for radius in RADII:
 		var shape := CylinderShape3D.new()
@@ -38,8 +45,8 @@ func surface(p: Vector2) -> Vector3:
 
 func outdoor(p: Vector3) -> bool:
 	var query := PhysicsRayQueryParameters3D.create(p+Vector3.UP*30, p-Vector3.UP*.3, 1)
-	var hit := get_world_3d().direct_space_state.intersect_ray(query)
-	return not hit.is_empty() and hit.rid in ground_rids and hit.normal.y > .88 and absf(hit.position.y-p.y)<.08
+	if not get_world_3d().direct_space_state.intersect_ray_into(query, _ray_result): return false
+	return _ray_result.collider_rid in ground_rids and _ray_result.normal.y > .88 and absf(_ray_result.position.y-p.y)<.08
 
 func query_at(p: Vector3, profile: int, dynamic := false, exclude: Array = []) -> PhysicsShapeQueryParameters3D:
 	var query := PhysicsShapeQueryParameters3D.new()
@@ -53,7 +60,7 @@ func query_at(p: Vector3, profile: int, dynamic := false, exclude: Array = []) -
 
 func clear_at(p: Vector3, profile: int, dynamic := false, exclude: Array = []) -> bool:
 	if not contains(Vector2(p.x,p.z),RADII[profile]): return false
-	return get_world_3d().direct_space_state.intersect_shape(query_at(p,profile,dynamic,exclude),1).is_empty()
+	return not get_world_3d().direct_space_state.intersect_shape_into(query_at(p,profile,dynamic,exclude), _clear_result)
 
 func segment_clear(a: Vector3, b: Vector3, profile: int, dynamic := false, exclude: Array = []) -> bool:
 	var distance := Vector2(a.x-b.x,a.z-b.z).length()
@@ -69,15 +76,16 @@ func segment_clear(a: Vector3, b: Vector3, profile: int, dynamic := false, exclu
 	var query := query_at(a,profile,dynamic,exclude)
 	query.motion = b-a
 	var space := get_world_3d().direct_space_state
-	for hit in space.intersect_shape(query,8):
+	var overlapping := space.intersect_shape_into(query, _overlap_result)
+	for index in range(_overlap_result.get_intersection_count() if overlapping else 0):
 		# A player or movable object can enter an animal's clearance envelope.
 		# Permit an outward escape from that existing dynamic overlap; otherwise
 		# the animal could never yield. Static penetration remains forbidden.
-		var body: Node3D = hit.collider
+		var body: Node3D = _overlap_result.get_collider(index)
 		if not dynamic or not (body is CharacterBody3D or body is RigidBody3D): return false
 		var away := (a-body.global_position)*Vector3(1,0,1)
 		if away.dot((b-a)*Vector3(1,0,1)) <= 0: return false
-	return space.cast_motion(query)[0] >= .999
+	return not space.cast_motion_into(query, _motion_result) or _motion_result.safe_fraction >= .999
 
 func rebuild() -> void:
 	ready_for_paths = false

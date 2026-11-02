@@ -40,6 +40,10 @@ ambient_light_energy = 0.38
 tonemap_mode = 2
 tonemap_exposure = 1.0
 tonemap_white = 1.0
+ssao_enabled = true
+ssao_radius = 0.6
+ssao_intensity = 0.7
+ssao_power = 1.0
 
 [sub_resource type="QuadMesh" id="selected_mesh"]
 size = Vector2(0.885, 0.495)
@@ -76,6 +80,7 @@ rotation_degrees = Vector3(-40, -35, 0)
 light_color = Color(1, 0.94, 0.83, 1)
 light_energy = 0.88
 shadow_enabled = true
+shadow_contact_shadows_allow = true
 shadow_bias = 0.1
 shadow_normal_bias = 2.0
 directional_shadow_max_distance = 90.0

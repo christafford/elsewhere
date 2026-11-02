@@ -2,7 +2,7 @@
 # Real outdoor animal behavior, map growth, and actual rendered capture checks.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 "$ROOT/tools/validate-godot-project.sh"
 mkdir -p "$ROOT/.tools/p22-t14"
 for mode in headless graphical; do

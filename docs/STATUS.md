@@ -1,5 +1,24 @@
 # Current direction — Elsewhere (2026-10-17)
 
+## Owner-requested Godot 4.8 / Forward+ migration (2026-11-01)
+
+Migration completed under [Decision 09](decisions/09-godot-48-prerelease.md):
+Godot 4.8 beta 2 is pinned and Forward+/Vulkan is the desktop default, with
+contact shadows, restrained ambient occlusion and streamed world maps. Reusable
+physics results, fuzzy launcher search and bounded title fitting are adopted.
+Application color compensation and procedural noise are repaired for Forward+.
+
+Verified by automated tests: native build/36 tests, full binding lifecycle,
+import/offline assets, bootstrap/query/launcher fixtures, live desktop interaction,
+animal navigation/behavior, walking and all six upstairs routes. Agent-inspected
+actual renders cover exterior/interior lighting, all five species, launcher and
+live applications. See [handoff 69](handoffs/69-godot-48-forward-plus.md) for exact
+commands, logs, matched render samples and the later stable update procedure.
+
+Not verified: retired study fixtures (missing cached source art), human comfort
+and sustained/target-device performance. No numbered task or human gate advances.
+Next task: stop; await the owner's next bounded request.
+
 ## Owner-requested faster normal travel verified (2026-11-01)
 
 Normal walking is 4 m/s, matching the previous Shift pace (formerly 2.4 m/s).

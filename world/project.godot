@@ -13,7 +13,7 @@ config_version=5
 config/name="Elsewhere"
 config/description="A functional Linux desktop as a persistent first-person 3D environment."
 run/main_scene="res://scenes/main.tscn"
-config/features=PackedStringArray("4.7", "GL Compatibility")
+config/features=PackedStringArray("4.8", "Forward Plus")
 
 [devtools]
 
@@ -30,6 +30,14 @@ window/stretch/mode="disabled"
 
 antialiasing/quality/msaa_3d=2
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="forward_plus"
+rendering_device/fallback_to_opengl3=false
+textures/streaming/enabled=true
+textures/streaming/memory_budget_enabled=true
+textures/streaming/memory_budget_mb=256
+textures/streaming/min_lod=0
+textures/streaming/max_lod=3
+lights_and_shadows/contact_shadow/enabled=true
+lights_and_shadows/multi_bounce_occlusion/enabled=true
 environment/defaults/default_clear_color=Color(0.15, 0.15, 0.2, 1)

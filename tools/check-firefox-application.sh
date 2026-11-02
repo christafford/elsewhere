@@ -2,7 +2,7 @@
 # Requires installed native Firefox and a graphical output.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 "$ROOT/tools/validate-godot-project.sh"
 export ELSEWHERE_LAUNCHER_STATE_DIR="$ROOT/.tools/firefox-launcher-check"
 LOG="$ROOT/.tools/firefox-application-check.log"

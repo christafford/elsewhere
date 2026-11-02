@@ -1,5 +1,10 @@
 # Elsewhere
 
+The world uses **Godot 4.8 beta 2**, pinned for reproducible testing ahead of
+the stable release, using **Forward+/Vulkan** for capable desktops. Run `python3 tools/prepare-godot.py` once, then
+`tools/run-godot.sh`. See [toolchain and upgrade procedure](docs/TOOLCHAIN.md)
+and [the migration decision](docs/decisions/09-godot-48-prerelease.md).
+
 Generated models, downloaded textures and captured screenshots are kept out of
 Git. Build/launch prepares the world assets automatically; see
 [asset preparation and history cleanup](docs/handoffs/67-source-only-history.md).

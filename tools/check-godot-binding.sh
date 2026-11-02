@@ -3,7 +3,7 @@
 set -euo pipefail
 ulimit -c 0
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 CPP="$ROOT/tools/godot-cpp"
 BUILD="$ROOT/build-godot-probe"
 PROJECT="$ROOT/tests/godot-binding"
@@ -58,5 +58,9 @@ run frames --max-fps 120 --script res://frames.gd -- "$BUILD/frame-client" "$RUN
 rg -q '^GODOT_FRAMES_OK .*failures=0$' "$BUILD/frames.log"
 cat "$BUILD/frames.log"
 "$GODOT" --version
-git -C "$CPP" rev-parse HEAD
+if [[ -e "$CPP/.git" ]]; then
+    git -C "$CPP" rev-parse HEAD
+else
+    cat "$CPP/.elsewhere-revision"
+fi
 printf 'Binding checks passed: 300 probe calls, 33 protocol trials, 16 frame/client trials and keyboard/pointer/resize routing. Logs: %s\n' "$BUILD"

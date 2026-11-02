@@ -1,5 +1,15 @@
 # Reproducible Poly Haven asset pipeline
 
+Godot 4.8 / Forward+ migration (2026-11-01): the nine village JPEG source maps
+keep their pinned source hashes and UIDs, and now import as `StreamedTexture2D`
+using the `streamed_texture_2d` importer with high-quality BPTC compression.
+Mip residency follows visibility under a 256 MiB streaming budget. The current
+small shared texture set remains far below that ceiling; this is a bounded
+capacity for later expansion, not a measured requirement. Streamed output lives
+in the ignored Godot import cache. Live application frames and launcher icons
+remain ordinary full-resolution ImageTextures. Run `rendering_upgrade.gd` for
+actual loaded resource/residency checks and inspect close/far texture captures.
+
 Current policy (2026-11-01): generated GLBs and downloadable JPEGs are ignored.
 `python3 world/tools/prepare_world_assets.py` generates all 48 active models and
 fetches the nine pinned maps, verifying bytes/SHA-256 before publishing them.

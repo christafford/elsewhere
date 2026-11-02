@@ -58,6 +58,34 @@ func run() -> void:
 	root.grab_focus()
 	await settle()
 	check(root.has_focus() and app.host_focused, "Launcher test lacks host focus")
+	# Deterministic catalog fixture exercises the new fuzzy path without relying
+	# on which optional desktop applications are installed on the test host.
+	var installed_entries: Array = launcher.entries
+	launcher.entries = [
+		{"id": "terminal", "name": "Terminal", "description": "Command line", "keywords": ["console"], "unavailable": ""},
+		{"id": "disabled", "name": "Terminal", "description": "Disabled duplicate", "keywords": [], "unavailable": "Fixture unavailable"},
+		{"id": "editor", "name": "Text Editor", "description": "Write documents", "keywords": ["writing"], "unavailable": ""},
+		{"id": "long", "name": "Elsewhere Document and Image Workspace", "description": "", "keywords": [], "unavailable": ""}
+	]
+	launcher._filter("termnal")
+	check(launcher.results.item_count >= 2 and launcher.results.get_item_metadata(0) == "terminal" and launcher.results.get_item_metadata(1) == "disabled", "Fuzzy typo/duplicate desktop IDs lost")
+	check(launcher.results.is_item_disabled(1), "Fuzzy match enables an unavailable application")
+	launcher._filter("console")
+	check(launcher.results.item_count >= 1 and launcher.results.get_item_metadata(0) == "terminal", "Keyword match lost priority")
+	launcher._filter("editor text")
+	check(launcher.results.item_count >= 1 and launcher.results.get_item_metadata(0) == "editor", "Out-of-order exact search failed")
+	launcher._filter("zzzz-no-such-app")
+	check(launcher.results.item_count == 0, "Fuzzy search returns unrelated applications")
+	var installed_recent: Array[String] = launcher.recent.duplicate()
+	launcher.recent.assign(["long", "terminal", "editor"])
+	launcher.open()
+	await capture("long-app-titles.png")
+	var title: Label = launcher.wheel.get_child(1).get_node("Title")
+	check(title.resize_font_to_fit and title.minimum_font_size == 12 and title.maximum_font_size == 15 and title.size.y <= 42, "Recent title fitting escaped its readable bounds")
+	launcher.close()
+	launcher.entries = installed_entries
+	launcher.recent = installed_recent
+	launcher._refresh_wheel()
 	var original_handle: int = terminal.handle
 	await tap(KEY_TAB)
 	check(launcher.opened and launcher.wheel.visible, "World Tab did not open application wheel")

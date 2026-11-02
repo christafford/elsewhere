@@ -1,5 +1,20 @@
 # Godot and the existing Wayland compositor
 
+Current engine: Godot 4.8 beta 2, authorized by
+[Decision 09](decisions/09-godot-48-prerelease.md). Use
+`python3 tools/prepare-godot.py` and the shared `tools/godot` wrapper. The native
+extension retains the compatible 4.7 API; frontend navigation/placement use 4.8
+reusable query results, and the launcher uses fuzzy search and bounded title
+fitting. `tools/check-godot-upgrade.sh` covers the migration's runtime gates;
+native tests and actual render inspection remain separate required checks.
+The owner selected Forward+ for the desktop target. The world enables 4.8
+contact shadows and multi-bounce occlusion, with restrained SSAO and streamed
+BPTC world textures. Live client textures remain full-resolution ImageTextures.
+The screen shader converts its inverse-Filmic LUT into linear albedo for
+Forward+, preserving client colors; graphical color and real-client tests gate
+this contract. The procedural sky uses bounded noise and source-color uniforms
+to avoid the old Vulkan cloud discontinuities and color-space mismatch.
+
 P22-T14 populates the active village with twelve ambient animals. Walk normally;
 animals yield on approach. They have no interaction bindings or desktop roles.
 `--no-animals` disables this population/navigation for comparison;

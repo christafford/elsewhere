@@ -66,9 +66,10 @@ compositor_core_lib = static_library('compositor-core',
 compositor_core_hdr = files('src/compositor-core.h')
 
 # GDExtension adapter for Godot integration
-# Note: godot-cpp must be built first at tools/godot-cpp/build/
-godot_cpp_include = include_directories('tools/godot-cpp/include', 'tools/godot-cpp/build/gen/include')
-godot_include = include_directories('tools/godot-4.7.2-stable/core/extension')
+# Reuse the supported binding build's generated C interface; no engine source
+# checkout or inconsistent historical godot-cpp/build headers are required.
+# Run tools/build-godot-runtime.sh before configuring Meson.
+godot_include = include_directories('build-godot-probe/godot-cpp/gen/include')
 
 # GDExtension source files - use compositor-core API, not old bridge
 gdextension_sources = files(
@@ -87,7 +88,7 @@ gdextension_sources = files(
 elsewhere_gdextension = shared_library('elsewhere_godot',
     gdextension_sources,
     cpp_args: cpp_args + ['-fPIC', '-std=c++17', '-fvisibility=hidden'],
-    include_directories: [include_directories('src'), godot_cpp_include, godot_include],
+    include_directories: [include_directories('src'), godot_include],
     dependencies: [wayland_server, wayland_client],
     link_with: [compositor_core_lib],
     install: false,

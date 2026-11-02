@@ -97,6 +97,8 @@ d coverage
 /tools/godot-cpp/
 /tools/godot-*-stable/
 /tools/Godot_v*-stable_linux.*
+/tools/Godot_v*-beta*_linux.*
+/tools/Godot_v*-rc*_linux.*
 .venv/
 node_modules/
 

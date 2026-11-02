@@ -2,7 +2,7 @@
 # Retained study geometry plus current-default desktop regressions; needs a display.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 "$ROOT/tools/validate-godot-project.sh"
 LOG_DIR=$(mktemp -d "${TMPDIR:-/tmp}/elsewhere-study-check.XXXXXX")
 echo "Study check logs: $LOG_DIR"

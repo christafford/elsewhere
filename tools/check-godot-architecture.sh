@@ -2,7 +2,7 @@
 # P22-T04 imported exterior models, collisions, pavilion access and GPU views.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-GODOT="${GODOT_BINARY:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT="${GODOT_BINARY:-$ROOT/tools/godot}"
 export SDL_JOYSTICK_LINUX_CLASSIC="${SDL_JOYSTICK_LINUX_CLASSIC:-1}"
 "$ROOT/tools/validate-godot-project.sh"
 LOG_DIR=$(mktemp -d "${TMPDIR:-/tmp}/elsewhere-architecture-check.XXXXXX")

@@ -3,7 +3,7 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="${1:-$SCRIPT_DIR/../world}"
-GODOT_BIN="${GODOT_BINARY:-$SCRIPT_DIR/Godot_v4.7.2-stable_linux.x86_64}"
+GODOT_BIN="${GODOT_BINARY:-$SCRIPT_DIR/godot}"
 if [[ "$PROJECT_DIR" == --help ]]; then
     echo "Usage: tools/validate-godot-project.sh [project-directory]"
     exit 0

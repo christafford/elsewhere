@@ -5,6 +5,11 @@ var walker: CharacterBody3D
 
 func walk_to(target: Vector2) -> void:
 	var deadline := Time.get_ticks_msec() + 18000
+	# Captures can leave the camera facing back down the stairs. Aim before
+	# dispatching W; key() yields a frame and movement starts immediately.
+	var initial_direction := target - Vector2(walker.position.x, walker.position.z)
+	if not initial_direction.is_zero_approx():
+		walker.rotation.y = atan2(-initial_direction.x, -initial_direction.y)
 	await key(KEY_W, true)
 	while Vector2(walker.position.x, walker.position.z).distance_to(target) > 0.12 and Time.get_ticks_msec() < deadline:
 		var delta := target - Vector2(walker.position.x, walker.position.z)

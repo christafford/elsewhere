@@ -3,6 +3,25 @@
 Status: procedures unless explicitly recorded as evidence. Synthetic tests and
 screenshots are supporting evidence, not usability acceptance. Human tasks in TASKS.md remain unchecked until a person records them.
 
+## 2026-11-01 Godot 4.8 beta 2 / Forward+
+
+Agent-run/agent-observed against `f516db5` plus this migration, on an NVIDIA
+GeForce RTX 3080 with Vulkan 1.4.351 in private Weston/Wayland at 1280×800
+(1600×1000 for resize). Actual village, pavilion, lodge, launcher-title and
+live-application renders were inspected. Reusable query hit/miss/exclusion,
+launcher fuzzy search, exact sampled client colors, real Terminal/Vim typing,
+pointer selection/scrolling, resizing, world transitions, placement, travel,
+revisit and close pass. Ghostty/Alacritty compatibility and help checks pass.
+Animal navigation/behavior and all six upstairs routes pass headlessly and
+graphically, including return to the same live shell. All five species, a stair
+landing and the returned upstairs terminal were inspected in actual renders.
+See [handoff 69](handoffs/69-godot-48-forward-plus.md) for the complete final
+verification record, renderer comparisons and reproducible commands.
+
+The retired study fixtures lack their original cached source art and remain
+**not verified**. Human physical-input/comfort and sustained/target-device
+performance remain **not observed**; no human or village milestone is advanced.
+
 ## 2026-11-01 P22-T14 village animals
 
 Agent-run/agent-observed from `3b14342` plus P22-T14 and the existing P22-T13

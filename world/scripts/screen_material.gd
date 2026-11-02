@@ -1,4 +1,5 @@
-## Preserve client sRGB under the study's fixed Compatibility/Filmic environment.
+## Preserve client sRGB under the world's fixed Filmic environment.
+## The shader adapts this LUT to Forward+ linear or Compatibility sRGB albedo.
 ## The inverse lookup is evaluated once, not as a per-pixel iterative shader.
 extends RefCounted
 

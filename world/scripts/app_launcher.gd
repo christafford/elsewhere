@@ -30,6 +30,7 @@ var results: ItemList
 var notice: Label
 var open_button: Button
 var heading: Label
+var _fuzzy := FuzzySearch.new()
 
 func _ready() -> void:
 	layer = 20
@@ -115,6 +116,12 @@ func _build_ui() -> void:
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.add_theme_font_size_override("font_size", 15)
+		label.resize_font_to_fit = true
+		label.minimum_font_size = 12
+		label.maximum_font_size = 15
+		label.clip_text = true
+		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		label.max_lines_visible = 2
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		slot.add_child(label)
 		wheel.add_child(slot)
@@ -240,18 +247,32 @@ func _filter(text: String) -> void:
 		for term in terms:
 			if not haystack.contains(term): matches = false
 		if not matches: continue
-		var index := results.add_item(item.name, _icon(item))
-		results.set_item_metadata(index, item.id)
-		results.set_item_tooltip(index, item.unavailable if not item.unavailable.is_empty() else item.description)
-		if item.get("single_instance", false) and item.unavailable.is_empty():
-			results.set_item_tooltip(index, "Returns to Firefox if already open. Use Ctrl+N in Firefox for another window.")
-		results.set_item_disabled(index, not item.unavailable.is_empty())
+		_add_search_result(item)
+	# Preserve exact name/keyword matches first, then add ranked approximate
+	# names. Map by catalog index, since desktop entries can share a name.
+	if not terms.is_empty():
+		var names := PackedStringArray()
+		for item in entries: names.append(str(item.name))
+		for match_result in _fuzzy.search_all(text.strip_edges(), names):
+			var item: Dictionary = entries[match_result.original_index]
+			var already_listed := false
+			for index in range(results.item_count):
+				if results.get_item_metadata(index) == item.id: already_listed = true
+			if not already_listed: _add_search_result(item)
 	for index in range(results.item_count):
 		if not results.is_item_disabled(index):
 			results.select(index)
 			break
 	if pending.is_empty():
 		notice.text = "No matching applications" if results.item_count == 0 else ""
+
+func _add_search_result(item: Dictionary) -> void:
+	var index := results.add_item(item.name, _icon(item))
+	results.set_item_metadata(index, item.id)
+	results.set_item_tooltip(index, item.unavailable if not item.unavailable.is_empty() else item.description)
+	if item.get("single_instance", false) and item.unavailable.is_empty():
+		results.set_item_tooltip(index, "Returns to Firefox if already open. Use Ctrl+N in Firefox for another window.")
+	results.set_item_disabled(index, not item.unavailable.is_empty())
 
 func _launch_selected() -> void:
 	var selected := results.get_selected_items()

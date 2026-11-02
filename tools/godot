@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# One default engine pin for launch, import and every acceptance check.
+set -euo pipefail
+HERE="$(cd "$(dirname "$0")" && pwd)"
+BINARY=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["engine"]["binary"])' "$HERE/godot-toolchain.json")
+if [[ ! -x "$HERE/$BINARY" ]]; then
+    echo "Missing pinned Godot. Run python3 tools/prepare-godot.py first." >&2
+    exit 1
+fi
+exec "$HERE/$BINARY" "$@"

@@ -8,11 +8,7 @@ uniform float photo_scale = 1.0;
 uniform sampler2D diff_texture : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D nor_gl_texture : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D rough_texture : filter_linear_mipmap_anisotropic, repeat_enable;
-float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
-float noise(vec2 p) {
-    vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
-    return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1)),f.x),f.y);
-}
+#include "res://scripts/village_noise.gdshaderinc"
 float detail(vec2 p) {
     if(surface_kind==1) {
         vec2 planks=vec2(p.x/.23,p.y/2.4);

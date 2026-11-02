@@ -24,9 +24,12 @@ var drag_pointer := Vector2.ZERO
 var drag_camera_transform := Transform3D.IDENTITY
 var drag_depth := 2.0
 var next_number := 1
+var _placement_result := PhysicsIntersectShapeResult3D.new()
+var _pick_result := PhysicsIntersectRayResult3D.new()
 
 func _ready() -> void:
 	camera = player.get_node("Camera3D")
+	_placement_result.max_intersections = 1
 
 func _process(_delta: float) -> void:
 	if app.active: selected = app.focused_handle
@@ -96,7 +99,7 @@ func placement_clear(object: Node3D, point: Vector3) -> bool:
 	var center := point + object.global_basis * local_bounds(object).get_center()
 	query.transform = Transform3D(object.global_basis, center)
 	# Include the player: panels must not materialize inside the camera.
-	if not get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty(): return false
+	if get_world_3d().direct_space_state.intersect_shape_into(query, _placement_result): return false
 	var extents := placement_extents(object) + Vector3.ONE * 0.02
 	var bounds := AABB(center - extents, extents * 2)
 	for other in bindings.values():
@@ -134,8 +137,8 @@ func pick(position: Vector2) -> int:
 	var direction := camera.project_ray_normal(position)
 	var query := PhysicsRayQueryParameters3D.create(origin, origin + direction * 20, 1)
 	query.exclude = [player.get_rid()]
-	var obstacle := get_world_3d().direct_space_state.intersect_ray(query)
-	var nearest: float = origin.distance_to(obstacle.position) if not obstacle.is_empty() else 20.0
+	var hit := get_world_3d().direct_space_state.intersect_ray_into(query, _pick_result)
+	var nearest: float = origin.distance_to(_pick_result.position) if hit else 20.0
 	var result := 0
 	for window in bindings:
 		var distance: float = bindings[window].occlusion_distance(origin, direction)
@@ -153,8 +156,8 @@ func pick_furniture(position: Vector2) -> RigidBody3D:
 	var exclusions: Array[RID] = []
 	for body in candidates: exclusions.append(body.get_rid())
 	query.exclude = exclusions
-	var obstacle := get_world_3d().direct_space_state.intersect_ray(query)
-	var nearest: float = origin.distance_to(obstacle.position) if not obstacle.is_empty() else 20.0
+	var obstructed := get_world_3d().direct_space_state.intersect_ray_into(query, _pick_result)
+	var nearest: float = origin.distance_to(_pick_result.position) if obstructed else 20.0
 	for object in bindings.values(): nearest = minf(nearest, object.occlusion_distance(origin, direction))
 	var result: RigidBody3D
 	for body in candidates:

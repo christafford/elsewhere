@@ -71,6 +71,14 @@ ignores human tasks; a DONE marker does not validate dependency evidence.
 
 ## Godot and graphical application checks
 
+`tools/check-godot-upgrade.sh` is the current engine migration gate: import,
+binding, reusable queries, launcher, live desktop, Forward+ rendering, animals
+and stairs. It requires actual GPU rendering and installed real clients; inspect
+its captures. `--include-study` additionally requires the retired study's
+verified source cache and fails explicitly if it is missing. Native Meson tests
+remain a separate gate. All launch/check defaults resolve `tools/godot` and its
+single lockfile; see [toolchain](../docs/TOOLCHAIN.md).
+
 `tools/check-godot-binding.sh` runs native runtime/frame/input/resize and surface-
 tree fixtures plus headless binding checks. `tools/check-godot-study.sh` requires
 a graphical display and exercises the real terminal and room interactions.

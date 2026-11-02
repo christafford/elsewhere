@@ -1,4 +1,69 @@
-# Godot toolchain — measured local state, 2026-10-03
+# Godot toolchain
+
+## Current pin — Godot 4.8 beta 2 (2026-11-01)
+
+[Decision 09](decisions/09-godot-48-prerelease.md) authorizes the prerelease.
+`tools/godot-toolchain.json` is the engine/binding acquisition authority:
+
+| Component | Pin |
+| --- | --- |
+| Engine | `4.8.beta2.official.cafc17a19`, Linux x86_64 |
+| Official archive SHA-256 | `1ed0dd2a1bb451d35b64c0ace553c0456dfff7a418790274ca4d2597057361bb` |
+| Extracted executable SHA-256 | `34d0599a1f17acc76583610969878065d1b1701615af77271e32201351b9c564` |
+| godot-cpp revision | `507ed9d840c01a3c5b2a39af8bb4000bfac30bf5` |
+| Extension API | 4.7, single precision, template_debug; tested on 4.8 beta 2 |
+| Renderer | Forward+/Vulkan on Linux; desktop hardware target |
+
+The archive digest was checked against the asset digest published by the
+[official release API](https://api.github.com/repos/godotengine/godot-builds/releases/tags/4.8-beta2).
+Bootstrap checks both archive and executable hashes before replacing the engine.
+It preserves existing binding checkouts and rejects a different revision or
+tracked local edits. Fresh bindings are unpacked from the SHA-256-pinned archive.
+The compositor needs no new native API, so its verified binding ABI is retained.
+
+```sh
+python3 tools/prepare-godot.py
+tools/godot --version
+tools/validate-godot-project.sh
+tools/run-godot.sh --audio-driver Dummy
+```
+
+Use `python3 tools/prepare-godot.py --offline` to prohibit acquisition. Verified
+archives live in `.tools/godot-downloads/`; engine and binding sources remain
+ignored. Existing system build/Wayland/GIO dependencies are prerequisites, not
+installed by this helper. `tools/build-godot-runtime.sh` must run before a fresh
+Meson configuration: the historical native adapter now includes the supported
+binding build's generated C interface, without a separate engine-source tree.
+`GODOT_BINARY` overrides launch/check defaults deliberately; the default wrapper
+always resolves the lock and never falls back to an older installed engine.
+
+For the later stable update: verify the official release identity and archive
+digest, update engine URL/version/hashes in the lock, prepare it, then run:
+
+```sh
+tools/build-godot-runtime.sh
+meson compile -C build
+meson test -C build --print-errorlogs
+tools/check-godot-upgrade.sh
+```
+
+The last command needs a graphical display and real terminal/Vim dependencies;
+use `GODOT_BINARY` with a private display wrapper for isolated checks. Inspect
+the resulting world, animal, launcher and application captures. The retired
+study art additionally requires `tools/check-godot-upgrade.sh --include-study`
+and its verified source cache; absent legacy assets are not a passing trial.
+A later engine is not accepted solely because import succeeds. Retain SDL/import workarounds
+until specifically disproved; no automatic background engine updates occur.
+
+The previous engine remains locally available for historical comparisons.
+The new GDScript physics/search APIs require 4.8: rollback needs the previous
+source revision and a fresh import, not just an older `GODOT_BINARY` override.
+Forward+ is explicit, including the feature tag; automatic OpenGL fallback is
+disabled because the world now depends on streamed textures and Forward+ lighting.
+Headless checks still use Godot's dummy renderer. The native binding fixture
+retains its minimal headless-compatible configuration, independently of world art.
+
+## Historical measured state — 2026-10-03
 
 Decision 06 authorizes these repository-local dependencies. No system packages
 or host services were changed. Reproducible upstream acquisition remains part of

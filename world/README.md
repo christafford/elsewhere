@@ -1,5 +1,16 @@
 # Godot world frontend
 
+The current engine is **Godot 4.8 beta 2**. Prepare the pinned engine and C++
+bindings with `python3 tools/prepare-godot.py` (`--offline` reuses verified
+local files/cache). Launch and acceptance scripts share the `tools/godot`
+wrapper. The launcher now adds fuzzy name matches after exact keyword matches;
+recent-app titles fit their slots within a 12–15px font range. Navigation and
+object placement reuse typed physics results. **Forward+/Vulkan** is the desktop
+renderer, with 4.8 contact shadows, multi-bounce occlusion and streamed world
+textures. A working Vulkan-capable GPU/driver is required for graphical launch;
+headless operation is retained. See [Decision 09](../docs/decisions/09-godot-48-prerelease.md)
+and [toolchain](../docs/TOOLCHAIN.md) for the prerelease/stable update procedure.
+
 The default scene is **village reference 2**, the owner's weathered mountain
 village direction, selected on 2026-10-11. Gray plaster/stone, aged timber, ivy,
 a pointed hall turret,
@@ -56,12 +67,13 @@ For development, start windowed with `tools/run-godot.sh -- --windowed`
 
 No study assets are needed by the default scene. The launcher builds and stages
 `addons/elsewhere_runtime/` using the repository's godot-cpp checkout and C++
-build dependencies. Godot uses Compatibility/OpenGL. `/usr/bin/weston-terminal`
+build dependencies. Godot uses Forward+/Vulkan. `/usr/bin/weston-terminal`
 runs on the private compositor socket when requested. `-- --terminal` starts
 the initial `/bin/sh` with isolated configuration, prompt and repository-local
 shell history; `-- --terminal-demo` starts the changing-output demo. A missing
 requested terminal is an explicit error, with no simulated fallback.
-Fresh-machine bootstrap remains unfinished.
+Engine/binding and world-asset bootstrap are reproducible; system build,
+Wayland and Python/GIO dependencies must already be installed.
 
 `tools/run-godot.sh --editor` opens the editor. `build/elsewhere --room-camera`
 remains a separate legacy renderer. For changing real terminal output:

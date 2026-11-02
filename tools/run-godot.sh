@@ -17,18 +17,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$SCRIPT_DIR/../world"
 
-# Locate Godot binary.
-if [ -n "${GODOT_BINARY:-}" ]; then
-	GODOT_BIN="$GODOT_BINARY"
-elif [ -f "$SCRIPT_DIR/Godot_v4.7.2-stable_linux.x86_64" ]; then
-	GODOT_BIN="$SCRIPT_DIR/Godot_v4.7.2-stable_linux.x86_64"
-elif [ -f "$SCRIPT_DIR/../tools/Godot_v4.7.2-stable_linux.x86_64" ]; then
-	GODOT_BIN="$SCRIPT_DIR/../tools/Godot_v4.7.2-stable_linux.x86_64"
-else
-	echo "ERROR: Godot editor binary not found."
-	echo "  Set GODOT_BINARY=<path> or place it in tools/"
-	exit 1
-fi
+# Resolve the shared pin; an explicit override supports comparison runs.
+GODOT_BIN="${GODOT_BINARY:-$SCRIPT_DIR/godot}"
 
 if [ ! -x "$GODOT_BIN" ]; then
 	echo "ERROR: $GODOT_BIN is not executable."

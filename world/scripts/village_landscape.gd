@@ -5,12 +5,11 @@ const Lanes = preload("res://scripts/village_lanes.gd")
 
 const HALF_GROUND := 48.0
 const GRID_STEP := 0.5
-# Clockwise as seen from above; x/z coordinates. The inner foot of the bank
-# defines the playable boundary (84m across), not an invisible collision box.
+# Clockwise as seen from above; x/z coordinates. P22-T13 retains this playable
+# polygon as an invisible physical limit while the landscape continues beyond it.
 const BOUNDARY := [Vector2(-30,-42), Vector2(20,-42), Vector2(38,-30), Vector2(42,-10), Vector2(40,22), Vector2(28,40), Vector2(-12,42), Vector2(-34,32), Vector2(-42,10), Vector2(-40,-22)]
-const CRESTS := [3.8, 3.4, 2.8, 2.6, 2.6, 2.8, 3.0, 3.8, 4.2, 4.2]
-# Four deliberately different approaches; endpoints are turnarounds inside the
-# bank. Curved joins come from the distance to these fixed centerline segments.
+# Four deliberately different approaches; endpoints remain inside the
+# playable area. Curved joins come from the distance to these fixed centerline segments.
 const ROUTES := {
 	"south_approach": [Vector2(0,10), Vector2(0,16), Vector2(-2,22), Vector2(-6,28), Vector2(-8,34), Vector2(-8,37)],
 	"west_rise": [Vector2(-12,0), Vector2(-18,0), Vector2(-24,-3), Vector2(-28,-9), Vector2(-31,-16)],
@@ -122,51 +121,22 @@ func build_ground() -> void:
 	# Render and physics use the same triangles: no separate flat proxy floor.
 	ground.create_trimesh_collision()
 
-func quad(s: SurfaceTool, a: Vector3, b: Vector3, c: Vector3, d: Vector3, normal: Vector3) -> void:
-	var points := [a,b,c,a,c,d]
-	if (b-a).cross(c-a).dot(normal) > 0: points = [a,c,b,a,d,c]
-	for point in points:
-		s.set_normal(normal)
-		s.set_uv(Vector2(point.x if absf(normal.z)>absf(normal.x) else point.z,point.y))
-		s.add_vertex(point)
-
 func build_boundary() -> void:
-	var face := SurfaceTool.new()
-	face.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var rock := ShaderMaterial.new()
-	rock.shader = preload("res://scripts/village_surface.gdshader")
-	rock.set_shader_parameter("base_color",Color("94917c"))
-	rock.set_shader_parameter("surface_kind",2)
-	rock.set_shader_parameter("surface_roughness",0.95)
-	face.set_material(rock)
-	var top := SurfaceTool.new()
-	top.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var turf := StandardMaterial3D.new()
-	turf.albedo_color = Color("6f8746")
-	turf.roughness = 1.0
-	top.set_material(turf)
+	# Collision only: no mesh, material or shadow encloses the village. Thick boxes
+	# join beyond each corner and extend above jumping/object placement heights.
+	var boundary := StaticBody3D.new()
+	boundary.name = "TravelBoundary"
+	add_child(boundary)
 	for i in range(BOUNDARY.size()):
-		var start: Vector2 = BOUNDARY[i]
-		var end: Vector2 = BOUNDARY[(i+1) % BOUNDARY.size()]
-		var n := inward_normal(i)
-		var pieces := ceili(start.distance_to(end) / 2.0)
-		for j in range(pieces):
-			var a := start.lerp(end, float(j)/pieces)
-			var b := start.lerp(end, float(j+1)/pieces)
-			var ha := lerpf(CRESTS[i], CRESTS[(i+1)%CRESTS.size()], float(j)/pieces)
-			var hb := lerpf(CRESTS[i], CRESTS[(i+1)%CRESTS.size()], float(j+1)/pieces)
-			var foot_a := Vector3(a.x,height_at(a)-0.3,a.y)
-			var foot_b := Vector3(b.x,height_at(b)-0.3,b.y)
-			var rim_a := foot_a + Vector3.UP*(ha+0.3)
-			var rim_b := foot_b + Vector3.UP*(hb+0.3)
-			quad(face,foot_a,foot_b,rim_b,rim_a,Vector3(n.x,0,n.y))
-			# Radial outer shoulder shares endpoints across corners: no bank cracks.
-			var outer_a := Vector3(a.x*1.10,rim_a.y+0.4,a.y*1.10)
-			var outer_b := Vector3(b.x*1.10,rim_b.y+0.4,b.y*1.10)
-			quad(top,rim_a,rim_b,outer_b,outer_a,Vector3.UP)
-			quad(face,outer_a,outer_b,Vector3(outer_b.x,height_at(b*1.10),outer_b.z),Vector3(outer_a.x,height_at(a*1.10),outer_a.z),Vector3(-n.x,0,-n.y))
-	var bank := MeshInstance3D.new()
-	bank.name = "BoundaryBank"
-	bank.mesh = top.commit(face.commit())
-	add_child(bank)
-	bank.create_trimesh_collision()
+		var a: Vector2 = BOUNDARY[i]
+		var b: Vector2 = BOUNDARY[(i+1) % BOUNDARY.size()]
+		var outward := -inward_normal(i)
+		var center := (a+b)*0.5 + outward*0.5
+		var shape := BoxShape3D.new()
+		shape.size = Vector3(a.distance_to(b)+2.0, 24.0, 1.0)
+		var collision := CollisionShape3D.new()
+		collision.name = "Edge%d" % i
+		collision.shape = shape
+		collision.position = Vector3(center.x, 8.0, center.y)
+		collision.rotation.y = -atan2(b.y-a.y, b.x-a.x)
+		boundary.add_child(collision)

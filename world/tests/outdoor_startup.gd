@@ -107,7 +107,7 @@ func run() -> void:
 		await frames(90)
 		await key(KEY_W, false)
 		var clearance := (Vector2(player.position.x,player.position.z)-midpoint).dot(inward)
-		check(clearance > 0.19 and clearance < 0.35 and player.is_on_floor(), "Walking/jumping escapes or fails to reach bank %s: %s" % [i,player.position])
+		check(clearance > 0.19 and clearance < 0.35 and player.is_on_floor(), "Walking/jumping escapes or fails to reach boundary %s: %s" % [i,player.position])
 	# Walk diagonally into a real polygon corner, then reset with movement held.
 	var corner: Vector2 = Landscape.BOUNDARY[0]
 	var bisector := (Landscape.inward_normal(0)+Landscape.inward_normal(Landscape.BOUNDARY.size()-1)).normalized()
@@ -118,7 +118,7 @@ func run() -> void:
 	await key(KEY_W, true)
 	await key(KEY_D, true)
 	await frames(60)
-	check(Landscape.contains(Vector2(player.position.x,player.position.z),0.19), "Diagonal walk crosses the bank corner")
+	check(Landscape.contains(Vector2(player.position.x,player.position.z),0.19), "Diagonal walk crosses the boundary corner")
 	# Observe reset synchronously before physics settles the 5cm spawn clearance.
 	var home := InputEventKey.new()
 	home.physical_keycode = KEY_HOME

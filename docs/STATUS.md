@@ -1,4 +1,4 @@
-# Current direction — Elsewhere (2026-10-16)
+# Current direction — Elsewhere (2026-10-17)
 
 ## P22-T14 village animals verified (2026-11-01)
 
@@ -97,6 +97,19 @@ unobserved. See [handoff 60](handoffs/60-walking-camera-gait.md).
 
 Next task: stop after this bounded owner request. Pre-existing P22-T13 work
 remains separate and unfinished; no roadmap checkbox or human gate advances.
+
+## P22-T13 open village perimeter in progress (2026-10-17)
+
+The owner reiterated the instruction to proceed after reviewing the P22-T13
+scope. The visible stone bank is removed; collision retains the existing travel
+polygon. A stitched terrain strip joins the ground edge to wooded surroundings,
+with matching grass at the seam. Initial import and graphical atmosphere checks
+pass; boundary and retained interaction verification are in progress.
+See [scope](handoffs/59-open-village-boundary-plan.md).
+
+Next task: complete only **P22-T13**, inspect final renders, verify containment
+and retained desktop behavior, record evidence and stop. P22-T09 and human
+P22-T10 remain unchecked. No completion or human acceptance is claimed yet.
 
 ## P22-T12 stairs and second floors verified (2026-10-16, from `9ba86aa`)
 

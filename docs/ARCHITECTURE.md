@@ -90,13 +90,16 @@ Filmic-compensated shader contract. A future location must provide compatible
 presentation and bounds deliberately.
 
 `village_landscape.gd` owns only the site: a fixed height lattice, graded square,
-four authored path centerlines, and a convex ten-section boundary bank. The
+four authored path centerlines, and a convex ten-section travel boundary.
+P22-T13 replaces the visible bank with a collision-only StaticBody3D: ten
+outward-offset boxes retain the original inner planes and overlap at corners.
+Their vertical extent contains jumps and the existing object placement range. The
 rendered ground mesh supplies the collision triangles. The paving shader marks
 routes on that same surface, so no overlay collision or curb changes movement.
 The location's placement callable insets the convex boundary by the whole panel
 footprint and raises placement above sampled terrain; existing collision queries
 still reject overlaps. The desktop services know nothing about the lattice,
-paths or bank. No scene streaming, terrain engine, new dependency, or application
+paths or physical perimeter. No scene streaming, terrain engine, new dependency, or application
 identity change is introduced.
 
 P22-T04 adds a sibling `Architecture` node. `village_architecture.gd` places five
@@ -139,8 +142,12 @@ Filmic exposure and desktop/runtime ownership remain unchanged. See
 [handoff 45](handoffs/45-village-materials.md).
 
 P22-T08 keeps the existing `MountainBackdrop` and adds a `Surrounds` child using
-`village_surrounds.gd`. It constructs a small foothill ring from the existing
-landscape boundary/crest data and one deterministic MultiMesh of distant firs.
+`village_surrounds.gd`. P22-T13 joins its foothill ring to the 96m ground square
+instead of the removed bank crest. A stitched strip matches all 768 half-meter
+ground-edge vertices; coarser outer rings keep the decorative mesh below 5,000
+triangles. Ground-edge height/normals and shader grass match the walking mesh,
+then blend into the existing hills. One deterministic MultiMesh places distant
+firs on the revised surface.
 Two painted path glimpses and local mountain haze imply terrain beyond the
 square. These nodes have no collision, world entities, application bindings,
 input handlers, shadow passes or per-frame script work. The playable boundary,

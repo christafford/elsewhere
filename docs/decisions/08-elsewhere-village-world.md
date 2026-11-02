@@ -84,6 +84,19 @@ No additional buildings, further floors, NPCs, new services or restart persisten
 P22-T09/P22-T10 remain separate gates; stop after this task. See
 [approved scope](../handoffs/57-village-upstairs-plan.md).
 
+## Owner amendment: open perimeter (2026-10-17)
+
+After reviewing P22-T13, the owner reiterated removal of the surrounding wall
+so the village feels open to exploration. Remove the visible bank and join the
+local ground continuously to the existing wooded foothills. The current travel
+polygon may remain an invisible physical limit; retain application/object bounds.
+This supersedes the visible-bank construction, without expanding the playable
+area or authorizing another task. Preserve buildings, stairs, art style and live
+desktop behavior. Inspect actual renders and verify containment and affected
+interactions. P22-T09/P22-T10 remain separate gates. See
+[approved scope](../handoffs/59-open-village-boundary-plan.md).
+
+
 ## Owner amendment: wandering village animals (2026-11-01)
 
 The owner explicitly authorized **P22-T14** after reviewing its scope. Add pigs,

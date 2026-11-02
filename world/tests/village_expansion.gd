@@ -113,7 +113,7 @@ func run() -> void:
 		for x in [-spec.width/2, spec.width/2]:
 			for z in [-spec.depth/2,spec.depth/2]:
 				var corner := building.to_global(Vector3(x,0,z))
-				check(Landscape.contains(Vector2(corner.x,corner.z),.6),"Building clips bank: "+label)
+				check(Landscape.contains(Vector2(corner.x,corner.z),.6),"Building clips boundary: "+label)
 		await key(KEY_SHIFT,true)
 		await local_walk(building,Vector3(0,0,1.1))
 		await local_walk(building,Vector3(0,0,-spec.depth/2+1.6))

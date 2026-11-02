@@ -10,6 +10,15 @@ pecking. Groups should loosely share outdoor patches while leaving entrances
 and workspaces usable. Future land/building expansion changes navigation and
 habitat configuration, not the animal behavior implementation.
 
+## P22-T13 open landscape (owner, 2026-10-17)
+
+Remove the visible enclosing stone bank and turf rim. Grass continues from the
+village into wooded foothills, with open views of the existing mountains and
+distant tracks. Match the terrain seam in height and material; avoid an exposed
+ground edge or a replacement enclosing ridge. The playable limit remains
+invisible. Retain village buildings, furnishings, stairs and the warm palette.
+See [scope](handoffs/59-open-village-boundary-plan.md).
+
 ## P22-T12 stairs and second floors (owner, 2026-10-16)
 
 The Lodge, Guildhall, Copper Kettle, Lantern Inn, Library and Meadow Inn gain

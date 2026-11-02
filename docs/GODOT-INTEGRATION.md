@@ -66,6 +66,13 @@ the player's exported `head_bob_amplitude` to zero. Run
 `bash tools/check-godot-head-bob.sh` for focused headless/graphical checks.
 See [gait evidence](handoffs/60-walking-camera-gait.md).
 
+P22-T13 removes the visible perimeter wall. The original travel and application
+placement limits remain; the wooded landscape beyond is decorative. Ground and
+foothills join continuously. `tools/check-godot-boundary.sh` checks the terrain
+seam, all ten corners, movable stool containment and panel bounds in headless
+and graphical modes, with perimeter/upstairs captures for actual inspection.
+The existing outdoor startup trial checks walking/jumping at all ten edges.
+
 P22-T12 adds stairs inside the Lodge, Guildhall, Copper Kettle, Lantern Inn,
 Library and Meadow Inn. Enter normally and follow the timber stair along the
 right-hand wall to a usable second floor. Walk up/down without a jump or special
@@ -92,7 +99,7 @@ views. Both require actual render inspection for visual acceptance; the test
 prints no human-approval or target-hardware claim.
 
 P22-T08 adds decorative wooded foothills, distant path glimpses and local mountain
-haze outside the existing playable bank. Run `tools/check-godot-atmosphere.sh`
+haze outside the playable boundary (the visible bank was removed in P22-T13). Run `tools/check-godot-atmosphere.sh`
 for headless geometry budgets, graphical instance-boundary checks and seven
 matched 1280×800 views with rendering counters. Actual renders still require
 inspection. See [evidence](evidence/p22-t08/README.md); the cost sample is a host

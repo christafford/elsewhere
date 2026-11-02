@@ -100,7 +100,7 @@ func run() -> void:
 		for x in [-extents.x,0.0,extents.x]:
 			for z in [-extents.z,0.0,extents.z]:
 				var p := Vector2(bounded.x+x,bounded.z+z)
-				check(Landscape.contains(p,0.1) and bounded.y-extents.y>Landscape.height_at(p)+0.05,"Panel bounds clip terrain/bank")
+				check(Landscape.contains(p,0.1) and bounded.y-extents.y>Landscape.height_at(p)+0.05,"Panel bounds clip terrain/boundary")
 	if failures:
 		await study.desktop_runtime.shutdown()
 		quit(1)

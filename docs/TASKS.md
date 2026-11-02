@@ -49,6 +49,12 @@ Codex sessions work from this file. For Project 22 execute **only** the
 explicit task ID requested by the owner, verify, record evidence, and stop.
 Older automatic-first-eligible instructions apply only to historical programs.
 
+Owner-requested open perimeter, scoped 2026-10-16: **P22-T13** removes the
+visible enclosing bank and joins the surrounding landscape while retaining the
+playable boundary. Owner reiterated the instruction to proceed after reviewing
+this scope; authorized 2026-10-17. Implementation/verification in progress.
+See [scope](handoffs/59-open-village-boundary-plan.md).
+
 Owner-requested stairs, completed 2026-10-16: **P22-T12** adds internal
 stairs and usable second floors to the six taller buildings. Actual stair walking,
 render inspection and upstairs live-terminal revisits pass.
@@ -341,6 +347,24 @@ when its own acceptance is genuinely observed. Record blockers honestly.
   All 39 rebuilt GLBs regenerate identically. Named-host draw calls increase; no sustained
   or Steam Deck result is inferred. See [handoff 58](handoffs/58-village-second-floors.md)
   and [evidence/verification order](evidence/p22-t12/README.md).
+
+- [ ] **P22-T13 Remove the enclosing wall and open the landscape view.**
+  **Scoped 2026-10-16; authorized 2026-10-17, verification in progress.**
+  **Depends:** P22-T12 and the verified P22-T08 surrounding landscape.
+  Remove the visible perimeter stone bank and turf shoulder. Blend the existing
+  ground into the wooded foothills without an exposed mesh edge, gap or replacement
+  enclosing ridge. Retain the current polygon as an invisible physical boundary
+  and preserve application/object placement limits. Keep village buildings,
+  stairs, routes, art style and desktop behavior. No new travel area or people.
+  **Acceptance:** inspect actual matched renders from arrival, streets, all
+  perimeter sides and representative upstairs views; verify continuous terrain
+  and open sightlines. Headless/GPU walking, jumping and corner containment,
+  object/panel bounds, Home, ground support and affected world/stair/live-app
+  regressions pass. Run import/script checks and record matched named-host render
+  cost without claiming sustained or target-device performance. Update current
+  boundary documentation and Decision 08; preserve historical evidence. Validate
+  links/task parsing/diffs, commit only this task and stop. See
+  [handoff 59](handoffs/59-open-village-boundary-plan.md).
 
 - [x] **P22-T14 Add wandering village animals.**
   **Explicitly authorized and completed 2026-11-01; agent-run/agent-observed.**

@@ -1,5 +1,15 @@
 # Current direction — Elsewhere (2026-10-17)
 
+## Owner-requested faster normal travel verified (2026-11-01)
+
+Normal walking is 4 m/s, matching the previous Shift pace (formerly 2.4 m/s).
+Shift remains 4 m/s; Ctrl/M precision walking remains 1 m/s. The help overlay
+no longer describes Shift as faster. Import/startup, bridge build, headless and
+graphical movement/gait checks, and live-terminal help/input checks pass.
+Agent inspected walking and help renders; human comfort remains unobserved.
+See [handoff 68](handoffs/68-faster-normal-travel.md). Next task: stop after
+this bounded request; no roadmap or human gate advances.
+
 ## Owner-requested source-only history cleanup (2026-11-01)
 
 Generated GLBs, downloaded village textures and screenshot artifacts are removed

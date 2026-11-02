@@ -1,7 +1,7 @@
 ## First-person world navigation, suspended while application mode owns input.
 extends CharacterBody3D
 
-const WALK_SPEED := 2.4
+const WALK_SPEED := 4.0
 const FAST_SPEED := 4.0
 const SLOW_SPEED := 1.0
 const JUMP_VELOCITY := 4.5

@@ -1,5 +1,12 @@
 # Task list
 
+Owner-requested faster normal travel, completed 2026-11-01: normal walking now
+matches the previous Shift speed at 4 m/s; precision walking remains 1 m/s.
+Import/startup, headless/graphical movement and live-terminal help/input checks
+pass, with actual walking/help renders inspected. See
+[handoff 68](handoffs/68-faster-normal-travel.md). No numbered task or human
+gate advances; stop after this bounded request.
+
 Owner-requested village animals, completed 2026-11-01: **P22-T14** adds a
 configurable population of pigs, chickens, dogs, goats and cows, with articulated
 movement, outdoor navigation and species-specific pauses/foraging. Agent-observed

@@ -45,6 +45,24 @@ func run() -> void:
 	DirAccess.make_dir_recursive_absolute(output_dir)
 	await reset()
 	await capture("idle")
+	# Normal travel matches the former Shift pace; precision walking stays slow.
+	for modifier in [0, KEY_SHIFT, KEY_CTRL, KEY_M]:
+		await reset()
+		if modifier: key(modifier, true)
+		key(KEY_W, true)
+		await frames(12)
+		var expected := 1.0 if modifier in [KEY_CTRL, KEY_M] else 4.0
+		check(is_equal_approx(Vector2(player.velocity.x, player.velocity.z).length(), expected), "Unexpected travel speed for modifier %s" % modifier)
+		key(KEY_D, true)
+		await frames(12)
+		check(is_equal_approx(Vector2(player.velocity.x, player.velocity.z).length(), expected), "Diagonal travel changes speed")
+		player.application_mode = true
+		await frames(2)
+		check(player.velocity.is_zero_approx(), "Application mode permits world movement")
+		player.application_mode = false
+		if modifier == KEY_M: key(KEY_M, true)
+		if modifier: key(modifier, false)
+		print("TRAVEL_SPEED_OK modifier=", modifier, " speed=", expected)
 	var disabled := "--no-head-bob" in OS.get_cmdline_user_args()
 	for code in [KEY_W, KEY_S, KEY_A, KEY_D]:
 		await reset()
